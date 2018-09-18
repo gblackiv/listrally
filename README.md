@@ -1,14 +1,12 @@
 # partytodoplanner
 
 # info
-https://docs.google.com/spreadsheets/d/1wmJD2AH_p4Mizz1f5rtS9i-jzMZ99k47UHe0QDsge_E/edit#gid=0
+https://docs.google.com/document/u/1/d/e/2PACX-1vTGBw-C-cs2ZNH0Jv_NXZDObQXBvyiuQMtIw85c8Pa1fY4H0ImjHLciA6-PlqIBzHnr6opDQgLVeXyI/pub
 
 # team members
-- David Ahn
-- Randy Dang
-- Rachel Pan
-- Tien Pham (Torie)
-- Hyun Kim (Hank)
+- Michael Salvati
+- Gerald Blackmon
+- George Trendafilov
 
-# Mentors
+# mentors
 - tbd
