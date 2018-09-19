@@ -1,7 +1,7 @@
 # c718_partytodoplanner
 
 # info
-https://docs.google.com/document/u/1/d/e/2PACX-1vTGBw-C-cs2ZNH0Jv_NXZDObQXBvyiuQMtIw85c8Pa1fY4H0ImjHLciA6-PlqIBzHnr6opDQgLVeXyI/pub
+https://docs.google.com/spreadsheets/d/1wmJD2AH_p4Mizz1f5rtS9i-jzMZ99k47UHe0QDsge_E/edit?usp=sharing
 
 # team members
 - Michael Salvati
