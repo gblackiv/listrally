@@ -7,6 +7,7 @@ https://docs.google.com/spreadsheets/d/1wmJD2AH_p4Mizz1f5rtS9i-jzMZ99k47UHe0QDsg
 - Michael Salvati
 - Gerald Blackmon
 - George Trendafilov
+- Torie Pham
 
 # mentors
 - tbd
