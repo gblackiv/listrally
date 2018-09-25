@@ -1,6 +1,14 @@
 import React from 'react';
+import {Route} from 'react-router-dom';
+//CSS stylesheets
 import '../assets/css/styles.css';
 import '../assets/css/app.css';
+//Components
+import TempNav from './tempNav';
+import Home from './home';
+import List from './list';
+import Dashboard from './dashboard';
+
 
 const App = () => (
     <div className="app">
@@ -9,18 +17,19 @@ const App = () => (
         </nav>
         <div className="col-2">
             <header>
-                Header
+            <TempNav />
             </header>
             <main className="content">
-            <section>
-                <h1>SOME MAIN SECTION STUFF HERE</h1>
-            </section>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/list" component={List} />
+                <Route exact path="/dashboard" component={Dashboard} />
             </main>
             <footer>
                 Footer
             </footer>
         </div>
     </div>
+    
 );
 
 export default App;
