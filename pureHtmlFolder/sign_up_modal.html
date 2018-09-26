@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /***************************
+        * Form Group
+        ****************************/
+        
+        /***************************
+        * Modal
+        ****************************/
+        .modal {
+            display: none;
+        }
+
+        .modal-show,
+        .modal-hide {
+            display: flex;
+        }
+
+        .modal-align {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 999;
+        }
+
+        .modal-container {
+            position: relative;
+            width: 100%;
+            background: #eee;
+            margin: 15px;
+            border-radius: 12px;
+        }
+
+        .modal-header {
+            display: flex;
+            flex-direction: row;
+            background: lightgray;
+            height: 60px;
+            padding-left: 25px;
+            padding-bottom: 5px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        .content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .modal-footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            position: absolute;
+            background: lightgray;
+            height: 45px;
+            width: 100%;
+            bottom: 0;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        .modalCloseBtn {
+            margin: auto 15px;
+        }
+
+        .modalCloseX {
+            position: absolute;
+            top: 6px;
+            right: 15px;
+        }
+
+        .modalCloseX:hover {
+            cursor: pointer;
+        }
+
+        /* Animation */
+        .modal.modal-show {
+            animation: modal-open 0.3s;
+        }
+
+        @keyframes modal-open {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .modal.modal-hide {
+            animation: modal-close 0.3s;
+        }
+
+        @keyframes modal-close {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="modal-trigger">OPEN FLEXBOX MODAL</button>
+
+    <!-- Modal -->
+    <div class="flex align-center align-vert modal modal-align">
+        <div class="modal-container">
+            <header class="modal-header">
+                <h1>Login or Sign-Up</h1>
+                <a class="modalClose modalCloseX" aria-hidden="true">&#x2715;</a>
+            </header>
+            <main class="content">
+                <h2>SIGNIN USING</h2>
+                <div>
+                    <h4>Sign in using</h4>
+                    <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" alt="Sign in with google" />
+                </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                <!-- <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="input-control" />
+
+                    <label class="right-inline">Last Name</label>
+                    <input type="text" class="input-control" />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="input-control" />
+                </div>
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button>Save</button>
+                    <button>Cancel</button>
+                </div> -->
+            </main>
+            <footer class="modal-footer">
+                <button class="modalClose modalCloseBtn">Close</button>
+            </footer>
+
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        function modal() {
+            var modal = $(".modal")[0],
+                trigger = $(".modal-trigger")[0],
+                close = $(".modalClose");
+
+            closeModal = function () {
+                modal.classList.remove("modal-show");
+                modal.classList.add("modal-hide");
+                // Remove hide class after animation is done
+                afterAnimation = function () {
+                    modal.classList.remove("modal-hide");
+                };
+                // This listens for the CSS animations to finish and then hides the modal
+                modal.addEventListener("webkitAnimationEnd", afterAnimation, false);
+                modal.addEventListener("oAnimationEnd", afterAnimation, false);
+                modal.addEventListener("msAnimationEnd", afterAnimation, false);
+                modal.addEventListener("animationend", afterAnimation, false);
+            };
+
+            // Open the modal
+            trigger.onclick = function () {
+                modal.classList.add("modal-show");
+            };
+
+            // Close the modal with any element with class 'modalClose'
+            for (var i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    closeModal();
+                };
+            }
+
+            // Click outside of the modal and close it
+            window.onclick = function (e) {
+                if (e.target == modal) {
+                    closeModal();
+                }
+            };
+
+            // Use the escape key to close modal
+            document.onkeyup = function (e) {
+                e = e || window.event;
+                if (modal.classList.contains("modal-show")) {
+                    if (e.keyCode == 27) {
+                        closeModal();
+                    }
+                }
+            };
+        }
+        modal();
+    </script>
+</body>
+
+</html>
