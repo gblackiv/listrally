@@ -1,0 +1,27 @@
+{"success": true, "data": [
+	{
+		"ID": 1,
+		"name": "Philly Little",
+		"email": "littlephilly@hotmail.com",
+		"password": "someSHA1stringthatis41characterslong",
+		"avatar": "http://ihopethisisalinktotheavatarphoto.com",
+		"venmoID": "PhillyLovesCash"
+	},
+	{
+		"ID": 2,
+		"name": "Mark Emark",
+		"email": "emark_mark@gmail.com",
+		"password": "ihopethisShAStRINgIsLONGenougHToBeShAAAAA",
+		"avatar": "http://maybeitwillbebase64.com",
+		"venmoID": "I do my own stunts"	
+	},
+	{
+		"ID": 3,
+		"name": "Billy Pherall",
+		"email": "bill_ph@aol.com",
+		"password": "whateverOthershastringtomakeafakepassword",
+		"avatar": "http://ireallyhopeitisntbase64.com",
+		"venmoID": "I play the cow bell"
+	}
+	]
+}
