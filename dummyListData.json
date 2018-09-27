@@ -5,7 +5,6 @@
 		"ownerID": 2,
 		"dateTime": "2018-10-27 08:00:00",
 		"name": "Halloween Party",
-		"chatBoardID": 1,
 		"securityStatus": "locked"
 	},
 	{
@@ -14,7 +13,6 @@
 		"ownerID": 2,
 		"dateTime": "2019-1-1 00:00:00",
 		"name": "New Year's Bash",
-		"chatBoardID": 2,
 		"securityStatus": "unlocked"
 	},
 	{
@@ -23,7 +21,6 @@
 		"ownerID": 1,
 		"dateTime": "2018-12-25 18:30:00",
 		"name": "Christmas Dinner",
-		"chatBoardID": 3,
 		"securityStatus": "locked"
 	}
 	]
