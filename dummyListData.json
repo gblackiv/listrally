@@ -1,0 +1,27 @@
+{"success": true, "data": [
+	{
+		"ID": 1,
+		"url": "www.listrally.com/ourfirstdummylist",
+		"ownerID": 2,
+		"dateTime": "2018-10-27 08:00:00",
+		"name": "Halloween Party",
+		"securityStatus": "locked"
+	},
+	{
+		"ID": 2,
+		"url": "www.listrally.com/butwhataboutthe2ndlist",
+		"ownerID": 2,
+		"dateTime": "2019-1-1 00:00:00",
+		"name": "New Year's Bash",
+		"securityStatus": "unlocked"
+	},
+	{
+		"ID": 3,
+		"url": "www.listrally.com/number3mylord",
+		"ownerID": 1,
+		"dateTime": "2018-12-25 18:30:00",
+		"name": "Christmas Dinner",
+		"securityStatus": "locked"
+	}
+	]
+}
