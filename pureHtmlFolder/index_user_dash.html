@@ -7,33 +7,57 @@
     <title>User Dashboard</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <style>
-        .main_container{
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+        /* .main_container{
             height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
         
-        }
+        
+        } */
         .navigation{
         display: flex;
-        background: #007bff;
-        height: 10vh;
-        text-align: center;
+        flex-direction: row;
+        /* background: #007bff; */
+        /* height: 100vh; */
+        border: 10px rosybrown;
+        justify-content: space-between;
+    
+
         }
         .user_info{
             display: flex;
-            background: olivedrab;            
+            flex-direction: column;
+            background: olivedrab;
+            justify-content: space-between;         
         }
         .list_headers{
             display: flex;
             background: bisque;
+            justify-content: space-between;
         }
         i{
         font-size: 4em;
         color: lightgray;
         cursor: pointer;
+        /* justify-content: center; */
+        align-self: flex-end;
         }
-        
+        .back{
+            background-color: aquamarine;
+        }
+        .sign_out{
+            background-color: bisque;
+        }
+        li{
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
     </style>
 </head>
 <body>
