@@ -28,7 +28,7 @@
             background: #EEE;
             border: 1px darkgrey solid;
             height: 30px;
-            width: 95%;
+            width: 260px;
             margin: 5px;
             padding-left: 15px;
             border-radius: 4px;
@@ -38,6 +38,20 @@
         }
         .form-show {
             visibility: visible;
+        }
+        .text-center{
+            text-align: center;
+        }
+        .input{
+            display: inline-block;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .input-label {
+            position: absolute;
+            top: -12px;
+            left: 0;
+            font-size: 0.75em;
         }
         /***************************
         * Modal
@@ -64,7 +78,7 @@
         .modal-container {
             position: relative;
             width: 90%;
-            height: 70%;
+            height: 60%;
             background: #eee;
             border-radius: 12px;
             overflow: hidden;
@@ -80,11 +94,6 @@
             padding-bottom: 5px;
             border-top-left-radius: 12px;
             border-top-right-radius: 12px;
-        }
-
-        .content {
-            padding: 25px;
-            overflow: auto;
         }
 
         .modal-footer {
@@ -166,19 +175,25 @@
             <main class="content">
                     <div class="form-group text-center">
                         <div class="row">
-                            <div>First Name</div>
-                            <input type="text" name="first_name" placeholder="First Name" />
-                            
-                            <div>Last Name</div>
-                            <input type="text" name="last_name" placeholder="Last Name" />
-                            
-                            <div>Email</div>
-                            <input type="text" name="email" placeholder="Email" />
-                            
-                            <div>Password</div>
-                            <input type="password" name="password" placeholder="Password" />
-                            
+                            <div class="input">
+                                <label class="input-label">First Name</label>
+                                <input type="text" name="first_name" placeholder="First Name" />
+                            </div>
+                            <div class="input">
+                                <label class="input-label">Last Name</label>
+                                <input type="text" name="last_name" placeholder="Last Name" />
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="input">
+                                <label class="input-label">Email</label>
+                                <input type="text" name="email" placeholder="Email" />
+                            </div>
+                            <div class="input">
+                                <label class="input-label">Password</label>
+                                <input type="password" name="password" placeholder="Password" />
+                            </div>
+                        </div>                   
                     </div>
                 </form>
             </main>
@@ -192,7 +207,6 @@
             </footer>
         </div>
     </div>
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
