@@ -51,6 +51,9 @@
             background-color: #0063FF;
 
         }
+        .sign-up-p{
+            margin-bottom: 30px;
+        }
         .form-group input {
             border-style: none;
             background: #EEE;
@@ -65,6 +68,17 @@
         }
         .form-show {
             visibility: visible;
+        }
+        .input-container{
+            display: inline-block;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .input-label{
+            position: absolute;
+            top: -12px;
+            left: 0;
+            font-size: 0.75em;
         }
         /***************************
         * Modal
@@ -198,19 +212,37 @@
                         <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" alt="" class="google-oauth" />
                     </div>
                     <h4>OR</h4>
-                    <p>Please fill out the form below</p>
+                    <p class="sign-up-p">Please fill out the form below</p>
                     <div class="form-group text-center">
                         <div class="row">
-                            <input type="text" name="first_name" value="First Name*" />
-                            <input type="text" name="last_name" value="Last Name*" />
+                            <div class="input-container">
+                                <label class="input-label" for="first_name">First Name</label>
+                                <input type="text" name="first_name" placeholder="First Name*" />
+                            </div>
+                            <div class="input-container">
+                                <label class="input-label" for="last_name">Last Name</label>
+                                <input type="text" name="last_name" placeholder="Last Name*" />
+                            </div>
                         </div>
                         <div class="row">
-                            <input type="password" name="password-1" value="Password*" autocomplete="off"/>
-                            <input type="password" name="password-2" value="Password*" autocomplete="off" />
+                            <div class="input-container">
+                                <label class="input-label" for="password-1">Password</label>
+                                <input type="password" name="password-1" placeholder="Password*" autocomplete="off"/>
+                            </div>
+                            <div class="input-container">
+                                <label class="input-label" for="password-2">Password</label>
+                                <input type="password" name="password-2" placeholder="Password*" autocomplete="off" />
+                            </div>
                         </div>
                         <div class="row">
-                            <input type="email" name="email" value="Email*" />
-                            <input type="email" name="verifyEmail" value="Verify Email*" />
+                            <div class="input-container">
+                                <label class="input-label" for="email">Email</label>
+                                <input type="email" name="email" placeholder="Email*" />
+                            </div>
+                            <div class="input-container">
+                                <label class="input-label" for="verifyEmail">Email</label>
+                                <input type="email" name="verifyEmail" placeholder="Verify Email*" />
+                            </div>
                         </div>
                     </div>
                 </form>
