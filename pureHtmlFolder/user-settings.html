@@ -12,6 +12,10 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+        main{
+            margin: 0.5em 0 0 0;
+        }
+
         /***************************
         * Form Group
         ****************************/
@@ -90,10 +94,7 @@
         .modal-header {
             display: flex;
             background: #EEE;
-            padding-left: 25px;
-            padding-bottom: 5px;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
+            padding: 10px 40px;
         }
 
         .modal-footer {
@@ -131,6 +132,27 @@
             cursor: pointer;
         }
 
+        @media (min-width: 600px){
+            .modal-container{
+                width: 700px;
+            }
+            .modal-header {
+            display: flex;
+            background: #EEE;
+            padding: 20px 60px;
+            }
+            .notification{
+            position: relative;
+            left: 2.5em;
+            bottom: 2em;
+        }
+        .modalCloseBtn {
+            position: relative;
+            right: 3.5em;
+            bottom: 3em;
+        }
+        }
+
         /* Animation */
         .modal.modal-show {
             animation: modal-open 0.3s;
@@ -165,39 +187,36 @@
 <body>
     <button class="modal-trigger">USER SETTINGS MODAL</button>
 
-    <!-- Modal REMOVE MODAL SHOW-->
-    <div class="flex align-center align-vert modal modal-align modal-show">
+    <div class="flex align-center align-vert modal modal-align container">
         <div class="modal-container">
             <header class="modal-header">
                 <h1>User Settings</h1>
                 <a class="modalClose modalCloseX" aria-hidden="true">&#x2715;</a>
             </header>
-            <main class="content">
-                    <div class="form-group text-center">
-                        <div class="row">
-                            <div class="input">
-                                <label class="input-label">First Name</label>
-                                <input type="text" name="first_name" placeholder="First Name" />
-                            </div>
-                            <div class="input">
-                                <label class="input-label">Last Name</label>
-                                <input type="text" name="last_name" placeholder="Last Name" />
-                            </div>
+            <main>
+                <div class="form-group text-center">
+                    <div class="row">
+                        <div class="input">
+                            <label class="input-label">First Name</label>
+                            <input type="text" name="first_name" placeholder="Bobby" />
                         </div>
-                        <div class="row">
-                            <div class="input">
-                                <label class="input-label">Email</label>
-                                <input type="text" name="email" placeholder="Email" />
-                            </div>
-                            <div class="input">
-                                <label class="input-label">Password</label>
-                                <input type="password" name="password" placeholder="Password" />
-                            </div>
-                        </div>                   
+                        <div class="input">
+                            <label class="input-label">Last Name</label>
+                            <input type="text" name="last_name" placeholder="Brown" />
+                        </div>
                     </div>
-                </form>
+                    <div class="row">
+                        <div class="input">
+                            <label class="input-label">Email</label>
+                            <input type="text" name="email" placeholder="bluebob@gmail.com" />
+                        </div>
+                        <div class="input">
+                            <label class="input-label">Password</label>
+                            <input type="password" name="password" placeholder="password" />
+                        </div>
+                    </div>                   
+                </div>
             </main>
-
             <footer class="modal-footer">
                 <div class="notification">
                     <div>Notifications</div>
