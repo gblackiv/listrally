@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <style>
+        body{
+            height: 100vh;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            background: lightblue;
+        }
+        .container{
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .listContent{
+            border: 2px solid black;
+            border-radius: 20px;
+            position: relative;
+            height: 85%;
+            margin: 0.3em 0;
+            padding: 0.3em;
+            display: flex;
+            flex-direction: column;
+            background: white;
+         
+        }
+        .top{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .fa-user{
+            font-size: 4em; 
+            align-self: flex-end;
+            padding: 10px;
+            cursor: pointer; 
+        }
+
+        .nav,.footer{
+        display: flex;
+        justify-content: space-between;
+        
+        }
+
+        .list_toggle{
+            display: flex;
+            /* background: bisque; */
+            justify-content: space-between;
+            padding: 10px;
+        }
+        .fa-toggle-off{
+            font-size: 1.5em;
+            cursor: pointer; 
+        }
+        .button{
+            border-radius: 12px;
+            cursor: pointer;
+            background-color: #008CBA;
+            color: white;
+        }
+        .fa-chevron-circle-left{
+            font-size: 1.5em;
+            cursor: pointer;
+            flex-grow: 0.95;  
+        }
+        .fa-sign-out-alt{
+            font-size: 1.2em;
+            cursor: pointer; 
+        }
+        .items{
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+        }
+        .items>div{
+            /* width: 85vw; */
+            display: flex;
+            justify-content: space-between;
+            font-size: 1em;
+            margin: 0.2em 0;
+            align-self: auto;
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        i{
+            cursor: pointer;
+        }
+        .fa-plus-circle{
+            font-size: 2em;
+            position: absolute;
+            bottom: 0;
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Nav -->
+        <div class="nav">
+            <i class="fas fa-chevron-circle-left"></i>
+            <div>Sign Out</div>
+            <i class="fas fa-sign-out-alt"></i>
+        </div>
+        <!-- Main Content -->
+        <div class="listContent">
+            <!-- User name, details, user avatar -->
+            <div class="top">
+                    <h4 class="details">First Name <br> Last Name</h4>
+                    <!-- <h4 class="details">Last Name</h4> -->
+
+                    <i class="far fa-user"></i>
+                    
+            </div>
+            <!-- List Toggle -->
+            <div class="list_toggle">
+                    <div>All Lists</div>
+                    <i class="fas fa-toggle-off"></i>
+                    <button class="button">User Settings</button>
+                </div>
+
+            <!-- Items -->
+            <div class="items">
+                <div class="item1">
+                    <div class="left">
+                        <i class="fas fa-link"></i>
+                        My First List
+                    </div>
+                    <div class="right">
+                        <i class="fas fa-unlock-alt"></i>
+                        <i class="fas fa-cog"></i>
+                    </div>
+                </div>
+                <div class="item2">
+                    <div class="left">
+                        <i class="fas fa-link"></i>
+                        Office Potluck List
+                    </div>
+                    <div class="right">
+                        <i class="fas fa-unlock-alt"></i>
+                        <i class="fas fa-cog"></i>
+                    </div>
+                </div>
+                <div class="item2">
+                    <div class="left">
+                        <i class="fas fa-link"></i>
+                        Family Reunion
+                    </div>
+                    <div class="right">
+                        <i class="fas fa-unlock-alt"></i>
+                        <i class="fas fa-cog"></i>
+                    </div>
+                </div> 
+            </div>
+            <br>
+            <!-- Add List Button -->
+            <i class="fas fa-plus-circle"></i>
+        </div>
+    </div>
+</body>
+</html>
