@@ -23,20 +23,30 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        height: 100vh;
+        justify-content: space-evenly;
         }
 
-        button{
+        .sign-in{
         position: absolute;
         right: 0;
-        display: block;
+        background-color: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1em;
+        }
+
+        .sign-in:hover{
+            color: skyblue;
         }
 
         #logo{
         height: 25vh;
         }
 
-        h1{
-        font-size: 3em;
+        .title{
+        font-weight: 700;
+        font-size: 4em;
         letter-spacing: 0.1em;
         color: orange;
         }
@@ -70,14 +80,12 @@
 </head>
     <body>
         <div class="container">
-        <button>SIGN IN</button>
+        <button class="sign-in">Sign In</button>
             <div class="content">
                 <img id="logo" src="../src/assets/images/todolist.png" alt="logo">
-                <h1>ListRally</h1>
+                <div class="title">ListRally</div>
                 <p>Click the + icon to get started</p>
                 <i class="fas fa-plus-square"></i>
-                <br>
-                <br>
                 <div class="template">
                     <p>click the down arrow for list templates</p>
                     <i class="arrow fas fa-angle-down"></i>
