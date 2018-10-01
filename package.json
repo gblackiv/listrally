@@ -12,7 +12,7 @@
 	"license": "ISC",
 	"repository": {
 		"type": "git",
-		"url": ""
+		"url": "https://github.com/Learning-Fuze/c718_partytodoplanner/tree/dev"
 	},
 	"dependencies": {
 		"express": "^4.16.3",
