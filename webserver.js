@@ -3,7 +3,6 @@ const mySQL = require( 'mysql' );
 const server = express();
 const PORT = 3000;
 const mysqlCredentials = require( './mySQLCredentials.js' );
-console.log(mysqlCredentials);
 
 const connection = mySQL.createConnection( mysqlCredentials );
 connection.connect( error => {
@@ -14,25 +13,35 @@ connection.connect( error => {
 
 server.use( express.json() );
 server.use( express.urlencoded() );
-server.use( express.static( `${__dirname}/html` ) );
+server.use( express.static( `${__dirname}/client/dist` ) );
 
 
-server.get( '/lists/:ID', (request, response ) => {
-	const { ID } = request.params;
+server.get( '/api/lists', (request, response ) => {
+	const { ID } = request.query;
 
-	let query = 'SELECT * FROM ?? WHERE ?? = ?';
-	let inserts = [ 'lists', 'ID', ID ]
-	let sql = mySQL.format( query, inserts );
+	const listQuery = 'SELECT * FROM ?? WHERE ?? = ?';
+	const listInserts = [ 'lists', 'ID', ID ]
+	const listSQL = mySQL.format( listQuery, listInserts );
 	
-	connection.query( sql, ( error, results, fields ) => {
+	connection.query( listSQL, ( error, results, fields ) => {
 		if( error ) return next( error );
 
-		console.log('results',results);
+		console.log('list results',results);
 		const dataToReturn = {
 			success: true,
-			data: results
+			data: {list: results}
 		};
-		response.json( dataToReturn );
+		const itemQuery = 'SELECT * FROM ?? WHERE ?? = ?';
+		const itemInserts = [ 'items', 'listID', ID ];
+		const itemSQL = mySQL.format( itemQuery, itemInserts );
+
+		connection.query( itemSQL, ( error, results, fields ) => {
+			if( error ) return next( error );
+
+			console.log( 'item results', results);
+			dataToReturn.data.items = results;
+			response.json( dataToReturn );
+		});
 	});
 });
 
