@@ -1,7 +1,7 @@
 const express = require( 'express' );
 const mySQL = require( 'mysql' );
 const server = express();
-const PORT = 3000;
+const PORT = 3050;
 const mysqlCredentials = require( './mySQLCredentials.js' );
 
 const connection = mySQL.createConnection( mysqlCredentials );
@@ -11,6 +11,11 @@ connection.connect( error => {
 	console.log( `connected to ${mysqlCredentials.database}` );
 });
 
+server.use( ( request, response, next ) => {
+	response.header( "Access-Control-Allow-Origin", "*" );
+	response.header( "Access-Control-Allow-Headers", "Origin, X-Request-With, Content-Type, Accept" );
+	next();
+});
 server.use( express.json() );
 server.use( express.urlencoded() );
 server.use( express.static( `${__dirname}/client/dist` ) );
@@ -26,7 +31,6 @@ server.get( '/api/lists', (request, response ) => {
 	connection.query( listSQL, ( error, results, fields ) => {
 		if( error ) return next( error );
 
-		console.log('list results',results);
 		const dataToReturn = {
 			success: true,
 			data: {list: results}
@@ -38,23 +42,10 @@ server.get( '/api/lists', (request, response ) => {
 		connection.query( itemSQL, ( error, results, fields ) => {
 			if( error ) return next( error );
 
-			console.log( 'item results', results);
 			dataToReturn.data.items = results;
 			response.json( dataToReturn );
 		});
 	});
 });
 
-
-server.get( '/data', ( request, response ) =>{
-	console.log('got a basic request');
-	response.send(JSON.stringify({things: 'here is some shiz'}));
-
-} );
-
-
-
 server.listen( PORT, () => { console.log( `server is listening on port ${PORT}` ) } );
-
-
-
