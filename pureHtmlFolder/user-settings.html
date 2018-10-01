@@ -54,9 +54,76 @@
         .input-label {
             position: absolute;
             top: -12px;
-            left: 0;
+            left: 5px;
             font-size: 0.75em;
         }
+
+        /***************************
+        * Checkbox
+        ****************************/
+
+        .notification{
+            position: relative;
+            bottom: 40px;
+            left: 2em;
+        }
+
+        .checkbox input[type="checkbox"] {
+            opacity: 0;
+        }
+        .checkbox input[type="checkbox"] {
+			opacity: 0;
+        }
+		.checkbox label::before{
+			content: "";
+			display: inline-block;
+			height: 16px;
+			width: 16px;
+			border: 2px solid gray;   
+            border-radius: 3px;
+		}
+		.checkbox label::after {
+			content: "";
+			display: inline-block;
+			height: 7px;
+			width: 12px;
+			border-left: 3px solid;
+			border-bottom: 4px solid;
+			transform: rotate(-45deg);
+            color: #26a69a;;
+		}
+
+		.checkbox label {
+			position: relative;
+			left: 10px;
+		}
+		.checkbox label::before,
+		.checkbox label::after {
+			position: absolute;
+		}
+		/*Outer-box*/
+		.checkbox label::before {
+			left: -30px
+		}
+		/*Checkmark*/
+		.checkbox label::after {
+			top: 2px;
+			left: -28px
+		}
+
+		/*Hide the checkmark by default*/
+		.checkbox input[type="checkbox"] + label::after {
+			content: none;
+		}
+		/*Unhide the checkmark on the checked state*/
+		.checkbox input[type="checkbox"]:checked + label::after {
+			content: "";
+		}
+		/*Adding focus styles on the outer-box of the fake checkbox*/
+		.checkbox input[type="checkbox"]:focus + label::before {
+			outline: rgb(122, 155, 190) auto 3px;
+		}
+
         /***************************
         * Modal
         ****************************/
@@ -107,15 +174,11 @@
             bottom: 0;
         }
 
-        .notification{
-            margin: -1em 1.5em;
-        }
-
         .modalCloseBtn {
-            background-color: green;
+            background-color: #3AAE49;
+            padding: 0 40px;
             color: white;
             cursor: pointer;
-            border-radius: 10px;
             font-size: 1em;
             position: relative;
             right: 0.8em;
@@ -131,7 +194,8 @@
         .modalCloseX:hover {
             cursor: pointer;
         }
-
+        
+        /*******MEDIA QUERIES*******/
         @media (min-width: 600px){
             .modal-container{
                 width: 700px;
@@ -143,14 +207,9 @@
             }
             .notification{
             position: relative;
-            left: 2.5em;
-            bottom: 2em;
-        }
-        .modalCloseBtn {
-            position: relative;
-            right: 3.5em;
-            bottom: 3em;
-        }
+            left: 3.5em;
+            bottom: 5em;
+            }
         }
 
         /* Animation */
@@ -219,8 +278,11 @@
             </main>
             <footer class="modal-footer">
                 <div class="notification">
-                    <div>Notifications</div>
-                    <input type="checkbox" name="vehicle1" value="Bike"> ON
+                    <h4>Notifications</h4>
+                    <div class="checkbox">
+                        <input type="checkbox" id="checkbox_1">
+                        <label for="checkbox_1">ON</label>
+                    </div>
                 </div>
                 <button class="modalClose modalCloseBtn">Save</button>
             </footer>
