@@ -25,6 +25,7 @@ const paths = ( server, mySQL, connection ) => {
 				response.json( dataToReturn );
 			});
 		});
+
 	});
 
 	server.put( '/api/newitem', ( request, response ) => {
@@ -138,6 +139,22 @@ const paths = ( server, mySQL, connection ) => {
 				data: successString
 			};
 			response.json( dataToReturn );
+		});
+	});
+	server.get( '/api/messages', ( request, response ) => {
+		const { ID } = request.body;
+
+		const messageQuery = 'SELECT * FROM ?? WHERE ?? = ?';
+		const messageInserts = [ 'messages', 'listID', ID ];
+		const messageSQL = mySQL.format( messageQuery, messageInserts );
+
+		connection.query( messageSQL, ( error, results, fields ) => {
+			if( error ) return next( error );
+			
+			const dataToReturn = {
+				success: true,
+				data: results
+			};
 		});
 	});
 }
