@@ -114,6 +114,173 @@
             /* position: sticky;
             bottom: 10px; */
         }
+
+
+
+        /***************************
+        * Modal
+        ****************************/
+        .main{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal {
+            display: none;
+        }
+
+        .modal-show,
+        .modal-hide {
+            display: flex;
+        }
+
+        .modal-align {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 999;
+        }
+
+        .modal-container {
+            position: relative;
+            width: 90%;
+            height: 40%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .modal-header {
+            display: flex;
+            padding: 10px 40px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            height: 45px;
+            width: 100%;
+            bottom: 0;
+        }
+        
+        .modal-buttons{
+            display: flex;
+            justify-content: space-around;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .modalCloseBtn {
+            /* background-color: #3AAE49; */
+            background-color: transparent;
+            border: none;
+            padding: 0 40px;
+            color: #26a69a;
+            /* font-weight: 500; */
+            cursor: pointer;
+            font-size: 1.5em;
+            position: relative;
+            left: 0%;
+            bottom: 1em;
+        }
+
+        .modalCloseX {
+            position: absolute;
+            top: 6px;
+            right: 15px;
+        }
+
+        .modalCloseX:hover {
+            cursor: pointer;
+        }
+        .add-input{
+            /* position: relative;
+            left: 6%;
+            font-size: 2em; */
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #26a69a;
+            border-radius: 0;
+            outline: none;
+            height: 3rem;
+            width: 80%;
+            font-size: 16px;
+            margin: 0 0 8px 0;
+            padding: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+
+        }
+        
+        /*******MEDIA QUERIES*******/
+        @media (min-width: 600px){
+            .modal-container{
+                width: 700px;
+            }
+            .modal-header {
+            display: flex;
+            background: white;
+            padding: 20px 60px;
+            }
+            .notification{
+            position: relative;
+            left: 3.5em;
+            bottom: 5em;
+            }
+            /* .add-input{
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2em;
+            } */
+            .modalCloseBtn {
+            position: relative;
+            left: 70%;
+            bottom: 1em;
+            }
+        }
+
+        /* Animation */
+        .modal.modal-show {
+            animation: modal-open 0.3s;
+        }
+
+        @keyframes modal-open {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .modal.modal-hide {
+            animation: modal-close 0.3s;
+        }
+
+        @keyframes modal-close {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
     </style>
     <title>List</title>
 </head>
@@ -190,7 +357,7 @@
                 </div>
                 <br>
                 <!-- Add List Button -->
-                <div class="item add">
+                <div class="item add modal-trigger">
                     <i class="fas fa-plus-circle"></i>
                     <label class="add">Add Item</label>
                 </div>
@@ -201,6 +368,130 @@
             <!-- <i class="fas fa-dollar-sign"></i> -->
             <i class="fas fa-comments"></i>
         </div>
-    </div>
+
+        <!--MODAL-->
+        <div class="flex align-center align-vert modal modal-align container">
+            <div class="modal-container">
+                <header class="modal-header">
+                    <h1>Add Item</h1>
+                    <a class="modalClose modalCloseX" aria-hidden="true">&#x2715;</a>
+                </header>
+                <div class="main">
+                    <input class="add-input" type="text" name="sauce"/>
+                </div>
+                <footer class="modal-footer">
+                    <div class="modal-buttons">
+                        <button class="modalClose modalCloseBtn">Cancel</button>
+                        <button class="modalClose modalCloseBtn">OK</button>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+            function modal() {
+                var modal = $(".modal")[0],
+                    trigger = $(".modal-trigger")[0],
+                    close = $(".modalClose");
+    
+                closeModal = function () {
+                    modal.classList.remove("modal-show");
+                    modal.classList.add("modal-hide");
+                    // Remove hide class after animation is done
+                    afterAnimation = function () {
+                        modal.classList.remove("modal-hide");
+                    };
+                    // This listens for the CSS animations to finish and then hides the modal
+                    modal.addEventListener("webkitAnimationEnd", afterAnimation, false);
+                    modal.addEventListener("oAnimationEnd", afterAnimation, false);
+                    modal.addEventListener("msAnimationEnd", afterAnimation, false);
+                    modal.addEventListener("animationend", afterAnimation, false);
+                };
+    
+                // Open the modal
+                trigger.onclick = function () {
+                    modal.classList.add("modal-show");
+                };
+    
+                // Close the modal with any element with class 'modalClose'
+                for (var i = 0; i < close.length; i++) {
+                    close[i].onclick = function () {
+                        closeModal();
+                    };
+                }
+    
+                // Click outside of the modal and close it
+                window.onclick = function (e) {
+                    if (e.target == modal) {
+                        closeModal();
+                    }
+                };
+    
+                // Use the escape key to close modal
+                document.onkeyup = function (e) {
+                    e = e || window.event;
+                    if (modal.classList.contains("modal-show")) {
+                        if (e.keyCode == 27) {
+                            closeModal();
+                        }
+                    }
+                };
+            }
+            modal();
+        </script>
+
+    <script>
+        function modal() {
+            var modal = $(".modal")[0],
+                trigger = $(".modal-trigger"),
+                close = $(".modalClose");
+
+            closeModal = function () {
+                modal.classList.remove("modal-show");
+                modal.classList.add("modal-hide");
+                // Remove hide class after animation is done
+                afterAnimation = function () {
+                    modal.classList.remove("modal-hide");
+                };
+                // This listens for the CSS animations to finish and then hides the modal
+                modal.addEventListener("webkitAnimationEnd", afterAnimation, false);
+                modal.addEventListener("oAnimationEnd", afterAnimation, false);
+                modal.addEventListener("msAnimationEnd", afterAnimation, false);
+                modal.addEventListener("animationend", afterAnimation, false);
+            };
+
+            // Open the modal
+            trigger.onclick = function () {
+                modal.classList.add("modal-show");
+            };
+
+            // Close the modal with any element with class 'modalClose'
+            for (var i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    closeModal();
+                };
+            }
+
+            // Click outside of the modal and close it
+            window.onclick = function (e) {
+                if (e.target == modal) {
+                    closeModal();
+                }
+            };
+
+            // Use the escape key to close modal
+            document.onkeyup = function (e) {
+                e = e || window.event;
+                if (modal.classList.contains("modal-show")) {
+                    if (e.keyCode == 27) {
+                        closeModal();
+                    }
+                }
+            };
+        }
+        modal();
+    </script>
 </body>
 </html>
