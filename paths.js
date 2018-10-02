@@ -155,6 +155,7 @@ const paths = ( server, mySQL, connection ) => {
 				success: true,
 				data: results
 			};
+			response.json( dataToReturn );
 		});
 	});
 }
