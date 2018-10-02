@@ -28,6 +28,10 @@
             cursor: pointer;
         }
 
+        .list-name{
+            white-space: nowrap;
+        }
+
         .fa-user{
             position: fixed;
             font-size: 5em;
@@ -41,9 +45,14 @@
             z-index: 1;
         }
 
-        .nav,.footer{
+        .nav{
             display: flex;
             justify-content: space-between;
+        }
+
+        .footer{
+            display: flex;
+            justify-content: flex-end;
         }
 
         .fa-chevron-left,.fa-link,.fa-dollar-sign,.fa-comments{
@@ -81,9 +90,10 @@
             display: flex;
             flex-direction: column;
             overflow: auto;
+            align-items: center;
         }
 
-        .items>div{
+        .item{
             width: 88vw;
             display: flex;
             justify-content: space-between;
@@ -92,9 +102,17 @@
         }
 
         .fa-plus-circle{
-            font-size: 4em;
-            position: sticky;
-            bottom: 0;
+            font-size: 1em;
+            position: relative;
+            top: 2px;
+            margin: 0 0.2 0 0 em;
+        }
+        .add{
+            display: flex;
+            justify-content: flex-start;
+            cursor: pointer;
+            /* position: sticky;
+            bottom: 10px; */
         }
     </style>
     <title>List</title>
@@ -114,62 +132,73 @@
         <div class="listContent">
             <!-- List name, details, and filter button -->
             <div class="top">
-                <i class="fas fa-filter"></i>
                 <br>
-                <h1 class="listName">Aunt Sue's Party</h1>
+                <h1 class="list-name">Aunt Sue's Party</h1>
                 <h4 class="details">Saturday April 1st</h4>
             </div>
             <!-- Items -->
             <div class="items">
-                <div class="item1">
+                <div class="item">
                     <div class="left">
-                        <i class="fas fa-ellipsis-v"></i>
-                        <input type="checkbox" name="item1" value="chips">Chips
+                        <i class="fas fa-sort"></i>
+                        <label>Chips</label>
                     </div>
                     <div class="right">
-                        <i class="far fa-edit"></i>
+                        <i class="fas fa-pen"></i>
                         <i class="fas fa-trash-alt"></i>
                     </div>
                 </div>
-                <div class="item2">
+                <div class="item">
                     <div class="left">
-                        <i class="fas fa-ellipsis-v"></i>
-                        <input type="checkbox" name="item2" value="beer">Beer
+                        <i class="fas fa-sort"></i>
+                        <label>Beer</label>
                     </div>
                     <div class="right">
-                        <i class="far fa-edit"></i>
+                        <i class="fas fa-pen"></i>
                         <i class="fas fa-trash-alt"></i>
                     </div>
                 </div>
-                <div class="item3">
+                <div class="item">
                     <div class="left">
-                        <i class="fas fa-ellipsis-v"></i>
-                        <input type="checkbox" name="item3" value="forks">Plastic forks
+                        <i class="fas fa-sort"></i>
+                        <label>Plastic forks</label>
                     </div>
                     <div class="right">
-                        <i class="far fa-edit"></i>
+                        <i class="fas fa-pen"></i>
                         <i class="fas fa-trash-alt"></i>
                     </div>
                 </div>
-                <div class="item4">
+                <div class="item">
                     <div class="left">
-                        <i class="fas fa-ellipsis-v"></i>
-                        <input type="checkbox" name="item4" value="forks">Cups
+                        <i class="fas fa-sort"></i>
+                        <label>Cups</label>
                     </div>
                     <div class="right">
-                        <i class="far fa-edit"></i>
+                        <i class="fas fa-pen"></i>
                         <i class="fas fa-trash-alt"></i>
                     </div>
+                </div>
+                <div class="item">
+                    <div class="left">
+                        <i class="fas fa-sort"></i>
+                        <label>Soda</label>
+                    </div>
+                    <div class="right">
+                        <i class="fas fa-pen"></i>
+                        <i class="fas fa-trash-alt"></i>
+                    </div>
+                </div>
+                <br>
+                <!-- Add List Button -->
+                <div class="item add">
+                    <i class="fas fa-plus-circle"></i>
+                    <label class="add">Add Item</label>
                 </div>
             </div>
-            <br>
-            <!-- Add List Button -->
-            <i class="fas fa-plus-circle"></i>
         </div>
-
         <!-- Footer -->
         <div class="footer">
-            <i class="fas fa-dollar-sign"></i>
+            <!-- <i class="fas fa-dollar-sign"></i> -->
             <i class="fas fa-comments"></i>
         </div>
     </div>
