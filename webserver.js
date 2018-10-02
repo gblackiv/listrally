@@ -3,6 +3,7 @@ const mySQL = require( 'mysql' );
 const server = express();
 const PORT = 3050;
 const mysqlCredentials = require( './mySQLCredentials.js' );
+const paths = require( './paths' );
 
 const connection = mySQL.createConnection( mysqlCredentials );
 connection.connect( error => {
@@ -20,32 +21,7 @@ server.use( express.json() );
 server.use( express.urlencoded() );
 server.use( express.static( `${__dirname}/client/dist` ) );
 
+paths( server, mySQL, connection );
 
-server.get( '/api/lists', (request, response ) => {
-	const { ID } = request.query;
-
-	const listQuery = 'SELECT * FROM ?? WHERE ?? = ?';
-	const listInserts = [ 'lists', 'ID', ID ]
-	const listSQL = mySQL.format( listQuery, listInserts );
-	
-	connection.query( listSQL, ( error, results, fields ) => {
-		if( error ) return next( error );
-
-		const dataToReturn = {
-			success: true,
-			data: {list: results}
-		};
-		const itemQuery = 'SELECT * FROM ?? WHERE ?? = ?';
-		const itemInserts = [ 'items', 'listID', ID ];
-		const itemSQL = mySQL.format( itemQuery, itemInserts );
-
-		connection.query( itemSQL, ( error, results, fields ) => {
-			if( error ) return next( error );
-
-			dataToReturn.data.items = results;
-			response.json( dataToReturn );
-		});
-	});
-});
 
 server.listen( PORT, () => { console.log( `server is listening on port ${PORT}` ) } );
