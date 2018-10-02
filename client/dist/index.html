@@ -22,9 +22,13 @@ CLICK ME!
             function getData(){
                 console.log('ive been clicked')
                 $.ajax({
-                    url: '/api/lists',
-                    method: 'get',
-                    data: {ID: 1},
+                    url: '/api/newitem',
+                    method: 'put',
+                    data: {
+                        name: 'mac and cheese',
+                        listID: 3,
+                        assignedUserID: 0
+                    },
                     success: ( response ) => { console.log(response) }
                 });
             }
