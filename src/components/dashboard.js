@@ -1,9 +1,10 @@
 import React from 'react';
 import './dashboard.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default props => (    
     <div>
-           <div className="container">
+           <div className="container dark-text">
         {/* <Top Nav */}
         <div className="nav">
             <i className="fas fa-chevron-circle-left"></i>
@@ -17,7 +18,9 @@ export default props => (
                     <h4 className="details">First Name <br/> Last Name</h4>
                     {/* <!-- <h4 className="details">Last Name</h4> --> */}
 
-                    <i className="far fa-user"></i>
+                    {/* <i className="far fa-user"></i> */}
+                    <FontAwesomeIcon icon="stroopwafel" />
+                    <FontAwesomeIcon icon="user" />
                     
             </div>
             {/* <!-- List Toggle --> */}

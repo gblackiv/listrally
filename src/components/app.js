@@ -9,6 +9,12 @@ import Home from './home';
 import List from './list';
 import Dashboard from './dashboard';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStroopwafel, faUser } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faStroopwafel, faUser)
+
 
 const App = () => (
     <div className="app">
