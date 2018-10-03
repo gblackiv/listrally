@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <title>Shared List</title>
     <style>
         body{
             height: 100vh;
@@ -28,6 +29,15 @@
             cursor: pointer;
         }
 
+        .list-name{
+            white-space: nowrap;
+        }
+
+        .person{
+            width: 45px;
+            height: 45px;
+        }
+
         .fa-user{
             position: fixed;
             font-size: 5em;
@@ -46,7 +56,7 @@
             justify-content: space-between;
         }
 
-        .fa-chevron-left,.fa-link,.fa-dollar-sign,.fa-comments{
+        .fa-chevron-left,.fa-link,.fa-dollar-sign,.fa-comments,.fa-home{
             font-size: 2.5em;
         }
 
@@ -81,6 +91,7 @@
             display: flex;
             flex-direction: column;
             overflow: auto;
+            align-items: center;
         }
 
         .items>div{
@@ -96,6 +107,10 @@
             position: sticky;
             bottom: 0;
         }
+
+        .checked{
+            text-decoration: line-through;
+        }
     </style>
     <title>List</title>
 </head>
@@ -104,7 +119,7 @@
         <!-- Top Navigation -->
         <div class="nav">
             <i class="fas fa-chevron-left"></i>
-            <i class="fas fa-link"></i>
+            <i class="fas fa-home"></i>
         </div>
         
         <!-- User Avatar -->
@@ -116,55 +131,70 @@
             <div class="top">
                 <i class="fas fa-filter"></i>
                 <br>
-                <h1 class="listName">Aunt Sue's Party</h1>
+                <h1 class="list-name">Aunt Sue's Party</h1>
                 <h4 class="details">Saturday April 1st</h4>
             </div>
             <!-- Items -->
             <div class="items">
-                <div class="item1">
+                <div class="item1 checked">
                     <div class="left">
-                        <i class="fas fa-ellipsis-v"></i>
-                        <input type="checkbox" name="item1" value="chips">Chips
+                        <!-- <i class="fas fa-sort"></i> -->
+                        <input type="checkbox" name="item1" value="chips" checked>Chips
                     </div>
                     <div class="right">
-                        <i class="far fa-edit"></i>
-                        <i class="fas fa-trash-alt"></i>
+
+                        <img class="person" src="../src/assets/images/user.png" alt="user">
                     </div>
                 </div>
                 <div class="item2">
                     <div class="left">
-                        <i class="fas fa-ellipsis-v"></i>
+                        <!-- <i class="fas fa-sort"></i> -->
                         <input type="checkbox" name="item2" value="beer">Beer
                     </div>
                     <div class="right">
-                        <i class="far fa-edit"></i>
-                        <i class="fas fa-trash-alt"></i>
+
                     </div>
                 </div>
                 <div class="item3">
                     <div class="left">
-                        <i class="fas fa-ellipsis-v"></i>
+                        <!-- <i class="fas fa-sort"></i> -->
                         <input type="checkbox" name="item3" value="forks">Plastic forks
                     </div>
                     <div class="right">
-                        <i class="far fa-edit"></i>
-                        <i class="fas fa-trash-alt"></i>
+
                     </div>
                 </div>
-                <div class="item4">
+                <div class="item4 checked">
                     <div class="left">
-                        <i class="fas fa-ellipsis-v"></i>
-                        <input type="checkbox" name="item4" value="forks">Cups
+                        <!-- <i class="fas fa-sort"></i> -->
+                        <input type="checkbox" name="item4" value="cups" checked>Cups
                     </div>
                     <div class="right">
-                        <i class="far fa-edit"></i>
-                        <i class="fas fa-trash-alt"></i>
+                        <img class="person" src="../src/assets/images/user.png" alt="user">
                     </div>
                 </div>
+                <div class="item4 checked">
+                    <div class="left">
+                        <!-- <i class="fas fa-sort"></i> -->
+                        <input type="checkbox" name="item5" value="soda" checked>Soda
+                    </div>
+                    <div class="right">
+                        <img class="person" src="../src/assets/images/user.png" alt="user">
+                    </div>
+                </div>
+                <div class="item2">
+                    <div class="left">
+                        <!-- <i class="fas fa-sort"></i> -->
+                        <input type="checkbox" name="item2" value="sauce">BBQ sauce
+                    </div>
+                    <div class="right">
+
+                    </div>
+                </div>
+                <br>
+                <!-- Add List Button -->
+                <!-- <i class="fas fa-plus-circle"></i> -->
             </div>
-            <br>
-            <!-- Add List Button -->
-            <i class="fas fa-plus-circle"></i>
         </div>
 
         <!-- Footer -->
