@@ -3,6 +3,8 @@
 *************************/
 body {
     margin: 0;
+    font-family: 'Rubik', sans-serif;
+    color: #F2F2F2;
 }
 .app {
     display: flex;
@@ -45,114 +47,6 @@ body {
   }
   
   /*************************
-  * list items
-  *************************/
-  .list-card {
-    display: block;
-    border: 1px #6c757d solid;
-    border-radius: 4px;
-    margin: 2.5px;
-  }
-  
-  .list-item {
-    position: relative;
-    padding: 12px;
-  }
-  
-  /*************************
-  * checkbox
-  *************************/
-  /* Customize the label (the container) */
-  .label-container {
-    display: flex;
-    position: relative;
-    padding-left: 45px;
-    cursor: pointer;
-    font-size: 22px;
-    justify-content: space-between;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  /* Hide the browser's default checkbox */
-  .label-container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  /* Custom checkbox styling */
-  .checkmark {
-    position: absolute;
-    top: 0;
-    left: 15px;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-  }
-  
-  .drag-icon {
-    position: absolute;
-    color: #6c757d;
-    top: 2px;
-    left: -15px;
-  }
-  
-  .user-icon {
-    position: absolute;
-    right: 5px;
-    top: 5%;
-    width: 45px;
-    height: 90%;
-  }
-  
-  .user-img {
-    width: 100%;
-    border: 2px black solid;
-    border-radius: 50%;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .label-container:hover input ~ .checkmark {
-    background-color: #ccc;
-  }
-  
-  /* When the checkbox is checked, add a blue background */
-  .label-container input:checked ~ .checkmark {
-    background-color: #2196F3;
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  
-  /* Show the checkmark when checked */
-  .label-container input:checked ~ .checkmark:after {
-    display: block;
-  }
-  
-  /* Style the checkmark/indicator */
-  .label-container .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-  
-  .box-shadow {
-    box-shadow: 0px 1px 2px rgba(0,0,0,.4)
-  }
-  
-  /*************************
   * media queries
   *************************/
   @media (min-width: 768px) {
@@ -161,3 +55,86 @@ body {
     }
     
   }
+
+  /*************************
+  * Typography
+  *************************/
+/* MAIN FONT IN BODY AT TOP OF PAGE */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+}
+h1 {
+  font-size: 4.2rem;
+}
+h2 {
+  font-size: 3.56rem; 
+}
+h3 {
+  font-size: 2.92rem;
+}
+h4 {
+  font-size: 2.28rem;
+}
+h5 {
+  font-size: 1.64rem;
+}
+h6 {
+  font-size: 1.15rem;
+}
+
+.dark-text {
+  color: #333333;
+}
+
+/*************************
+* Buttons
+*************************/
+.btn-blue {
+  background-color: #1976d2;
+  color: #F2F2F2;
+}
+.btn-blue:hover{
+  background-color: #13599e;
+}
+
+.btn-green {
+  background-color: #26a69a;
+  color: #F2F2F2;
+}
+.btn-green:hover{
+  background-color: #1c776e;
+}
+
+.btn-red {
+  background-color: #d32f2f;
+  color: #F2F2F2;
+}
+.btn-red:hover {
+  background-color: #a72424;
+}
+
+.btn-orange {
+  background-color: #ffab00;
+  color: #F2F2F2;
+}
+.btn-orange:hover {
+  background-color: #da9100;
+}
+
+.btn-grey {
+  background-color: #828282;
+  color: #F2F2F2;
+}
+.btn-grey:hover {
+  background-color: #666666;
+}
+
+/*************************
+* Links
+*************************/
+
+a {
+  color: #1976d2;
+  text-decoration: none;
+  cursor: pointer;
+}
