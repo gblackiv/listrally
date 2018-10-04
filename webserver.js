@@ -1,3 +1,5 @@
+
+//requiring all the modules, as well as external files
 const express = require( 'express' );
 const mySQL = require( 'mysql' );
 const passport = require( 'passport' );
@@ -10,6 +12,7 @@ const cookieSession = require( 'cookie-session' );
 const server = express();
 const PORT = 3050;
 
+//MySQL connection being made
 const connection = mySQL.createConnection( mysqlCredentials );
 connection.connect( error => {
 	if (error) throw error;
@@ -17,6 +20,8 @@ connection.connect( error => {
 	console.log( `connected to ${mysqlCredentials.database}` );
 });
 
+
+//middleware for the server
 server.use( cookieSession({
 	maxAge: 24 * 60 * 60 * 1000,	//one day in milliseconds
 	keys: keys.cookieKey
@@ -32,12 +37,11 @@ server.use( express.json() );
 server.use( express.urlencoded() );
 server.use( express.static( `${__dirname}/client/dist` ) );
 
+
+//routes for the server
 apiRoutes( server, mySQL, connection );
 authRoutes( server, mySQL, connection, passport)
 passportSetup( server, mySQL, connection, passport );
-
-
-
 
 
 server.listen( PORT, () => { console.log( `server is listening on port ${PORT}` ) } );

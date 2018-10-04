@@ -1,4 +1,6 @@
 node_modules
-config
+config/googleCredentials.js
+config/mySQLCredentials.js
+config/keys.js
 client/dist/bundle.js
 client/dist/assets
