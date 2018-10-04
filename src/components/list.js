@@ -1,9 +1,7 @@
 import React from 'react';
 
-export default class List{
-    render(){
-        (    
-            <div></div>
-        )
-    }
-}
+export default props => (    
+    <div>
+       <h1>TEMP LIST PAGE</h1> 
+    </div>
+)
