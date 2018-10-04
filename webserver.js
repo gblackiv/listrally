@@ -3,7 +3,8 @@ const mySQL = require( 'mysql' );
 const passport = require( 'passport' );
 const passportSetup = require( './config/passportSetup.js' );
 const mysqlCredentials = require( './config/mySQLCredentials.js' );
-const paths = require( './paths' );
+const apiRoutes = require( './apiRoutes.js' );
+const authRoutes = require( './authRoutes.js' );
 const keys = require( './config/keys.js' );
 const cookieSession = require( 'cookie-session' );
 const server = express();
@@ -31,16 +32,10 @@ server.use( express.json() );
 server.use( express.urlencoded() );
 server.use( express.static( `${__dirname}/client/dist` ) );
 
-paths( server, mySQL, connection );
+apiRoutes( server, mySQL, connection );
+authRoutes( server, mySQL, connection, passport)
 passportSetup( server, mySQL, connection, passport );
-server.get( '/auth/login', passport.authenticate( 'google', {
-	scope: [ 'profile' ],
-	access_type: 'offline'
-	})
-);
-server.get( '/auth/login/redirect', passport.authenticate( 'google' ), ( request, response ) => {
-	response.send('callback URI reached!')
-});
+
 
 
 
