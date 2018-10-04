@@ -5,29 +5,11 @@ const googleCreds = require( './googleCredentials.js');
 const passportSetup = ( server, mySQL, connection, passport ) => {
 
 	passport.serializeUser( ( user, done ) => {
-		done( null, parseInt( user[0].googleID ) );
+		done( null, parseInt( user.googleID ) );
 	});
 
 	passport.deserializeUser( ( ID, done ) => {
-		const findUser = new Promise( function( resolve, reject ){
-			const userQuery = 'SELECT * FROM ?? WHERE ?? = ?';
-			const userInserts = [ 'users', 'googleID', ID ];
-			const userSQL = mySQL.format( userQuery, userInserts );
-	
-			connection.query( userSQL, ( error, results, fields ) => {
-				//if ( error ) throw error;
-	
-				const user = results
-				console.log( 'inside find user defined ');
-				if( user === undefined ){
-					console.log('need to create new user');
-				}
-				else{
-					console.log('have matched user defined');
-				}
-				resolve(user)
-			});
-		}).then( user => {
+		verifyUserCookie( ID ).then( user => {
 			done( null, user )
 		})
 	});
@@ -37,42 +19,67 @@ const passportSetup = ( server, mySQL, connection, passport ) => {
 		clientID: googleCreds.clientID,
 		clientSecret: googleCreds.clientSecret
 		}, ( accessToken, refreshToken, profile, done) => {
-			console.log( 'have profile info' );
-			let user = {};
-			const findUser = new Promise( function( resolve, reject ){
-				const userQuery = 'SELECT * FROM ?? WHERE ?? = ?';
-				const userInserts = [ 'users', 'googleID', profile.id ];
-				const userSQL = mySQL.format( userQuery, userInserts );
-		
-				connection.query( userSQL, ( error, results, fields ) => {
-					//if ( error ) throw error;
-		
-					user = results
-					console.log( profile );
-					console.log( 'inside find user defined ');
-					if( user === undefined ){
-						createUserInDB( profile );
-					}
-					else{
-						console.log('have matched user defined');
-					}
-					resolve(user)
-				});
-			}).then( ( user ) => {
+			verifyUser( profile ).then( ( user ) => {
 				done( null, user );
 			});
 	}));
 
+	function createUserInDB( googleProfile ){
+		return new Promise( ( resolve, reject ) => {
+		const userCreationQuery = 'INSERT INTO ?? ( name, googleID, email, avatar ) VALUES ( ?, ?, ?, ? )';
+		const userCreationInserts = [ 'users', googleProfile.displayName, googleProfile.id, googleProfile.email || 0, googleProfile._json.image.url ];
+		const userCreationSQL = mySQL.format( userCreationQuery, userCreationInserts );
+			connection.query( userCreationSQL, ( error, results, fields ) => {
+				console.log( `created new user in DB with googleID of ${googleProfile.id}`);
+				const getNewUserQuery = `SELECT * FROM users WHERE googleID = ${googleProfile.id}`;
+				connection.query( getNewUserQuery, ( error, results, fields ) => {
+					resolve(results[0]);
+				});
+			});
+		});
+	}
+	function verifyUser(profile){
+		return new Promise( function( resolve, reject ){
+			const userQuery = 'SELECT * FROM ?? WHERE ?? = ?';
+			const userInserts = [ 'users', 'googleID', profile.id ];
+			const userSQL = mySQL.format( userQuery, userInserts );
 	
-}
-function createUserInDB( googleProfile ){
-	const userCreationQuery = 'INSERT INTO ?? ( name, googleID, email, avatar ) VALUES ( ?, ?, ?, ? )'
-	const userCreationInserts = [ 'users', googleProfile.displayName, googleProfile.id, googleProfile.email, googleProfile.image.url ];
-	const userCreationSQL = mySQL.format( userCreationQuery, userCreationInserts );
+			connection.query( userSQL, ( error, results, fields ) => {
+				//if ( error ) throw error;
+	
+				let user = results[0];
+				if( user && user.googleID == profile.id ){
+					resolve(user);
+				}
+				else{
+					createUserInDB( profile ).then(( newUser ) => {
+						user = newUser;
+						resolve(user);
+					});
+				}	
+			});
+		});
+	}
+	function verifyUserCookie( ID ){
+		return new Promise( function( resolve, reject ){
+			const userQuery = 'SELECT * FROM ?? WHERE ?? = ?';
+			const userInserts = [ 'users', 'googleID', ID ];
+			const userSQL = mySQL.format( userQuery, userInserts );
 
-	connection.query( userCreationSQL, ( error, results, fields ) => {
-		console.log( `created new user in DB with googleID of ${googleProfile.id}`);
-	});
-}
+			connection.query( userSQL, ( error, results, fields ) => {
+				//if ( error ) throw error;
 
+				const user = results[0];
+				if( user.googleID != ID ){
+					console.log('incorrect user auth code!!');
+				}
+				else{
+					console.log('have matched user defined');
+				}
+				resolve(user)
+			});
+		});
+	}
+
+}
 module.exports = passportSetup;
