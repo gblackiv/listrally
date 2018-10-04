@@ -11,6 +11,9 @@
   "proxy":{
     "/api/*": {
         "target": "http://localhost:3050"
+      },
+      "/auth/*": {
+        "target": "http://localhost:3050"
       }
   },
   "author": "Scott Bowler",

@@ -9,30 +9,22 @@
     <link rel="icon" href="/react_icon.png">
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 
-
-
 </head>
-<body>
-    <button>
+<body><a href="/auth/login">
 CLICK ME!
-    </button>
+</a>
     <div id="root"></div>
     <script src="/bundle.js"></script>
     <script defer>
-            function getData(){
-                console.log('ive been clicked')
-                $.ajax({
-                    url: '/api/newitem',
-                    method: 'put',
-                    data: {
-                        name: 'mac and cheese',
-                        listID: 3,
-                        assignedUserID: 0
-                    },
-                    success: ( response ) => { console.log(response) }
-                });
-            }
-            $('button').click( getData );
+            // function getData(){
+            //     console.log('ive been clicked')
+            //     $.ajax({
+            //         url: '/api/login',
+            //         method: 'get',
+            //         success: ( response ) => { console.log(response) }
+            //     });
+            // }
+            // $('button').click( getData );
                 </script>
 </body>
 </html>

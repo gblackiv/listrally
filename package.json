@@ -15,8 +15,11 @@
 		"url": "https://github.com/Learning-Fuze/c718_partytodoplanner/tree/dev"
 	},
 	"dependencies": {
+		"cookie-session": "^2.0.0-beta.3",
 		"express": "^4.16.3",
-		"mysql": "^2.16.0"
+		"mysql": "^2.16.0",
+		"passport": "^0.4.0",
+		"passport-google-oauth20": "^1.0.0"
 	},
 	"devDependencies": {}
 }

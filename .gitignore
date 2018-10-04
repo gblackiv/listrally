@@ -1,4 +1,4 @@
 node_modules
-mySQLCredentials.js
+config
 client/dist/bundle.js
 client/dist/assets
