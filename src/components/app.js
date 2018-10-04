@@ -8,6 +8,7 @@ import TempNav from './tempNav';
 import Home from './home';
 import List from './list';
 import Dashboard from './dashboard';
+import chatModal from './chat_modal';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -27,8 +28,9 @@ const App = () => (
             </header>
             <main className="content">
                 <Route exact path="/" component={Home} />
-                <Route exact path="/list" component={List} />
-                <Route exact path="/dashboard" component={Dashboard} />
+                <Route path="/list" component={List} />
+                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/chatmodal" component={chatModal} />
             </main>
             <footer>
                 Footer
