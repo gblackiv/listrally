@@ -1,3 +1,6 @@
-.idea
-.DS_Store
 node_modules
+config/googleCredentials.js
+config/mySQLCredentials.js
+config/keys.js
+client/dist/bundle.js
+client/dist/assets
