@@ -12,29 +12,23 @@ import chatModal from './chat_modal';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStroopwafel, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faStroopwafel, faUser, faChevronLeft, faLink, faSort, faComments, faPen, faTrashAlt, faPlusCircle, faDollarSign } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faStroopwafel, faUser)
+library.add(faStroopwafel, faUser, faChevronLeft, faLink, faSort, faComments, faPen, faTrashAlt, faPlusCircle,faDollarSign)
 
 
 const App = () => (
     <div className="app">
         <nav className="col-1 side-nav">
-            Nav
+        <TempNav />
         </nav>
         <div className="col-2">
-            <header>
-            <TempNav />
-            </header>
             <main className="content">
                 <Route exact path="/" component={Home} />
                 <Route path="/list" component={List} />
                 <Route path="/dashboard" component={Dashboard} />
                 <Route path="/chatmodal" component={chatModal} />
             </main>
-            <footer>
-                Footer
-            </footer>
         </div>
     </div>
     
