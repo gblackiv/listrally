@@ -7,5 +7,8 @@ const authRoutes = ( server, mySQL, connection, passport ) => {
 		response.send(request.user);
 
 	});
+	server.get( '/auth/logout', ( request, response ) => {
+		request.logout();
+	});
 }
 module.exports = authRoutes;
