@@ -13,6 +13,9 @@ export default props => (
             <li>
                 <Link to="/dashboard" className="nav-link">User Dash</Link>
             </li>
+            <li>
+                <Link to="/chatmodal" className="nav-link">Chat Modal</Link>
+            </li>
         </ul>
     </div>
 )
