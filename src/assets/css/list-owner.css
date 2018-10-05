@@ -1,24 +1,6 @@
-/*************************
-  * list items
-  *************************/
-  /* .list-card {
-    display: block;
-    border: 1px #6c757d solid;
-    border-radius: 4px;
-    margin: 2.5px;
-  }
-  
-  .list-item {
-    position: relative;
-    padding: 12px;
-  } */
 
-  body{
-    height: 100vh;
-    font-family: 'Open Sans', sans-serif;
-}
-
-.container{
+.list-container{
+    color: black;
     height: 100%;
     position: relative;
     display: flex;
@@ -39,10 +21,10 @@ i{
 }
 
 .fa-user{
-    position: fixed;
+    position: absolute;
     font-size: 5em;
     left: 50%;
-    top: 3%;
+    top: 0%;
     transform: translateX(-50%);
     padding: 10px;
     border: 4px solid black;
@@ -51,21 +33,21 @@ i{
     z-index: 1;
 }
 
-.nav{
+.list-nav{
     display: flex;
     justify-content: space-between;
 }
 
-.footer{
+.list-footer{
     display: flex;
     justify-content: flex-end;
 }
 
 .fa-chevron-left,.fa-link,.fa-dollar-sign,.fa-comments{
-    font-size: 2.5em;
+    font-size: 2em;
 }
 
-.top{
+.list-top{
     font-size: 1.5em;
 }
 
@@ -92,22 +74,22 @@ i.fa-filter{
     text-align: center;
 }
 
-.items{
+.list-items{
     display: flex;
     flex-direction: column;
     overflow: auto;
     align-items: center;
 }
 
-.item{
+.list-item{
     width: 88vw;
     display: flex;
     justify-content: space-between;
-    font-size: 2em;
-    margin: 0.2em 0;
+    font-size: 1.5em;
+    margin: 0.2em 0.2em;
 }
 
-.fa-plus-circle{
+.list-plus-circle{
     font-size: 1em;
     position: relative;
     top: 2px;
@@ -126,7 +108,7 @@ i.fa-filter{
 /***************************
 * Modal
 ****************************/
-.main{
+/* .main{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -188,12 +170,10 @@ i.fa-filter{
     transform: translateX(-50%);
 }
 .modalCloseBtn {
-    /* background-color: #3AAE49; */
     background-color: transparent;
     border: none;
     padding: 0 40px;
     color: #26a69a;
-    /* font-weight: 500; */
     cursor: pointer;
     font-size: 1.5em;
     position: relative;
@@ -211,9 +191,6 @@ i.fa-filter{
     cursor: pointer;
 }
 .add-input{
-    /* position: relative;
-    left: 6%;
-    font-size: 2em; */
     background-color: transparent;
     border: none;
     border-bottom: 1px solid #26a69a;
@@ -228,11 +205,10 @@ i.fa-filter{
     box-shadow: none;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
-
-}
+} */
 
 /*******MEDIA QUERIES*******/
-@media (min-width: 600px){
+/* @media (min-width: 600px){
     .modal-container{
         width: 700px;
     }
@@ -246,21 +222,15 @@ i.fa-filter{
     left: 3.5em;
     bottom: 5em;
     }
-    /* .add-input{
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 2em;
-    } */
     .modalCloseBtn {
     position: relative;
     left: 70%;
     bottom: 1em;
     }
-}
+} */
 
 /* Animation */
-.modal.modal-show {
+/* .modal.modal-show {
     animation: modal-open 0.3s;
 }
 
@@ -286,4 +256,4 @@ i.fa-filter{
     100% {
         opacity: 0;
     }
-}
+} */
