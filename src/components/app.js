@@ -20,21 +20,17 @@ library.add(faStroopwafel, faUser)
 const App = () => (
     <div className="app">
         <nav className="col-1 side-nav">
-            Nav
+        <TempNav />
         </nav>
         <div className="col-2">
-            <header>
-            <TempNav />
-            </header>
+      
             <main className="content">
                 <Route exact path="/" component={Home} />
                 <Route path="/list" component={List} />
                 <Route path="/dashboard" component={Dashboard} />
                 <Route path="/chatmodal" component={chatModal} />
             </main>
-            <footer>
-                Footer
-            </footer>
+
         </div>
     </div>
     
