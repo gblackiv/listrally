@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/css/chat_modal.css'
+import '../assets/css/chat_modal.scss'
 
 export default props => (    
     <div>
