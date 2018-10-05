@@ -23,12 +23,14 @@ const App = () => (
         <TempNav />
         </nav>
         <div className="col-2">
+
             <main className="content">
                 <Route exact path="/" component={Home} />
                 <Route path="/list" component={List} />
                 <Route path="/dashboard" component={Dashboard} />
                 <Route path="/chatmodal" component={chatModal} />
             </main>
+
         </div>
     </div>
     
