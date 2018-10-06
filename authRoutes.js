@@ -1,6 +1,6 @@
 const authRoutes = ( server, mySQL, connection, passport ) => {
 	server.get( '/auth/login', passport.authenticate( 'google', {
-		scope: [ 'profile' ]
+		scope: [ 'profile', 'email' ]
 		})
 	);
 	server.get( '/auth/login/redirect', passport.authenticate( 'google' ), ( request, response ) => {
