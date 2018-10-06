@@ -49,7 +49,18 @@ const passportSetup = ( server, mySQL, connection, passport ) => {
 	
 				let user = results[0];
 				if( user && user.googleID == profile.id ){
-					resolve(user);
+					if( user.email !== (profile.email || 0) || user.name !== profile.displayName || user.avatar !== profile._json.image.url){
+						const updateUserQuery = 'UPDATE users SET ??=?, ??=?, ??=?, ??=? WHERE ??=?';
+						const updateUserInserts = [ 'email', profile.email, 'name', profile.name, 'avatar', profile._json.image.url ];
+						const updateUserSQL = mySQL.format( updateUserQuery, updateUserInserts );
+						connection.query( updateUserSQL, ( error, results, fields ) => {
+							console.log( `user ID: ${user.ID} has been updated`);
+							resolve( user );
+						});
+					}
+					else{
+						resolve(user);
+					}
 				}
 				else{
 					createUserInDB( profile ).then(( newUser ) => {
