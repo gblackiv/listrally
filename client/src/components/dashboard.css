@@ -1,0 +1,154 @@
+body{
+    height: 100vh;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    background: #011c40;
+}
+.container{
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.listContent{
+    border: 2px solid black;
+    border-radius: 20px;
+    position: relative;
+    height: 85%;
+    margin: 0.3em 0.3em;
+    padding: 0.3em;
+    display: flex;
+    flex-direction: column;
+    background: white;
+ 
+}
+.top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.fa-user{
+    font-size: 5em; 
+    align-self: center;
+    padding: 10px;
+    cursor: pointer; 
+    
+}
+.details{
+    margin-left: 5%;
+}
+.nav{
+display: flex;
+justify-content: space-between;
+padding: 0.3em;
+}
+
+.list_toggle{
+    display: flex;
+    /* background: bisque; */
+    justify-content: space-between;
+    padding: 10px;
+}
+.fa-toggle-off{
+    font-size: 1.5em;
+    cursor: pointer; 
+}
+.button{
+    border-radius: 12px;
+    color: white;
+}
+.fa-chevron-circle-left{
+    font-size: 1.8em;
+    cursor: pointer;
+    flex-grow: 0.95; 
+    position: absolute;
+    color: white;
+    
+}
+.fa-sign-out-alt{
+    font-size: 1.2em;
+    cursor: pointer;
+    color: white;     
+}
+.items{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    
+}
+.signout{
+    text-align: right;
+    flex-grow: 0.98;
+    cursor: pointer; 
+    color: white;
+ 
+}
+.items>div{
+    width: 85vw;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1em;
+    margin: 0.2em 0;
+    align-self: auto;
+    border: 0.5px solid grey;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+i{
+    cursor: pointer;
+}
+.fa-plus-circle{
+    font-size: 2.2em;
+    position: absolute;
+    bottom: 0;
+    align-self: center;
+    color: white;
+    background-color: #1c776e;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+.fa-link{
+    color: white;
+    background-color: #1976d2;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 8px;
+    /* font-size: 1em; */
+}
+.fa-lock-alt{
+    color: orange;
+    background-color: #d32f2f;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 8px;
+}
+.fa-unlock-alt{
+    color: orange;
+    background-color: #1c776e; 
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 8px;
+}
+.fa-cog{
+    color: white;
+    background-color: #828282;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 8px;
+}
+.list_text{
+    display: inline-block;
+    position: absolute;
+    padding: 5px;
+
+}
+/* .btn-green{
+    display:block;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    font-size: 30pt;
+
+} */
