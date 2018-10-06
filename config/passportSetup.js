@@ -59,7 +59,7 @@ const passportSetup = ( server, mySQL, connection, passport ) => {
 						});
 					}
 					else{
-					resolve(user);
+						resolve(user);
 					}
 				}
 				else{
