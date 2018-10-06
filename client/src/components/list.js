@@ -1,91 +1,91 @@
 import React from 'react';
-import '../assets/css/list-owner.css';
-
+import '../assets/css/list-owner.scss';
+import avatar from '../assets/images/user.png'
 
 export default props => ( 
     <div>
  <div className="list-container">
         {/*Top Nav*/}
         <div className="list-nav">
-            {/* <FontAwesomeIcon icon="chevron-left" />
-            <FontAwesomeIcon icon="link" /> */}
+            <i class="outer fas fa-chevron-left"></i>
+            <i class="fas fa-link"></i>
         </div>
         
         {/* User Avatar */}
-        {/* <FontAwesomeIcon icon="user" /> */}
+        <br/>>
+        {/* <i id="avatar" class="fas fa-user"></i> */}
+        <img id="avatar" src={avatar} alt="avatar"/>
 
         {/* <!-- Main Content --> */}
-        <div className="listContent">
+        <div className="list-content">
             {/* <!-- List name, details, and filter button --> */}
             <div className="list-top">
-                <br/>
-                <h3 className="list-name">Aunt Sue's Party</h3>
-                <h5 className="details">Saturday April 1st</h5>
+                <h4 className="list-name">Sue's Party</h4>
+                <h6 className="details">Saturday April 1st</h6>
             </div>
             {/* <!-- Items --> */}
             <div className="list-items">
                 <div className="list-item">
                     <div className="list-left">
-                        {/* <FontAwesomeIcon icon="sort" /> */}
+                        <i class="sort fas fa-sort"></i>
                         <label>Chips</label>
                     </div>
                     <div className="list-right">
-                        {/* <FontAwesomeIcon icon="pen" />
-                        <FontAwesomeIcon icon="trash-alt" /> */}
+                        <i class="fas fa-pen"></i>
+                        <i class="delete fas fa-trash-alt"></i>
                     </div>
                 </div>
                 <div className="list-item">
                     <div className="left">
-                        {/* <FontAwesomeIcon icon="sort" /> */}
+                        <i class="sort fas fa-sort"></i>
                         <label>Beer</label>
                     </div>
                     <div className="list-right">
-                        {/* <FontAwesomeIcon icon="pen" />
-                        <FontAwesomeIcon icon="trash-alt" /> */}
+                        <i class="fas fa-pen"></i>
+                        <i class="delete fas fa-trash-alt"></i>
                     </div>
                 </div>
                 <div className="list-item">
                     <div className="list-left">
-                        {/* <i className="fas fa-sort"></i> */}
-                        {/* <FontAwesomeIcon icon="sort" /> */}
+                        <i class="sort fas fa-sort"></i>
                         <label>Plastic forks</label>
                     </div>
                     <div className="list-right">
-                        {/* <FontAwesomeIcon icon="pen" />
-                        <FontAwesomeIcon icon="trash-alt" /> */}
+                        <i class="fas fa-pen"></i>
+                        <i class="delete fas fa-trash-alt"></i>
                     </div>
                 </div>
                 <div className="list-item">
                     <div className="list-left">
-                        {/* <FontAwesomeIcon icon="sort" /> */}
+                        <i class="sort fas fa-sort"></i>
                         <label>Cups</label>
                     </div>
                     <div className="list-right">
-                        {/* <FontAwesomeIcon icon="pen" />
-                        <FontAwesomeIcon icon="trash-alt" /> */}
+                        <i class="fas fa-pen"></i>
+                        <i class="delete fas fa-trash-alt"></i>
                     </div>
                 </div>
                 <div className="list-item">
                     <div className="list-left">
-                        {/* <FontAwesomeIcon icon="sort" /> */}
+                        <i class="sort fas fa-sort"></i>
                         <label>Soda</label>
                     </div>
                     <div className="list-right">
-                        {/* <FontAwesomeIcon icon="pen" />
-                        <FontAwesomeIcon icon="trash-alt" /> */}
+                        <i class="fas fa-pen"></i>
+                        <i class="delete fas fa-trash-alt"></i>
                     </div>
                 </div>
                 <br/>
                 {/* <!-- Add List Button --> */}
                 <div className="list-item add modal-trigger">
-                    {/* <FontAwesomeIcon className="list-plus-circle" icon="plus-circle" /> */}
+                    <i id="add-button" class="btn-green fas fa-plus-circle"></i>
                     <label className="add">Add Item</label>
                 </div>
             </div>
         </div>
         {/* <!-- Footer --> */}
         <div className="list-footer">
-            {/* <FontAwesomeIcon icon="comments" /> */}
+            <i class="outer fas fa-comments"></i>
         </div>
 
         {/* <!--MODAL--> */}

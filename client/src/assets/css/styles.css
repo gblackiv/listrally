@@ -44,11 +44,11 @@ footer{
 .content {
   display: flex;
   flex-direction: row;
-  height: 90vh;
+  height: 100vh;
 }
 .content > section {
   flex: 4;
-  min-height: 80vh;
+  min-height: 100vh;
 }
 
 /*************************
