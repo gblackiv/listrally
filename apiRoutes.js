@@ -85,15 +85,15 @@ const paths = ( server, mySQL, connection ) => {
 		});
 	});
 	server.put( '/api/createlist', ( request, resonse ) => {
-		const { name, description, ownerID, url, securityStatus, dateTime} = request.body;
+		const { name, description, ownerID, url, securityStatus, eventTime} = request.body;
 
 		const listCreationQuery = 'INSERT INTO lists (??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?)';
-		const listCreationInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'dateTime', name, description, ownerID, url, securityStatus, dateTime ];
+		const listCreationInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'eventTime', name, description, ownerID, url, securityStatus, eventTime ];
 		const listCreationSQL = mySQL.format( listCreationQuery, listCreationInserts );
 
 		connection.query( listCreationSQL, ( error, results, fields ) => {
 			if( error ) return next( error );
-			const successString = `The list ${name} has been added to the lists table at ${dateTime} by owner ID ${ID}`;
+			const successString = `The list ${name} has been added to the lists table at ${eventTime} by owner ID ${ID}`;
 			console.log( successString );
 
 			const dataToReturn = {
@@ -104,10 +104,10 @@ const paths = ( server, mySQL, connection ) => {
 		});
 	});
 	server.patch( '/api/updatelist', ( request, response ) => {
-		const { ID, name, description, ownerID, url, securityStatus, dateTime } = request.body;
+		const { ID, name, description, ownerID, url, securityStatus, eventTime } = request.body;
 
 		const listUpdateQuery = 'UPDATE lists SET ??=?, ??=?, ??=?, ??=?, ??=?, ??=? WHERE ?? = ?';
-		const listUpdateInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'dateTime', name, description, ownerID, url, securityStatus, dateTime, 'ID', ID ];
+		const listUpdateInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'eventTime', name, description, ownerID, url, securityStatus, eventTime, 'ID', ID ];
 		const listUpdateSQL = mySQL.format( listUpdateQuery, listUpdateInserts );
 		
 		connection.query( listUpdateSQL, ( error, results, fields ) => {
