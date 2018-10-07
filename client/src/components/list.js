@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
-import '../assets/css/list-owner.scss';
 import avatar from '../assets/images/user.png';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import '../assets/css/list_owner.scss';
+
+
 
 export default class ListOwner extends Component{
 
@@ -20,7 +23,7 @@ export default class ListOwner extends Component{
                         <i  className="outer fas fa-chevron-left"></i>
                     </div>
                     <Link to="/list-shared">
-                        <i class="fas fa-link"></i>
+                        <i class="list-url fas fa-link"></i>
                     </Link>
                 </div>
                 
@@ -89,11 +92,11 @@ export default class ListOwner extends Component{
                             </div>
                         </div>
                         <br/>
-                        {/* <!-- Add List Button --> */}
-                        <div className="add modal-trigger">
+                    </div>
+                    {/* <!-- Add List Button --> */}
+                    <div className="add modal-trigger">
                             <i id="add-button" class="btn-green fas fa-plus-circle"></i>
                             <label className="add">Add Item</label>
-                        </div>
                     </div>
                 </div>
                 {/* <!-- Footer --> */}

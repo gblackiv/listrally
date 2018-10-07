@@ -38,16 +38,16 @@
     background-color: white;
 }
 
-.list-details{
+.details{
     text-align: center;
     margin: 0.2em;
     white-space: nowrap;
 }
 
-.list-title{
+.list-name{
     text-align: center;
     white-space: nowrap;
-    margin-bottom: 0;
+    margin:0.7rem;
 }
 
 .list-items{
@@ -58,14 +58,24 @@
     align-items: center;
 }
 
-.list-item{
+.list_item{
     width: 90vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
     border-bottom: 0.5px solid lightgrey;
+    // padding: 0.6em;
     height: 51px;
+}
+
+.person{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+.checked{
+    text-decoration: line-through;
 }
 
 /*************************
@@ -100,26 +110,43 @@
     margin-left: 0.5em;
 }
 
-#add-button{
-    font-size: 1.5em;
+#shared-add-button{
     position: relative;
     margin-right: 0.25em;
     color: white;
+    font-size: 2em;
+    align-self: center;
+    background-color: #26a69a;
+    border-radius: 50%;
 }
-.add{
+.shared-add{
     display: flex;
     justify-content: center;
+    align-items: center;
     cursor: pointer;
+    margin: 1.2rem;
     /* position: sticky;
     bottom: 10px; */
 }
 
+.filter{
+    position: absolute;
+    right: 1%;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.filter>img{
+    width: 20px;
+    height: 20px;
+}
+
+
 @media (min-width: 600px){
-    .list-item{
+    .list_item{
         width: 80vw;
     }
 }
-
 
 
 /***************************

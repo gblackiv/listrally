@@ -38,16 +38,16 @@
     background-color: white;
 }
 
-.details{
+.list-details{
     text-align: center;
     margin: 0.2em;
     white-space: nowrap;
 }
 
-.list-name{
+.list-title{
     text-align: center;
     white-space: nowrap;
-    margin:0;
+    margin-bottom: 0;
 }
 
 .list-items{
@@ -58,24 +58,14 @@
     align-items: center;
 }
 
-.list_item{
+.list-item{
     width: 90vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
     border-bottom: 0.5px solid lightgrey;
-    // padding: 0.6em;
     height: 51px;
-}
-
-.person{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-}
-.checked{
-    text-decoration: line-through;
 }
 
 /*************************
@@ -104,6 +94,7 @@
 
 .sort{
     margin-right: 1em;
+    cursor: move;
 }
 
 .delete{
@@ -111,25 +102,36 @@
 }
 
 #add-button{
-    font-size: 1.5em;
     position: relative;
     margin-right: 0.25em;
     color: white;
+    font-size: 2em;
+    align-self: center;
+    background-color: #26a69a;
+    border-radius: 50%;
 }
 .add{
     display: flex;
     justify-content: center;
+    align-items: center;
     cursor: pointer;
     /* position: sticky;
     bottom: 10px; */
 }
-
+.list-url{
+    color: white;
+    background-color: #1976d2;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 8px;
+}
 
 @media (min-width: 600px){
-    .list_item{
+    .list-item{
         width: 80vw;
     }
 }
+
 
 
 /***************************
