@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import '../assets/css/home.scss';
 import logo from '../assets/images/todolist.png';
 import { Link } from 'react-router-dom';
+
+
 
 export default class Home extends Component{
     render(){

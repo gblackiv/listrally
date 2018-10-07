@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import '../assets/css/list-owner.scss';
-import avatar from '../assets/images/user.png';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import '../assets/css/list_owner.scss';
+import avatar from '../assets/images/user.png';
+
 
 export default class ListOwner extends Component{
 

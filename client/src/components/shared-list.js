@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import '../assets/css/list-shared.scss';
+import '../assets/css/list_shared.scss';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import michael from '../assets/images/michael.jpeg';
 import gerry from '../assets/images/gerry.jpeg';
 import george from '../assets/images/george.jpeg';
@@ -90,7 +91,7 @@ export default class ListShared extends Component{
                     </div>
                     {/* <!-- Footer --> */}
                     <div className="list-footer">
-                        <Link to="/chatmodal"><i class="outer fas fa-comments"></i></Link>
+                        <Link to="/chatmodal"><i className="outer fas fa-comments"></i></Link>
                     </div>
         
                     {/* <!--MODAL--> */}

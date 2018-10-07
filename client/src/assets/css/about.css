@@ -7,11 +7,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-top: 5%;
 }
 .member-name{
     margin-bottom: 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 .about-person{
     margin: 1em;
@@ -21,6 +20,7 @@
 }
 .about-role{
     margin: 0.5em;
+    font-size: 0.95rem;
 }
 .about-media{
     cursor: pointer;
