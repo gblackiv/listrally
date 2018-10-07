@@ -20,7 +20,7 @@ export default class ListOwner extends Component{
                 {/*Top Nav*/}
                 <div className="list-nav">
                     <div onClick={this.goBack}>
-                        <i  className="outer fas fa-chevron-left"></i>
+                        <i  className="back fas fa-chevron-left"></i>
                     </div>
                     <Link to="/list-shared">
                         <i class="list-url fas fa-link"></i>
@@ -95,8 +95,8 @@ export default class ListOwner extends Component{
                     </div>
                     {/* <!-- Add List Button --> */}
                     <div className="add modal-trigger">
-                            <i id="add-button" class="btn-green fas fa-plus-circle"></i>
-                            <label className="add">Add Item</label>
+                            <i id="add-button" class="fas fa-plus-circle"></i>
+                            {/* <label className="add">Add Item</label> */}
                     </div>
                 </div>
                 {/* <!-- Footer --> */}

@@ -23,7 +23,7 @@ export default class ListShared extends Component{
                     {/*Top Nav*/}
                     <div className="list-nav">
                         <div onClick={this.goBack}>
-                            <i  className="outer fas fa-chevron-left"></i>
+                            <i  className="back fas fa-chevron-left"></i>
                         </div>
                         <Link to="/"><i className="outer fas fa-home"></i></Link>
                     </div>
@@ -37,7 +37,7 @@ export default class ListShared extends Component{
                     <div className="list-content">
                         <div className="filter">
                             {/* <i class="fas fa-filter"></i>All */}
-                            <img src={filter} alt="filter"/>
+                            <img src={filter} alt="filter"/>   All
                         </div>
                         {/* <!-- List name, details, and filter button --> */}
                         <div className="list-top">
@@ -89,9 +89,9 @@ export default class ListShared extends Component{
                         </div>
                         {/* <!-- Add List Button --> */}
                         <div className="shared-add modal-trigger">
-                            <i id="shared-add-button" className="btn-green fas fa-plus-circle"></i>
-                            <label className="add">Add Item</label>
-                        </div>
+                        <i id="shared-add-button" className="btn-green fas fa-plus-circle"></i>
+                        {/* <label className="add">Add Item</label> */}
+                    </div>
                     </div>
                     {/* <!-- Footer --> */}
                     <div className="list-footer">
@@ -115,6 +115,7 @@ export default class ListShared extends Component{
                             </footer>
                         </div>
                     </div> */}
+
                 </div>
             </div>
         )
