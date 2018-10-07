@@ -26,7 +26,10 @@ export default props => (
             {/* <!-- List Toggle --> */}
             <div className="list_toggle">
                     <div>All Lists</div>
-                    <i className="fas fa-toggle-off"></i>
+                    <div>
+                    {/* <i className="fas fa-toggle-off"></i> */}
+                    <input type="checkbox" id="switch" /><label className="label-user" for="switch"></label>
+                    </div>
                     <button className="button btn-blue">User Settings</button>
                 </div>
 
