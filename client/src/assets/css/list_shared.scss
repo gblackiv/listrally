@@ -96,12 +96,6 @@
     cursor: pointer;
 }
 
-.outer{
-    color: white;
-    font-size: 2em;
-    cursor: pointer;
-}
-
 .sort{
     margin-right: 1em;
 }
@@ -113,11 +107,13 @@
 #shared-add-button{
     position: relative;
     margin-right: 0.25em;
-    color: white;
-    font-size: 2em;
+    background-color: white;
+    font-size: 3em;
     align-self: center;
-    background-color: #26a69a;
+    color: #26a69a;
     border-radius: 50%;
+    border: none;
+    box-shadow: 0px 7px 9px -1px rgba(189,187,189,1);
 }
 .shared-add{
     display: flex;
@@ -125,14 +121,16 @@
     align-items: center;
     cursor: pointer;
     margin: 1.2rem;
-    /* position: sticky;
-    bottom: 10px; */
+    position: absolute;
+    bottom: 1%;
+    // position: sticky;
+    // bottom: 10px;
 }
 
 .filter{
     position: absolute;
     right: 1%;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     cursor: pointer;
 }
 
@@ -140,6 +138,7 @@
     width: 20px;
     height: 20px;
 }
+
 
 
 @media (min-width: 600px){
