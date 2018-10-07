@@ -28,7 +28,7 @@ export default props => (
                     <div>All Lists</div>
                     <div>
                     {/* <i className="fas fa-toggle-off"></i> */}
-                    <input type="checkbox" id="switch" /><label for="switch"></label>
+                    <input type="checkbox" id="switch" /><label className="label-user" for="switch"></label>
                     </div>
                     <button className="button btn-blue">User Settings</button>
                 </div>

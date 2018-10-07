@@ -165,9 +165,9 @@ input[type=checkbox]{
     visibility: hidden;
 }
 
-label {
+.label-user {
 	cursor: pointer;
-    /* text-indent: -9999px; */
+    
     text-indent: 30px;
 	width: 60px;
 	height: 25px;
@@ -177,11 +177,11 @@ label {
     position: relative;
  }
 
-label:after {
+.label-user:after {
     content: 'All';
     font-size: 8pt;
     color: white;
-    /* text-indent: 30px; */
+
 	position: absolute;
 	top: 5px;
 	left: 5px;
@@ -192,21 +192,21 @@ label:after {
     transition: 0.3s;
 }
 
-input:checked + label {
+input:checked + .label-user{
     background: #1976d2;
 
 }
 
-input:checked + label:after {
+input:checked + .label-user:after {
 	left: calc(100% - 5px);
     transform: translateX(-100%);
     content: '';
     font-size: 8pt;
     color: white;
-    /* text-indent: -40px; */
+    
 }
 
-label:active:after {
+.label-user:active:after {
     width: 15px;
 }
 
