@@ -102,17 +102,28 @@
 }
 
 #add-button{
-    font-size: 1.5em;
     position: relative;
     margin-right: 0.25em;
     color: white;
+    font-size: 2em;
+    align-self: center;
+    background-color: #26a69a;
+    border-radius: 50%;
 }
 .add{
     display: flex;
     justify-content: center;
+    align-items: center;
     cursor: pointer;
     /* position: sticky;
     bottom: 10px; */
+}
+.list-url{
+    color: white;
+    background-color: #1976d2;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 8px;
 }
 
 @media (min-width: 600px){

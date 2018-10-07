@@ -7,7 +7,7 @@ import torie from '../assets/images/torie-bw.jpg';
 
 export default props =>(
     <div className="about-container">
-        <h1>About</h1>
+        <h3>About</h3>
         <div className="about-team">
             <div className="about-person michael">
                 <img className="member" src={michael}/>

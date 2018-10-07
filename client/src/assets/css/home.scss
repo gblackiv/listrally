@@ -13,19 +13,8 @@ height: 100vh;
 justify-content: space-evenly;
 }
 
-.home-sign-in{
-position: absolute;
-right: 0;
-background-color: none;
-border: none;
+.sign-in{
 cursor: pointer;
-border-radius: 20px;
-padding: 0.5em;
-font-size: 1em;
-}
-
-.home-sign-in:hover{
-    color: skyblue;
 }
 
 #logo{
@@ -41,12 +30,12 @@ color: orange;
 
 .home-add{
 font-size: 3em;
-color: lightgray;
+color: orange;
 cursor: pointer;
 }
 
 .home-add:hover{
-color: skyblue;
+color: rgb(211, 139, 4);
 }
 
 .home-templates{
@@ -60,7 +49,6 @@ color: orange;
 list-style: none;
 cursor: pointer;
 }
-
-/*.home-hidden{
+.home-hidden{
 display:none;
-} */
+}

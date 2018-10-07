@@ -5,6 +5,7 @@ body {
   margin: 0;
   font-family: 'Rubik', sans-serif;
   color: #F2F2F2;
+  font-size: 1.25rem;
 }
 .app {
   display: flex;
