@@ -38,16 +38,16 @@
     background-color: white;
 }
 
-.list-details{
+.details{
     text-align: center;
     margin: 0.2em;
     white-space: nowrap;
 }
 
-.list-title{
+.list-name{
     text-align: center;
     white-space: nowrap;
-    margin-bottom: 0;
+    margin:0;
 }
 
 .list-items{
@@ -58,14 +58,24 @@
     align-items: center;
 }
 
-.list-item{
+.list_item{
     width: 90vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
     border-bottom: 0.5px solid lightgrey;
+    // padding: 0.6em;
     height: 51px;
+}
+
+.person{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+.checked{
+    text-decoration: line-through;
 }
 
 /*************************
@@ -114,12 +124,12 @@
     bottom: 10px; */
 }
 
+
 @media (min-width: 600px){
-    .list-item{
+    .list_item{
         width: 80vw;
     }
 }
-
 
 
 /***************************

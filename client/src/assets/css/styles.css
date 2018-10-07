@@ -45,6 +45,7 @@ footer{
   display: flex;
   flex-direction: row;
   height: 100vh;
+  justify-content: center;
 }
 .content > section {
   flex: 4;
