@@ -6,9 +6,11 @@ import '../assets/css/app.css';
 //Components
 import TempNav from './tempNav';
 import Home from './home';
-import List from './list';
+import ListOwner from './list';
+import ListShared from './shared-list';
 import Dashboard from './dashboard';
 import chatModal from './chat_modal';
+import About from './about';
 
 const App = () => (
     <div className="app">
@@ -16,17 +18,16 @@ const App = () => (
         <TempNav />
         </nav>
         <div className="col-2">
-
             <main className="content">
                 <Route exact path="/" component={Home} />
-                <Route path="/list" component={List} />
+                <Route path="/list" component={ListOwner} />
+                <Route path="/list-shared" component={ListShared} />
                 <Route path="/dashboard" component={Dashboard} />
                 <Route path="/chatmodal" component={chatModal} />
+                <Route path="/about" component={About} />
             </main>
-
         </div>
     </div>
-    
 );
 
 export default App;
