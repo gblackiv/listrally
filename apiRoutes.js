@@ -142,7 +142,7 @@ const paths = ( server, mySQL, connection ) => {
 		});
 	});
 	server.get( '/api/messages', ( request, response ) => {
-		const { ID } = request.body;
+		const { ID } = request.query;
 
 		const messageQuery = 'SELECT * FROM ?? WHERE ?? = ?';
 		const messageInserts = [ 'messages', 'listID', ID ];
@@ -158,6 +158,11 @@ const paths = ( server, mySQL, connection ) => {
 			response.json( dataToReturn );
 		});
 	});
+	server.get( '/api/getuserlists', ( request, response ) => {
+		const { ID } = request.query;
+		
+		const listsQuery = 'SELECT * FROM ?? ';
+	})
 }
 
 module.exports = paths;
