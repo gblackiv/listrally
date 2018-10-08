@@ -11,6 +11,7 @@ import ListShared from './shared-list';
 import Dashboard from './dashboard';
 import chatModal from './chat_modal';
 import About from './about';
+import UserSettings from './user_settings';
 
 const App = () => (
     <div className="app">
@@ -23,6 +24,7 @@ const App = () => (
                 <Route path="/list" component={ListOwner} />
                 <Route path="/list-shared" component={ListShared} />
                 <Route path="/dashboard" component={Dashboard} />
+                <Route path="/user-settings" component={UserSettings} />
                 <Route path="/chatmodal" component={chatModal} />
                 <Route path="/about" component={About} />
             </main>
