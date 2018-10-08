@@ -14,17 +14,22 @@
 
 /* Modal Content/Box */
 .user-modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    position: relative;
+    width: 90%;
+    height: 60%;
+    background: #eee;
+    border-radius: 12px;
+    overflow: hidden;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 15%;
 }
 
 /* The Close Button */
 .user-close {
     color: #aaa;
-    float: right;
+    position: absolute;
+    right: 0.5em;
     font-size: 28px;
     font-weight: bold;
 }

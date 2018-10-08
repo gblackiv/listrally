@@ -15,8 +15,7 @@ export default class UserSettings extends Component {
 
 
     // When the user clicks the button, open the modal 
-    openModal = (event) =>{
-        debugger;
+    openModal = () =>{
         console.log('event.target :', event.target);
         this.modal.style.display = "block";
     }
@@ -38,12 +37,29 @@ export default class UserSettings extends Component {
             <div>
                 <button onClick={this.openModal} id="user-btn">Open Modal</button>
 
-                <div id="user-modal" class="user-modal">
+                <div id="user-modal" className="user-modal">
 
-                <div class="user-modal-content">
-                    <span onClick={this.closeWithX} class="user-close">&times;</span>
-                    <p>Some text in the Modal..</p>
-                </div>
+                    <div className="user-modal-content">
+                        <span onClick={this.closeWithX} className="user-close">&times;</span>
+                        <header className="modal-header">
+                        <h1>User Settings</h1>
+                        {/* <a className="modalClose modalCloseX" aria-hidden="true">&#x2715;</a> */}
+                        </header>
+                        <main>
+                            <div className="form-group text-center">
+                                <div className="row">
+                                    <div className="input">
+                                        <label className="input-label">First Name</label>
+                                        <input type="text" name="first_name" placeholder="Bobby" />
+                                    </div>
+                                    <div className="input">
+                                        <label className="input-label">Last Name</label>
+                                        <input type="text" name="last_name" placeholder="Brown" />
+                                    </div>
+                                </div>                  
+                            </div>
+                        </main>
+                    </div>
 
                 </div>
             </div>
