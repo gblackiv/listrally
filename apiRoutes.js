@@ -161,8 +161,20 @@ const paths = ( server, mySQL, connection ) => {
 	server.get( '/api/getuserlists', ( request, response ) => {
 		const { ID } = request.query;
 		
-		const listsQuery = 'SELECT * FROM ?? ';
-	})
+		const listsQuery = 'SELECT ?,?,?,? FROM ?? JOIN ON ?? WHERE ? = ??';
+		const listsInserts = [ 'lists.ID', 'lists.name', 'securityStatus', 'ownerID', 'lists', 'users', 'users.ID', ID ];
+		const listsSQL = mySQL.format( listsQuery, listsInserts );
+
+		connection.query( listsSQL, ( error, results, fields ) => {
+			if( error ) return next( error );
+		
+			const dataToReturn = {
+				success: true,
+				data: results
+			};
+			response.json( dataToReturn );
+		});
+	});
 }
 
 module.exports = paths;
