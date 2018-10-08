@@ -1,10 +1,10 @@
 const paths = ( server, mySQL, connection ) => {
 
 	server.get( '/api/lists', (request, response ) => {
-		const { ID } = request.query;
+		const { url } = request.query;
 	
 		const listQuery = 'SELECT * FROM ?? WHERE ?? = ?';
-		const listInserts = [ 'lists', 'ID', ID ];
+		const listInserts = [ 'lists', 'url', url ];
 		const listSQL = mySQL.format( listQuery, listInserts );
 		
 		connection.query( listSQL, ( error, results, fields ) => {
@@ -15,7 +15,7 @@ const paths = ( server, mySQL, connection ) => {
 				data: {list: results}
 			};
 			const itemQuery = 'SELECT * FROM ?? WHERE ?? = ?';
-			const itemInserts = [ 'items', 'listID', ID ];
+			const itemInserts = [ 'items', 'listID', results[0].ID ];
 			const itemSQL = mySQL.format( itemQuery, itemInserts );
 	
 			connection.query( itemSQL, ( error, results, fields ) => {
