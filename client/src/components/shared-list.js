@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import '../assets/css/list_shared.scss';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { getListData } from '../actions';
 import michael from '../assets/images/michael.jpeg';
 import gerry from '../assets/images/gerry.jpeg';
 import george from '../assets/images/george.jpeg';
 import filter from '../assets/images/filter-icon.png'
 
 
-export default class ListShared extends Component{ 
+class ListShared extends Component{
+
+    componentDidMount() {
+        console.log('componentdidmount this.props :', this.props);
+        this.props.getListData();//getListData becomes part of props from the connect function down below
+    }
 
     goBack = () => {
         console.log('go back');
@@ -16,7 +22,7 @@ export default class ListShared extends Component{
     }
 
     render(){
-        console.log('this.props :', this.props);
+        console.log('Shared List this.props :', this.props);
         return( 
             <div>
                 <div className="list-container">
@@ -121,3 +127,15 @@ export default class ListShared extends Component{
         )
     }
 }
+
+function mapStateToProps(state){//the redux will be given to us in its entirety when this function is called
+    //the redux state is the same no matter where you try to access it
+    console.log('Redux state inside mapStateToProp :', state);
+    return {
+        list: state.list//this came from the rootReducer and lists reducer
+    }//   ^ list now becomes a property of Clock once mapStateToProps gets passed into connect
+}
+
+
+
+export default connect(mapStateToProps,{ getListData })(ListShared);//connect returns a function, you pass List into that function

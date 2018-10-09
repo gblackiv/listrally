@@ -38,7 +38,7 @@ export default props => (
                 <div className="dashboard-item1">
                     <div className="dashboard-left">
                         <i className="dashboard_link far fa-link btn-blue"></i>
-                        <div className="dashboard_text">My First dashboard</div>
+                        <div className="dashboard_text">My First List</div>
                     </div>
                     <div className="dashboard-right">
                         <i className="fas fa-lock-alt btn-red"></i>
@@ -48,7 +48,7 @@ export default props => (
                 <div className="dashboard-item2">
                     <div className="dashboard-left">
                         <i className="dashboard_link far fa-link btn-blue"></i>
-                        <div className="dashboard_text">Office Potluck dashboard</div>
+                        <div className="dashboard_text">Office Potluck List</div>
                     </div>
                     <div className="dashboard-right">
                         {/* <i className="fas fa-unlock-alt"></i>
@@ -58,7 +58,7 @@ export default props => (
                 <div className="dashboard-item2">
                     <div className="dashboard-left">
                         <i className="dashboard_link far fa-link btn-blue"></i>
-                        <div className="dashboard_text">Family Reunion dashboard</div>
+                        <div className="dashboard_text">Family Reunion List</div>
                     </div>
                     <div className="dashboard-right">
                         <i className="fas fa-unlock-alt btn-green"></i>
