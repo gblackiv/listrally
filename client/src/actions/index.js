@@ -5,9 +5,9 @@ export function getListData(){
     return async dispatch => {
         const resp = await axios.get('/api/lists?url=ourfirstdummylist');
         console.log('list resp :', resp);
-        return{
+        dispatch({
             type: types.GET_LIST_DATA,
             payload: resp
-        }
+        })
     }
 }
