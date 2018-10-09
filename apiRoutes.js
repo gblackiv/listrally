@@ -172,16 +172,11 @@ const paths = ( server, mySQL, connection ) => {
 				response.json( dataToReturn );
 				return;
 			}
-			const successString = `The list ${name} has been added to the lists table at ${eventTime} by owner ID ${ownerID}`;
+			const successString = `The list ${name} has been added to the lists table by owner ID ${ownerID}`;
 			console.log( successString );
 
-			const dataToReturn = {
-				success: true,
-				data: successString
-			};
-			response.json( dataToReturn );
-
-
+			//updated the list_to_users table to include the owner of the new list
+			updateUserLists( request, response, ownerID, results.insertId );
 		});
 	});
 
@@ -324,11 +319,11 @@ const paths = ( server, mySQL, connection ) => {
 		updateUserLists(request, response, userID, listID );
 		});
 
+		//query used in multiple places
 	function updateUserLists( request, response, userID, listID ){
-		const { userID, listID } = request.body;
 
 		const userToListQuery = "INSERT INTO list_to_users (??, ??) VALUES (?, ?)";
-		const userToListInserts = [ 'userID', userID, 'listID', listID ];
+		const userToListInserts = [ 'userID','listID', userID, listID ];
 		const userToListSQL = mySQL.format( userToListQuery, userToListInserts );
 
 		connection.query( userToListSQL, ( error, results, fields ) => {
