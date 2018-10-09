@@ -55,8 +55,6 @@ padding: 0.3em;
     cursor: pointer; 
 }
 .dashboard-button{
-    border-radius: 12px;
-    color: white;
     justify-self: flex-end;
 }
 .fa-chevron-circle-left{
@@ -118,6 +116,10 @@ i{
     padding: 8px;
     /* font-size: 1em; */
 }
+.dashboard-right{
+    display: flex;
+    justify-content: space-between;
+}
 .fa-lock-alt{
     color: orange;
     background-color: #d32f2f;
@@ -135,13 +137,14 @@ i{
 .dashboard_plus:hover{
     background-color: #1c776e;
 }
-.fa-cog{
+.settings-button {
     color: white;
     background-color: #828282;
     border: 2px solid white;
     border-radius: 50%;
     padding: 8px;
 }
+
 .dashboard_text{
     display: inline-block;
     position: absolute;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../assets/css/dashboard.css';
 import LockIcons from './buttons/lock_buttons';
+import SettingsButton from './buttons/settings_button'
 
 class DashBoard extends Component { 
     constructor(props) {
@@ -42,7 +43,7 @@ class DashBoard extends Component {
                             {/* <i className="fas fa-toggle-off"></i> */}
                             <input type="checkbox" id="switch" /><label className="label-user" for="switch"></label>
                             </div>
-                            <button className="dashboard-button btn-blue">User Settings</button>
+                            <button className="dashboard-button btn btn-blue">User Settings</button>
                         </div>
 
                     {/* <!-- dashboard-items --> */}
@@ -53,9 +54,10 @@ class DashBoard extends Component {
                                 <div className="dashboard_text">My First dashboard</div>
                             </div>
                             <div className="dashboard-right">
-                            <LockIcons isIconLocked={this.state.isIconLocked}/>
+                            <LockIcons />
+                            <SettingsButton />
                                 {/* <i className="fas fa-lock-alt btn-red"></i> */}
-                                <i className="fas fa-cog btn-grey"></i>
+                                {/* <i className="fas fa-cog btn-grey"></i> */}
                             </div>
                         </div>
                         <div className="dashboard-item2">
@@ -74,9 +76,10 @@ class DashBoard extends Component {
                                 <div className="dashboard_text">Family Reunion dashboard</div>
                             </div>
                             <div className="dashboard-right">
-                                <LockIcons />
+                                <LockIcons /><SettingsButton />
+                                
                                 {/* <i className="fas fa-unlock-alt btn-green"></i> */}
-                                <i className="fas fa-cog btn-grey"></i>
+                                {/* <i className="fas fa-cog btn-grey"></i> */}
                             </div>
                         </div> 
                     </div>
