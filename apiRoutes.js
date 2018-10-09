@@ -15,7 +15,7 @@ const paths = ( server, mySQL, connection ) => {
 				data: {list: results}
 			};
 			const itemQuery = 'SELECT * FROM ?? WHERE ?? = ?';
-			const itemInserts = [ 'items', 'listID', results[0].ID ];
+			const itemInserts = [ 'items', 'listID', results[0]['ID'] ];
 			const itemSQL = mySQL.format( itemQuery, itemInserts );
 	
 			connection.query( itemSQL, ( error, results, fields ) => {
