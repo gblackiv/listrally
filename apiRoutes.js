@@ -153,6 +153,7 @@ const paths = ( server, mySQL, connection ) => {
 
 	/**
 	 * requires all fields of a list
+	 * as well as creating a new list, updates the list_to_user DB in order to add the list to the users profile
 	 */
 	server.put( '/api/createlist', ( request, response ) => {
 		const { name, description, ownerID, url, securityStatus, eventTime} = request.body;
@@ -179,6 +180,8 @@ const paths = ( server, mySQL, connection ) => {
 				data: successString
 			};
 			response.json( dataToReturn );
+
+
 		});
 	});
 
@@ -311,6 +314,42 @@ const paths = ( server, mySQL, connection ) => {
 			response.json( dataToReturn );
 		});
 	});
+
+	/**
+	 * needs to be contacted when a logged in user contacts a new list
+	 * attaches the user to the list so that on their profile page they can track it
+	 */
+	server.put( '/api/updateuserlists', ( request, response ) => {
+		const { userID, listID } = request.body;
+		updateUserLists(request, response, userID, listID );
+		});
+
+	function updateUserLists( request, response, userID, listID ){
+		const { userID, listID } = request.body;
+
+		const userToListQuery = "INSERT INTO list_to_users (??, ??) VALUES (?, ?)";
+		const userToListInserts = [ 'userID', userID, 'listID', listID ];
+		const userToListSQL = mySQL.format( userToListQuery, userToListInserts );
+
+		connection.query( userToListSQL, ( error, results, fields ) => {
+			if( error ){
+				console.log( '/api/updateuserlists error:', error );
+				const dataToReturn = {
+					success: false,
+					data: 'Error: the list or user ID was incorrect'
+				}
+				response.json( dataToReturn );
+				return;
+			}
+			const successString = `The user ${userID} has been added to list ${listID}`;
+			console.log( successString );
+			const dataToReturn = {
+				success: true,
+				data: successString
+			};
+			response.json( dataToReturn );
+		});
+	}
 }
 
 module.exports = paths;
