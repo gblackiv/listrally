@@ -38,7 +38,7 @@ class DashBoard extends Component {
                     </div>
                     {/* <!-- dashboard Toggle --> */}
                     <div className="dashboard_toggle">
-                            <div>All dashboards</div>
+                            <div>All Lists</div>
                             <div>
                             {/* <i className="fas fa-toggle-off"></i> */}
                             <input type="checkbox" id="switch" /><label className="label-user" for="switch"></label>
@@ -51,7 +51,7 @@ class DashBoard extends Component {
                         <div className="dashboard-item1">
                             <div className="dashboard-left">
                                 <i className="dashboard_link far fa-link btn-blue"></i>
-                                <div className="dashboard_text">My First dashboard</div>
+                                <div className="dashboard_text">My First List</div>
                             </div>
                             <div className="dashboard-right">
                             <LockIcons />
@@ -63,7 +63,7 @@ class DashBoard extends Component {
                         <div className="dashboard-item2">
                             <div className="dashboard-left">
                                 <i className="dashboard_link far fa-link btn-blue"></i>
-                                <div className="dashboard_text">Office Potluck dashboard</div>
+                                <div className="dashboard_text">Office Potluck List</div>
                             </div>
                             <div className="dashboard-right">
                                 {/* <i className="fas fa-unlock-alt"></i>
@@ -73,7 +73,7 @@ class DashBoard extends Component {
                         <div className="dashboard-item2">
                             <div className="dashboard-left">
                                 <i className="dashboard_link far fa-link btn-blue"></i>
-                                <div className="dashboard_text">Family Reunion dashboard</div>
+                                <div className="dashboard_text">Family Reunion List</div>
                             </div>
                             <div className="dashboard-right">
                                 <LockIcons /><SettingsButton />
