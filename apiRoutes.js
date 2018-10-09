@@ -1,6 +1,6 @@
 const paths = ( server, mySQL, connection ) => {
 
-	server.get( '/api/lists', (request, response ) => {
+	server.post( '/api/lists', (request, response ) => {
 		const { url } = request.query;
 	
 		const listQuery = 'SELECT * FROM ?? WHERE ?? = ?';
