@@ -1,6 +1,6 @@
 const paths = ( server, mySQL, connection ) => {
 
-	server.post( '/api/lists', (request, response ) => {
+	server.get( '/api/lists', (request, response ) => {
 		const { url } = request.query;
 	
 		const listQuery = 'SELECT * FROM ?? WHERE ?? = ?';
@@ -8,7 +8,15 @@ const paths = ( server, mySQL, connection ) => {
 		const listSQL = mySQL.format( listQuery, listInserts );
 		
 		connection.query( listSQL, ( error, results, fields ) => {
-			if( error ) return next( error );
+			if( error ){
+				console.log( '/api/lists error:', error );
+				const dataToReturn = {
+					success: false,
+					data: "Error: Expected list url"
+				}
+				response.json( dataToReturn );
+				return;
+			}
 	
 			const dataToReturn = {
 				success: true,
@@ -19,7 +27,15 @@ const paths = ( server, mySQL, connection ) => {
 			const itemSQL = mySQL.format( itemQuery, itemInserts );
 	
 			connection.query( itemSQL, ( error, results, fields ) => {
-				if( error ) return next( error );
+				if( error ){
+					console.log( "/api/lists error at item query:", error );
+					const dataToReturn = {
+						success: false,
+						data: "Error: list url does not exist"
+					}
+					response.json( dataToReturn );
+					return;
+				}
 	
 				dataToReturn.data.items = results;
 				response.json( dataToReturn );
@@ -36,7 +52,15 @@ const paths = ( server, mySQL, connection ) => {
 		const itemSQL = mySQL.format( itemQuery, itemInserts );
 
 		connection.query( itemSQL, ( error, results, fields ) => {
-			if( error ) return next( error );
+			if( error ){
+				console.log( "/api/newitem Error:", error );
+				const dataToReturn = {
+					success: false,
+					data: "Error: did not receive the expected information for a new item"
+				}
+				response.json( dataToReturn );
+				return;
+			}
 			console.log( `The item "${name}" has been added to "List ${listID}"` );
 
 			const dataToReturn = {
@@ -54,7 +78,15 @@ const paths = ( server, mySQL, connection ) => {
 		const itemUpdateSQL = mySQL.format( itemUpdateQuery, itemUpdateInserts );
 
 		connection.query( itemUpdateSQL, ( error, results, fields ) => {
-			if( error ) return next( error );
+			if( error ){
+				console.log( "/api/updateitem Error:", error );
+				const dataToReturn = {
+					success: false,
+					data: "Error: did not receive the expected items fields"
+				}
+				response.json( dataToReturn );
+				return;
+			};
 			const successString = `The item ${ID} has been updated`;
 			console.log( successString );
 
@@ -73,7 +105,15 @@ const paths = ( server, mySQL, connection ) => {
 		const itemDeleteSQL = mySQL.format( itemDeleteQuery, itemDeleteInserts );
 
 		connection.query( itemDeleteSQL, ( error, results, fields ) => {
-			if( error ) return next( error );
+			if( error ){
+				console.log( '/api/deleteitem error:', error );
+				const dataToReturn = {
+					success: false,
+					data: "Error: could not find item with the requested ID"
+				}
+				response.json( dataToReturn );
+				return;
+			}
 			const successString = `The item ${ID} has been set to inactive`;
 			console.log( successString );
 
@@ -92,7 +132,15 @@ const paths = ( server, mySQL, connection ) => {
 		const listCreationSQL = mySQL.format( listCreationQuery, listCreationInserts );
 
 		connection.query( listCreationSQL, ( error, results, fields ) => {
-			if( error ) return next( error );
+			if( error ){
+				console.log( '/api/createlist error:', error );
+				const dataToReturn = {
+					success: false,
+					data: "Error: incomplete, or incorrect data for a new list"
+				}
+				response.json( dataToReturn );
+				return;
+			}
 			const successString = `The list ${name} has been added to the lists table at ${eventTime} by owner ID ${ownerID}`;
 			console.log( successString );
 
@@ -105,13 +153,28 @@ const paths = ( server, mySQL, connection ) => {
 	});
 	server.patch( '/api/updatelist', ( request, response ) => {
 		const { ID, name, description, ownerID, url, securityStatus, eventTime } = request.body;
-
+		if( !ID || !name || !description || !ownerID || !url || !securityStatus || !eventTime ){
+			const dataToReturn = {
+				success: false,
+				data: "Error: did not receive expected information"
+			}
+			response.json( dataToReturn );
+			return;
+		}
 		const listUpdateQuery = 'UPDATE lists SET ??=?, ??=?, ??=?, ??=?, ??=?, ??=? WHERE ?? = ?';
 		const listUpdateInserts = [ 'name', name, 'description',  description, 'ownerID', ownerID, 'url', url, 'securityStatus', securityStatus, 'eventTime', eventTime, 'ID', ID ];
 		const listUpdateSQL = mySQL.format( listUpdateQuery, listUpdateInserts );
 
 		connection.query( listUpdateSQL, ( error, results, fields ) => {
-			if( error ) console.log( error );
+			if( error ){
+				console.log( '/api/updatelist error:', error );
+				const dataToReturn = {
+					success: false,
+					data: "Error: list by that ID does not exist"
+				}
+				response.json( dataToReturn );
+				return;
+			}
 			const successString = `The list ${ID} has been updated`;
 			console.log( successString );
 
@@ -149,8 +212,15 @@ const paths = ( server, mySQL, connection ) => {
 		const messageSQL = mySQL.format( messageQuery, messageInserts );
 
 		connection.query( messageSQL, ( error, results, fields ) => {
-			if( error ) return next( error );
-			
+			if( error ){
+				console.log( '/api/messages error:', error );
+				const dataToReturn = {
+					success: false,
+					data: "Error: cannot find messages for the sent list ID"
+				}
+				response.json( dataToReturn );
+				return;
+			}
 			const dataToReturn = {
 				success: true,
 				data: results
@@ -166,8 +236,15 @@ const paths = ( server, mySQL, connection ) => {
 		const listsSQL = mySQL.format( listsQuery, listsInserts );
 
 		connection.query( listsSQL, ( error, results, fields ) => {
-			if( error ) return next( error );
-		
+			if( error ){
+				console.log( '/api/getuserlists error:', error );
+				const dataToReturn = {
+					success: false,
+					data: "Error: the user ID sent was not found"
+				}
+				response.json( dataToReturn );
+				return;
+			}		
 			const dataToReturn = {
 				success: true,
 				data: results
