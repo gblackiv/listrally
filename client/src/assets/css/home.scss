@@ -1,23 +1,23 @@
+%flex-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .home-container{
-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
+    height: 100vh;
+    @extend %flex-column;
 }
 
 .home-content{
-display: flex;
-flex-direction: column;
-align-items: center;
+    @extend %flex-column;
 height: 100vh;
 justify-content: space-evenly;
 }
 
 .new-list{
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    @extend %flex-column;
 }
 .new-list-btn{
     width: 50px;
@@ -41,9 +41,7 @@ color: orange;
 }
 
 .home-templates{
-display: flex;
-flex-direction: column;
-align-items: center;
+    @extend %flex-column;
 }
 
 .template{
@@ -52,7 +50,7 @@ list-style: none;
 cursor: pointer;
 }
 .home-hidden{
-display:none;
+display: none;
 }
 
 .instruction{
