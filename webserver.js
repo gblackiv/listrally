@@ -5,10 +5,12 @@ const mySQL = require( 'mysql' );
 const passport = require( 'passport' );
 const passportSetup = require( './config/passportSetup.js' );
 const mysqlCredentials = require( './config/mySQLCredentials.js' );
+const cookieSession = require( 'cookie-session' );
+
 const apiRoutes = require( './apiRoutes.js' );
 const authRoutes = require( './authRoutes.js' );
 const keys = require( './config/keys.js' );
-const cookieSession = require( 'cookie-session' );
+
 const server = express();
 const PORT = 3050;
 

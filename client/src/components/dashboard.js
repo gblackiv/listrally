@@ -25,7 +25,7 @@ export default props => (
             </div>
             {/* <!-- dashboard Toggle --> */}
             <div className="dashboard_toggle">
-                    <div>All dashboards</div>
+                    <div>All Lists</div>
                     <div>
                     {/* <i className="fas fa-toggle-off"></i> */}
                     <input type="checkbox" id="switch" /><label className="label-user" for="switch"></label>

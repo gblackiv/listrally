@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../assets/css/list_owner.scss';
+import ListLinkButton from './buttons/list_link_button';
+import ChatButton from './buttons/chat_button';
+import AddListItemButton from './buttons/add_list_item_button'
 
 
 
@@ -23,7 +26,7 @@ export default class ListOwner extends Component{
                         <i  className="back fas fa-chevron-left"></i>
                     </div>
                     <Link to="/list-shared">
-                        <i class="list-url fas fa-link"></i>
+                        <ListLinkButton />
                     </Link>
                 </div>
                 
@@ -95,13 +98,15 @@ export default class ListOwner extends Component{
                     </div>
                     {/* <!-- Add List Button --> */}
                     <div className="add modal-trigger">
-                            <i id="add-button" class="fas fa-plus-circle"></i>
+                            <AddListItemButton />
                             {/* <label className="add">Add Item</label> */}
                     </div>
                 </div>
                 {/* <!-- Footer --> */}
                 <div className="list-footer">
-                    <Link to="/chatmodal"><i class="outer fas fa-comments"></i></Link>
+                    <Link to="/chatmodal">
+                        <ChatButton />
+                    </Link>
                 </div>
         
                 {/* <!--MODAL--> */}
