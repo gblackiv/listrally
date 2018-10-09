@@ -2,13 +2,23 @@ import React, { Component } from 'react';
 import '../assets/css/list_shared.scss';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { getListData } from '../actions';
+
+import SharedListItem from './shared-list-item';
+import dummyItemsData from './dummyItemsData'
+
 import michael from '../assets/images/michael.jpeg';
 import gerry from '../assets/images/gerry.jpeg';
 import george from '../assets/images/george.jpeg';
 import filter from '../assets/images/filter-icon.png'
 
 
-export default class ListShared extends Component{ 
+class ListShared extends Component{
+
+    componentDidMount() {
+        console.log('componentdidmount this.props :', this.props);
+        this.props.getListData();//getListData becomes part of props from the connect function down below
+    }
 
     goBack = () => {
         console.log('go back');
@@ -16,7 +26,17 @@ export default class ListShared extends Component{
     }
 
     render(){
-        console.log('this.props :', this.props);
+        console.log('Shared List this.props :', this.props);
+        // const {data} = dummyItemsData;
+        // console.log('dummy data inside shared-list :', data);
+        // const listItems = data.map(item=>{
+        //     return <SharedListItem {...item} />
+        // })
+        const {list} = this.props;
+        console.log('list :',list);
+        const listItems = list.map(item=>{
+            return <SharedListItem key={item.ID} {...item} />
+        })
         return( 
             <div>
                 <div className="list-container">
@@ -27,16 +47,9 @@ export default class ListShared extends Component{
                         </div>
                         <Link to="/"><i className="outer fas fa-home"></i></Link>
                     </div>
-                    
-                    {/* User Avatar */}
-                    <br/>
-                    {/* <i id="avatar" className="fas fa-user"></i> */}
-                    {/* <img id="avatar" src={avatar} alt="avatar"/> */}
-        
                     {/* <!-- Main Content --> */}
                     <div className="list-content">
                         <div className="filter">
-                            {/* <i class="fas fa-filter"></i>All */}
                             <img src={filter} alt="filter"/>   All
                         </div>
                         {/* <!-- List name, details, and filter button --> */}
@@ -46,51 +59,11 @@ export default class ListShared extends Component{
                         </div>
                         {/* <!-- Items --> */}
                         <div className="list-items">
-                            <div className="list_item checked">
-                                <div className="shared-left">
-                                    <input type="checkbox" name="chips" value="chips" checked/>Chips
-                                </div>
-                                <div className="shared-right">
-                                    <img className="person" src={michael} alt="user"/>
-                                </div>
-                            </div>
-                            <div className="list_item">
-                                <div className="shared-left">
-                                    <input type="checkbox" name="beer" value="beer"/>Beer
-                                </div>
-                                <div className="shared-right">
-                                    {/* <img className="person" src={user} alt="user"/> */}
-                                </div>
-                            </div>
-                            <div className="list_item checked">
-                                <div className="shared-left">
-                                    <input type="checkbox" name="forks" value="forks" checked/>Plastic Forks
-                                </div>
-                                <div className="shared-right">
-                                    <img className="person" src={gerry} alt="user"/>
-                                </div>
-                            </div>
-                            <div className="list_item checked">
-                                <div className="shared-left">
-                                    <input type="checkbox" name="chips" value="chips" checked/>Chips
-                                </div>
-                                <div className="shared-right">
-                                    <img className="person" src={george} alt="user"/>
-                                </div>
-                            </div>
-                            <div className="list_item">
-                                <div className="shared-left">
-                                    <input type="checkbox" name="soda" value="soda"/>Soda
-                                </div>
-                                <div className="shared-right">
-                                    {/* <img className="person" src={user} alt="user"/> */}
-                                </div>
-                            </div>
+                            {listItems}
                         </div>
                         {/* <!-- Add List Button --> */}
                         <div className="shared-add modal-trigger">
                         <i id="shared-add-button" className="btn-green fas fa-plus-circle"></i>
-                        {/* <label className="add">Add Item</label> */}
                     </div>
                     </div>
                     {/* <!-- Footer --> */}
@@ -121,3 +94,15 @@ export default class ListShared extends Component{
         )
     }
 }
+
+function mapStateToProps(state){//the redux will be given to us in its entirety when this function is called
+    //the redux state is the same no matter where you try to access it
+    console.log('Redux state.list.list inside mapStateToProp :', state.list.list);
+    return {
+        list: state.list.list//this came from the rootReducer and lists reducer
+    }//   ^ list now becomes a property of Clock once mapStateToProps gets passed into connect
+}
+
+
+
+export default connect(mapStateToProps,{ getListData })(ListShared);//connect returns a function, you pass List into that function

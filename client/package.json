@@ -23,12 +23,14 @@
     "url": "https://github.com/Learning-Fuze/react_starter.git"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
+    "redux-form": "^7.4.2",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
