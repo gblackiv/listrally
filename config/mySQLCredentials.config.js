@@ -1,8 +1,8 @@
 const mysqlCredentials = {
-    host: "gerryblackmon.com",
-    user: 'listRallyTeam',
-    password: '!purplepitahersheY',
-    database: 'listRallyTeam',
+    host: "host name",
+    user: 'user name',
+    password: 'some password',
+    database: 'some database',
     port: 3306
 };
 

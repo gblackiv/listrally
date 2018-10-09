@@ -1,6 +1,6 @@
 const googleCreds = {
-    clientID: '564207339898-0glni3s86q7o4kbv43bqlcqq5gtk0qc5.apps.googleusercontent.com',
-    clientSecret: 'v5mzA-4KNZsjiqSCkmpylHip'
+    clientID: 'client ID here',
+    clientSecret: 'client secret here'
 };
 
 // const redirectURL = 'http://localhost:3000';

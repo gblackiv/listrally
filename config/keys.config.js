@@ -1,1 +1,1 @@
-module.exports = { cookieKey: [ "isn't this an interesting key?" ] };
+module.exports = { cookieKey: [ "cookie key here" ] };
