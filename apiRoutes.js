@@ -15,7 +15,7 @@ const paths = ( server, mySQL, connection ) => {
 				data: {list: results}
 			};
 			const itemQuery = 'SELECT * FROM ?? WHERE ?? = ?';
-			const itemInserts = [ 'items', 'listID', results[0].ID ];
+			const itemInserts = [ 'items', 'listID', results[0]['ID'] ];
 			const itemSQL = mySQL.format( itemQuery, itemInserts );
 	
 			connection.query( itemSQL, ( error, results, fields ) => {
@@ -55,7 +55,7 @@ const paths = ( server, mySQL, connection ) => {
 
 		connection.query( itemUpdateSQL, ( error, results, fields ) => {
 			if( error ) return next( error );
-			const successString = `The item ${ID} has been updated to ${name}, ${assignedUserID}`;
+			const successString = `The item ${ID} has been updated`;
 			console.log( successString );
 
 			const dataToReturn = {
@@ -84,7 +84,7 @@ const paths = ( server, mySQL, connection ) => {
 			response.json( dataToReturn );
 		});
 	});
-	server.put( '/api/createlist', ( request, resonse ) => {
+	server.put( '/api/createlist', ( request, response ) => {
 		const { name, description, ownerID, url, securityStatus, eventTime} = request.body;
 
 		const listCreationQuery = 'INSERT INTO lists (??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?)';
@@ -93,7 +93,7 @@ const paths = ( server, mySQL, connection ) => {
 
 		connection.query( listCreationSQL, ( error, results, fields ) => {
 			if( error ) return next( error );
-			const successString = `The list ${name} has been added to the lists table at ${eventTime} by owner ID ${ID}`;
+			const successString = `The list ${name} has been added to the lists table at ${eventTime} by owner ID ${ownerID}`;
 			console.log( successString );
 
 			const dataToReturn = {
@@ -107,11 +107,11 @@ const paths = ( server, mySQL, connection ) => {
 		const { ID, name, description, ownerID, url, securityStatus, eventTime } = request.body;
 
 		const listUpdateQuery = 'UPDATE lists SET ??=?, ??=?, ??=?, ??=?, ??=?, ??=? WHERE ?? = ?';
-		const listUpdateInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'eventTime', name, description, ownerID, url, securityStatus, eventTime, 'ID', ID ];
+		const listUpdateInserts = [ 'name', name, 'description',  description, 'ownerID', ownerID, 'url', url, 'securityStatus', securityStatus, 'eventTime', eventTime, 'ID', ID ];
 		const listUpdateSQL = mySQL.format( listUpdateQuery, listUpdateInserts );
-		
+
 		connection.query( listUpdateSQL, ( error, results, fields ) => {
-			if( error ) return next( error );
+			if( error ) console.log( error );
 			const successString = `The list ${ID} has been updated`;
 			console.log( successString );
 
