@@ -36,8 +36,8 @@ const paths = ( server, mySQL, connection ) => {
 				data: {list: results}
 			};
 				//once the list has been retrieved from the DB, retrieve all the items attached to the list
-			const itemQuery = 'SELECT * FROM ?? WHERE ?? = ?';
-			const itemInserts = [ 'items', 'listID', results[0]['ID'] ];
+			const itemQuery = 'SELECT * FROM ?? WHERE ?? = ? AND ?? = ?';
+			const itemInserts = [ 'items', 'listID', results[0]['ID'], 'status', 'active' ];
 			const itemSQL = mySQL.format( itemQuery, itemInserts );
 	
 			connection.query( itemSQL, ( error, results, fields ) => {
@@ -287,9 +287,9 @@ const paths = ( server, mySQL, connection ) => {
 	 */
 	server.get( '/api/getuserlists', ( request, response ) => {
 		const { ID } = request.query;
-		
-		const listsQuery = 'SELECT ?,?,?,? FROM ?? JOIN ON ?? WHERE ? = ??';
-		const listsInserts = [ 'lists.ID', 'lists.name', 'securityStatus', 'ownerID', 'lists', 'users', 'users.ID', ID ];
+
+		const listsQuery = 'SELECT ??, ??, ??, ??, ?? FROM ?? JOIN ?? ON ?? = ?? WHERE ?? = ?';
+		const listsInserts = [ 'userID', 'lists.name', 'ownerID', 'securityStatus', 'lists.status', 'list_to_users', 'lists', 'listID', 'lists.ID', 'userID', ID ];
 		const listsSQL = mySQL.format( listsQuery, listsInserts );
 
 		connection.query( listsSQL, ( error, results, fields ) => {
