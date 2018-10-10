@@ -21,7 +21,7 @@ class DashBoard extends Component {
             
             <div className="col-2">
             <header>
-                <Header location={this.props.location.pathname}/>
+                <Header buttons={['Back_button', 'List_link_button']}/>
             </header> 
                 <div className='content'>
                     <div className="layout-container">
