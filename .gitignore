@@ -3,5 +3,6 @@ config/googleCredentials.js
 config/mySQLCredentials.js
 config/mySQLCredentials.php
 config/keys.js
+config/email_config.php
 client/dist/bundle.js
 client/dist/assets
