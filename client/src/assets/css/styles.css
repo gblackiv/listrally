@@ -1,21 +1,21 @@
 /*************************
 * dom section
 *************************/
-body {
+/* body {
   margin: 0;
   font-family: 'Rubik', sans-serif;
   color: #F2F2F2;
   font-size: 1.25rem;
-}
-.app {
+} */
+/* .app {
   display: flex;
   min-height: 100vh;
   flex-direction: row;
-}
+} */
 /*************************
 * flexbox setup
 *************************/
-header,
+/* header,
 footer {
   background: #007bff;
   height: 5vh;
@@ -29,8 +29,8 @@ nav {
 footer{
   display: relative;
   bottom: 0;
-}
-.side-nav {
+} */
+/* .side-nav {
   display: none;
 }
 .col-1 {
@@ -51,23 +51,23 @@ footer{
 .content > section {
   flex: 4;
   min-height: 100vh;
-}
+} */
 
 /*************************
 * media queries
 *************************/
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .side-nav {
     display: flex;
   }
   
-}
+} */
 
 /*************************
 * Typography
 *************************/
 /* MAIN FONT IN BODY AT TOP OF PAGE */
-h1, h2, h3, h4, h5, h6 {
+/* h1, h2, h3, h4, h5, h6 {
 font-family: 'Montserrat', sans-serif;
 }
 h1 {
@@ -91,12 +91,12 @@ font-size: 1.15rem;
 
 .dark-text {
 color: #333333;
-}
+} */
 
 /*************************
 * Buttons
 *************************/
-.btn {
+/* .btn {
   text-decoration: none;
   color: #F2F2F2;
   text-align: center;
@@ -149,12 +149,12 @@ color: #F2F2F2;
 }
 .btn-grey:hover {
 background-color: #666666;
-}
+} */
 
 /*************************
 * Links
 *************************/
-
+/* 
 .nav-menu>li{
 white-space: nowrap;
 font-size: 1rem;
@@ -163,4 +163,4 @@ a {
 color: black;
 text-decoration: none;
 cursor: pointer;
-}
+} */

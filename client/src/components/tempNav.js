@@ -25,6 +25,10 @@ export default props => (
             <li>
                 <Link to="/about" className="nav-link">About</Link>
             </li>
+
+            <li>
+                <Link to="/layout" className="nav-link">Layout Template</Link>
+            </li>
         </ul>
     </div>
 )
