@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from './header';
-import ListLinkButton from './buttons/list_link_button';
-import ChatButton from './buttons/chat_button';
-import AddListItemButton from './buttons/add_list_item_button'
 
-export default class LayoutTemplate extends Component{
+export default class CreateList extends Component{
 
     render(){
         return(

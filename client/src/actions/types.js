@@ -13,5 +13,6 @@ export default {
     LOCK_LIST: 'lock_list',
     UNLOCK_LIST: 'unlock_list',
     ADD_CHAT_MESSAGE: 'add_chat_message',
-    GET_CHAT_DATA: 'get_chat_data'
+    GET_CHAT_DATA: 'get_chat_data',
+    CREATE_LIST_DATA: 'create_list_data'
 };
