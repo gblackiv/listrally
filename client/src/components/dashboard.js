@@ -4,6 +4,7 @@ import LockIcons from './buttons/lock_buttons';
 import SettingsButton from './buttons/settings_button';
 import Header from './header';
 import Avatar from './avatar';
+import DashboardCard from './dashboard_card';
 
 
 class DashBoard extends Component { 
@@ -61,7 +62,8 @@ class DashBoard extends Component {
                         </div>
 
                     {/* <!-- dashboard-items --> */}
-                    <div className="dashboard-items">
+                    <DashboardCard/>
+                    {/* <div className="dashboard-items">
                         <div className="dashboard-item1">
                             <div className="dashboard-left">
                                 <i className="dashboard_link far fa-link btn-blue"></i>
@@ -70,8 +72,7 @@ class DashBoard extends Component {
                             <div className="dashboard-right">
                             <LockIcons />
                             <SettingsButton />
-                                {/* <i className="fas fa-lock-alt btn-red"></i> */}
-                                {/* <i className="fas fa-cog btn-grey"></i> */}
+                                
                             </div>
                         </div>
                         <div className="dashboard-item2">
@@ -80,8 +81,7 @@ class DashBoard extends Component {
                                 <div className="dashboard_text">Office Potluck List</div>
                             </div>
                             <div className="dashboard-right">
-                                {/* <i className="fas fa-unlock-alt"></i>
-                                <i className="fas fa-cog"></i> */}
+
                             </div>
                         </div>
                         <div className="dashboard-item2">
@@ -92,16 +92,15 @@ class DashBoard extends Component {
                             <div className="dashboard-right">
                                 <LockIcons /><SettingsButton />
                                 
-                                {/* <i className="fas fa-unlock-alt btn-green"></i> */}
-                                {/* <i className="fas fa-cog btn-grey"></i> */}
+
                             </div>
                         </div> 
 
                     <br/>
-                    {/* <!-- Add dashboard Button --> */}
+                   
                     <i className="dashboard_plus fal fa-plus-circle btn-green"></i>
-                    {/* <button className="btn btn-green ">+</button> */}
-                </div>
+
+                </div> */}
             </div>
         </div>
         

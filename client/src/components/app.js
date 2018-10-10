@@ -15,6 +15,7 @@ import chatModal from './chat_modal';
 import About from './about';
 import UserSettings from './user_settings';
 import Avatar from './avatar';
+import DashboardCard from './dashboard_card';
 
 import LayoutTemplate from './layout';
 
