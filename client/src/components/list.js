@@ -1,136 +1,117 @@
 import avatar from '../assets/images/user.png';
+import '../assets/css/list_owner.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import '../assets/css/styles.css';
+
+import { Fragment } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { addSingleItem } from '../actions/index';
+import { getListData } from '../actions/index';
+
 import ListLinkButton from './buttons/list_link_button';
 import ChatButton from './buttons/chat_button';
-import AddListItemButton from './buttons/add_list_item_button';
-import Avatar from './avatar';
+import AddListItemButton from './buttons/add_list_item_button'
+import ListItems from './owner-list-item';
+
+import dummyData from './dummyItemsData';
 
 
+class ListOwner extends Component{
 
-export default class ListOwner extends Component{
+    componentDidMount() {
+        console.log('componentdidmount this.props :', this.props);
+        this.props.getListData();//getListData becomes part of props from the connect function down below
+    }
 
     goBack = () => {
         console.log('go back');
         this.props.history.goBack();
     }
 
-    render(){
-        return     ( 
-            <div>
-            <div className="list-container">
-                {/*Top Nav*/}
-                <div className="list-nav">
-                    <div onClick={this.goBack}>
-                        <i  className="back fas fa-chevron-left"></i>
-                    </div>
-                    <Link to="/list-shared">
-                        <ListLinkButton />
-                    </Link>
-                </div>
-                
-                {/* User Avatar */}
-                <br/>
-                {/* <i id="avatar" class="fas fa-user"></i> */}
-                {/* <Link to="/dashboard"><img id="avatar" src={avatar} alt="avatar"/></Link> */}
-                <Avatar/>
-        
-                {/* <!-- Main Content --> */}
-                <div className="list-content">
-                    {/* <!-- List name, details, and filter button --> */}
-                    <div className="list-top">
-                        <h4 className="list-title">Sue's Party</h4>
-                        <h6 className="list-details">Saturday April 1st</h6>
-                    </div>
-                    {/* <!-- Items --> */}
-                    <div className="list-items">
-                        <div className="list-item">
-                            <div className="list-left">
-                                <i class="sort fas fa-sort"></i>
-                                <label>Chips</label>
-                            </div>
-                            <div className="list-right">
-                                <i class="fas fa-pen"></i>
-                                <i class="delete fas fa-trash-alt"></i>
-                            </div>
-                        </div>
-                        <div className="list-item">
-                            <div className="left">
-                                <i class="sort fas fa-sort"></i>
-                                <label>Beer</label>
-                            </div>
-                            <div className="list-right">
-                                <i class="fas fa-pen"></i>
-                                <i class="delete fas fa-trash-alt"></i>
-                            </div>
-                        </div>
-                        <div className="list-item">
-                            <div className="list-left">
-                                <i class="sort fas fa-sort"></i>
-                                <label>Plastic forks</label>
-                            </div>
-                            <div className="list-right">
-                                <i class="fas fa-pen"></i>
-                                <i class="delete fas fa-trash-alt"></i>
-                            </div>
-                        </div>
-                        <div className="list-item">
-                            <div className="list-left">
-                                <i class="sort fas fa-sort"></i>
-                                <label>Cups</label>
-                            </div>
-                            <div className="list-right">
-                                <i class="fas fa-pen"></i>
-                                <i class="delete fas fa-trash-alt"></i>
-                            </div>
-                        </div>
-                        <div className="list-item">
-                            <div className="list-left">
-                                <i class="sort fas fa-sort"></i>
-                                <label>Soda</label>
-                            </div>
-                            <div className="list-right">
-                                <i class="fas fa-pen"></i>
-                                <i class="delete fas fa-trash-alt"></i>
-                            </div>
-                        </div>
-                        <br/>
-                    </div>
-                    {/* <!-- Add List Button --> */}
-                    <div className="add modal-trigger">
-                            <AddListItemButton />
-                            {/* <label className="add">Add Item</label> */}
-                    </div>
-                </div>
-                {/* <!-- Footer --> */}
-                <div className="list-footer">
-                    <Link to="/chatmodal">
-                        <ChatButton />
-                    </Link>
-                </div>
-        
-                {/* <!--MODAL--> */}
-                {/* <div className="flex align-center align-vert modal modal-align container">
-                    <div className="modal-container">
-                        <header className="modal-header">
-                            <h1>Add Item</h1>
-                            <a className="modalClose modalCloseX" aria-hidden="true">&#x2715;</a>
-                        </header>
-                        <div className="main">
-                            <input className="add-input" type="text" name="sauce"/>
-                        </div>
-                        <footer className="modal-footer">
-                            <div className="modal-buttons">
-                                <button className="modalClose modalCloseBtn">Cancel</button>
-                                <button className="modalClose modalCloseBtn">OK</button>
-                            </div>
-                        </footer>
-                    </div>
-                </div> */}
-            </div>
+
+    renderInput = (props) => {
+    const { input } = props;
+        return (
+            <div className="row">
+                <input className="add-input-field" {...input} type="text" autoComplete="off" placeholder="Add Item" />
             </div>
         )
     }
+
+    submitItem = (values) => {
+        console.log('Submit Item values :', values);
+        const { name } = values;
+        const testObject = {name, listID: 1}
+        this.props.addSingleItem(testObject);
+        this.props.history.push('/list');
+    }
+
+    render(){
+        const {handleSubmit} = this.props;
+        console.log('List this.props :', this.props);
+        // const { data } = dummyData;
+        // const listElements = data.map(item=>{
+        //     return <ListItems key={item.ID} {...item} />
+        // })
+
+        const {list} = this.props;
+        const sharedlistItems = list.map(item=>{
+            return <ListItems key={item.ID} {...item} />
+        })
+
+        return ( 
+            <Fragment>
+                <div className="list-container">
+                    <div className="list-nav">
+                        <div onClick={this.goBack}>
+                            <i  className="back fas fa-chevron-left"></i>
+                        </div>
+                        <Link to="/list-shared">
+                            <ListLinkButton />
+                        </Link>
+                    </div>
+                    <Link to="/dashboard"><img id="avatar" src={avatar} alt="avatar"/></Link>
+                    <div className="list-content">
+                        <div className="list-top">
+                            <h4 className="list-title">Sue's Party</h4>
+                            <h6 className="list-details">Saturday April 1st</h6>
+                        </div>
+                        <div className="list-items">
+                            <div className="add">                       
+                                <form onSubmit={handleSubmit(this.submitItem)}>
+                                    <Field name="name" listID={2} type="text" component={this.renderInput} label="Add Item"/>
+                                    <div className="add-item-btn">
+                                        <AddListItemButton className="add-item-button" name="Add Item" />
+                                    </div>                               
+                                </form>
+                            </div>
+                            {sharedlistItems}
+                        </div>
+                    </div>
+                    <div className="list-footer">
+                        <Link to="/chatmodal">
+                            <ChatButton />
+                        </Link>
+                    </div>
+                </div>
+            </Fragment>
+        )
+    }
 }
+
+function mapStateToProps(state){//the redux will be given to us in its entirety when this function is called
+    //the redux state is the same no matter where you try to access it
+    console.log('Redux state.list.list inside mapStateToProp :', state.list.list);
+    return {
+        list: state.list.list//this came from the rootReducer and lists reducer
+    }//   ^ list now becomes a property of Clock once mapStateToProps gets passed into connect
+}
+
+ListOwner = reduxForm({
+    form: 'add_item',
+})(ListOwner);
+
+export default connect(mapStateToProps,{
+    addSingleItem, getListData
+})(ListOwner); 
