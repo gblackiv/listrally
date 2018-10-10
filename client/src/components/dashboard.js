@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../assets/css/dashboard.css';
 import LockIcons from './buttons/lock_buttons';
-import SettingsButton from './buttons/settings_button'
+import SettingsButton from './buttons/settings_button';
+import Header from './header';
 
 class DashBoard extends Component { 
     constructor(props) {
@@ -18,12 +19,13 @@ class DashBoard extends Component {
             <div>
                 <div className="dashboard-container dark-text">
                 {/* <Top Nav */}
-                <div className="dashboard-nav">
+                <Header/>
+                {/* <div className="dashboard-nav">
                     <i className="far fa-chevron-circle-left"></i>
                     <div className="dashboard-signout">Sign Out</div>
                     <i className="far fa-sign-out-alt"></i>
                     
-                </div>
+                </div> */}
                 {/* <!-- Main Content --> */}
                 <div className="dashboard-content">
                     {/* <!-- User name, details, user avatar --> */}

@@ -15,6 +15,7 @@ import Dashboard from './dashboard';
 import chatModal from './chat_modal';
 import About from './about';
 import UserSettings from './user_settings';
+import Header from './header';
 
 import LayoutTemplate from './layout';
 
