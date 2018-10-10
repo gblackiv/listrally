@@ -23,3 +23,14 @@ export function addSingleItem(newItem){
         })
     }
 }
+
+export function createListData(userForm){
+    return async dispatch => {
+        const resp = await axios.put('/api/createlist', userForm);
+        console.log('create list resp :', resp);
+        dispatch({
+            type: types.CREATE_LIST_DATA,
+            payload: resp
+        })
+    }
+}
