@@ -3,9 +3,9 @@ import '../assets/css/list_shared.scss';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getListData } from '../actions';
+import { Fragment } from 'react';
 
 import SharedListItem from './shared-list-item';
-import dummyItemsData from './dummyItemsData'
 
 import michael from '../assets/images/michael.jpeg';
 import gerry from '../assets/images/gerry.jpeg';
@@ -20,6 +20,10 @@ class ListShared extends Component{
         this.props.getListData();//getListData becomes part of props from the connect function down below
     }
 
+    addItem = (event) =>{
+        console.log('add Item button works', event.currentTarget);
+    }
+
     goBack = () => {
         console.log('go back');
         this.props.history.goBack();
@@ -27,18 +31,14 @@ class ListShared extends Component{
 
     render(){
         console.log('Shared List this.props :', this.props);
-        // const {data} = dummyItemsData;
-        // console.log('dummy data inside shared-list :', data);
-        // const listItems = data.map(item=>{
-        //     return <SharedListItem {...item} />
-        // })
+
         const {list} = this.props;
         console.log('list :',list);
         const listItems = list.map(item=>{
             return <SharedListItem key={item.ID} {...item} />
         })
         return( 
-            <div>
+            <Fragment>
                 <div className="list-container">
                     {/*Top Nav*/}
                     <div className="list-nav">
@@ -63,34 +63,17 @@ class ListShared extends Component{
                         </div>
                         {/* <!-- Add List Button --> */}
                         <div className="shared-add modal-trigger">
-                        <i id="shared-add-button" className="btn-green fas fa-plus-circle"></i>
+                        <div onClick={()=>this.addItem(event)} className="add-item">
+                            <i id="shared-add-button" className="btn-green fas fa-plus-circle"></i>
+                        </div>
                     </div>
                     </div>
                     {/* <!-- Footer --> */}
                     <div className="list-footer">
                         <Link to="/chatmodal"><i className="outer fas fa-comments"></i></Link>
                     </div>
-                    {/* <!--MODAL--> */}
-                    {/* <div className="flex align-center align-vert modal modal-align container">
-                        <div className="modal-container">
-                            <header className="modal-header">
-                                <h1>Add Item</h1>
-                                <a className="modalClose modalCloseX" aria-hidden="true">&#x2715;</a>
-                            </header>
-                            <div className="main">
-                                <input className="add-input" type="text" name="sauce"/>
-                            </div>
-                            <footer className="modal-footer">
-                                <div className="modal-buttons">
-                                    <button className="modalClose modalCloseBtn">Cancel</button>
-                                    <button className="modalClose modalCloseBtn">OK</button>
-                                </div>
-                            </footer>
-                        </div>
-                    </div> */}
-
                 </div>
-            </div>
+            </Fragment>
         )
     }
 }
@@ -102,7 +85,6 @@ function mapStateToProps(state){//the redux will be given to us in its entirety 
         list: state.list.list//this came from the rootReducer and lists reducer
     }//   ^ list now becomes a property of Clock once mapStateToProps gets passed into connect
 }
-
 
 
 export default connect(mapStateToProps,{ getListData })(ListShared);//connect returns a function, you pass List into that function

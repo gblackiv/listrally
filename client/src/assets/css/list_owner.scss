@@ -47,7 +47,7 @@
 .list-title{
     text-align: center;
     white-space: nowrap;
-    margin-top: 1.5em;
+    margin-top: 1.75em;
     margin-bottom: 0;
 }
 
@@ -76,7 +76,7 @@
 #avatar{
     position: absolute;
     left: 50%;
-    top: 5%;
+    top: 0;
     transform: translateX(-50%);
     padding: 5px;
     border-radius: 50%;
@@ -115,7 +115,7 @@
 #add-button{
     position: relative;
     background-color: white;
-    font-size: 3em;
+    font-size: 2em;
     color: #26a69a;
     border-radius: 50%;
     box-shadow: 0px 7px 9px -1px rgba(189,187,189,1);
@@ -125,8 +125,8 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    position: absolute;
-    bottom: 3%;
+    // position: absolute;
+    // bottom: 3%;
     /* position: sticky;
     bottom: 10px; */
 }
@@ -136,6 +136,40 @@
     border: 2px solid white;
     border-radius: 50%;
     padding: 8px;
+}
+.add-input-field {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #26a69a;
+    height: 3rem;
+    width: 60vw;
+    font-size: 16px;
+    margin: 0 8px 0 0;
+    padding: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    cursor: text;
+}
+
+.add-item-btn{
+    position: relative;
+    right: 0;
+}
+
+.add-item-button{
+    position: absolute;
+    right: 0;
+    bottom: 2em;
+}
+
+.row{
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 1.5em 0;
 }
 
 @media (min-width: 600px){

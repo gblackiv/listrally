@@ -11,7 +11,7 @@ export default class LayoutTemplate extends Component{
         return(
             <div className="col-2">
             <header>
-                <Header />
+                <Header buttons={[]}/>
             </header> 
                 <div className='content'>
                     <div className="layout-container">

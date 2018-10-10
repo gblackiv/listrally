@@ -11,3 +11,15 @@ export function getListData(){
         })
     }
 }
+
+export function addSingleItem(newItem){
+    console.log('newItem :', newItem);
+    return async dispatch => {
+        const resp = await axios.put('/api/newitem', newItem);
+        console.log('list resp :', resp);
+        dispatch({
+            type: types.ADD_LIST_ITEM,
+            payload: resp
+        })
+    }
+}
