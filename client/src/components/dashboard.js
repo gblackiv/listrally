@@ -19,7 +19,7 @@ class DashBoard extends Component {
             <div>
                 <div className="dashboard-container dark-text">
                 {/* <Top Nav */}
-                <Header/>
+                <Header buttons={['list_button', 'list_link_button']}/>
                 {/* <div className="dashboard-nav">
                     <i className="far fa-chevron-circle-left"></i>
                     <div className="dashboard-signout">Sign Out</div>
