@@ -2,6 +2,6 @@ import React from 'react';
 
 export default props => (    
     <div>
-        <i className="fas fa-link link-button"></i>
+        <i className="far fa-chevron-circle-left"></i>
     </div>
 )

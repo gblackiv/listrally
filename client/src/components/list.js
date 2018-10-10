@@ -2,10 +2,11 @@ import avatar from '../assets/images/user.png';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import '../assets/css/list_owner.scss';
+import '../assets/css/styles.css';
 import ListLinkButton from './buttons/list_link_button';
 import ChatButton from './buttons/chat_button';
-import AddListItemButton from './buttons/add_list_item_button'
+import AddListItemButton from './buttons/add_list_item_button';
+import Avatar from './avatar';
 
 
 
@@ -31,9 +32,10 @@ export default class ListOwner extends Component{
                 </div>
                 
                 {/* User Avatar */}
-                <br/>>
+                <br/>
                 {/* <i id="avatar" class="fas fa-user"></i> */}
-                <Link to="/dashboard"><img id="avatar" src={avatar} alt="avatar"/></Link>
+                {/* <Link to="/dashboard"><img id="avatar" src={avatar} alt="avatar"/></Link> */}
+                <Avatar/>
         
                 {/* <!-- Main Content --> */}
                 <div className="list-content">
