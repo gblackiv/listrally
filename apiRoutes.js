@@ -35,9 +35,9 @@ const paths = ( server, mySQL, connection ) => {
 				success: true,
 				data: {list: results}
 			};
-				//once the list has been retrieved from the DB, retrieve all the items attached to the list
-			const itemQuery = 'SELECT * FROM ?? WHERE ?? = ? AND ?? = ?';
-			const itemInserts = [ 'items', 'listID', results[0]['ID'], 'status', 'active' ];
+	
+			const itemQuery = 'SELECT ??, ??, ??, ??, ?? FROM ?? JOIN ?? ON ??=? WHERE (?? = ? AND ?? = ?)';
+			const itemInserts = [ 'items.name', 'items.ID', 'assignedUserID', 'avatar', 'users.name', 'items', 'users', 'assignedUserID', 'users.ID', 'listID', results[0]['ID'], 'items.status', 'active' ];
 			const itemSQL = mySQL.format( itemQuery, itemInserts );
 	
 			connection.query( itemSQL, ( error, results, fields ) => {
