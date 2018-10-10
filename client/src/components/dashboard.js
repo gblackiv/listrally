@@ -3,6 +3,7 @@ import '../assets/css/dashboard.css';
 import LockIcons from './buttons/lock_buttons';
 import SettingsButton from './buttons/settings_button';
 import Header from './header';
+import list_link_button from './buttons/list_link_button';
 
 class DashBoard extends Component { 
     constructor(props) {
@@ -19,7 +20,7 @@ class DashBoard extends Component {
             <div>
                 <div className="dashboard-container dark-text">
                 {/* <Top Nav */}
-                <Header buttons={['list_button', 'list_link_button']}/>
+                <Header buttons={['chat_button', 'list_link_button']}/>
                 {/* <div className="dashboard-nav">
                     <i className="far fa-chevron-circle-left"></i>
                     <div className="dashboard-signout">Sign Out</div>
