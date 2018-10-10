@@ -16,7 +16,7 @@ class SharedList extends Component{
 
     componentDidMount() {
         // console.log('componentdidmount this.props :', this.props);
-        this.props.getListData();
+        this.props.getListData();//getListData becomes part of props from the connect function down below
     }
 
     goBack = () => {
@@ -35,7 +35,9 @@ class SharedList extends Component{
     renderItems = ({fields}) => {
         const { list } = this.props;
 
+
         const items = fields.map((id, index) => {
+            // console.log('LIST:', list, 'index:', index);
             const item = list[index];
 
             return <Field key={item.ID} name={id} label={item.name} component={Checkbox}/>
@@ -95,6 +97,7 @@ function mapStateToProps(state){
             items.push(!!item.assignedUserID);
             
         });
+        // console.log('MSTP List Items:', items);
     }
 
     return {
