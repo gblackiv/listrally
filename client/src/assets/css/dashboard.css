@@ -29,10 +29,23 @@ body{
     justify-content: space-between;
 }
 .dashboard_user{
-    font-size: 5em; 
+    /* font-size: 5em; 
     align-self: center;
     padding: 10px;
-    cursor: pointer; 
+    cursor: pointer;  */
+    margin-right: 20px;
+    margin-top: 20px;
+    /* position: absolute; */
+    /* left: 80%; */
+    /* top: 0; */
+    /* transform: translateX(-50%); */
+    padding: 5px;
+    border-radius: 50%;
+    background-color: white;
+    z-index: 1;
+    width: 100px;
+    cursor: pointer;
+    box-shadow: 0px 7px 9px -1px rgba(189,187,189,1);
 }
 .dashboard-details{
     margin-left: 5%;
@@ -74,6 +87,7 @@ padding: 0.3em;
     display: flex;
     flex-direction: column;
     overflow: auto;
+    margin: 8px;
     
 }
 .dashboard-signout{
@@ -84,7 +98,7 @@ padding: 0.3em;
  
 }
 .dashboard-items>div{
-    width: 85vw;
+    /* width: 85vw; */
     display: flex;
     justify-content: space-between;
     font-size: 1em;
@@ -116,7 +130,12 @@ i{
     padding: 8px;
     /* font-size: 1em; */
 }
+
 .dashboard-right{
+    display: flex;
+    justify-content: space-between;
+}
+.dashboard-left{
     display: flex;
     justify-content: space-between;
 }
@@ -146,8 +165,9 @@ i{
 }
 
 .dashboard_text{
-    display: inline-block;
-    position: absolute;
+    /* display: inline-block; */
+    /* position: absolute; */
+    align-self: auto;
     padding: 5px;
 
 }
@@ -160,7 +180,9 @@ i{
 
 } */
 
-/* toggle button */
+/*************************
+* Toggle button
+*************************/
 input[type=checkbox]#switch{
 	height: 0;
 	width: 0;

@@ -1,7 +1,7 @@
 node_modules
 config/googleCredentials.js
 config/mySQLCredentials.js
-config/mySQLCredentials.php
+config/mySqlCredentials.php
 config/keys.js
 client/dist/bundle.js
 client/dist/assets
