@@ -78,11 +78,13 @@ const paths = ( server, mySQL, connection ) => {
 				response.json( dataToReturn );
 				return;
 			}
-			console.log( `The item "${name}" has been added to "List ${listID}"` );
+			const successString = `The item "${name}" has been added to "List ${listID}"`;
+			console.log( successString );
 
 			const dataToReturn = {
 				success: true,
-				data: `The item "${name}" has been added to "List ${listID}"`
+				data: successString,
+				itemID: results.insertId
 			};
 			response.json( dataToReturn );
 		});
@@ -340,7 +342,8 @@ const paths = ( server, mySQL, connection ) => {
 			console.log( successString );
 			const dataToReturn = {
 				success: true,
-				data: successString
+				data: successString,
+				listID
 			};
 			response.json( dataToReturn );
 		});
