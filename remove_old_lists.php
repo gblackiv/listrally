@@ -1,11 +1,11 @@
 <?php
 
-include_once('./config/mySqlCredentials.php');
-$conn = new mysqli( $mySQLHost, $mySQLUser, $mySQLPassword, $mySQLDatabase );
+include_once('config/mySqlCredentials.php');
 
-$querry = "UPDATE lists SET status = 'inactive' WHERE eventTime <= DATE(NOW()) + INTERVAL -7 DAY";
 
-$result = $conn->query( $query );
+$query = "UPDATE lists SET status = 'inactive' WHERE eventTime <= DATE(NOW()) + INTERVAL -7 DAY";
+
+$result = mysqli_query( $conn, $query );
 
 print( $result );
 ?>

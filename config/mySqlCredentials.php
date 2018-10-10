@@ -6,5 +6,6 @@ $mySQLUser= 'listRallyTeam';
 $mySQLDatabase = 'listRallyTeam';
 $mySQLPort = 3306;
 
+$conn = mysqli_connect( $mySQLHost, $mySQLUser, $mySQLPassword, $mySQLDatabase );
 
 ?>
