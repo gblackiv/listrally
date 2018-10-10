@@ -7,7 +7,6 @@ import '../assets/css/main.scss';
 import '../assets/css/buttons.scss';
 //Components
 import TempNav from './tempNav';
-import Header from './header';
 import Home from './home';
 import ListOwner from './list';
 import ListShared from './shared-list';
@@ -15,7 +14,6 @@ import Dashboard from './dashboard';
 import chatModal from './chat_modal';
 import About from './about';
 import UserSettings from './user_settings';
-import Header from './header';
 import Avatar from './avatar';
 
 import LayoutTemplate from './layout';
@@ -25,7 +23,7 @@ const App = () => (
         <nav className="col-1 side-nav">
         <TempNav />
         </nav>
-        
+
                     <Route exact path="/" component={Home} />
                     <Route path="/list" component={ListOwner} />
                     <Route path="/list-shared" component={ListShared} />
@@ -35,12 +33,9 @@ const App = () => (
                     <Route path="/about" component={About} />
 
                     <Route path="/layout" component={LayoutTemplate} />
-            </main>
-            <footer>
-                <p>Footer Component Here</p>
-            </footer>
+
+            
         </div>
-    </div>
 );
 
 export default App;
