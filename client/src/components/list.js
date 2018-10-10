@@ -1,32 +1,46 @@
 import avatar from '../assets/images/user.png';
+import '../assets/css/list_owner.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import '../assets/css/list_owner.scss';
+import { Fragment } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { addSingleItem } from '../actions/index';
+
+
 import ListLinkButton from './buttons/list_link_button';
 import ChatButton from './buttons/chat_button';
 import AddListItemButton from './buttons/add_list_item_button'
 import ListItems from './owner-list-item';
-import { Fragment } from 'react';
+
 import dummyData from './dummyItemsData';
 
 
-export default class ListOwner extends Component{
+class ListOwner extends Component{
 
     goBack = () => {
         console.log('go back');
         this.props.history.goBack();
     }
 
-    addItem = async (values) => {
-        console.log('Submitted Form values :', values);
 
-        await this.props.addListItem(values);
+    renderInput = (props) => {
+    const{ input,label,meta: { touched,error } } = props;
+    return (
+        <div className="row">
+            <label type="text">{label}</label>
+            <input className="add-input-field" {...input} type="text" autoComplete="off" />
+        </div>
+    )
+    }
+
+    submitItem = () => {
+        console.log('Submit Item this.props :', this.props);
     }
 
     render(){
+        console.log('List this.props :', this.props);
         const { data } = dummyData;
-        console.log('data :', data);
         const listElements = data.map(item=>{
             return <ListItems key={item.ID} {...item} />
         })
@@ -42,10 +56,8 @@ export default class ListOwner extends Component{
                         <ListLinkButton />
                     </Link>
                 </div>
-                
                 {/* User Avatar */}
                 <Link to="/dashboard"><img id="avatar" src={avatar} alt="avatar"/></Link>
-            
                 {/* <!-- Main Content --> */}
                 <div className="list-content">
                     {/* <!-- List name, details, and filter button --> */}
@@ -56,8 +68,11 @@ export default class ListOwner extends Component{
                     {/* <!-- Items --> */}
                     <div className="list-items">
                         <div className="add">
-                            <input id="add-input" type="text" name="sauce" placeholder="Item Name" />
-                            <AddListItemButton />
+                            {/* <input className="add-input-field" type="text" name="sauce" placeholder="Item Name" /> */}
+                            <form onSubmit={()=>this.submitItem}>
+                                <Field name="add_item" component={this.renderInput} label="Add Item" />
+                                <AddListItemButton />
+                            </form>
                         </div>
                         {listElements}
                     </div>
@@ -74,3 +89,11 @@ export default class ListOwner extends Component{
         )
     }
 }
+
+ListOwner = reduxForm({
+    form: 'add-item',
+})(ListOwner);
+
+export default connect(null,{
+    addSingleItem
+})(ListOwner); 
