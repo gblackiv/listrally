@@ -13,19 +13,6 @@ export default class Header extends React.Component {
     constructor (props) {
       super(props)
 
-    switch( this.props.location ){
-        case '/dashboard':
-        case '/list-shared':
-            this.state = {
-                buttons: ['Back_button', 'List_link_button']
-            };
-            break;
-        case '/about':
-            this.state = {
-                buttons: ['Back_Button']
-            };
-            break;
-    }
       this.getButtonComponent = this.getButtonComponent.bind(this);
     }
     getButtonComponent( button ){
@@ -49,7 +36,7 @@ export default class Header extends React.Component {
         return (
             
             <div className="list-nav">
-                { this.state.buttons.map( button => this.getButtonComponent(button))}
+                { this.props.buttons.map( button => this.getButtonComponent(button))}
             </div>
         )
     }
