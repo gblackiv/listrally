@@ -6,7 +6,9 @@ import '../assets/css/list_owner.scss';
 import ListLinkButton from './buttons/list_link_button';
 import ChatButton from './buttons/chat_button';
 import AddListItemButton from './buttons/add_list_item_button'
-
+import ListItems from './owner-list-item';
+import { Fragment } from 'react';
+import dummyData from './dummyItemsData';
 
 
 export default class ListOwner extends Component{
@@ -16,9 +18,20 @@ export default class ListOwner extends Component{
         this.props.history.goBack();
     }
 
+    addItem = async (values) => {
+        console.log('Submitted Form values :', values);
+
+        await this.props.addListItem(values);
+    }
+
     render(){
+        const { data } = dummyData;
+        console.log('data :', data);
+        const listElements = data.map(item=>{
+            return <ListItems key={item.ID} {...item} />
+        })
         return     ( 
-            <div>
+        <Fragment>
             <div className="list-container">
                 {/*Top Nav*/}
                 <div className="list-nav">
@@ -31,10 +44,8 @@ export default class ListOwner extends Component{
                 </div>
                 
                 {/* User Avatar */}
-                <br/>>
-                {/* <i id="avatar" class="fas fa-user"></i> */}
                 <Link to="/dashboard"><img id="avatar" src={avatar} alt="avatar"/></Link>
-        
+            
                 {/* <!-- Main Content --> */}
                 <div className="list-content">
                     {/* <!-- List name, details, and filter button --> */}
@@ -44,63 +55,13 @@ export default class ListOwner extends Component{
                     </div>
                     {/* <!-- Items --> */}
                     <div className="list-items">
-                        <div className="list-item">
-                            <div className="list-left">
-                                <i class="sort fas fa-sort"></i>
-                                <label>Chips</label>
-                            </div>
-                            <div className="list-right">
-                                <i class="fas fa-pen"></i>
-                                <i class="delete fas fa-trash-alt"></i>
-                            </div>
+                        <div className="add">
+                            <input id="add-input" type="text" name="sauce" placeholder="Item Name" />
+                            <AddListItemButton />
                         </div>
-                        <div className="list-item">
-                            <div className="left">
-                                <i class="sort fas fa-sort"></i>
-                                <label>Beer</label>
-                            </div>
-                            <div className="list-right">
-                                <i class="fas fa-pen"></i>
-                                <i class="delete fas fa-trash-alt"></i>
-                            </div>
-                        </div>
-                        <div className="list-item">
-                            <div className="list-left">
-                                <i class="sort fas fa-sort"></i>
-                                <label>Plastic forks</label>
-                            </div>
-                            <div className="list-right">
-                                <i class="fas fa-pen"></i>
-                                <i class="delete fas fa-trash-alt"></i>
-                            </div>
-                        </div>
-                        <div className="list-item">
-                            <div className="list-left">
-                                <i class="sort fas fa-sort"></i>
-                                <label>Cups</label>
-                            </div>
-                            <div className="list-right">
-                                <i class="fas fa-pen"></i>
-                                <i class="delete fas fa-trash-alt"></i>
-                            </div>
-                        </div>
-                        <div className="list-item">
-                            <div className="list-left">
-                                <i class="sort fas fa-sort"></i>
-                                <label>Soda</label>
-                            </div>
-                            <div className="list-right">
-                                <i class="fas fa-pen"></i>
-                                <i class="delete fas fa-trash-alt"></i>
-                            </div>
-                        </div>
-                        <br/>
+                        {listElements}
                     </div>
                     {/* <!-- Add List Button --> */}
-                    <div className="add modal-trigger">
-                            <AddListItemButton />
-                            {/* <label className="add">Add Item</label> */}
-                    </div>
                 </div>
                 {/* <!-- Footer --> */}
                 <div className="list-footer">
@@ -108,27 +69,8 @@ export default class ListOwner extends Component{
                         <ChatButton />
                     </Link>
                 </div>
-        
-                {/* <!--MODAL--> */}
-                {/* <div className="flex align-center align-vert modal modal-align container">
-                    <div className="modal-container">
-                        <header className="modal-header">
-                            <h1>Add Item</h1>
-                            <a className="modalClose modalCloseX" aria-hidden="true">&#x2715;</a>
-                        </header>
-                        <div className="main">
-                            <input className="add-input" type="text" name="sauce"/>
-                        </div>
-                        <footer className="modal-footer">
-                            <div className="modal-buttons">
-                                <button className="modalClose modalCloseBtn">Cancel</button>
-                                <button className="modalClose modalCloseBtn">OK</button>
-                            </div>
-                        </footer>
-                    </div>
-                </div> */}
             </div>
-            </div>
+        </Fragment>
         )
     }
 }

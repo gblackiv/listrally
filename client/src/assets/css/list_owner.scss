@@ -115,7 +115,7 @@
 #add-button{
     position: relative;
     background-color: white;
-    font-size: 3em;
+    font-size: 2em;
     color: #26a69a;
     border-radius: 50%;
     box-shadow: 0px 7px 9px -1px rgba(189,187,189,1);
@@ -125,8 +125,8 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    position: absolute;
-    bottom: 3%;
+    // position: absolute;
+    // bottom: 3%;
     /* position: sticky;
     bottom: 10px; */
 }
@@ -136,6 +136,21 @@
     border: 2px solid white;
     border-radius: 50%;
     padding: 8px;
+}
+#add-input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #26a69a;
+    height: 3rem;
+    width: 60vw;
+    font-size: 16px;
+    margin: 0 8px 0 0;
+    padding: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    cursor: text;
 }
 
 @media (min-width: 600px){

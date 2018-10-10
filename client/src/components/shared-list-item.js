@@ -9,7 +9,7 @@ export default class SharedListItem extends Component {
             <Fragment>
                 <div className="list_item">
                     <div className="shared-left">
-                        <input type="checkbox" name="chips" value="chips"/>{name}
+                        <input type="checkbox" name={name} value={name}/>{name}
                     </div>
                     {/* <div className="shared-right">
                         <img className="person" src={michael} alt="user"/>
