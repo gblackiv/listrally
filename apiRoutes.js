@@ -62,9 +62,9 @@ const paths = ( server, mySQL, connection ) => {
 	 * requires name, listID, and assignedUserID of the new item
 	 */
 	server.put( '/api/newitem', ( request, response ) => {
-		const { name, listID, assignedUserID } = request.body;
+		const { name, listID } = request.body;
 
-		const itemQuery = 'INSERT INTO items ( name, listID, assignedUserID ) VALUES ( ?, ?, ? )';
+		const itemQuery = 'INSERT INTO items ( name, listID ) VALUES ( ?, ? )';
 		const itemInserts = [ name, listID, assignedUserID ];
 		const itemSQL = mySQL.format( itemQuery, itemInserts );
 
