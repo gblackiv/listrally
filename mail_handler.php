@@ -1,5 +1,6 @@
 <?php
-require_once('email_config.php');
+require_once('config/email_config.php');
+include_once('config/mySqlCredentials.php');
 require('phpmailer/PHPMailer/PHPMailerAutoload.php');
 $mail = new PHPMailer;
 $mail->SMTPDebug = 0;           // Enable verbose debug output. Change to 0 to disable debugging output.
@@ -20,27 +21,50 @@ $options = array(
         'allow_self_signed' => true
     )
 );
-$mail->smtpConnect($options);
-$mail->From = 'listrally@gmail.com';  // sender's email address (shows in "From" field)
-$mail->FromName = 'List Rally App';   // sender's name (shows in "From" field)
-$mail->addAddress('blackmongerry@gmail.com');  // Add a recipient
-//$mail->addAddress('ellen@example.com');                        // Name is optional
-$mail->addReplyTo('listrally@gmail.com');                          // Add a reply-to address
-//$mail->addCC('cc@example.com');
-//$mail->addBCC('bcc@example.com');
 
-//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-// $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = 'Here is the subject';
-$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-// $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+$query = "SELECT users.name as usersName, email, lists.name as listsName, eventTime, items.name as itemsName FROM users JOIN items ON users.ID=assignedUserID JOIN list_to_users ON users.ID=userID JOIN lists ON list_to_users.listID = lists.ID WHERE (eventTime <= DATE(NOW()) + INTERVAL 7 DAY AND items.listID = list_to_users.listID AND notifications=true AND email IS NOT NULL)";
 
-if(!$mail->send()) {
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
+$result = mysqli_query( $conn, $query );
+
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result)) {
+        print_r($row);
+
+        $mail->smtpConnect($options);
+        $mail->From = 'listrally@gmail.com';  // sender's email address (shows in "From" field)
+        $mail->FromName = 'List Rally App';   // sender's name (shows in "From" field)
+        $mail->addAddress($row['email']);  // Add a recipient
+        $mail->addReplyTo('listrally@gmail.com');                          // Add a reply-to address
+
+        $mail->Subject = 'A friendly reminder from ListRally';
+        $mail->Body    = 'Hello, '.$row['usersName'].', '.$row['listsName'].' is coming up this week. The planned time is '.$row['eventTime'].' and you are signed up to bring '.$row['itemsName'].'. We hope the party goes well!';
+        
+        if(!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+            echo 'Message has been sent';
+        }
+    }
 } else {
-    echo 'Message has been sent';
+    echo "0 results";
 }
+
+
+
+
+
+// //$mail->addAddress('ellen@example.com');                        // Name is optional
+// //$mail->addCC('cc@example.com');
+// //$mail->addBCC('bcc@example.com');
+
+// //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+// //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+// // $mail->isHTML(true);                                  // Set email format to HTML
+
+// // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+
 ?>
