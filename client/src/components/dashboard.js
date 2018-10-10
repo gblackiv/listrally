@@ -3,6 +3,7 @@ import '../assets/css/dashboard.css';
 import LockIcons from './buttons/lock_buttons';
 import SettingsButton from './buttons/settings_button';
 import Header from './header';
+import Avatar from './avatar';
 
 class DashBoard extends Component { 
     constructor(props) {
@@ -33,7 +34,9 @@ class DashBoard extends Component {
                             <h5 className="dashboard-details">First Name <br/> Last Name</h5>
                             {/* <!-- <h4 className="details">Last Name</h4> --> */}
 
-                            <i className="dashboard_user fal fa-user"></i>
+                            {/* <i className="dashboard_user fal fa-user"></i> */}
+                            <Avatar/>
+
                             {/* <FontAwesomeIcon icon="stroopwafel" /> */}
                             {/* <FontAwesomeIcon icon="user" /> */}
                             

@@ -13,6 +13,7 @@ import chatModal from './chat_modal';
 import About from './about';
 import UserSettings from './user_settings';
 import Header from './header';
+import Avatar from './avatar';
 
 const App = () => (
     <div className="app">
