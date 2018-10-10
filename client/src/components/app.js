@@ -3,6 +3,8 @@ import {Route} from 'react-router-dom';
 //CSS stylesheets
 import '../assets/css/styles.css';
 import '../assets/css/app.css';
+import '../assets/css/main.scss';
+import '../assets/css/buttons.scss';
 //Components
 import TempNav from './tempNav';
 import Home from './home';
@@ -12,24 +14,28 @@ import Dashboard from './dashboard';
 import chatModal from './chat_modal';
 import About from './about';
 import UserSettings from './user_settings';
+import Avatar from './avatar';
+
+import LayoutTemplate from './layout';
 
 const App = () => (
     <div className="app">
         <nav className="col-1 side-nav">
         <TempNav />
         </nav>
-        <div className="col-2">
-            <main className="content">
-                <Route exact path="/" component={Home} />
-                <Route path="/list" component={ListOwner} />
-                <Route path="/list-shared" component={ListShared} />
-                <Route path="/dashboard" component={Dashboard} />
-                <Route path="/user-settings" component={UserSettings} />
-                <Route path="/chatmodal" component={chatModal} />
-                <Route path="/about" component={About} />
-            </main>
+
+                    <Route exact path="/" component={Home} />
+                    <Route path="/list" component={ListOwner} />
+                    <Route path="/list-shared" component={ListShared} />
+                    <Route path="/dashboard" component={Dashboard} />
+                    <Route path="/user-settings" component={UserSettings} />
+                    <Route path="/chatmodal" component={chatModal} />
+                    <Route path="/about" component={About} />
+
+                    <Route path="/layout" component={LayoutTemplate} />
+
+            
         </div>
-    </div>
 );
 
 export default App;

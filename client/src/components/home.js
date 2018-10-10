@@ -12,6 +12,7 @@ import SignInButton from './buttons/sign_in_button';
 export default class Home extends Component{
     render(){
         return (    
+            
             <div>
                 <div className="home-container">
                     <div className="home-content">

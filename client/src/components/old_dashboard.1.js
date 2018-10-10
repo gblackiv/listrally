@@ -18,17 +18,8 @@ class DashBoard extends Component {
 
       render() {
         return (    
-            
-            <div className="col-2">
-            <header>
-                <Header buttons={['Back_button', 'List_link_button']}/>
-            </header> 
-                <div className='content'>
-                    <div className="layout-container">
-
-            
             <div>
-                <div className="dark-text">
+                <div className="dashboard-container dark-text">
                 {/* <Top Nav */}
                 {/* <div className="dashboard-nav">
                     <i className="far fa-chevron-circle-left"></i>
@@ -37,7 +28,7 @@ class DashBoard extends Component {
                     
                 </div> */}
                 {/* <!-- Main Content --> */}
-
+                <div className="dashboard-content">
                     {/* <!-- User name, details, user avatar --> */}
                     <div className="dashboard-top">
                             <h5 className="dashboard-details">First Name <br/> Last Name</h5>
@@ -96,7 +87,7 @@ class DashBoard extends Component {
                                 {/* <i className="fas fa-cog btn-grey"></i> */}
                             </div>
                         </div> 
-
+                    </div>
                     <br/>
                     {/* <!-- Add dashboard Button --> */}
                     <i className="dashboard_plus fal fa-plus-circle btn-green"></i>
@@ -104,13 +95,6 @@ class DashBoard extends Component {
                 </div>
             </div>
         </div>
-        
-                    </div>
-                </div>
-                <footer>
-                    <p>Footer Component Here</p>
-                </footer>
-            </div>
     );
 
     }

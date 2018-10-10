@@ -36,8 +36,8 @@ const paths = ( server, mySQL, connection ) => {
 				data: {list: results}
 			};
 				//once the list has been retrieved from the DB, retrieve all the items attached to the list
-			const itemQuery = 'SELECT * FROM ?? WHERE ?? = ?';
-			const itemInserts = [ 'items', 'listID', results[0]['ID'] ];
+			const itemQuery = 'SELECT * FROM ?? WHERE ?? = ? AND ?? = ?';
+			const itemInserts = [ 'items', 'listID', results[0]['ID'], 'status', 'active' ];
 			const itemSQL = mySQL.format( itemQuery, itemInserts );
 	
 			connection.query( itemSQL, ( error, results, fields ) => {
@@ -64,7 +64,7 @@ const paths = ( server, mySQL, connection ) => {
 	server.put( '/api/newitem', ( request, response ) => {
 		const { name, listID } = request.body;
 
-		const itemQuery = 'INSERT INTO items ( name, listID, assignedUserID ) VALUES ( ?, ?, ? )';
+		const itemQuery = 'INSERT INTO items ( name, listID ) VALUES ( ?, ? )';
 		const itemInserts = [ name, listID, assignedUserID ];
 		const itemSQL = mySQL.format( itemQuery, itemInserts );
 
@@ -153,6 +153,7 @@ const paths = ( server, mySQL, connection ) => {
 
 	/**
 	 * requires all fields of a list
+	 * as well as creating a new list, updates the list_to_user DB in order to add the list to the users profile
 	 */
 	server.put( '/api/createlist', ( request, response ) => {
 		const { name, description, ownerID, url, securityStatus, eventTime} = request.body;
@@ -171,14 +172,11 @@ const paths = ( server, mySQL, connection ) => {
 				response.json( dataToReturn );
 				return;
 			}
-			const successString = `The list ${name} has been added to the lists table at ${eventTime} by owner ID ${ownerID}`;
+			const successString = `The list ${name} has been added to the lists table by owner ID ${ownerID}`;
 			console.log( successString );
 
-			const dataToReturn = {
-				success: true,
-				data: successString
-			};
-			response.json( dataToReturn );
+			//updated the list_to_users table to include the owner of the new list
+			updateUserLists( request, response, ownerID, results.insertId );
 		});
 	});
 
@@ -289,9 +287,9 @@ const paths = ( server, mySQL, connection ) => {
 	 */
 	server.get( '/api/getuserlists', ( request, response ) => {
 		const { ID } = request.query;
-		
-		const listsQuery = 'SELECT ?,?,?,? FROM ?? JOIN ON ?? WHERE ? = ??';
-		const listsInserts = [ 'lists.ID', 'lists.name', 'securityStatus', 'ownerID', 'lists', 'users', 'users.ID', ID ];
+
+		const listsQuery = 'SELECT ??, ??, ??, ??, ?? FROM ?? JOIN ?? ON ?? = ?? WHERE ?? = ?';
+		const listsInserts = [ 'userID', 'lists.name', 'ownerID', 'securityStatus', 'lists.status', 'list_to_users', 'lists', 'listID', 'lists.ID', 'userID', ID ];
 		const listsSQL = mySQL.format( listsQuery, listsInserts );
 
 		connection.query( listsSQL, ( error, results, fields ) => {
@@ -311,6 +309,42 @@ const paths = ( server, mySQL, connection ) => {
 			response.json( dataToReturn );
 		});
 	});
+
+	/**
+	 * needs to be contacted when a logged in user contacts a new list
+	 * attaches the user to the list so that on their profile page they can track it
+	 */
+	server.put( '/api/updateuserlists', ( request, response ) => {
+		const { userID, listID } = request.body;
+		updateUserLists(request, response, userID, listID );
+		});
+
+		//query used in multiple places
+	function updateUserLists( request, response, userID, listID ){
+
+		const userToListQuery = "INSERT INTO list_to_users (??, ??) VALUES (?, ?)";
+		const userToListInserts = [ 'userID','listID', userID, listID ];
+		const userToListSQL = mySQL.format( userToListQuery, userToListInserts );
+
+		connection.query( userToListSQL, ( error, results, fields ) => {
+			if( error ){
+				console.log( '/api/updateuserlists error:', error );
+				const dataToReturn = {
+					success: false,
+					data: 'Error: the list or user ID was incorrect'
+				}
+				response.json( dataToReturn );
+				return;
+			}
+			const successString = `The user ${userID} has been added to list ${listID}`;
+			console.log( successString );
+			const dataToReturn = {
+				success: true,
+				data: successString
+			};
+			response.json( dataToReturn );
+		});
+	}
 }
 
 module.exports = paths;

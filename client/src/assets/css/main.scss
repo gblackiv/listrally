@@ -1,0 +1,196 @@
+/*************************
+* layout setup
+*************************/
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+    font-family: 'Rubik', sans-serif;
+    color: #F2F2F2;
+    font-size: 1.25rem;
+    background: #011c40;
+}
+
+header {
+    height: 60px;
+
+    .list-nav {
+        display: flex;
+        justify-content: space-between;
+    }
+    .list-nav {
+        padding: 10px;
+        color: white;
+        cursor: pointer;
+    }
+    .list-nav .link-button {
+        margin-right: 15px;
+    }
+}
+
+.side-nav {
+    display: none;
+}
+
+.col-1 {
+    background: #6c757d;
+    flex: 1;
+}
+
+.col-2 {
+    display: flex;
+    flex-direction: column;
+    flex: 5;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+
+    .layout-container {
+        flex: 4;
+        min-height: 80vh;
+        margin: 0 12px;
+        background-color: #F2F2F2;
+        border-radius: 20px;
+    }
+}
+
+footer {
+    height: 60px;
+}
+
+/*************************
+* Typography
+*************************/
+/* MAIN FONT IN BODY AT TOP OF PAGE */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-size: 4.2rem;
+}
+
+h2 {
+    font-size: 3.56rem;
+}
+
+h3 {
+    font-size: 2.92rem;
+}
+
+h4 {
+    font-size: 2.28rem;
+}
+
+h5 {
+    font-size: 1.64rem;
+}
+
+h6 {
+    font-size: 1.15rem;
+}
+
+.dark-text {
+    color: #333333;
+}
+
+/*************************
+* Buttons
+*************************/
+.btn {
+    text-decoration: none;
+    color: #F2F2F2;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: none;
+    border-radius: 2px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-blue {
+    background-color: #1976d2;
+    color: #F2F2F2;
+}
+
+.btn-blue:hover {
+    background-color: #13599e;
+}
+
+.btn-green {
+    background-color: #26a69a;
+    color: #F2F2F2;
+}
+
+.btn-green:hover {
+    background-color: #1c776e;
+}
+
+.btn-red {
+    background-color: #d32f2f;
+    color: #F2F2F2;
+}
+
+.btn-red:hover {
+    background-color: #a72424;
+}
+
+.btn-orange {
+    background-color: #ffab00;
+    color: #F2F2F2;
+}
+
+.btn-orange:hover {
+    background-color: #da9100;
+}
+
+.btn-grey {
+    background-color: #828282;
+    color: #F2F2F2;
+}
+
+.btn-grey:hover {
+    background-color: #666666;
+}
+
+/*************************
+* Links
+*************************/
+
+.nav-menu>li {
+    white-space: nowrap;
+    font-size: 1rem;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*************************
+* media queries
+*************************/
+@media (min-width: 768px) {
+    .side-nav {
+        display: flex;
+    }
+
+}
