@@ -13,15 +13,13 @@ export function getListData(){
 }
 
 export function addSingleItem(newItem){
-    // return async dispatch => {
-    //     const resp = await axios.put('/api/lists/newitem', newItem);
-    //     console.log('list resp :', resp);
-    //     dispatch({
-    //         type: types.ADD_LIST_ITEM,
-    //         payload: resp
-    //     })
-    // }
-    return {
-        type: types.ADD_LIST_ITEM
+    console.log('newItem :', newItem);
+    return async dispatch => {
+        const resp = await axios.put('/api/newitem', newItem);
+        console.log('list resp :', resp);
+        dispatch({
+            type: types.ADD_LIST_ITEM,
+            payload: resp
+        })
     }
 }

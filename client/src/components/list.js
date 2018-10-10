@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { addSingleItem } from '../actions/index';
-
+import { getListData } from '../actions/index';
 
 import ListLinkButton from './buttons/list_link_button';
 import ChatButton from './buttons/chat_button';
@@ -18,6 +18,11 @@ import dummyData from './dummyItemsData';
 
 class ListOwner extends Component{
 
+    componentDidMount() {
+        console.log('componentdidmount this.props :', this.props);
+        this.props.getListData();//getListData becomes part of props from the connect function down below
+    }
+
     goBack = () => {
         console.log('go back');
         this.props.history.goBack();
@@ -25,75 +30,87 @@ class ListOwner extends Component{
 
 
     renderInput = (props) => {
-    const{ input,label,meta: { touched,error } } = props;
-    return (
-        <div className="row">
-            <label type="text">{label}</label>
-            <input className="add-input-field" {...input} type="text" autoComplete="off" />
-        </div>
-    )
+    const { input } = props;
+        return (
+            <div className="row">
+                <input className="add-input-field" {...input} type="text" autoComplete="off" placeholder="Add Item" />
+            </div>
+        )
     }
 
-    submitItem = () => {
-        console.log('Submit Item this.props :', this.props);
+    submitItem = (values) => {
+        console.log('Submit Item values :', values);
+        const { name } = values;
+        const testObject = {name, listID: 1}
+        this.props.addSingleItem(testObject);
+        this.props.history.push('/list');
     }
 
     render(){
+        const {handleSubmit} = this.props;
         console.log('List this.props :', this.props);
-        const { data } = dummyData;
-        const listElements = data.map(item=>{
+        // const { data } = dummyData;
+        // const listElements = data.map(item=>{
+        //     return <ListItems key={item.ID} {...item} />
+        // })
+
+        const {list} = this.props;
+        const sharedlistItems = list.map(item=>{
             return <ListItems key={item.ID} {...item} />
         })
-        return     ( 
-        <Fragment>
-            <div className="list-container">
-                {/*Top Nav*/}
-                <div className="list-nav">
-                    <div onClick={this.goBack}>
-                        <i  className="back fas fa-chevron-left"></i>
-                    </div>
-                    <Link to="/list-shared">
-                        <ListLinkButton />
-                    </Link>
-                </div>
-                {/* User Avatar */}
-                <Link to="/dashboard"><img id="avatar" src={avatar} alt="avatar"/></Link>
-                {/* <!-- Main Content --> */}
-                <div className="list-content">
-                    {/* <!-- List name, details, and filter button --> */}
-                    <div className="list-top">
-                        <h4 className="list-title">Sue's Party</h4>
-                        <h6 className="list-details">Saturday April 1st</h6>
-                    </div>
-                    {/* <!-- Items --> */}
-                    <div className="list-items">
-                        <div className="add">
-                            {/* <input className="add-input-field" type="text" name="sauce" placeholder="Item Name" /> */}
-                            <form onSubmit={()=>this.submitItem}>
-                                <Field name="add_item" component={this.renderInput} label="Add Item" />
-                                <AddListItemButton />
-                            </form>
+
+        return ( 
+            <Fragment>
+                <div className="list-container">
+                    <div className="list-nav">
+                        <div onClick={this.goBack}>
+                            <i  className="back fas fa-chevron-left"></i>
                         </div>
-                        {listElements}
+                        <Link to="/list-shared">
+                            <ListLinkButton />
+                        </Link>
                     </div>
-                    {/* <!-- Add List Button --> */}
+                    <Link to="/dashboard"><img id="avatar" src={avatar} alt="avatar"/></Link>
+                    <div className="list-content">
+                        <div className="list-top">
+                            <h4 className="list-title">Sue's Party</h4>
+                            <h6 className="list-details">Saturday April 1st</h6>
+                        </div>
+                        <div className="list-items">
+                            <div className="add">                       
+                                <form onSubmit={handleSubmit(this.submitItem)}>
+                                    <Field name="name" listID={2} type="text" component={this.renderInput} label="Add Item"/>
+                                    <div className="add-item-btn">
+                                        <AddListItemButton className="add-item-button" name="Add Item" />
+                                    </div>                               
+                                </form>
+                            </div>
+                            {sharedlistItems}
+                        </div>
+                    </div>
+                    <div className="list-footer">
+                        <Link to="/chatmodal">
+                            <ChatButton />
+                        </Link>
+                    </div>
                 </div>
-                {/* <!-- Footer --> */}
-                <div className="list-footer">
-                    <Link to="/chatmodal">
-                        <ChatButton />
-                    </Link>
-                </div>
-            </div>
-        </Fragment>
+            </Fragment>
         )
     }
 }
 
+function mapStateToProps(state){//the redux will be given to us in its entirety when this function is called
+    //the redux state is the same no matter where you try to access it
+    console.log('Redux state.list.list inside mapStateToProp :', state.list.list);
+    return {
+        list: state.list.list//this came from the rootReducer and lists reducer
+    }//   ^ list now becomes a property of Clock once mapStateToProps gets passed into connect
+}
+
 ListOwner = reduxForm({
-    form: 'add-item',
+    form: 'add_item',
 })(ListOwner);
 
-export default connect(null,{
-    addSingleItem
+export default connect(mapStateToProps,{
+    addSingleItem, getListData
 })(ListOwner); 

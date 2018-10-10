@@ -10,6 +10,7 @@ export default (state=DEFAULT_STATE,action)=>{
         case types.GET_LIST_DATA:
             return {...state, list: action.payload.data.data.items};
         case types.ADD_LIST_ITEM:
+        console.log('Add Single Item action :', action);
             return {...state};
         case types.GET_SINGLE_ITEM:
             return {...state};
