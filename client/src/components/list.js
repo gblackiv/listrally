@@ -2,7 +2,7 @@ import avatar from '../assets/images/user.png';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import '../assets/css/list_owner.scss';
+import '../assets/css/styles.css';
 import ListLinkButton from './buttons/list_link_button';
 import ChatButton from './buttons/chat_button';
 import AddListItemButton from './buttons/add_list_item_button'
