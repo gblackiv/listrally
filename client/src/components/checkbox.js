@@ -16,18 +16,26 @@ class Checkbox extends Component {
     toggleCheck(values){
         // console.log('toggleCheck values :', values);
         const {isChecked} = this.state;
-        if(!isChecked){
-            this.setState({
-                isChecked: !this.state.isChecked
-            })
-            this.sendInfoToServer();
-        }
+        // if(!isChecked){
+        //     this.setState({
+        //         isChecked: !this.state.isChecked
+        //     })
+        //     this.sendInfoToServer();
+        // }
+        this.setState({
+            isChecked: !this.state.isChecked
+        })
+        this.sendInfoToServer();
     }
 
     sendInfoToServer = (values) => {
         //const { ID, name, listID, assignedUserID } = request.body;
         const { ID, name, listID } = this.props;
-        let assignedUserID = 1;
+        let assignedUserID = 0;
+        if(this.state.isChecked){
+            assignedUserID = 1;
+        }
+        debugger;
         console.log('Check Item values :', values);
         console.log('sendInfo values :', values);
         const testCheckboxObject = {ID, name, listID, assignedUserID}

@@ -52,7 +52,6 @@ const paths = ( server, mySQL, connection ) => {
 					response.json( dataToReturn );
 					return;
 				}
-				console.log(`query is here: ***************`, result.sql)
 				dataToReturn.data.items = results;
 				response.json( dataToReturn );
 			});

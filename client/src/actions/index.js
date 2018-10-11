@@ -36,3 +36,9 @@ export function sendCheckboxInfo(info){
         })
     }
 }
+
+export function authenticate(){
+    return {
+        type: types.LOGIN,
+    }
+}
