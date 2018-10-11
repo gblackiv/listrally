@@ -96,29 +96,70 @@ const paths = ( server, mySQL, connection ) => {
 	 */
 	server.patch( '/api/updateitem', ( request, response ) => {
 		const { ID, name, listID, assignedUserID } = request.body;
+		if(!ID || !name || !listID || !assignedUserID){
+			const dataToReturn = {
+				success: false,
+				data: 'missing item update information'
+			};
+			response.json( dataToReturn );
+			return;
+		}
+		const itemUserVerificationQuery = 'SELECT * FROM ?? WHERE ?? = ?';
+		const itemUserVerificationInserts = ['items', 'ID', ID];
+		const itemUserVerificationSQL = mySQL.format( itemUserVerificationQuery, itemUserVerificationInserts );
 
-		const itemUpdateQuery = 'UPDATE items SET ??=?, ??=?, ??=? WHERE ?? = ?';
-		const itemUpdateInserts = [ 'name', name, 'listID', listID, 'assignedUserID', assignedUserID, 'ID', ID ];
-		const itemUpdateSQL = mySQL.format( itemUpdateQuery, itemUpdateInserts );
-
-		connection.query( itemUpdateSQL, ( error, results, fields ) => {
-			if( error ){		//missing data for the item to be updated
-				console.log( "/api/updateitem Error:", error );
+		connection.query( itemUserVerificationSQL, ( error, results, fields ) => {
+			if( error ){		//the itemID that was trying to be deleted was incorrect
+				console.log( '/api/updateitem error:', error );
 				const dataToReturn = {
 					success: false,
-					data: "Error: did not receive the expected items fields"
+					data: "Error: could not find item with the requested ID"
 				}
 				response.json( dataToReturn );
 				return;
-			};
-			const successString = `The item ${ID} has been updated`;
-			console.log( successString );
+			}
 
-			const dataToReturn = {
-				success: true,
-				data: successString
-			};
-			response.json( dataToReturn );
+			if( request.user.ID !== results[0].assignedUserID ){
+				console.log( '/api/updateitem issue: unauthorized user attemped to update item ID', ID);
+				const dataToReturn = {
+					success: false,
+					data: 'Error: user is unauthorized to update the selected item'
+				};
+				response.json( dataToReturn );
+				return;
+			}
+			let changedFields = '';
+			if(results[0].name !== name){
+				changedFields += 'name was changed ';
+			}
+			if(results[0].assignedUserID != assignedUserID){
+				changedFields += 'assigned user was changed ';
+			}
+			const itemUpdateQuery = 'UPDATE items SET ??=?, ??=?, ??=? WHERE ?? = ?';
+			const itemUpdateInserts = [ 'name', name, 'listID', listID, 'assignedUserID', assignedUserID, 'ID', ID ];
+			const itemUpdateSQL = mySQL.format( itemUpdateQuery, itemUpdateInserts );
+			console.log(itemUpdateSQL);
+
+			connection.query( itemUpdateSQL, ( error, results, fields ) => {
+				if( error ){		//missing data for the item to be updated
+					console.log( "/api/updateitem Error:", error );
+					const dataToReturn = {
+						success: false,
+						data: "Error: did not receive the expected items fields"
+					}
+					response.json( dataToReturn );
+					return;
+				};
+				const successString = `The item ${ID} has been updated`;
+				console.log( successString );
+
+				const dataToReturn = {
+					success: true,
+					data: successString,
+					changedFields
+				};
+				response.json( dataToReturn );
+			});
 		});
 	});
 	/**
@@ -128,11 +169,11 @@ const paths = ( server, mySQL, connection ) => {
 	server.delete( '/api/deleteitem', ( request, response ) => {
 		const { ID } = request.body;
 
-		const itemDeleteQuery = 'UPDATE items SET ?? = ? WHERE ?? = ?';
-		const itemDeleteInserts = [ 'status', 'inactive', 'ID', ID ];
-		const itemDeleteSQL = mySQL.format( itemDeleteQuery, itemDeleteInserts );
+		const itemUserVerificationQuery = 'SELECT * FROM ?? WHERE ?? = ?';
+		const itemUserVerificationInserts = ['items', 'ID', ID];
+		const itemUserVerificationSQL = mySQL.format( itemUserVerificationQuery, itemUserVerificationInserts );
 
-		connection.query( itemDeleteSQL, ( error, results, fields ) => {
+		connection.query( itemUserVerificationSQL, ( error, results, fields ) => {
 			if( error ){		//the itemID that was trying to be deleted was incorrect
 				console.log( '/api/deleteitem error:', error );
 				const dataToReturn = {
@@ -142,14 +183,32 @@ const paths = ( server, mySQL, connection ) => {
 				response.json( dataToReturn );
 				return;
 			}
-			const successString = `The item ${ID} has been set to inactive`;
-			console.log( successString );
+			
+			if( request.user.ID !== results[0].assignedUserID ){
+				console.log( '/api/deleteitem issue: unauthorized user attemped to delete item ID', ID);
+				const dataToReturn = {
+					success: false,
+					data: 'Error: user is unauthorized to delete the selected item'
+				};
+				response.json( dataToReturn );
+				return;
+			}
 
-			const dataToReturn = {
-				success: true,
-				data: successString
-			};
-			response.json( dataToReturn );
+			const itemDeleteQuery = 'UPDATE items SET ?? = ? WHERE ?? = ?';
+			const itemDeleteInserts = [ 'status', 'inactive', 'ID', ID ];
+			const itemDeleteSQL = mySQL.format( itemDeleteQuery, itemDeleteInserts );
+
+			connection.query( itemDeleteSQL, ( error, results, fields ) => {
+				
+				const successString = `The item ${ID} has been set to inactive`;
+				console.log( successString );
+
+				const dataToReturn = {
+					success: true,
+					data: successString
+				};
+				response.json( dataToReturn );
+			});
 		});
 	});
 
@@ -158,7 +217,8 @@ const paths = ( server, mySQL, connection ) => {
 	 * as well as creating a new list, updates the list_to_user DB in order to add the list to the users profile
 	 */
 	server.put( '/api/createlist', ( request, response ) => {
-		const { name, description, ownerID, url, securityStatus, eventTime} = request.body;
+		const { name, description, url, securityStatus, eventTime} = request.body;
+		const { ownerID } = request.user;
 
 		const listCreationQuery = 'INSERT INTO lists (??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?)';
 		const listCreationInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'eventTime', name, description, ownerID, url, securityStatus, eventTime ];
@@ -289,6 +349,14 @@ const paths = ( server, mySQL, connection ) => {
 	 */
 	server.get( '/api/getuserlists', ( request, response ) => {
 		const { ID } = request.query;
+		if( ID !== request.user.ID ){
+			const dataToReturn = {
+				success: false,
+				data: 'Error: current user does not have access to the requested account'
+			};
+			response.json( dataToReturn );
+			return;
+		}
 
 		const listsQuery = 'SELECT ??, ??, ??, ??, ?? FROM ?? JOIN ?? ON ?? = ?? WHERE ?? = ?';
 		const listsInserts = [ 'userID', 'lists.name', 'ownerID', 'securityStatus', 'lists.status', 'list_to_users', 'lists', 'listID', 'lists.ID', 'userID', ID ];
