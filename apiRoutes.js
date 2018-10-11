@@ -22,7 +22,7 @@ const paths = ( server, mySQL, connection ) => {
 		
 		connection.query( listSQL, ( error, results, fields ) => {
 			if( error ){		//respond to the from end that there was an error with their data given to the server
-				console.log( '/api/lists error:', error );
+
 				const dataToReturn = {
 					success: false,
 					data: "Error: Expected list url"
