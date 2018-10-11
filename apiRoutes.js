@@ -128,11 +128,11 @@ const paths = ( server, mySQL, connection ) => {
 	server.delete( '/api/deleteitem', ( request, response ) => {
 		const { ID } = request.body;
 
-		const itemDeleteQuery = 'UPDATE items SET ?? = ? WHERE ?? = ?';
-		const itemDeleteInserts = [ 'status', 'inactive', 'ID', ID ];
-		const itemDeleteSQL = mySQL.format( itemDeleteQuery, itemDeleteInserts );
+		const itemUserVerificationQuery = 'SELECT * FROM ?? WHERE ?? = ?';
+		const itemUserVerificationInserts = ['items', 'ID', ID];
+		const itemUserVerificationSQL = mySQL.format( itemUserVerificationQuery, itemUserVerificationInserts );
 
-		connection.query( itemDeleteSQL, ( error, results, fields ) => {
+		connection.query( itemUserVerificationSQL, ( error, results, fields ) => {
 			if( error ){		//the itemID that was trying to be deleted was incorrect
 				console.log( '/api/deleteitem error:', error );
 				const dataToReturn = {
@@ -142,14 +142,32 @@ const paths = ( server, mySQL, connection ) => {
 				response.json( dataToReturn );
 				return;
 			}
-			const successString = `The item ${ID} has been set to inactive`;
-			console.log( successString );
+			
+			if( request.user.ID !== results[0].assignedUserID ){
+				console.log( '/api/deleteitem issue: unauthorized user attemped to delete item ID', ID);
+				const dataToReturn = {
+					success: false,
+					data: 'Error: user is unauthorized to delete the selected item'
+				};
+				response.json( dataToReturn );
+				return;
+			}
 
-			const dataToReturn = {
-				success: true,
-				data: successString
-			};
-			response.json( dataToReturn );
+			const itemDeleteQuery = 'UPDATE items SET ?? = ? WHERE ?? = ?';
+			const itemDeleteInserts = [ 'status', 'inactive', 'ID', ID ];
+			const itemDeleteSQL = mySQL.format( itemDeleteQuery, itemDeleteInserts );
+
+			connection.query( itemDeleteSQL, ( error, results, fields ) => {
+				
+				const successString = `The item ${ID} has been set to inactive`;
+				console.log( successString );
+
+				const dataToReturn = {
+					success: true,
+					data: successString
+				};
+				response.json( dataToReturn );
+			});
 		});
 	});
 
