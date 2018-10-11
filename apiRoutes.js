@@ -5,7 +5,7 @@
  * if success is false, there has been a failure in retrieving data from DB
  * inactive data from the DB will not be sent (inactive is psudo-deleted)
  */
-
+const assignedUserID = 1;
 const paths = ( server, mySQL, connection ) => {
 
 	/**
@@ -35,7 +35,7 @@ const paths = ( server, mySQL, connection ) => {
 				data: {list: results}
 			};
 			//swapped out field names that were needlessly dynamic and modified join to work.  it wasn't selecting the connection between user and items.  renamed user name and item name fields so they didn't override and annihilate each other: dan
-			const itemQuery = "SELECT `items`.`name` AS itemName, `items`.`ID`, `assignedUserID`, `avatar`, `users`.`name` AS userName FROM `items` JOIN `users` ON `items`.`assignedUserID`=`users`.`ID` WHERE (`listID` = 1 AND `items`.`status` = 'active' AND `assignedUserID` = 'NULL' )";
+			const itemQuery = "SELECT `items`.`name` AS itemName, `items`.`ID`, `assignedUserID`, `avatar`, `users`.`name` AS userName FROM `items` JOIN `users` ON `items`.`assignedUserID`=`users`.`ID` WHERE (`listID` = 1 AND `items`.`status` = 'active')";
 			//const itemQuery = 'SELECT ??, ??, ??, ??, ?? FROM ?? JOIN ?? ON ??=? WHERE (?? = ? AND ?? = ?)';
 			//const itemInserts = [ 'items.name', 'items.ID', 'assignedUserID', 'avatar', 'users.name', 'items', 'users', 'assignedUserID', 'users.ID', 'listID', results[0]['ID'], 'items.status', 'active' ];
 			const itemInserts = [results[0]['ID']];
