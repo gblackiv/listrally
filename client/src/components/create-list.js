@@ -15,13 +15,14 @@ class CreateList extends Component{
         super();
      
         this.state = {
-            date: new Date(),
-            enableTime: true,
-            dateFormat: "Y-m-d H:i"
+            // date: new Date(),
+            // enableTime: true,
+            // dateFormat: "Y-m-d H:i"
         };
       }
 
     userCreateListData = (values) => {
+        console.log('Flatpickr Date: ', this.state.date);
         values.eventTime = this.state.date
         console.log('Create List Info: ', values);
         this.props.createListData(values);
