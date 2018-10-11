@@ -217,7 +217,8 @@ const paths = ( server, mySQL, connection ) => {
 	 * as well as creating a new list, updates the list_to_user DB in order to add the list to the users profile
 	 */
 	server.put( '/api/createlist', ( request, response ) => {
-		const { name, description, ownerID, url, securityStatus, eventTime} = request.body;
+		const { name, description, url, securityStatus, eventTime} = request.body;
+		const { ownerID } = request.user;
 
 		const listCreationQuery = 'INSERT INTO lists (??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?)';
 		const listCreationInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'eventTime', name, description, ownerID, url, securityStatus, eventTime ];
@@ -348,6 +349,14 @@ const paths = ( server, mySQL, connection ) => {
 	 */
 	server.get( '/api/getuserlists', ( request, response ) => {
 		const { ID } = request.query;
+		if( ID !== request.user.ID ){
+			const dataToReturn = {
+				success: false,
+				data: 'Error: current user does not have access to the requested account'
+			};
+			response.json( dataToReturn );
+			return;
+		}
 
 		const listsQuery = 'SELECT ??, ??, ??, ??, ?? FROM ?? JOIN ?? ON ?? = ?? WHERE ?? = ?';
 		const listsInserts = [ 'userID', 'lists.name', 'ownerID', 'securityStatus', 'lists.status', 'list_to_users', 'lists', 'listID', 'lists.ID', 'userID', ID ];
