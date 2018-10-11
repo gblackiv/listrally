@@ -43,9 +43,10 @@ class SharedList extends Component{
 
     render(){
         // console.log('Shared List this.props :', this.props);
-        const {items} = this.props;
+        const {items,list} = this.props;
+        console.log('list :', list);
         const checkboxList = items.map(item=>{
-            return <Checkbox key={item.ID} {...item} handleCheckboxChange={this.handleCheckboxChange} />
+            return <Checkbox key={item.ID} {...item} />
         })
         return( 
                 <div className="list-container">
@@ -61,7 +62,7 @@ class SharedList extends Component{
                         </div>
                         <div className="list-top">
                             <h4 className="list-name">Sue's Party</h4>
-                            <h6 className="details">Saturday April 1st</h6>
+                            <h6 className="details">Bring these items please!</h6>
                         </div>
                         <div className="list-items">
                             <form onSubmit={this.sendInfoToServer}>

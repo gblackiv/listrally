@@ -40,7 +40,7 @@ class Checkbox extends Component {
         // console.log('Single Checkbox this.props :', this.props);
         // const { ID, name, listID, assignedUserID } = request.body;
         console.log('Checkbox Props:', this.props);
-        const {name, assignedUserID} = this.props;
+        const {name, avatar} = this.props;
         return (
             <Fragment>
                 <div className="list_item">
@@ -49,9 +49,9 @@ class Checkbox extends Component {
                         <input type="checkbox" name={name} {...this.props} value={name} checked={this.state.isChecked ? 'checked' : false}  onChange={this.toggleCheck} />
                         <label>{this.props.itemName}</label>
                     </div>
-                    {/* <div className="shared-right">
-                        <img className="person" src={michael} alt="user"/>
-                    </div> */}
+                    <div className="shared-right">
+                        <img className="person" src={avatar} alt="user"/>
+                    </div>
                 </div>
             </Fragment>
         )
