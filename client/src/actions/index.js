@@ -25,6 +25,7 @@ export function addSingleItem(newItem){
     }
 }
 
+
 export function sendCheckboxInfo(info){
     console.log('checkbox Info:', info);
     return async dispatch => {
@@ -40,5 +41,15 @@ export function sendCheckboxInfo(info){
 export function authenticate(){
     return {
         type: types.LOGIN,
+    }
+
+export function createListData(userForm){
+    return async dispatch => {
+        const resp = await axios.put('/api/createlist', userForm);
+        console.log('create list resp :', resp);
+        dispatch({
+            type: types.CREATE_LIST_DATA,
+            payload: resp
+        })
     }
 }
