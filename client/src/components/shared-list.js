@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getListData } from '../actions';
 import { Fragment } from 'react';
-import { Field, FieldArray, reduxForm } from 'redux-form';
 
 import Checkbox from './checkbox';
 import AddListItemButton from './buttons/add_list_item_button'
@@ -15,7 +14,6 @@ import filter from '../assets/images/filter-icon.png'
 class SharedList extends Component{
 
     componentDidMount() {
-        // console.log('componentdidmount this.props :', this.props);
         this.props.getListData();
     }
 
@@ -24,7 +22,8 @@ class SharedList extends Component{
         this.props.history.goBack();
     }
 
-    checkItem = (values) => {
+    sendInfoToServer = (values) => {
+        event.preventDefault();
         console.log('Check Item values :', values);
         // const { name } = values;
         // const testObject = {name, listID: 1}
@@ -32,25 +31,22 @@ class SharedList extends Component{
         // this.props.history.push('/list');
     }
 
-    renderItems = ({fields}) => {
-        const { list } = this.props;
-
-        const items = fields.map((id, index) => {
-            const item = list[index];
-
-            return <Field key={item.ID} name={id} label={item.name} component={Checkbox}/>
-        });
-
-        return items;
+    handleCheckboxChange = event => {
+        console.log("checkbox changed!", event.target);
+        // this.setState({isChecked: event.target.checked});
     }
+
+    // toggleIsChecked = () => {
+    //     console.log("toggling isChecked value!");
+    //     this.setState({isChecked: !this.state.isChecked});
+    // }
 
     render(){
         // console.log('Shared List this.props :', this.props);
-        const {handleSubmit} = this.props;
         const {list} = this.props;
-        // const checkboxList = list.map(item=>{
-        //     return <Field key={item.ID} name={`${item.ID}`} label={item.name} component={Checkbox} />
-        // })
+        const checkboxList = list.map(item=>{
+            return <Checkbox key={item.ID} {...item} handleCheckboxChange={this.handleCheckboxChange} />
+        })
         return( 
                 <div className="list-container">
                     <div className="list-nav">
@@ -68,11 +64,11 @@ class SharedList extends Component{
                             <h6 className="details">Saturday April 1st</h6>
                         </div>
                         <div className="list-items">
-                            <form onSubmit={handleSubmit(this.checkItem)}>
-                                <FieldArray name="items" component={this.renderItems}/>
-                                <div className="add-item-btn">
+                            <form onSubmit={this.sendInfoToServer}>
+                                {checkboxList}
+                                {/* <div className="add-item-btn">
                                     <AddListItemButton className="add-item-button btn-blue" name="Save" />
-                                </div> 
+                                </div>  */}
                             </form>
                         </div>
                     </div>
@@ -86,27 +82,11 @@ class SharedList extends Component{
 
 function mapStateToProps(state){
     // console.log('Redux state.list.list inside mapStateToProp :', state.list.list);
-    const { list } = state.list;
-    const items = [];
-    const listById = {};
-    
-    if(list.length){
-        list.map((item, index) => {
-            items.push(!!item.assignedUserID);
-            
-        });
-    }
-
     return {
-        list,
-        initialValues: {items}
-    };
+        list: state.list.list
+    }
 }
 
-SharedList = reduxForm({
-    form: 'shared-list',
-    enableReinitialize: true
-})(SharedList);
 
 export default connect(mapStateToProps,{
     getListData

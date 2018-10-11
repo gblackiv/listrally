@@ -1,19 +1,71 @@
 import React, { Component } from 'react';
 import { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { sendCheckboxInfo } from '../actions';
 
-export default props => {
-    
-    // console.log('Single Checkbox this.props :', this.props);
-    // const { ID, name, listID, assignedUserID } = request.body;
-    console.log('Checkbox Props:', props);
-    const { input, label } = props;
-    return (
-        <div className="list_item">
-            <div className="shared-left">
-                <input id={input.name} {...input} type="checkbox" checked={input.value} disabled={input.value} />
-                <label htmlFor={input.name}>{label}</label>
-                {/* <button className="btn-blue">Save</button>                     */}
-            </div>
-        </div>
-    )
+
+class Checkbox extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            isChecked: !!props.assignedUserID
+        }
+        this.toggleCheck = this.toggleCheck.bind(this);
+    }
+
+    toggleCheck(values){
+        // console.log('toggleCheck values :', values);
+        const {isChecked} = this.state;
+        if(!isChecked){
+            this.setState({
+                isChecked: !this.state.isChecked
+            })
+            this.sendInfoToServer();
+        }
+    }
+
+    sendInfoToServer = (values) => {
+        //const { ID, name, listID, assignedUserID } = request.body;
+        const { ID, name, listID } = this.props;
+        let assignedUserID = 1;
+        console.log('Check Item values :', values);
+        console.log('sendInfo values :', values);
+        const testCheckboxObject = {ID, name, listID, assignedUserID}
+        console.log('testCheckboxObject :', testCheckboxObject);
+        this.props.sendCheckboxInfo(testCheckboxObject);
+        // this.props.history.push('/shared-list');
+    }
+
+    render(){
+        // console.log('Single Checkbox this.props :', this.props);
+        // const { ID, name, listID, assignedUserID } = request.body;
+        console.log('Checkbox Props:', this.props);
+        const {name, assignedUserID} = this.props;
+        return (
+            <Fragment>
+                <div className="list_item">
+                    <div className="shared-left">
+                        {/* <input type="checkbox" name={name} value={name} checked={assignedUserID ? 'checked' : false} onChange={()=>this.props.checkItem()} /> */}
+                        <input type="checkbox" name={name} value={name} checked={this.state.isChecked ? 'checked' : false}  onChange={this.toggleCheck} />
+                        <label>{name}</label>
+                    </div>
+                    {/* <div className="shared-right">
+                        <img className="person" src={michael} alt="user"/>
+                    </div> */}
+                </div>
+            </Fragment>
+        )
+    }
 }
+
+function mapStateToProps(state){
+    // console.log('Redux state.list.list inside mapStateToProp :', state.list.list);
+    return {
+        list: state.list.list
+    }
+}
+
+
+export default connect(mapStateToProps,{
+    sendCheckboxInfo
+})(Checkbox); 
