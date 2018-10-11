@@ -54,3 +54,15 @@ export function authenticate(){
         type: types.LOGIN,
     }
 }
+
+export function deleteItem(item){
+    console.log('Deleted Item :', item);
+    debugger;
+    return async dispatch => {
+        const resp = await axios.delete('/api/deleteitem', item);
+        dispatch({
+            type: types.DELETE_SINGLE_ITEM,
+            payload: resp
+        })
+    }
+}

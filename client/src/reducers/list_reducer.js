@@ -19,6 +19,7 @@ export default (state=DEFAULT_STATE,action)=>{
         case types.GET_SINGLE_ITEM:
             return {...state};
         case types.DELETE_SINGLE_ITEM:
+            console.log('delete item action :', action);
             return {...state};
         case types.EDIT_SINGLE_ITEM:
             return {...state};

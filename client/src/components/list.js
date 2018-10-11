@@ -55,7 +55,7 @@ class ListOwner extends Component{
         //     return <ListItems key={item.ID} {...item} />
         // })
 
-        const {items} = this.props;
+        const {items, list} = this.props;
         const sharedlistItems = items.map(item=>{
             return <ListItems key={item.ID} {...item} />
         })
