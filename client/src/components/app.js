@@ -4,6 +4,7 @@ import {Route} from 'react-router-dom';
 import '../assets/css/styles.css';
 import '../assets/css/app.css';
 import '../assets/css/main.scss';
+import '../assets/css/helpers.scss';
 import '../assets/css/buttons.scss';
 //Components
 import TempNav from './tempNav';
@@ -15,8 +16,10 @@ import chatModal from './chat_modal';
 import About from './about';
 import UserSettings from './user_settings';
 import Avatar from './avatar';
+import DashboardCard from './dashboard_card';
 
 import LayoutTemplate from './layout';
+import CreateList from './create-list';
 
 const App = () => (
     <div className="app">
@@ -25,6 +28,7 @@ const App = () => (
         </nav>
 
                     <Route exact path="/" component={Home} />
+                    <Route exact path="/create-list" component={CreateList} />
                     <Route path="/list" component={ListOwner} />
                     <Route path="/list-shared" component={ListShared} />
                     <Route path="/dashboard" component={Dashboard} />
