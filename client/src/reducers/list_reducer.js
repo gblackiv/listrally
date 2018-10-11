@@ -12,6 +12,8 @@ export default (state=DEFAULT_STATE,action)=>{
         case types.ADD_LIST_ITEM:
         console.log('Add Single Item action :', action);
             return {...state};
+        case types.UPDATE_CHECKBOX:
+            return {...state};
         case types.GET_SINGLE_ITEM:
             return {...state};
         case types.DELETE_SINGLE_ITEM:
