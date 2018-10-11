@@ -15,14 +15,15 @@ export const renderInput = ({input, label, type, meta: { error, touched }}) => {
     );
 }
 
-export const renderTextArea = ({input, label, type, meta: { error, touched }}) => {
+export const renderTextArea = ({input, label, caption, type, meta: { error, touched }}) => {
     
     return (
         <div>
             <div className="form-row">
                 <div className="form-col">
                     <label className="form-input-label date-label">{label}</label>
-                    <input className="form-textarea-field" {...input} type={ type || 'input' }  autoComplete="off"  />
+                    <label className="textarea-caption">{caption}</label>
+                    <textarea className="form-textarea-field" {...input} type={ type || 'input' }  autoComplete="off"  />
                     <span className="form-helper-text">{ touched && error }</span>
                 </div>
             </div>
