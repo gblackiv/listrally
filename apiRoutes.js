@@ -15,6 +15,7 @@ const paths = ( server, mySQL, connection ) => {
 	server.get( '/api/lists', (request, response ) => {
 		const { url } = request.query;
 
+		
 		const listQuery = 'SELECT * FROM ?? WHERE ?? = ?';
 		const listInserts = [ 'lists', 'url', url ];
 		const listSQL = mySQL.format( listQuery, listInserts );
@@ -41,7 +42,7 @@ const paths = ( server, mySQL, connection ) => {
 			const itemInserts = [results[0]['ID']];
 			const itemSQL = mySQL.format( itemQuery, itemInserts );
 	
-			let result = connection.query( itemSQL, ( error, results, fields ) => {
+			connection.query( itemSQL, ( error, results, fields ) => {
 				if( error ){		//the to be retrieved was incorrect, and the query failed due to it being undefined
 					console.log( "/api/lists error at item query:", error );
 					
@@ -64,8 +65,8 @@ const paths = ( server, mySQL, connection ) => {
 	 */
 	server.put( '/api/newitem', ( request, response ) => {
 		const { name, listID } = request.body;
-		//added global variable for user ID to be replaced by the actual user id from login sessions.  added assignedUserID to query and ? for prepared statements
-		const itemQuery = 'INSERT INTO items ( name, listID, assignedUserID ) VALUES ( ?, ?, ? )';
+
+		const itemQuery = 'INSERT INTO items ( name, listID ) VALUES ( ?, ? )';
 		const itemInserts = [ name, listID, assignedUserID ];
 		const itemSQL = mySQL.format( itemQuery, itemInserts );
 
