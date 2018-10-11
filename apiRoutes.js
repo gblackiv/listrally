@@ -65,7 +65,7 @@ const paths = ( server, mySQL, connection ) => {
 		const { name, listID } = request.body;
 
 		const itemQuery = 'INSERT INTO items ( name, listID ) VALUES ( ?, ? )';
-		const itemInserts = [ name, listID, assignedUserID ];
+		const itemInserts = [ name, listID ];
 		const itemSQL = mySQL.format( itemQuery, itemInserts );
 
 		connection.query( itemSQL, ( error, results, fields ) => {
