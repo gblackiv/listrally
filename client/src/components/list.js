@@ -41,7 +41,7 @@ class ListOwner extends Component{
 
     submitItem = (values) => {
         console.log('Submit Item values :', values);
-        const { name } = values;
+        const { itemName : name } = values;
         const testObject = {name, listID: 1}
         this.props.addSingleItem(testObject);
         this.props.history.push('/list');
@@ -55,8 +55,8 @@ class ListOwner extends Component{
         //     return <ListItems key={item.ID} {...item} />
         // })
 
-        const {list} = this.props;
-        const sharedlistItems = list.map(item=>{
+        const {items} = this.props;
+        const sharedlistItems = items.map(item=>{
             return <ListItems key={item.ID} {...item} />
         })
 
@@ -80,7 +80,7 @@ class ListOwner extends Component{
                         <div className="list-items">
                             <div className="add">                       
                                 <form onSubmit={handleSubmit(this.submitItem)}>
-                                    <Field name="name" listID={2} type="text" component={this.renderInput} label="Add Item"/>
+                                    <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
                                     <div className="add-item-btn">
                                         <AddListItemButton className="add-item-button" name="Add Item" />
                                     </div>                               
@@ -104,8 +104,9 @@ function mapStateToProps(state){//the redux will be given to us in its entirety 
     //the redux state is the same no matter where you try to access it
     console.log('Redux state.list.list inside mapStateToProp :', state.list.list);
     return {
-        list: state.list.list//this came from the rootReducer and lists reducer
-    }//   ^ list now becomes a property of Clock once mapStateToProps gets passed into connect
+        list: state.list.list,
+        items: state.list.items
+    }
 }
 
 ListOwner = reduxForm({

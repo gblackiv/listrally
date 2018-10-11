@@ -4,7 +4,7 @@ import checkbox from '../components/checkbox';
 
 export function getListData(){
     return async dispatch => {
-        const resp = await axios.get('/api/lists?url=butwhataboutthe2ndlist');
+        const resp = await axios.get('/api/lists?url=ourfirstdummylist');
         console.log('list resp :', resp);
         dispatch({
             type: types.GET_LIST_DATA,

@@ -10,7 +10,7 @@ export default class SharedListItem extends Component {
                 <div className="list-item">
                     <div className="list-left">
                         <i class="sort fas fa-sort"></i>
-                        <label>{name}</label>
+                        <label>{this.props.itemName}</label>
                     </div>
                     <div className="list-right">
                         <i class="fas fa-pen"></i>

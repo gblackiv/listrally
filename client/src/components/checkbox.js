@@ -46,8 +46,8 @@ class Checkbox extends Component {
                 <div className="list_item">
                     <div className="shared-left">
                         {/* <input type="checkbox" name={name} value={name} checked={assignedUserID ? 'checked' : false} onChange={()=>this.props.checkItem()} /> */}
-                        <input type="checkbox" name={name} value={name} checked={this.state.isChecked ? 'checked' : false}  onChange={this.toggleCheck} />
-                        <label>{name}</label>
+                        <input type="checkbox" name={name} {...this.props} value={name} checked={this.state.isChecked ? 'checked' : false}  onChange={this.toggleCheck} />
+                        <label>{this.props.itemName}</label>
                     </div>
                     {/* <div className="shared-right">
                         <img className="person" src={michael} alt="user"/>

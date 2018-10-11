@@ -14,8 +14,7 @@ const paths = ( server, mySQL, connection ) => {
 	 */
 	server.get( '/api/lists', (request, response ) => {
 		const { url } = request.query;
-	
-		
+
 		const listQuery = 'SELECT * FROM ?? WHERE ?? = ?';
 		const listInserts = [ 'lists', 'url', url ];
 		const listSQL = mySQL.format( listQuery, listInserts );
@@ -35,14 +34,17 @@ const paths = ( server, mySQL, connection ) => {
 				success: true,
 				data: {list: results}
 			};
-				//once the list has been retrieved from the DB, retrieve all the items attached to the list
-			const itemQuery = 'SELECT * FROM ?? WHERE ?? = ? AND ?? = ?';
-			const itemInserts = [ 'items', 'listID', results[0]['ID'], 'status', 'active' ];
+			//swapped out field names that were needlessly dynamic and modified join to work.  it wasn't selecting the connection between user and items.  renamed user name and item name fields so they didn't override and annihilate each other: dan
+			const itemQuery = "SELECT `items`.`name` AS itemName, `items`.`ID`, `assignedUserID`, `avatar`, `users`.`name` AS userName FROM `items` JOIN `users` ON `items`.`assignedUserID`=`users`.`ID` WHERE (`listID` = 1 AND `items`.`status` = 'active' AND `assignedUserID` = 'NULL' )";
+			//const itemQuery = 'SELECT ??, ??, ??, ??, ?? FROM ?? JOIN ?? ON ??=? WHERE (?? = ? AND ?? = ?)';
+			//const itemInserts = [ 'items.name', 'items.ID', 'assignedUserID', 'avatar', 'users.name', 'items', 'users', 'assignedUserID', 'users.ID', 'listID', results[0]['ID'], 'items.status', 'active' ];
+			const itemInserts = [results[0]['ID']];
 			const itemSQL = mySQL.format( itemQuery, itemInserts );
 	
-			connection.query( itemSQL, ( error, results, fields ) => {
+			let result = connection.query( itemSQL, ( error, results, fields ) => {
 				if( error ){		//the to be retrieved was incorrect, and the query failed due to it being undefined
 					console.log( "/api/lists error at item query:", error );
+					
 					const dataToReturn = {
 						success: false,
 						data: "Error: list url does not exist"
@@ -50,7 +52,7 @@ const paths = ( server, mySQL, connection ) => {
 					response.json( dataToReturn );
 					return;
 				}
-	
+				console.log(`query is here: ***************`, result.sql)
 				dataToReturn.data.items = results;
 				response.json( dataToReturn );
 			});
@@ -63,8 +65,8 @@ const paths = ( server, mySQL, connection ) => {
 	 */
 	server.put( '/api/newitem', ( request, response ) => {
 		const { name, listID } = request.body;
-
-		const itemQuery = 'INSERT INTO items ( name, listID ) VALUES ( ?, ? )';
+		//added global variable for user ID to be replaced by the actual user id from login sessions.  added assignedUserID to query and ? for prepared statements
+		const itemQuery = 'INSERT INTO items ( name, listID, assignedUserID ) VALUES ( ?, ?, ? )';
 		const itemInserts = [ name, listID, assignedUserID ];
 		const itemSQL = mySQL.format( itemQuery, itemInserts );
 
@@ -78,11 +80,13 @@ const paths = ( server, mySQL, connection ) => {
 				response.json( dataToReturn );
 				return;
 			}
-			console.log( `The item "${name}" has been added to "List ${listID}"` );
+			const successString = `The item "${name}" has been added to "List ${listID}"`;
+			console.log( successString );
 
 			const dataToReturn = {
 				success: true,
-				data: `The item "${name}" has been added to "List ${listID}"`
+				data: successString,
+				itemID: results.insertId
 			};
 			response.json( dataToReturn );
 		});
@@ -340,7 +344,8 @@ const paths = ( server, mySQL, connection ) => {
 			console.log( successString );
 			const dataToReturn = {
 				success: true,
-				data: successString
+				data: successString,
+				listID
 			};
 			response.json( dataToReturn );
 		});
