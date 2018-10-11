@@ -17,11 +17,14 @@
 
 $('button').click(()=>{
     $.ajax({
-        url: '/api/deleteitem',
+        url: '/api/updateitem',
         data: {
-            ID: 1
+            ID: 1,
+            name: 'sdafsdf',
+            listID: 1,
+            assignedUserID: 4
         },
-        method: 'delete',
+        method: 'patch',
         success: (response) => {
             console.log( response)
         }
