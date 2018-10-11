@@ -5,7 +5,7 @@
  * if success is false, there has been a failure in retrieving data from DB
  * inactive data from the DB will not be sent (inactive is psudo-deleted)
  */
-const assignedUserID = 1;
+
 const paths = ( server, mySQL, connection ) => {
 
 	/**
