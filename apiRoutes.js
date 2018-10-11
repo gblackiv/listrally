@@ -22,7 +22,7 @@ const paths = ( server, mySQL, connection ) => {
 		
 		connection.query( listSQL, ( error, results, fields ) => {
 			if( error ){		//respond to the from end that there was an error with their data given to the server
-				console.log( '/api/lists error:', error );
+
 				const dataToReturn = {
 					success: false,
 					data: "Error: Expected list url"
@@ -36,7 +36,7 @@ const paths = ( server, mySQL, connection ) => {
 				data: {list: results}
 			};
 				console.log(results);
-			const itemQuery = "SELECT ??, ??, ??, ??, ??, ?? FROM ?? JOIN ?? ON ?? = ?? WHERE (?? = ? AND ?? = ?)";
+			const itemQuery = "SELECT ??, ?? as itemName, ?? as userName, ??, ??, ?? FROM ?? JOIN ?? ON ?? = ?? WHERE (?? = ? AND ?? = ?)";
 			const itemInserts = [ 'items.ID','items.name','users.name','assignedUserID','avatar','items.listID','items','users','assignedUserID','users.ID', 'listID',results[0].ID,'items.status','active'];
 			const itemSQL = mySQL.format( itemQuery, itemInserts );
 	
