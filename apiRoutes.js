@@ -35,13 +35,11 @@ const paths = ( server, mySQL, connection ) => {
 				success: true,
 				data: {list: results}
 			};
-
 			//swapped out field names that were needlessly dynamic and modified join to work.  it wasn't selecting the connection between user and items.  renamed user name and item name fields so they don't override and annihilate each other: dan
 			const itemQuery = "SELECT `items`.`name` AS itemName, `items`.`ID`, `assignedUserID`, `avatar`, `users`.`name` AS userName FROM `items` JOIN `users` ON `items`.`assignedUserID`=`users`.`ID` WHERE (`listID` = 1 AND `items`.`status` = 'active')";
 			//const itemQuery = 'SELECT ??, ??, ??, ??, ?? FROM ?? JOIN ?? ON ??=? WHERE (?? = ? AND ?? = ?)';
 			//const itemInserts = [ 'items.name', 'items.ID', 'assignedUserID', 'avatar', 'users.name', 'items', 'users', 'assignedUserID', 'users.ID', 'listID', results[0]['ID'], 'items.status', 'active' ];
 			const itemInserts = [results[0]['ID']];
-
 			const itemSQL = mySQL.format( itemQuery, itemInserts );
 	
 			connection.query( itemSQL, ( error, results, fields ) => {
@@ -69,7 +67,7 @@ const paths = ( server, mySQL, connection ) => {
 		const { name, listID } = request.body;
 
 		const itemQuery = 'INSERT INTO items ( name, listID ) VALUES ( ?, ? )';
-		const itemInserts = [ name, listID, assignedUserID ];
+		const itemInserts = [ name, listID ];
 		const itemSQL = mySQL.format( itemQuery, itemInserts );
 
 		connection.query( itemSQL, ( error, results, fields ) => {
