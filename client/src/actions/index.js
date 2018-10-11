@@ -34,3 +34,14 @@ export function createListData(userForm){
         })
     }
 }
+
+export function getListTitle(){
+    return async dispatch => {
+        const resp = await axios.get('/api/getuserlists?ID=1');
+        console.log('list title resp :', resp);
+        dispatch({
+            type: types.GET_LIST_TITLE,
+            payload: resp
+        })
+    }
+}

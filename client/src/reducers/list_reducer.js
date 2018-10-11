@@ -20,6 +20,8 @@ export default (state=DEFAULT_STATE,action)=>{
             return {...state};
         case types.TOGGLE_COMPLETE:
             return {...state} ;
+        case types.GET_LIST_TITLE:
+            return {...state} ;
         default:
             return state;
     }

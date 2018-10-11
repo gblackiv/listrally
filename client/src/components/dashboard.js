@@ -5,6 +5,8 @@ import SettingsButton from './buttons/settings_button';
 import Header from './header';
 import Avatar from './avatar';
 import DashboardCard from './dashboard_card';
+import { connect } from 'react-redux';
+import { getListTitle} from '../actions/index';
 
 
 class DashBoard extends Component { 
@@ -114,4 +116,15 @@ class DashBoard extends Component {
 
     }
 }
-export default DashBoard;
+
+function mapStateToProps(state){//the redux will be given to us in its entirety when this function is called
+    //the redux state is the same no matter where you try to access it
+    console.log('Redux state.list.list inside mapStateToProp :', state.list.list);
+    return {
+        list: state.list.list//this came from the rootReducer and lists reducer
+    }//   ^ list now becomes a property of Clock once mapStateToProps gets passed into connect
+}
+
+export default connect(mapStateToProps,{
+    getListTitle
+})(DashBoard); 
