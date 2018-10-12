@@ -3,10 +3,11 @@ import 'flatpickr/dist/themes/material_green.css'
 import React from 'react'
 import Flatpickr from 'react-flatpickr'
 import { Component } from 'react'
+import { join } from 'path';
 
 class DatePicker extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       date: new Date()
@@ -14,16 +15,16 @@ class DatePicker extends Component {
   }
 
   render() {
-    const { date } = this.state;
-    console.log("Date: ", date)
     return (
-      <Flatpickr data-enable-time
-        value={date}
+      <Flatpickr id='flatPickr' data-enable-time
+        
         options={{
+          defaultDate: this.state.date,
             enableTime: true,
-            dateFormat: "Y-m-d H:i:s",
+            dateFormat: "F j, Y, H:i",
         }}
-        onChange={date => { this.setState({date}) }} />
+        onChange={(date) => { this.setState({date});
+                              this.props.sendDate(date);}} />
     )
   }
 }
