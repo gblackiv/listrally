@@ -53,7 +53,7 @@ class Checkbox extends Component {
         if(userID===assignedUserID){
             assignedUserID = 0;
         } else{
-            assignedUserID = Math.floor(Math.random()*5)+1;
+            assignedUserID = Math.floor(Math.random()*7)+1;
         }
         const listID = 1;
         const testCheckboxObject = {ID, name, listID, assignedUserID};
@@ -64,9 +64,7 @@ class Checkbox extends Component {
 
 
     render(){
-        // console.log('Single Checkbox this.props :', this.props);
         // const { ID, name, listID, assignedUserID } = request.body;
-        // console.log('Checkbox Props:', this.props);
         const {name, avatar} = this.props;
         const {isChecked} = this.state;
         return (
@@ -87,7 +85,6 @@ class Checkbox extends Component {
 }
 
 function mapStateToProps(state){
-    // console.log('Redux state.list.list inside mapStateToProp :', state.list.list);
     return {
         list: state.list.list,
         items: state.list.items,

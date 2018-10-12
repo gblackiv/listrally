@@ -50,8 +50,8 @@
 
 .list-title{
     text-align: center;
-    white-space: nowrap;
-    margin-top: 1.75em;
+    // white-space: nowrap;
+    margin-top: 0;
     margin-bottom: 0;
 }
 
@@ -77,15 +77,19 @@
     display: flex;
 }
 
+.list-date{
+    margin: 0.4em;
+}
+
 /*************************
 * Font Awesome
 *************************/
 
 #avatar{
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
+    // position: absolute;
+    // left: 50%;
+    // top: 0;
+    // transform: translateX(-50%);
     padding: 5px;
     border-radius: 50%;
     background-color: white;
