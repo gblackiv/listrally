@@ -6,9 +6,10 @@ import { renderInput, renderTextArea, renderDate } from '../helpers';
 import '../assets/css/create-list.scss';
 import { createListData } from '../actions';
 import Header from './header';
+import DatePicker from './date-picker';
 
-import '../../node_modules/flatpickr/dist/themes/airbnb.css'
-import Flatpickr from 'react-flatpickr'
+// import '../../node_modules/flatpickr/dist/themes/airbnb.css'
+// import Flatpickr from 'react-flatpickr'
 
 class CreateList extends Component{
     constructor() {
@@ -54,7 +55,8 @@ class CreateList extends Component{
                             <fieldset className="date-fieldset">
                                 <legend className="form-input-label date-input-label">Enter Date and Time</legend>
                                     <div>
-                                        <Flatpickr data-enable-time value={date} onChange={date => { this.setState({date}) }} />
+                                        {/* <Flatpickr data-enable-time value={date} onChange={date => { this.setState({date}) }} /> */}
+                                        <DatePicker />
                                     </div>
                             </fieldset>
                         </div>
