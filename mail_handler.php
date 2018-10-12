@@ -27,31 +27,56 @@ $query = "SELECT users.name as usersName, email, lists.name as listsName, eventT
 
 $result = mysqli_query( $conn, $query );
 
+$emailList = array ([
+    'parties' => array()
+]);
+
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
         print_r($row);
 
-        $mail->smtpConnect($options);
-        $mail->From = 'listrally@gmail.com';  // sender's email address (shows in "From" field)
-        $mail->FromName = 'List Rally App';   // sender's name (shows in "From" field)
-        $mail->addAddress($row['email']);  // Add a recipient
-        $mail->addReplyTo('listrally@gmail.com');                          // Add a reply-to address
 
-        $mail->Subject = 'A friendly reminder from ListRally';
-        $mail->Body    = 'Hello, '.$row['usersName'].', '.$row['listsName'].' is coming up this week. The planned time is '.$row['eventTime'].' and you are signed up to bring '.$row['itemsName'].'. We hope the party goes well!';
-        
-        if(!$mail->send()) {
-            echo 'Message could not be sent.';
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
-        } else {
-            echo 'Message has been sent';
-        }
+        array_push( $emailList['parties'], array($row['listsName']) );
+        array_push( $emailList['parties'][$row['listsName']], array('guests') );
+        array_push( $emailList['parties'][$row['listsName']]['guests'], array(
+            'name' => $row['usersName'], 
+            'email' => $row['email'],
+            'items'=> array()));
+        array_push($emailList['parties'][$row['listsName']]['guests']['items'], $row[])
     }
-} else {
+    print_r($arrayOfEmailsToSend);
+}
+else {
     echo "0 results";
 }
 
+$email_list = [
+    'parties' => [
+        'halloween party' => [
+            guests => [
+                [name ='philly',
+                email = "blah",
+                items => ['stuff']]
+            ]
+        ]
+    ] 
+];
+        // $mail->smtpConnect($options);
+        // $mail->From = 'listrally@gmail.com';  // sender's email address (shows in "From" field)
+        // $mail->FromName = 'List Rally App';   // sender's name (shows in "From" field)
+        // $mail->addAddress($row['email']);  // Add a recipient
+        // $mail->addReplyTo('listrally@gmail.com');                          // Add a reply-to address
+
+        // $mail->Subject = 'A friendly reminder from ListRally';
+        // $mail->Body    = 'Hello, '.$row['usersName'].', '.$row['listsName'].' is coming up this week. The planned time is '.$row['eventTime'].' and you are signed up to bring '.$row['itemsName'].'. We hope the party goes well!';
+        
+        // if(!$mail->send()) {
+        //     echo 'Message could not be sent.';
+        //     echo 'Mailer Error: ' . $mail->ErrorInfo;
+        // } else {
+        //     echo 'Message has been sent';
+        // }
 
 
 
