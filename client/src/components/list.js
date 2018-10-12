@@ -33,6 +33,7 @@ class ListOwner extends Component{
         return (
             <div className="row">
                 <input className="add-input-field" {...input} type="text" autoComplete="off" placeholder="Add Item" />
+                <AddListItemButton className="add-item-button btn btn-green" name="Add Item" />
             </div>
         )
     }
@@ -75,15 +76,13 @@ class ListOwner extends Component{
                         <div className="list-top">
                             <h4 className="list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
                             <h6 className="list-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
-                            <div className="list-date">{list.length>0 ? list[0].eventTime : 'Saturday April 1st'}</div>
+                            <div className="list-date">{list.length>0 ? list[0].eventTime.substr(0, 10) : 'Saturday April 1st'}</div>
                         </div>
                         <div className="list-items">
                             <div className="add">                       
                                 <form onSubmit={handleSubmit(this.submitItem)}>
                                     <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
-                                    <div className="add-item-btn">
-                                        <AddListItemButton className="add-item-button" name="Add Item" />
-                                    </div>                               
+                             
                                 </form>
                             </div>
                             {sharedlistItems}

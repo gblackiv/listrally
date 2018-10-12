@@ -61,8 +61,9 @@ class SharedList extends Component{
                             <img src={filter} alt="filter"/>   All
                         </div>
                         <div className="list-top">
-                            <h4 className="list-name">Sue's Party</h4>
-                            <h6 className="details">Bring these items please!</h6>
+                            <h4 className="list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
+                            <h6 className="list-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
+                            <div className="list-date">{list.length>0 ? list[0].eventTime.substr(0, 10) : 'Saturday April 1st'}</div>
                         </div>
                         <div className="list-items">
                             <form onSubmit={this.sendInfoToServer}>

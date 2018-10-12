@@ -5,14 +5,15 @@ import { sendCheckboxInfo, deleteItem, getListData } from '../actions';
 import blankImage from '../assets/images/nothing.png';
 
 const crossedOutTextStyle = {
-    'text-decoration': 'line-through'
+    textDecoration: 'line-through'
 }
 
 class Checkbox extends Component {
     constructor(props){
         super(props);
         this.state = {
-            isChecked: !!props.assignedUserID
+            isChecked: !!props.assignedUserID,
+            style: {}
         }
         this.toggleCheck = this.toggleCheck.bind(this);
     }
@@ -41,7 +42,7 @@ class Checkbox extends Component {
             return;
         }
         this.setState({
-            isChecked: !this.state.isChecked
+            isChecked: !this.state.isChecked,
         })
         this.sendInfoToServer();
     }
@@ -67,13 +68,14 @@ class Checkbox extends Component {
         // const { ID, name, listID, assignedUserID } = request.body;
         // console.log('Checkbox Props:', this.props);
         const {name, avatar} = this.props;
+        const {isChecked} = this.state;
         return (
             <Fragment>
                 <div className="list_item">
                     <div className="shared-left">
                         {/* <input type="checkbox" name={name} value={name} checked={assignedUserID ? 'checked' : false} onChange={()=>this.props.checkItem()} /> */}
                         <input type="checkbox" name={name} {...this.props} value={name} checked={this.state.isChecked ? 'checked' : false}  onChange={this.toggleCheck} />
-                        <label>{this.props.itemName}</label>
+                        <label style={this.state.isChecked ? crossedOutTextStyle : this.state.style } >{this.props.itemName}</label>
                     </div>
                     <div className="shared-right">
                         <img className="person" src={this.state.isChecked ? avatar : blankImage} alt="user"/>
