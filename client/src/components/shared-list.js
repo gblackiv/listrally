@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getListData } from '../actions';
 import { Fragment } from 'react';
+import Header from './header';
 
 import Checkbox from './checkbox';
 import AddListItemButton from './buttons/add_list_item_button'
@@ -22,25 +23,6 @@ class SharedList extends Component{
         this.props.history.goBack();
     }
 
-    sendInfoToServer = (values) => {
-        event.preventDefault();
-        console.log('Check Item values :', values);
-        // const { name } = values;
-        // const testObject = {name, listID: 1}
-        // this.props.addSingleItem(testObject);
-        // this.props.history.push('/list');
-    }
-
-    handleCheckboxChange = event => {
-        console.log("checkbox changed!", event.target);
-        // this.setState({isChecked: event.target.checked});
-    }
-
-    // toggleIsChecked = () => {
-    //     console.log("toggling isChecked value!");
-    //     this.setState({isChecked: !this.state.isChecked});
-    // }
-
     render(){
         // console.log('Shared List this.props :', this.props);
         const {items,list} = this.props;
@@ -49,35 +31,31 @@ class SharedList extends Component{
             return <Checkbox key={item.ID} {...item} />
         })
         return( 
-                <div className="list-container">
-                    <div className="list-nav">
-                        <div onClick={this.goBack}>
-                            <i  className="back fas fa-chevron-left"></i>
-                        </div>
-                        <Link to="/"><i className="outer fas fa-home"></i></Link>
-                    </div>
-                    <div className="list-content">
-                        <div className="filter">
-                            <img src={filter} alt="filter"/>   All
-                        </div>
-                        <div className="list-top">
-                            <h4 className="list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
-                            <h6 className="list-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
-                            <div className="list-date">{list.length>0 ? list[0].eventTime.substr(0, 10) : 'Saturday April 1st'}</div>
-                        </div>
-                        <div className="list-items">
-                            <form onSubmit={this.sendInfoToServer}>
-                                {checkboxList}
-                                {/* <div className="add-item-btn">
-                                    <AddListItemButton className="add-item-button btn-blue" name="Save" />
-                                </div>  */}
-                            </form>
+            <div className="col-2">
+            <header>
+                <Header buttons={[]}/>
+            </header> 
+                <div className='content'>
+                    <div className="layout-container">
+                            <div className="filter">
+                                <img src={filter} alt="filter"/>   All
+                            </div>
+                            <div className="list-top">
+                                <h4 className="list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
+                                <h6 className="list-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
+                                <div className="list-date">{list.length>0 ? list[0].eventTime.substr(0, 10) : 'Saturday April 1st'}</div>
+                            </div>
+                            <div className="list-items">
+                                <form onSubmit={this.sendInfoToServer}>
+                                    {checkboxList}
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div className="list-footer">
-                        <Link to="/chatmodal"><i className="outer fas fa-comments"></i></Link>
-                    </div>
-                </div>
+                <footer>
+                    <p>Footer Component Here</p>
+                </footer>
+            </div>
         )
     }
 }

@@ -3,6 +3,7 @@ import '../assets/css/list_owner.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Header from './header';
 
 import { Fragment } from 'react';
 import { Field, reduxForm } from 'redux-form';
@@ -33,7 +34,7 @@ class ListOwner extends Component{
         return (
             <div className="row">
                 <input className="add-input-field" {...input} type="text" autoComplete="off" placeholder="Add Item" />
-                <AddListItemButton className="add-item-button btn btn-green" name="Add Item" />
+                <AddListItemButton className="add-item-button btn btn-green" name="Add" />
             </div>
         )
     }
@@ -61,18 +62,14 @@ class ListOwner extends Component{
         })
 
         return ( 
-            <Fragment>
-                <div className="list-container">
-                    <div className="list-nav">
-                        <div onClick={this.goBack}>
-                            <i  className="back fas fa-chevron-left"></i>
-                        </div>
-                        <Link to="/list-shared">
-                            <ListLinkButton />
-                        </Link>
-                    </div>
-                    <Link to="/dashboard"><img id="avatar" src={avatar} alt="avatar"/></Link>
-                    <div className="list-content">
+
+            <div className="col-2">
+                <header>
+                    <Header buttons={[]}/>
+                </header> 
+                <div className='content'>
+                    <div className="layout-container">
+                        <Link to="/dashboard"><img id="avatar" src={avatar} alt="avatar"/></Link>
                         <div className="list-top">
                             <h4 className="list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
                             <h6 className="list-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
@@ -88,13 +85,12 @@ class ListOwner extends Component{
                             {sharedlistItems}
                         </div>
                     </div>
-                    <div className="list-footer">
-                        <Link to="/chatmodal">
-                            <ChatButton />
-                        </Link>
-                    </div>
                 </div>
-            </Fragment>
+                <footer>
+                    <p>Footer Component Here</p>
+                </footer>
+            </div>
+
         )
     }
 }

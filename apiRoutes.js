@@ -120,15 +120,15 @@ const paths = ( server, mySQL, connection ) => {
 				return;
 			}
 
-			if( request.user.ID !== results[0].assignedUserID ){
-				console.log( '/api/updateitem issue: unauthorized user attemped to update item ID', ID);
-				const dataToReturn = {
-					success: false,
-					data: 'Error: user is unauthorized to update the selected item'
-				};
-				response.json( dataToReturn );
-				return;
-			}
+			// if( request.user.ID !== results[0].assignedUserID ){
+			// 	console.log( '/api/updateitem issue: unauthorized user attemped to update item ID', ID);
+			// 	const dataToReturn = {
+			// 		success: false,
+			// 		data: 'Error: user is unauthorized to update the selected item'
+			// 	};
+			// 	response.json( dataToReturn );
+			// 	return;
+			// }
 			let changedFields = '';
 			if(results[0].name !== name){
 				changedFields += 'name was changed ';
