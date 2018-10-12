@@ -17,7 +17,7 @@ export function addSingleItem(newItem){
     console.log('newItem :', newItem);
     return async dispatch => {
         const resp = await axios.put('/api/newitem', newItem);
-        console.log('list resp :', resp);
+        console.log('Create new list item resp :', resp);
         dispatch({
             type: types.ADD_LIST_ITEM,
             payload: resp
@@ -39,9 +39,10 @@ export function createListData(userForm){
 
 export function sendCheckboxInfo(info){
     console.log('checkbox Info:', info);
+    debugger;
     return async dispatch => {
         const resp = await axios.patch('/api/updateitem', info);
-        console.log('list resp :', resp);
+        console.log('Update Checkbox resp :', resp);
         dispatch({
             type: types.UPDATE_CHECKBOX,
             payload: resp

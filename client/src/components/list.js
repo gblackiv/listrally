@@ -40,7 +40,7 @@ class ListOwner extends Component{
     submitItem = (values) => {
         console.log('Submit Item values :', values);
         const { itemName : name } = values;
-        const testObject = {name, listID: 1}
+        const testObject = {name, listID: 1, assignedUserID: 1}
         this.props.addSingleItem(testObject);
         setTimeout(()=>this.props.history.push('/list'),1000)
     }

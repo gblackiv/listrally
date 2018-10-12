@@ -14,17 +14,17 @@ class Checkbox extends Component {
     }
 
     toggleCheck(){
-        // console.log('toggleCheck values :', values);
-        // if(!isChecked){//if checkbox is unchecked
-        //     this.setState({//allow checkbox to be toggled
-        //         isChecked: !this.state.isChecked
-        //     })
-        //     this.sendInfoToServer();
-        // }
-        this.setState({
-            isChecked: !this.state.isChecked
-        })
-        this.sendInfoToServer();
+        console.log('toggleCheck values :', values);
+        if(!isChecked){//if checkbox is unchecked
+            this.setState({//allow checkbox to be toggled
+                isChecked: !this.state.isChecked
+            })
+            this.sendInfoToServer();
+        }
+        // this.setState({
+        //     isChecked: !this.state.isChecked
+        // })
+        // this.sendInfoToServer();
     }
 
     sendInfoToServer = () => {
@@ -39,7 +39,6 @@ class Checkbox extends Component {
         }
         const testCheckboxObject = {ID, name, listID, assignedUserID}
         console.log('testCheckboxObject :', testCheckboxObject);
-        debugger;
         this.props.sendCheckboxInfo(testCheckboxObject);
         this.props.history.push('/shared-list');
     }
