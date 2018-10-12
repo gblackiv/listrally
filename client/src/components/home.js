@@ -12,10 +12,6 @@ import { authenticate } from '../actions';
 
 class Home extends Component{
 
-    login = ()=>{
-        debugger;
-        this.props.authenticate();
-    }
 
 
     render(){
@@ -24,7 +20,7 @@ class Home extends Component{
             <div>
                 <div className="home-container">
                     <div className="home-content">
-                        <img onClick={this.login} id="logo" src={logo} alt="logo"/>
+                        <SignInButton />
                         <div className="home-title">ListRally</div>
                         {/* < SignInButton onClick={this.login}  /> */}
                         <button onClick={this.login}  className="login">Login</button>
