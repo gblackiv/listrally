@@ -32,11 +32,11 @@ class Checkbox extends Component {
         const {isChecked} = this.state;
         console.log('isChecked :', isChecked);
         const { ID, itemName: name} = this.props;
-        let assignedUserID = 0;
+        let assignedUserID = 1;
         const listID = 1;
-        if(isChecked === true){
-            assignedUserID = 1;
-        }
+        // if(isChecked === true){
+        //     assignedUserID = 1;
+        // }
         const testCheckboxObject = {ID, name, listID, assignedUserID}
         console.log('testCheckboxObject :', testCheckboxObject);
         this.props.sendCheckboxInfo(testCheckboxObject);
