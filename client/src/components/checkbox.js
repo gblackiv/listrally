@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { sendCheckboxInfo, deleteItem } from '../actions';
+import { sendCheckboxInfo, deleteItem, getListData } from '../actions';
 
 
 class Checkbox extends Component {
@@ -40,7 +40,7 @@ class Checkbox extends Component {
         const testCheckboxObject = {ID, name, listID, assignedUserID}
         console.log('testCheckboxObject :', testCheckboxObject);
         this.props.sendCheckboxInfo(testCheckboxObject);
-        this.props.history.push('/shared-list');
+        this.props.getListData();
     }
 
 
@@ -76,5 +76,5 @@ function mapStateToProps(state){
 
 
 export default connect(mapStateToProps,{
-    sendCheckboxInfo, deleteItem
+    sendCheckboxInfo, deleteItem, getListData
 })(Checkbox); 

@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { deleteItem } from '../actions';
+import { getListData } from '../actions/index';
 
 class ListItem extends Component {
 
     deleteSingleItem = ()=>{
-        console.log('delete Single item click handler work :', this.props);
+        console.log('Delete single item this.props :', this.props);
         // const { ID } = request.body;
         const {ID} = this.props;
         const itemID = {ID}
         this.props.deleteItem(itemID);//this is not working because the server doesn't recognize the ID
-        //for some reason
-        // this.props.history.push('/list');
-        this.props.history.push('/')
+        this.props.getListData();
     }
 
     updateSingleItem=()=>{
@@ -56,6 +55,6 @@ function mapStateToProps(state){
 
 
 export default connect(mapStateToProps,{
-    deleteItem
+    deleteItem, getListData
 })(ListItem); 
 

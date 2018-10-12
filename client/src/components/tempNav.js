@@ -29,6 +29,7 @@ export default props => (
             <li>
                 <Link to="/layout" className="nav-link">Layout Template</Link>
             </li>
+            
         </ul>
     </div>
 )

@@ -17,7 +17,7 @@ export default (state=DEFAULT_STATE,action)=>{
         case types.UPDATE_CHECKBOX:
             console.log('Update checkbox action :', action);
             debugger;
-            return {...state, items: action.payload.data.data.items};
+            return {...state};
         case types.GET_SINGLE_ITEM:
             return {...state};
         case types.DELETE_SINGLE_ITEM:
