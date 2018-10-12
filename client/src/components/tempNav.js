@@ -20,9 +20,6 @@ export default props => (
                 <Link to="/dashboard" className="nav-link">User Dash</Link>
             </li>
             <li>
-                <Link to="/user-settings" className="nav-link">User Settings</Link>
-            </li>
-            <li>
                 <Link to="/chatmodal" className="nav-link">Chat Modal</Link>
             </li>
             <li>
@@ -32,6 +29,7 @@ export default props => (
             <li>
                 <Link to="/layout" className="nav-link">Layout Template</Link>
             </li>
+            
         </ul>
     </div>
 )

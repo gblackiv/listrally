@@ -1,5 +1,6 @@
 import types from './types';
 import axios from 'axios';
+import checkbox from '../components/checkbox';
 
 export function getListData(){
     return async dispatch => {
@@ -16,13 +17,14 @@ export function addSingleItem(newItem){
     console.log('newItem :', newItem);
     return async dispatch => {
         const resp = await axios.put('/api/newitem', newItem);
-        console.log('list resp :', resp);
+        console.log('Create new list item resp :', resp);
         dispatch({
             type: types.ADD_LIST_ITEM,
             payload: resp
         })
     }
 }
+
 
 export function createListData(userForm){
     return async dispatch => {
@@ -35,6 +37,7 @@ export function createListData(userForm){
     }
 }
 
+
 export function getListTitle(){
     return async dispatch => {
         const resp = await axios.get('/api/getuserlists?ID=1');
@@ -45,3 +48,38 @@ export function getListTitle(){
         })
     }
 }
+
+export function sendCheckboxInfo(info){
+    console.log('checkbox Info:', info);
+    return async dispatch => {
+        const resp = await axios.patch('/api/updateitem', info);
+        console.log('Update Checkbox resp :', resp);
+        dispatch({
+            type: types.UPDATE_CHECKBOX,
+            payload: resp
+        })
+    }
+}
+
+export function authenticate(){
+    return async dispatch => {
+        const resp = await axios.get( '/auth/login');
+        console.log('Google login resp :', resp);
+        dispatch({
+            type: types.LOGIN,
+            payload: resp
+        })
+    }
+}
+
+export function deleteItem(item){
+    console.log('Deleted Item Inside Action Creator :', item);
+    return async dispatch => {
+        const resp = await axios.post('/api/deleteitem', item);
+        dispatch({
+            type: types.DELETE_SINGLE_ITEM,
+            payload: resp
+        })
+    }
+}
+
