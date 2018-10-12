@@ -23,7 +23,7 @@ $options = array(
 );
 
 
-$query = "SELECT users.name as usersName, email, lists.name as listsName, eventTime, items.name as itemsName FROM users JOIN items ON users.ID=assignedUserID JOIN list_to_users ON users.ID=userID JOIN lists ON list_to_users.listID = lists.ID WHERE (eventTime <= DATE(NOW()) + INTERVAL 7 DAY AND items.listID = list_to_users.listID AND notifications=true AND email IS NOT NULL)";
+$query = "SELECT users.name as usersName, email, lists.name as listsName, eventTime, items.name as itemsName FROM users JOIN items ON users.ID=assignedUserID JOIN list_to_users ON users.ID=userID JOIN lists ON list_to_users.listID = lists.ID WHERE (eventTime <= DATE(NOW()) + INTERVAL 7 DAY AND items.listID = list_to_users.listID AND notifications=true AND email IS NOT NULL) ORDER BY usersName";
 
 $result = mysqli_query( $conn, $query );
 
