@@ -6,19 +6,28 @@ import newList from '../assets/images/new-list-white.png';
 import { Link } from 'react-router-dom';
 import ListButton from './buttons/list_button';
 import SignInButton from './buttons/sign_in_button';
+import { authenticate } from '../actions';
 
 
 
-export default class Home extends Component{
+class Home extends Component{
+
+    login = ()=>{
+        debugger;
+        this.props.authenticate();
+    }
+
+
     render(){
         return (    
             
             <div>
                 <div className="home-container">
                     <div className="home-content">
-                        <img id="logo" src={logo} alt="logo"/>
+                        <img onClick={this.login} id="logo" src={logo} alt="logo"/>
                         <div className="home-title">ListRally</div>
-                        <SignInButton />
+                        {/* < SignInButton onClick={this.login}  /> */}
+                        <button onClick={this.login}  className="login">Login</button>
                         <div className="new-list">
                             <p className="instruction">Click the + icon to make a list</p>
                             <Link to="/list"><img className="new-list-btn" src={newList} alt="new_list"/></Link>
@@ -40,3 +49,18 @@ export default class Home extends Component{
         )
     }
 }
+
+// function mapStateToProps(state){
+//     console.log('Redux state list inside mapStateToProp :', state.list.list);
+//     console.log('Redux state items inside mapStateToProp :', state.list.items);
+//     return {
+//         list: state.list.list,
+//         items: state.list.items
+//     }
+// }
+
+
+export default connect(null,{
+    authenticate
+})(Home); 
+
