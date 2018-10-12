@@ -97,7 +97,7 @@ const paths = ( server, mySQL, connection ) => {
 	 */
 	server.patch( '/api/updateitem', ( request, response ) => {
 		const { ID, name, listID, assignedUserID } = request.body;
-		if(!ID || !name || !listID || !assignedUserID){
+		if(!ID || !name || !listID || assignedUserID === undefined ){
 			const dataToReturn = {
 				success: false,
 				data: 'missing item update information'
