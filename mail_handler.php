@@ -58,14 +58,14 @@ else {
 $eventTime;
 foreach( $emailList['parties'] as $listKey => $listsName){
         
-    foreach($listsName['guests'] as $person ){
+    foreach($listsName['guests'] as $personName => $person ){
     $mail->smtpConnect($options);
     $mail->From = 'listrally@gmail.com';  // sender's email address (shows in "From" field)
     $mail->FromName = 'List Rally App';   // sender's name (shows in "From" field)
     $mail->addAddress($person['email']);  // Add a recipient
     $mail->addReplyTo('listrally@gmail.com');                          // Add a reply-to address
     $mail->Subject = 'A friendly reminder from ListRally';
-    $mail->Body = 'Hello, '. key($listsName['guests']) .', '. key($emailList['parties']) .' is coming up this week. The planned time is '.$listsName['eventTime'].' and you are signed up to bring ';
+    $mail->Body = 'Hello, '. $personName .', '. $listKey .' is coming up this week. The planned time is '.$listsName['eventTime'].' and you are signed up to bring ';
         foreach($person['items'] as $item ){
             $mail->Body = $mail->Body . $item . ',';
         }
