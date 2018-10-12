@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { sendCheckboxInfo, deleteItem, getListData } from '../actions';
+import blankImage from '../assets/images/nothing.png';
 
+const crossedOutTextStyle = {
+    'text-decoration': 'line-through'
+}
 
 class Checkbox extends Component {
     constructor(props){
@@ -14,30 +18,44 @@ class Checkbox extends Component {
     }
 
     toggleCheck(){
+        const { ID, assignedUserID, userID } = this.props;
+        if(userID!==assignedUserID && assignedUserID>0){//if user is not the one who checked the box
+            //and the box has already been checked
+            return;
+        }
         const {isChecked} =this.state;
-        if(!isChecked){//if checkbox is unchecked
+        // if(!isChecked){//if checkbox is unchecked
+        //     console.log('this.state :', this.state);
+        //     debugger;
+        //     this.setState({//allow checkbox to be toggled
+        //         isChecked: !!this.state.isChecked
+        //     })
+        //     this.sendInfoToServer();
+        // }
+        if(userID===assignedUserID){//if the user is the one who checked the box first
+            console.log('this.state :', this.state);
             this.setState({//allow checkbox to be toggled
                 isChecked: !this.state.isChecked
             })
             this.sendInfoToServer();
+            return;
         }
-        // this.setState({
-        //     isChecked: !this.state.isChecked
-        // })
-        // this.sendInfoToServer();
+        this.setState({
+            isChecked: !this.state.isChecked
+        })
+        this.sendInfoToServer();
     }
 
     sendInfoToServer = () => {
         //const { ID, name, listID, assignedUserID } = request.body;
-        const {isChecked} = this.state;
-        console.log('isChecked :', isChecked);
-        const { ID, itemName: name} = this.props;
-        let assignedUserID = 1;
+        var { ID, itemName: name, userID, assignedUserID} = this.props;
+        if(userID===assignedUserID){
+            assignedUserID = 0;
+        } else{
+            assignedUserID = Math.floor(Math.random()*5)+1;
+        }
         const listID = 1;
-        // if(isChecked === true){
-        //     assignedUserID = 1;
-        // }
-        const testCheckboxObject = {ID, name, listID, assignedUserID}
+        const testCheckboxObject = {ID, name, listID, assignedUserID};
         console.log('testCheckboxObject :', testCheckboxObject);
         this.props.sendCheckboxInfo(testCheckboxObject);
         this.props.getListData();
@@ -47,7 +65,7 @@ class Checkbox extends Component {
     render(){
         // console.log('Single Checkbox this.props :', this.props);
         // const { ID, name, listID, assignedUserID } = request.body;
-        console.log('Checkbox Props:', this.props);
+        // console.log('Checkbox Props:', this.props);
         const {name, avatar} = this.props;
         return (
             <Fragment>
@@ -58,7 +76,7 @@ class Checkbox extends Component {
                         <label>{this.props.itemName}</label>
                     </div>
                     <div className="shared-right">
-                        <img className="person" src={avatar} alt="user"/>
+                        <img className="person" src={this.state.isChecked ? avatar : blankImage} alt="user"/>
                     </div>
                 </div>
             </Fragment>
@@ -70,7 +88,8 @@ function mapStateToProps(state){
     // console.log('Redux state.list.list inside mapStateToProp :', state.list.list);
     return {
         list: state.list.list,
-        items: state.list.items
+        items: state.list.items,
+        userID: state.user.userID
     }
 }
 

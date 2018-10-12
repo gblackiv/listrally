@@ -1,7 +1,7 @@
 import types from '../actions/types';
 
 const DEFAULT_STATE = {
-    userID: 0,
+    userID: 1,
     assignedUserID: 1
 };
 

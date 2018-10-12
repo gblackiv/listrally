@@ -39,7 +39,6 @@ export function createListData(userForm){
 
 export function sendCheckboxInfo(info){
     console.log('checkbox Info:', info);
-    debugger;
     return async dispatch => {
         const resp = await axios.patch('/api/updateitem', info);
         console.log('Update Checkbox resp :', resp);

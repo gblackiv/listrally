@@ -13,7 +13,7 @@ export default (WrappedComponent)=>{//this is just a function with a class in it
         }
 
         checkAuth(){//this function checks whether user is signed in
-            if(!this.props.auth){//if user is not logged in
+            if(!this.props.userID){//if user is not logged in
                 this.props.history.push('/');//locate them to somewhere else, in this case sig-in
             }
         }
@@ -26,7 +26,7 @@ export default (WrappedComponent)=>{//this is just a function with a class in it
     function mapStateToProps(state){
         console.log('auth state :', state);
         return {
-            auth: state.user.userID
+            userID: state.user.userID
         }
     }
 
