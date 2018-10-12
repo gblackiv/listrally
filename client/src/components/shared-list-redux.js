@@ -15,7 +15,6 @@ import filter from '../assets/images/filter-icon.png'
 class SharedList extends Component{
 
     componentDidMount() {
-        // console.log('componentdidmount this.props :', this.props);
         this.props.getListData();//getListData becomes part of props from the connect function down below
     }
 
@@ -37,7 +36,6 @@ class SharedList extends Component{
 
 
         const items = fields.map((id, index) => {
-            // console.log('LIST:', list, 'index:', index);
             const item = list[index];
 
             return <Field key={item.ID} name={id} label={item.name} component={Checkbox}/>

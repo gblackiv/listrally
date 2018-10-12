@@ -18,6 +18,7 @@ import UserSettings from './user_settings';
 import Avatar from './avatar';
 import DashboardCard from './dashboard_card';
 import createListItem from './owner-list-item'
+import Auth from '../hoc/auth';
 
 import LayoutTemplate from './layout';
 import CreateList from './create-list';
@@ -30,7 +31,7 @@ const App = () => (
             <Route exact path="/" component={Home} />
             <Route exact path="/create-list" component={CreateList} />
             <Route path="/list" component={ListOwner} />
-            <Route path="/list-shared" component={ListShared} />
+            <Route path="/list-shared" component={Auth(ListShared)} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/user-settings" component={UserSettings} />
             <Route path="/chatmodal" component={chatModal} />

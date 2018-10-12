@@ -4,9 +4,21 @@ import michael from '../assets/images/michael.jpeg';
 import gerry from '../assets/images/gerry-bw.jpg';
 import george from '../assets/images/george-bw.jpg';
 import torie from '../assets/images/torie-bw.jpg';
+import Header from './header';
 
 export default props =>(
-    <div className="about-container">
+
+
+
+<div className="col-2">
+<header>
+    <Header buttons={[]}/>
+</header> 
+    <div className='content'>
+        <div className="layout-container">
+
+
+                <div className="about-container">
         <h3>About</h3>
         <div className="about-team">
             <div className="about-person michael">
@@ -47,4 +59,11 @@ export default props =>(
             </div>
         </div>
         </div>
+
+        </div>
+    </div>
+    <footer>
+        <p>Footer Component Here</p>
+    </footer>
+</div>
 )

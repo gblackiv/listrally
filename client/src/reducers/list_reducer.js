@@ -16,7 +16,6 @@ export default (state=DEFAULT_STATE,action)=>{
             return {...state};
         case types.UPDATE_CHECKBOX:
             console.log('Update checkbox action :', action);
-            debugger;
             return {...state};
         case types.GET_SINGLE_ITEM:
             return {...state};

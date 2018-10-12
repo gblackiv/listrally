@@ -39,7 +39,6 @@ export function createListData(userForm){
 
 export function sendCheckboxInfo(info){
     console.log('checkbox Info:', info);
-    debugger;
     return async dispatch => {
         const resp = await axios.patch('/api/updateitem', info);
         console.log('Update Checkbox resp :', resp);
@@ -51,8 +50,13 @@ export function sendCheckboxInfo(info){
 }
 
 export function authenticate(){
-    return {
-        type: types.LOGIN,
+    return async dispatch => {
+        const resp = await axios.get( '/auth/login');
+        console.log('Google login resp :', resp);
+        dispatch({
+            type: types.LOGIN,
+            payload: resp
+        })
     }
 }
 
