@@ -26,7 +26,6 @@ const App = () => (
         <nav className="col-1 side-nav">
         <TempNav />
         </nav>
-
                     <Route exact path="/" component={Home} />
                     <Route exact path="/create-list" component={CreateList} />
                     <Route path="/list" component={ListOwner} />
@@ -36,9 +35,7 @@ const App = () => (
                     <Route path="/chatmodal" component={chatModal} />
                     <Route path="/about" component={About} />
 
-                    <Route path="/layout" component={LayoutTemplate} />
-
-            
+                    <Route path="/layout" component={LayoutTemplate} />         
         </div>
 );
 

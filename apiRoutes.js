@@ -14,7 +14,7 @@ const paths = ( server, mySQL, connection ) => {
 	 */
 	server.get( '/api/lists', (request, response ) => {
 		const { url } = request.query;
-	
+
 		
 		const listQuery = 'SELECT * FROM ?? WHERE ?? = ?';
 		const listInserts = [ 'lists', 'url', url ];
@@ -35,14 +35,16 @@ const paths = ( server, mySQL, connection ) => {
 				success: true,
 				data: {list: results}
 			};
-				console.log(results);
+
 			const itemQuery = "SELECT ??, ?? as itemName, ?? as userName, ??, ??, ?? FROM ?? JOIN ?? ON ?? = ?? WHERE (?? = ? AND ?? = ?)";
 			const itemInserts = [ 'items.ID','items.name','users.name','assignedUserID','avatar','items.listID','items','users','assignedUserID','users.ID', 'listID',results[0].ID,'items.status','active'];
+
 			const itemSQL = mySQL.format( itemQuery, itemInserts );
 	
 			connection.query( itemSQL, ( error, results, fields ) => {
 				if( error ){		//the to be retrieved was incorrect, and the query failed due to it being undefined
 					console.log( "/api/lists error at item query:", error );
+					
 					const dataToReturn = {
 						success: false,
 						data: "Error: list url does not exist"
@@ -50,7 +52,6 @@ const paths = ( server, mySQL, connection ) => {
 					response.json( dataToReturn );
 					return;
 				}
-	
 				dataToReturn.data.items = results;
 				response.json( dataToReturn );
 			});

@@ -14,8 +14,6 @@ import ChatButton from './buttons/chat_button';
 import AddListItemButton from './buttons/add_list_item_button'
 import ListItems from './owner-list-item';
 
-import dummyData from './dummyItemsData';
-
 
 class ListOwner extends Component{
 
@@ -41,22 +39,23 @@ class ListOwner extends Component{
 
     submitItem = (values) => {
         console.log('Submit Item values :', values);
-        const { name } = values;
+        const { itemName : name } = values;
         const testObject = {name, listID: 1}
         this.props.addSingleItem(testObject);
-        this.props.history.push('/list');
+        setTimeout(()=>this.props.history.push('/list'),1000)
     }
 
     render(){
         const {handleSubmit} = this.props;
         console.log('List this.props :', this.props);
-        // const { data } = dummyData;
-        // const listElements = data.map(item=>{
-        //     return <ListItems key={item.ID} {...item} />
-        // })
 
-        const {list} = this.props;
-        const sharedlistItems = list.map(item=>{
+        let {items, list} = this.props;
+        console.log('list Info :', list[0]);
+        // if(list.length>0){
+        //     const {description, ID, eventTime, name, ownerID, securityStatus, status, url} = list[0];
+        //     console.log(description, ID, eventTime, name, ownerID, securityStatus, status, url);
+        // }
+        const sharedlistItems = items.map(item=>{
             return <ListItems key={item.ID} {...item} />
         })
 
@@ -74,13 +73,14 @@ class ListOwner extends Component{
                     <Link to="/dashboard"><img id="avatar" src={avatar} alt="avatar"/></Link>
                     <div className="list-content">
                         <div className="list-top">
-                            <h4 className="list-title">Sue's Party</h4>
-                            <h6 className="list-details">Saturday April 1st</h6>
+                            <h4 className="list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
+                            <h6 className="list-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
+                            <div className="list-date">{list.length>0 ? list[0].eventTime : 'Saturday April 1st'}</div>
                         </div>
                         <div className="list-items">
                             <div className="add">                       
                                 <form onSubmit={handleSubmit(this.submitItem)}>
-                                    <Field name="name" listID={2} type="text" component={this.renderInput} label="Add Item"/>
+                                    <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
                                     <div className="add-item-btn">
                                         <AddListItemButton className="add-item-button" name="Add Item" />
                                     </div>                               
@@ -104,8 +104,9 @@ function mapStateToProps(state){//the redux will be given to us in its entirety 
     //the redux state is the same no matter where you try to access it
     console.log('Redux state.list.list inside mapStateToProp :', state.list.list);
     return {
-        list: state.list.list//this came from the rootReducer and lists reducer
-    }//   ^ list now becomes a property of Clock once mapStateToProps gets passed into connect
+        list: state.list.list,
+        items: state.list.items
+    }
 }
 
 ListOwner = reduxForm({
