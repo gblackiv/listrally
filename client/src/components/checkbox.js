@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { sendCheckboxInfo, deleteItem } from '../actions';
+import { sendCheckboxInfo, deleteItem, getListData } from '../actions';
 
 
 class Checkbox extends Component {
@@ -14,17 +14,17 @@ class Checkbox extends Component {
     }
 
     toggleCheck(){
-        // console.log('toggleCheck values :', values);
-        // if(!isChecked){//if checkbox is unchecked
-        //     this.setState({//allow checkbox to be toggled
-        //         isChecked: !this.state.isChecked
-        //     })
-        //     this.sendInfoToServer();
-        // }
-        this.setState({
-            isChecked: !this.state.isChecked
-        })
-        this.sendInfoToServer();
+        const {isChecked} =this.state;
+        if(!isChecked){//if checkbox is unchecked
+            this.setState({//allow checkbox to be toggled
+                isChecked: !this.state.isChecked
+            })
+            this.sendInfoToServer();
+        }
+        // this.setState({
+        //     isChecked: !this.state.isChecked
+        // })
+        // this.sendInfoToServer();
     }
 
     sendInfoToServer = () => {
@@ -32,16 +32,15 @@ class Checkbox extends Component {
         const {isChecked} = this.state;
         console.log('isChecked :', isChecked);
         const { ID, itemName: name} = this.props;
-        let assignedUserID = 0;
+        let assignedUserID = 1;
         const listID = 1;
-        if(isChecked === true){
-            assignedUserID = 1;
-        }
+        // if(isChecked === true){
+        //     assignedUserID = 1;
+        // }
         const testCheckboxObject = {ID, name, listID, assignedUserID}
         console.log('testCheckboxObject :', testCheckboxObject);
-        debugger;
         this.props.sendCheckboxInfo(testCheckboxObject);
-        this.props.history.push('/shared-list');
+        this.props.getListData();
     }
 
 
@@ -77,5 +76,5 @@ function mapStateToProps(state){
 
 
 export default connect(mapStateToProps,{
-    sendCheckboxInfo, deleteItem
+    sendCheckboxInfo, deleteItem, getListData
 })(Checkbox); 

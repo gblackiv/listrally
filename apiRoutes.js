@@ -167,7 +167,7 @@ const paths = ( server, mySQL, connection ) => {
 	 * requires ID of the item to be deleted
 	 * the item is not truely deleted, but the status is set to inactive
 	 */
-	server.delete( '/api/deleteitem', ( request, response ) => {
+	server.post( '/api/deleteitem', ( request, response ) => {
 		const { ID } = request.body;
 
 		const itemUserVerificationQuery = 'SELECT * FROM ?? WHERE ?? = ?';
@@ -185,7 +185,7 @@ const paths = ( server, mySQL, connection ) => {
 				return;
 			}
 			
-			if( request.user.ID !== results[0].assignedUserID ){
+			if( request.user && request.user.ID !== results[0].assignedUserID ){
 				console.log( '/api/deleteitem issue: unauthorized user attemped to delete item ID', ID);
 				const dataToReturn = {
 					success: false,
