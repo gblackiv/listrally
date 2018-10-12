@@ -32,44 +32,76 @@ $emailList = [
 ];
 
 if (mysqli_num_rows($result) > 0) {
-    // output data of each row
+    // loop through each row, restructuring data
     while($row = mysqli_fetch_assoc($result)) {
-
-
+            //makes sure each party is unique
         if( !isset( $emailList['parties'][$row['listsName']] ) ){
-            $emailList['parties'][$row['listsName']] = [];
+            $emailList['parties'][$row['listsName']] = ['eventTime' => $row['eventTime']];
         }
+            //makes sure each user is unique
         if( !isset($emailList['parties'][$row['listsName']][$row['usersName']])){
-            $emailList['parties'][$row['listsName']][$row['usersName']] = [
+            $emailList['parties'][$row['listsName']]['guests'][$row['usersName']] = [
                 'email'=>$row['email'],
                 'items'=>[]
             ];
         }
-        $emailList['parties'][$row['listsName']][$row['usersName']]['items'][] = $row['itemsName'];
-
-
+            //inputs items into each users item array
+            
+        $emailList['parties'][$row['listsName']]['guests'][$row['usersName']]['items'][] = $row['itemsName'];
+        print($row['itemsName']);
     }
-    print_r($emailList);
+     print_r($emailList);
 }
 else {
     echo "0 results";
 }
 
-        // $mail->smtpConnect($options);
-        // $mail->From = 'listrally@gmail.com';  // sender's email address (shows in "From" field)
-        // $mail->FromName = 'List Rally App';   // sender's name (shows in "From" field)
-        // $mail->addAddress($row['email']);  // Add a recipient
-        // $mail->addReplyTo('listrally@gmail.com');                          // Add a reply-to address
+// foreach( $emailList['parties'] as $listsName => $guests){
+//     if($guests == 'eventTime'){
 
-        // $mail->Subject = 'A friendly reminder from ListRally';
-        // $mail->Body    = 'Hello, '.$row['usersName'].', '.$row['listsName'].' is coming up this week. The planned time is '.$row['eventTime'].' and you are signed up to bring '.$row['itemsName'].'. We hope the party goes well!';
+//     }
+//     else{
+//         foreach($guests as $guestInfo){
+//             $mail->smtpConnect($options);
+//             $mail->From = 'listrally@gmail.com';  // sender's email address (shows in "From" field)
+//             $mail->FromName = 'List Rally App';   // sender's name (shows in "From" field)
+//             $mail->addAddress($row['email']);  // Add a recipient
+//             $mail->addReplyTo('listrally@gmail.com');                          // Add a reply-to address
         
-        // if(!$mail->send()) {
-        //     echo 'Message could not be sent.';
-        //     echo 'Mailer Error: ' . $mail->ErrorInfo;
-        // } else {
-        //     echo 'Message has been sent';
-        // }
+//             $mail->Subject = 'A friendly reminder from ListRally';
+//             $mail->Body = 'Hello, '. $guestInfo['name'] .', '. $listsName .' is coming up this week. The planned time is '.$listsName['eventTime'].' and you are signed up to bring ';
+//             foreach($guests as $items){
+//                 $mail->Body = $mail->Body . $items . ', ';
+//             }
+//             $mail->Body = $mail->Body . ' We hope the party goes well!';
+//             print($mail->Body);
+//         }
+//     }
+    
+    // if(!$mail->send()) {
+    //     echo 'Message could not be sent.';
+    //     echo 'Mailer Error: ' . $mail->ErrorInfo;
+    // } else {
+    //     echo 'Message has been sent';
+    // }
+    // }
+    
+
+    // $mail->smtpConnect($options);
+    // $mail->From = 'listrally@gmail.com';  // sender's email address (shows in "From" field)
+    // $mail->FromName = 'List Rally App';   // sender's name (shows in "From" field)
+    // $mail->addAddress($row['email']);  // Add a recipient
+    // $mail->addReplyTo('listrally@gmail.com');                          // Add a reply-to address
+
+    // $mail->Subject = 'A friendly reminder from ListRally';
+    // $mail->Body    = 'Hello, '.$row['usersName'].', '.$row['listsName'].' is coming up this week. The planned time is '.$row['eventTime'].' and you are signed up to bring '.$row['itemsName'].'. We hope the party goes well!';
+        
+    // if(!$mail->send()) {
+    //     echo 'Message could not be sent.';
+    //     echo 'Mailer Error: ' . $mail->ErrorInfo;
+    // } else {
+    //     echo 'Message has been sent';
+    // }
 
 
 
