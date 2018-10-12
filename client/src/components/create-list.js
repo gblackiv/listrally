@@ -20,11 +20,16 @@ class CreateList extends Component{
             // enableTime: true,
             // dateFormat: "Y-m-d H:i"
         };
+        this.getDate = this.getDate.bind(this);
       }
-
+    getDate( dateString ){
+        this.setState({
+            date: dateString
+        });
+    }
     userCreateListData = (values) => {
         console.log('Flatpickr Date: ', this.state.date);
-        values.eventTime = this.state.date
+        values.eventTime = this.state.date;
         console.log('Create List Info: ', values);
         this.props.createListData(values);
     }
@@ -32,7 +37,6 @@ class CreateList extends Component{
     render(){
 
         const { handleSubmit } = this.props;
-        const { date } = this.state;
 
         return(
             <div className="col-2">
@@ -55,8 +59,7 @@ class CreateList extends Component{
                             <fieldset className="date-fieldset">
                                 <legend className="form-input-label date-input-label">Enter Date and Time</legend>
                                     <div>
-                                        {/* <Flatpickr data-enable-time value={date} onChange={date => { this.setState({date}) }} /> */}
-                                        <DatePicker />
+                                        <DatePicker sendDate={this.getDate} />
                                     </div>
                             </fieldset>
                         </div>
