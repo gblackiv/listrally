@@ -27,41 +27,34 @@ $query = "SELECT users.name as usersName, email, lists.name as listsName, eventT
 
 $result = mysqli_query( $conn, $query );
 
-$emailList = array ([
-    'parties' => array()
-]);
+$emailList = [
+    'parties' => []
+];
 
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
-        print_r($row);
 
 
-        array_push( $emailList['parties'], array($row['listsName']) );
-        array_push( $emailList['parties'][$row['listsName']], array('guests') );
-        array_push( $emailList['parties'][$row['listsName']]['guests'], array(
-            'name' => $row['usersName'], 
-            'email' => $row['email'],
-            'items'=> array()));
-        array_push($emailList['parties'][$row['listsName']]['guests']['items'], $row[])
+        if( !isset( $emailList['parties'][$row['listsName']] ) ){
+            $emailList['parties'][$row['listsName']] = [];
+        }
+        if( !isset($emailList['parties'][$row['listsName']][$row['usersName']])){
+            $emailList['parties'][$row['listsName']][$row['usersName']] = [
+                'email'=>$row['email'],
+                'items'=>[]
+            ];
+        }
+        $emailList['parties'][$row['listsName']][$row['usersName']]['items'][] = $row['itemsName'];
+
+
     }
-    print_r($arrayOfEmailsToSend);
+    print_r($emailList);
 }
 else {
     echo "0 results";
 }
 
-$email_list = [
-    'parties' => [
-        'halloween party' => [
-            guests => [
-                [name ='philly',
-                email = "blah",
-                items => ['stuff']]
-            ]
-        ]
-    ] 
-];
         // $mail->smtpConnect($options);
         // $mail->From = 'listrally@gmail.com';  // sender's email address (shows in "From" field)
         // $mail->FromName = 'List Rally App';   // sender's name (shows in "From" field)
