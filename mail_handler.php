@@ -39,7 +39,7 @@ if (mysqli_num_rows($result) > 0) {
             $emailList['parties'][$row['listsName']] = ['eventTime' => $row['eventTime']];
         }
             //makes sure each user is unique
-        if( !isset($emailList['parties'][$row['listsName']][$row['usersName']])){
+        if( !isset($emailList['parties'][$row['listsName']]['guests'][$row['usersName']])){
             $emailList['parties'][$row['listsName']]['guests'][$row['usersName']] = [
                 'email'=>$row['email'],
                 'items'=>[]
@@ -48,7 +48,6 @@ if (mysqli_num_rows($result) > 0) {
             //inputs items into each users item array
             
         $emailList['parties'][$row['listsName']]['guests'][$row['usersName']]['items'][] = $row['itemsName'];
-        print($row['itemsName']);
     }
      print_r($emailList);
 }
@@ -56,28 +55,49 @@ else {
     echo "0 results";
 }
 
-// foreach( $emailList['parties'] as $listsName => $guests){
-//     if($guests == 'eventTime'){
-
-//     }
-//     else{
-//         foreach($guests as $guestInfo){
-//             $mail->smtpConnect($options);
-//             $mail->From = 'listrally@gmail.com';  // sender's email address (shows in "From" field)
-//             $mail->FromName = 'List Rally App';   // sender's name (shows in "From" field)
-//             $mail->addAddress($row['email']);  // Add a recipient
-//             $mail->addReplyTo('listrally@gmail.com');                          // Add a reply-to address
+$eventTime;
+foreach( $emailList['parties'] as $listKey => $listsName){
         
-//             $mail->Subject = 'A friendly reminder from ListRally';
-//             $mail->Body = 'Hello, '. $guestInfo['name'] .', '. $listsName .' is coming up this week. The planned time is '.$listsName['eventTime'].' and you are signed up to bring ';
-//             foreach($guests as $items){
-//                 $mail->Body = $mail->Body . $items . ', ';
-//             }
-//             $mail->Body = $mail->Body . ' We hope the party goes well!';
-//             print($mail->Body);
-//         }
-//     }
+    foreach($listsName['guests'] as $person ){
+    $mail->smtpConnect($options);
+    $mail->From = 'listrally@gmail.com';  // sender's email address (shows in "From" field)
+    $mail->FromName = 'List Rally App';   // sender's name (shows in "From" field)
+    $mail->addAddress($person['email']);  // Add a recipient
+    $mail->addReplyTo('listrally@gmail.com');                          // Add a reply-to address
+    $mail->Subject = 'A friendly reminder from ListRally';
+    $mail->Body = 'Hello, '. key($listsName['guests']) .', '. key($emailList['parties']) .' is coming up this week. The planned time is '.$listsName['eventTime'].' and you are signed up to bring ';
+        foreach($person['items'] as $item ){
+            $mail->Body = $mail->Body . $item . ',';
+        }
+        $mail->Body = $mail->Body .' We hope the party goes well!';
+    print($mail->Body);
+    print('
+    ');
+    }
+        
     
+}
+
+// if($guests == 'eventTime'){
+//     $eventTime = $guests;
+// }
+// else{
+//     foreach($guests as $guestName => $guestInfo){
+//         $mail->smtpConnect($options);
+//         $mail->From = 'listrally@gmail.com';  // sender's email address (shows in "From" field)
+//         $mail->FromName = 'List Rally App';   // sender's name (shows in "From" field)
+//         $mail->addAddress($row['email']);  // Add a recipient
+//         $mail->addReplyTo('listrally@gmail.com');                          // Add a reply-to address
+    
+//         $mail->Subject = 'A friendly reminder from ListRally';
+//         $mail->Body = 'Hello, '. $guestName .', '. $listsName .' is coming up this week. The planned time is '.$eventTime.' and you are signed up to bring ';
+//         foreach($guests as $itemList=>$item){
+//             $mail->Body = $mail->Body . $item . ', ';
+//         }
+//         $mail->Body = $mail->Body . ' We hope the party goes well!';
+//         print($mail->Body);
+//     }
+// }
     // if(!$mail->send()) {
     //     echo 'Message could not be sent.';
     //     echo 'Mailer Error: ' . $mail->ErrorInfo;
