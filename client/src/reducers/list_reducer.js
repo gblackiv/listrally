@@ -2,7 +2,8 @@ import types from '../actions/types';
 
 const DEFAULT_STATE = {
     list: [],
-    item: {}
+    item: {},
+    allLists: []
 }
 
 export default (state=DEFAULT_STATE,action)=>{
@@ -21,7 +22,8 @@ export default (state=DEFAULT_STATE,action)=>{
         case types.TOGGLE_COMPLETE:
             return {...state} ;
         case types.GET_LIST_TITLE:
-            return {...state} ;
+            console.log('Get list title:', action);
+            return {...state, allLists: action.payload.data.data} ;
         default:
             return state;
     }
