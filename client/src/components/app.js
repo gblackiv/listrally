@@ -34,7 +34,7 @@ const App = () => (
                     <Route path="/user-settings" component={UserSettings} />
                     <Route path="/chatmodal" component={chatModal} />
                     <Route path="/about" component={About} />
-
+                    <Route path="/list-item" component={About} />
                     <Route path="/layout" component={LayoutTemplate} />         
         </div>
 );

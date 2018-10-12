@@ -12,6 +12,8 @@ class ListItem extends Component {
         const itemID = {ID}
         this.props.deleteItem(itemID);//this is not working because the server doesn't recognize the ID
         //for some reason
+        // this.props.history.push('/list');
+        this.props.history.push('/')
     }
 
     updateSingleItem=()=>{

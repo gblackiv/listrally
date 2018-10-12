@@ -14,7 +14,7 @@ class Checkbox extends Component {
     }
 
     toggleCheck(){
-        console.log('toggleCheck values :', values);
+        const {isChecked} =this.state;
         if(!isChecked){//if checkbox is unchecked
             this.setState({//allow checkbox to be toggled
                 isChecked: !this.state.isChecked

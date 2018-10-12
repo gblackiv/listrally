@@ -57,10 +57,9 @@ export function authenticate(){
 }
 
 export function deleteItem(item){
-    console.log('Deleted Item :', item);
-    debugger;
+    console.log('Deleted Item Inside Action Creator :', item);
     return async dispatch => {
-        const resp = await axios.delete('/api/deleteitem', item);
+        const resp = await axios.post('/api/deleteitem', item);
         dispatch({
             type: types.DELETE_SINGLE_ITEM,
             payload: resp
