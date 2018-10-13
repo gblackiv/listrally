@@ -379,7 +379,8 @@ const paths = ( server, mySQL, connection ) => {
 			}		
 			const dataToReturn = {
 				success: true,
-				data: results
+				data: results,
+				user: request.user
 			};
 			response.json( dataToReturn );
 		});
