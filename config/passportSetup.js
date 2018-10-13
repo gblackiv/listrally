@@ -47,8 +47,8 @@ const passportSetup = ( server, mySQL, connection, passport ) => {
 	 */
 	function createUserInDB( googleProfile ){
 		return new Promise( ( resolve, reject ) => {
-		const userCreationQuery = 'INSERT INTO ?? ( name, googleID, email, avatar ) VALUES ( ?, ?, ?, ? )';
-		const userCreationInserts = [ 'users', googleProfile.displayName, googleProfile.id, googleProfile.emails[0].value || 0, googleProfile._json.image.url ];
+		const userCreationQuery = 'INSERT INTO ?? ( name, familyName, givenName googleID, email, avatar ) VALUES ( ?, ?, ?, ? )';
+		const userCreationInserts = [ 'users', googleProfile.displayName, googleProfile.familyName, googleProfile.givenName, googleProfile.id, googleProfile.emails[0].value || 0, googleProfile._json.image.url ];
 		const userCreationSQL = mySQL.format( userCreationQuery, userCreationInserts );
 			connection.query( userCreationSQL, ( error, results, fields ) => {
 				console.log( `created new user in DB with googleID of ${googleProfile.id}`);
