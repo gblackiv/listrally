@@ -12,6 +12,15 @@ const itemRoutes = ( server, mySQL, connection ) => {
 	 */
 	server.put( '/api/newitem', ( request, response ) => {
 		const { name, listID } = request.body;
+		if( !request.user ){
+			const dataToReturn = {
+				success: false,
+				data: 'Error: the user is not logged in',
+				user: request.user
+			}
+			response.json( dataToReturn );
+			return;
+		}
 
 		const itemQuery = 'INSERT INTO items ( name, listID ) VALUES ( ?, ? )';
 		const itemInserts = [ name, listID ];
@@ -34,7 +43,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 				success: true,
 				data: successString,
 				itemID: results.insertId,
-				user: response.user
+				user: request.user
 			};
 			response.json( dataToReturn );
 		});
@@ -46,6 +55,14 @@ const itemRoutes = ( server, mySQL, connection ) => {
 	 */
 	server.patch( '/api/updateitem', ( request, response ) => {
 		const { ID, name, listID, assignedUserID } = request.body;
+		if( !request.user.ID ){
+            const dataToReturn = {
+                success: false,
+                data: 'user is not logged in'
+            }
+            response.json( dataToReturn );
+            return;
+        }
 		if(!ID || !name || !listID || assignedUserID === undefined ){
 			const dataToReturn = {
 				success: false,
@@ -63,21 +80,23 @@ const itemRoutes = ( server, mySQL, connection ) => {
 				console.log( '/api/updateitem error:', error );
 				const dataToReturn = {
 					success: false,
-					data: "Error: could not find item with the requested ID"
+					data: "Error: could not find item with the requested ID",
+					user: request.user
 				}
 				response.json( dataToReturn );
 				return;
 			}
 
-			// if( request.user.ID !== results[0].assignedUserID ){
-			// 	console.log( '/api/updateitem issue: unauthorized user attemped to update item ID', ID);
-			// 	const dataToReturn = {
-			// 		success: false,
-			// 		data: 'Error: user is unauthorized to update the selected item'
-			// 	};
-			// 	response.json( dataToReturn );
-			// 	return;
-			// }
+			if( request.user.ID !== results[0].assignedUserID ){
+				console.log( '/api/updateitem issue: unauthorized user attemped to update item ID', ID);
+				const dataToReturn = {
+					success: false,
+					data: 'Error: user is unauthorized to update the selected item',
+					user: request.user
+				};
+				response.json( dataToReturn );
+				return;
+			}
 			let changedFields = '';
 			if(results[0].name !== name){
 				changedFields += 'name was changed ';
@@ -88,7 +107,6 @@ const itemRoutes = ( server, mySQL, connection ) => {
 			const itemUpdateQuery = 'UPDATE items SET ??=?, ??=?, ??=? WHERE ?? = ?';
 			const itemUpdateInserts = [ 'name', name, 'listID', listID, 'assignedUserID', assignedUserID, 'ID', ID ];
 			const itemUpdateSQL = mySQL.format( itemUpdateQuery, itemUpdateInserts );
-			console.log(itemUpdateSQL);
 
 			connection.query( itemUpdateSQL, ( error, results, fields ) => {
 				if( error ){		//missing data for the item to be updated
@@ -96,7 +114,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 					const dataToReturn = {
 						success: false,
 						data: "Error: did not receive the expected items fields",
-						user: response.user
+						user: request.user
 					}
 					response.json( dataToReturn );
 					return;
@@ -107,6 +125,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 				const dataToReturn = {
 					success: true,
 					data: successString,
+					user: request.user,
 					changedFields
 				};
 				response.json( dataToReturn );
@@ -119,6 +138,14 @@ const itemRoutes = ( server, mySQL, connection ) => {
 	 */
 	server.post( '/api/deleteitem', ( request, response ) => {
 		const { ID } = request.body;
+		if( !request.user.ID ){
+            const dataToReturn = {
+                success: false,
+                data: 'user is not logged in'
+            }
+            response.json( dataToReturn );
+            return;
+        }
 
 		const itemUserVerificationQuery = 'SELECT * FROM ?? WHERE ?? = ?';
 		const itemUserVerificationInserts = ['items', 'ID', ID];
@@ -157,7 +184,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 				const dataToReturn = {
 					success: true,
 					data: successString,
-					user: response.user
+					user: request.user
 				};
 				response.json( dataToReturn );
 			});
