@@ -390,6 +390,34 @@ const paths = ( server, mySQL, connection ) => {
 		updateUserLists(request, response, userID, listID );
 		});
 
+	server.put( '/api/notifications', ( request, resonse ) => {
+		const { notificationsSettings } = request.body;
+		const { ID } = request.user;
+
+		const userNotificationsQuery = "UPDATE users SET notifications=? WHERE ID=?";
+		const userNotificationsInserts = [ notificationsSettings, ID ];
+		const userNotificationsSQL = mySQL.format( userNotificationsQuery, userNotificationsInserts );
+
+		connection.query( userNotificationsSQL, ( error, results, fields ) => {
+			if(error){
+				console.log('/api/notifications error:', error);
+				const dataToReturn = {
+					success: false,
+					data: 'ERROR: the connection to the database failed'
+				}
+				response.json( dataToReturn );
+				return;
+			}
+			const successString = `user ${ID} has updated their notifications`;
+			console.log( successString );
+			const dataToReturn = {
+				success: true,
+				data: successString
+			};
+			response.json( dataToReturn );
+		} );
+	});
+
 		//query used in multiple places
 	function updateUserLists( request, response, userID, listID ){
 
