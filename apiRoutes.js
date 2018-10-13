@@ -390,6 +390,11 @@ const paths = ( server, mySQL, connection ) => {
 		updateUserLists(request, response, userID, listID );
 		});
 
+	/**
+	 * contact when user hits the notifications button
+	 * send in the data a param names notificationsSetting, set to either true or false
+	 * user must be logged in to access
+	 */
 	server.put( '/api/notifications', ( request, resonse ) => {
 		const { notificationsSettings } = request.body;
 		const { ID } = request.user;
