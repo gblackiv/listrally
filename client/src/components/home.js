@@ -19,6 +19,9 @@ class Home extends Component{
         this.toggleListVisibility = this.toggleListVisibility.bind(this);
     }
 
+
+
+
     toggleListVisibility = () => {
         console.log('clicked')
         const { show } = this.state;
@@ -37,6 +40,7 @@ class Home extends Component{
                         <div className="home-content">
                         <div className="logo-container">
                             <img className="shadow" onClick={this.login} id="logo" src={logo} alt="logo"/>
+
                         </div>
                         <div className="home-title">ListRally</div>
                                 <SignInButton className="login" onClick={this.login}  />

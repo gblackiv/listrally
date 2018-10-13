@@ -14,14 +14,6 @@
         position: relative;
     }
     
-    input[type="datetime-local" i] {
-        background-color: transparent;
-        border: none;
-        border-bottom: 1px solid #26a69a;
-        border-radius: 0;
-        outline: none;
-    }
-    
 }
 
 .create-list-right {
@@ -31,4 +23,12 @@
         margin-bottom: 15px;
     }
 
+}
+
+.flatpickr-input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #26a69a;
+    border-radius: 0;
+    outline: none;
 }

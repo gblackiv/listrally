@@ -70,34 +70,34 @@
 }
 
 .form-textarea-field {
+    max-height: 120px;
+    min-height: 80px;
     font: 400 13.3333px Arial;
     position: relative;
     margin-top: 2rem;
     margin-bottom: 1rem;
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid #26a69a;
+    border: 1px solid #26a69a;
     border-radius: 0;
     outline: none;
     height: 3rem;
-    width: 100%;
+    width: 96%;
     font-size: 16px;
-    padding: 0;
+    padding: 10px;
     line-height: 1.15;
     box-sizing: content-box;
     overflow: visible;
-    -webkit-appearance: textfield;
-    -webkit-rtl-ordering: logical;
     cursor: text;
-    text-rendering: auto;
-    color: initial;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
     display: inline-block;
     text-align: start;
-    -webkit-writing-mode: horizontal-tb !important;
+    resize: none;
+}
 
+.textarea-caption{
+    display: inline-block;
+    margin-top: 25px;
+    font-size: 14px;
+    text-align: left;
+    color: darkgrey;
 }

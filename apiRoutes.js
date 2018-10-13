@@ -214,12 +214,18 @@ const paths = ( server, mySQL, connection ) => {
 	});
 
 	/**
-	 * requires all fields of a list
+	 * requires all fields of a list except url
+	 * randomly generates a 40 char long url to attach to the list
 	 * as well as creating a new list, updates the list_to_user DB in order to add the list to the users profile
 	 */
 	server.put( '/api/createlist', ( request, response ) => {
-		const { name, description, url, securityStatus, eventTime} = request.body;
+		const { name, description, securityStatus, eventTime} = request.body;
 		const { ownerID } = request.user;
+		const randomArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',0,1,2,3,4,5,6,7,8,9];
+		let url = '';
+		for( let urlChars = 0; urlChars < 40; urlChars++ ){
+			url =+ randomArray[ Math.floor( Math.random() * randomArray.length ) ];
+		}
 
 		const listCreationQuery = 'INSERT INTO lists (??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?)';
 		const listCreationInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'eventTime', name, description, ownerID, url, securityStatus, eventTime ];
@@ -389,6 +395,39 @@ const paths = ( server, mySQL, connection ) => {
 		const { userID, listID } = request.body;
 		updateUserLists(request, response, userID, listID );
 		});
+
+	/**
+	 * contact when user hits the notifications button
+	 * send in the data a param names notificationsSetting, set to either true or false
+	 * user must be logged in to access
+	 */
+	server.put( '/api/notifications', ( request, resonse ) => {
+		const { notificationsSettings } = request.body;
+		const { ID } = request.user;
+
+		const userNotificationsQuery = "UPDATE users SET notifications=? WHERE ID=?";
+		const userNotificationsInserts = [ notificationsSettings, ID ];
+		const userNotificationsSQL = mySQL.format( userNotificationsQuery, userNotificationsInserts );
+
+		connection.query( userNotificationsSQL, ( error, results, fields ) => {
+			if(error){
+				console.log('/api/notifications error:', error);
+				const dataToReturn = {
+					success: false,
+					data: 'ERROR: the connection to the database failed'
+				}
+				response.json( dataToReturn );
+				return;
+			}
+			const successString = `user ${ID} has updated their notifications`;
+			console.log( successString );
+			const dataToReturn = {
+				success: true,
+				data: successString
+			};
+			response.json( dataToReturn );
+		} );
+	});
 
 		//query used in multiple places
 	function updateUserLists( request, response, userID, listID ){
