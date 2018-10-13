@@ -65,6 +65,14 @@ const listRoutes = ( server, mySQL, connection ) => {
 	server.put( '/api/createlist', ( request, response ) => {
 		const { name, description, securityStatus, eventTime} = request.body;
 		const { ID: ownerID } = request.user;
+		if( !request.user.ID ){
+            const dataToReturn = {
+                success: false,
+                data: 'user is not logged in'
+            }
+            response.json( dataToReturn );
+            return;
+        }
 		const randomArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',0,1,2,3,4,5,6,7,8,9];
 		let url = '';
 		for( let urlChars = 0; urlChars < 40; urlChars++ ){
