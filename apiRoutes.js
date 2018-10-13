@@ -214,12 +214,18 @@ const paths = ( server, mySQL, connection ) => {
 	});
 
 	/**
-	 * requires all fields of a list
+	 * requires all fields of a list except url
+	 * randomly generates a 40 char long url to attach to the list
 	 * as well as creating a new list, updates the list_to_user DB in order to add the list to the users profile
 	 */
 	server.put( '/api/createlist', ( request, response ) => {
-		const { name, description, url, securityStatus, eventTime} = request.body;
+		const { name, description, securityStatus, eventTime} = request.body;
 		const { ownerID } = request.user;
+		const randomArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',0,1,2,3,4,5,6,7,8,9];
+		let url = '';
+		for( let urlChars = 0; urlChars < 40; urlChars++ ){
+			url =+ randomArray[ Math.floor( Math.random() * randomArray.length ) ];
+		}
 
 		const listCreationQuery = 'INSERT INTO lists (??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?)';
 		const listCreationInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'eventTime', name, description, ownerID, url, securityStatus, eventTime ];
