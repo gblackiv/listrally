@@ -70,7 +70,13 @@ const listRoutes = ( server, mySQL, connection ) => {
 		for( let urlChars = 0; urlChars < 40; urlChars++ ){
 			url += randomArray[ Math.floor( Math.random() * randomArray.length ) ];
 		}
-		
+		if( !ID ){
+            const dataToReturn = {
+                success: false,
+                data: 'the user is not logged in',
+                user: request.user
+            }
+        }
 		const listCreationQuery = 'INSERT INTO lists (??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?)';
 		const listCreationInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'eventTime', name, description, ownerID, url, securityStatus, eventTime ];
 		const listCreationSQL = mySQL.format( listCreationQuery, listCreationInserts );
@@ -126,7 +132,8 @@ const listRoutes = ( server, mySQL, connection ) => {
 
 			const dataToReturn = {
 				success: true,
-				data: successString
+                data: successString,
+                user: request.user
 			};
 			response.json( dataToReturn );
 		});
@@ -137,7 +144,16 @@ const listRoutes = ( server, mySQL, connection ) => {
 	 * list not truely deleted, but the status is set to inactive
 	 */
 	server.delete( '/api/deletelist', ( request, response ) => {
-		const { ID } = request.body;
+        const { ID } = request.body;
+        const { ID : userID } = request.user;
+        if( !userID ){
+            const dataToReturn = {
+                success: false,
+                data: 'user is unauthorized to delete that item'
+            }
+            response.json( dataToReturn );
+            return;
+        }
 
 		const listDeleteQuery = 'UPDATE lists SET ?? = ? WHERE ?? = ?';
 		const listDeleteInserts = [ 'status' , 'inactive' , 'ID', ID ];
@@ -158,12 +174,52 @@ const listRoutes = ( server, mySQL, connection ) => {
 
 			const dataToReturn = {
 				success: true,
-				data: successString
+                data: successString,
+                user: request.user
 			};
 			response.json( dataToReturn );
 		});
 	});
 
+	/**
+	 * needs to be contacted when a logged in user contacts a new list
+	 * attaches the user to the list so that on their profile page they can track it
+	 */
+	server.put( '/api/updateuserlists', ( request, response ) => {
+        const { listID } = request.body;
+        const { ID: userID } = request.user;
+		updateUserLists(request, response, userID, listID );
+		});
+
+
+		//query used in multiple places
+	function updateUserLists( request, response, userID, listID ){
+
+		const userToListQuery = "INSERT INTO list_to_users (??, ??) VALUES (?, ?)";
+		const userToListInserts = [ 'userID','listID', userID, listID ];
+		const userToListSQL = mySQL.format( userToListQuery, userToListInserts );
+
+		connection.query( userToListSQL, ( error, results, fields ) => {
+			if( error ){
+				console.log( '/api/updateuserlists error:', error );
+				const dataToReturn = {
+					success: false,
+					data: 'Error: the list or user ID was incorrect'
+				}
+				response.json( dataToReturn );
+				return;
+			}
+			const successString = `The user ${userID} has been added to list ${listID}`;
+			console.log( successString );
+			const dataToReturn = {
+				success: true,
+                data: successString,
+                user: request.user,
+				listID
+			};
+			response.json( dataToReturn );
+		});
+	}
 
 
 }
