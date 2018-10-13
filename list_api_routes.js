@@ -76,6 +76,8 @@ const listRoutes = ( server, mySQL, connection ) => {
                 data: 'the user is not logged in',
                 user: request.user
             }
+            response.json( dataToReturn );
+            return;
         }
 		const listCreationQuery = 'INSERT INTO lists (??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?)';
 		const listCreationInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'eventTime', name, description, ownerID, url, securityStatus, eventTime ];
@@ -112,31 +114,47 @@ const listRoutes = ( server, mySQL, connection ) => {
 			}
 			response.json( dataToReturn );
 			return;
-		}
-		const listUpdateQuery = 'UPDATE lists SET ??=?, ??=?, ??=?, ??=?, ??=?, ??=? WHERE ?? = ?';
-		const listUpdateInserts = [ 'name', name, 'description',  description, 'ownerID', ownerID, 'url', url, 'securityStatus', securityStatus, 'eventTime', eventTime, 'ID', ID ];
-		const listUpdateSQL = mySQL.format( listUpdateQuery, listUpdateInserts );
+        }
+        
+        const listQuery = "SELECT ownerID FROM lists WHERE ID=?";
+        const listInserts = [ ID ];
+        const listSQL = mySQL.format( listQuery, listInserts );
+        
+        connection.query( listSQL, ( error, results, fields ) => {
+            if( results[0].ownerID !== request.user.ID ){
+                const dataToReturn = {
+                    success: false,
+                    data: "Error: the user does not have access to edit the list",
+                    user: request.user
+                }
+                response.json( dataToReturn );
+                return;
+            }
+            const listUpdateQuery = 'UPDATE lists SET ??=?, ??=?, ??=?, ??=?, ??=?, ??=? WHERE ?? = ?';
+            const listUpdateInserts = [ 'name', name, 'description',  description, 'ownerID', ownerID, 'url', url, 'securityStatus', securityStatus, 'eventTime', eventTime, 'ID', ID ];
+            const listUpdateSQL = mySQL.format( listUpdateQuery, listUpdateInserts );
 
-		connection.query( listUpdateSQL, ( error, results, fields ) => {
-			if( error ){		//could not find a list by the ID given
-				console.log( '/api/updatelist error:', error );
-				const dataToReturn = {
-					success: false,
-					data: "Error: list by that ID does not exist"
-				}
-				response.json( dataToReturn );
-				return;
-			}
-			const successString = `The list ${ID} has been updated`;
-			console.log( successString );
+            connection.query( listUpdateSQL, ( error, results, fields ) => {
+                if( error ){		//could not find a list by the ID given
+                    console.log( '/api/updatelist error:', error );
+                    const dataToReturn = {
+                        success: false,
+                        data: "Error: list by that ID does not exist"
+                    }
+                    response.json( dataToReturn );
+                    return;
+                }
+                const successString = `The list ${ID} has been updated`;
+                console.log( successString );
 
-			const dataToReturn = {
-				success: true,
-                data: successString,
-                user: request.user
-			};
-			response.json( dataToReturn );
-		});
+                const dataToReturn = {
+                    success: true,
+                    data: successString,
+                    user: request.user
+                };
+                response.json( dataToReturn );
+            });
+        });
     });
     
 	/**
