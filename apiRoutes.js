@@ -44,8 +44,7 @@ const routes = ( server, mySQL, connection ) => {
 	 * if the data is empty, the user has no lists they are a part of
 	 */
 	server.get( '/api/getuserlists', ( request, response ) => {
-		const { ID } = request.user;
-		if( ID !== request.user.ID || !ID){
+		if( !request.user){
 			const dataToReturn = {
 				success: false,
 				data: 'Error: current user does not have access to the requested account'
@@ -53,6 +52,7 @@ const routes = ( server, mySQL, connection ) => {
 			response.json( dataToReturn );
 			return;
 		}
+		const { ID } = request.user;
 
 		const listsQuery = 'SELECT ??, ??, ??, ??, ?? FROM ?? JOIN ?? ON ?? = ?? WHERE ?? = ?';
 		const listsInserts = [ 'userID', 'lists.name', 'ownerID', 'securityStatus', 'lists.status', 'list_to_users', 'lists', 'listID', 'lists.ID', 'userID', ID ];
