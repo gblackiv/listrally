@@ -7,7 +7,7 @@ import Header from './header';
 
 import { Fragment } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { addSingleItem } from '../actions/index';
+import { addSingleåItem } from '../actions/index';
 import { getListData } from '../actions/index';
 
 import ListLinkButton from './buttons/list_link_button';
@@ -19,11 +19,9 @@ import ListItems from './owner-list-item';
 class ListOwner extends Component{
 
     componentDidMount() {
-        debugger;
         console.log('componentdidmount this.props :', this.props);
         console.log('List Id:', this.props.match.params.url);
-        // this.props.getListData(this.props.match.params.url);
-        this.props.getListData('ourfirstdummylist');
+        this.props.getListData(this.props.match.params.url);
     }
 
     goBack = () => {
@@ -48,7 +46,7 @@ class ListOwner extends Component{
         const { itemName : name } = values;
         const testObject = {name, listID: 1, assignedUserID: 1}
         this.props.addSingleItem(testObject);
-        this.props.getListData('ourfirstdummylist');
+        this.props.getListData();
     }
 
     render(){
@@ -80,7 +78,7 @@ class ListOwner extends Component{
                              
                                 </form>
                             </div>
-                            {sharedlistItems}
+                            {list ? sharedlistItems : 'Create Your Items'}
                         </div>
                     </div>
                 </div>

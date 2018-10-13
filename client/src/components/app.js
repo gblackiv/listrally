@@ -31,7 +31,7 @@ const App = () => (
             <Route exact path="/" component={Home} />
             <Route exact path="/create-list" component={CreateList} />
             <Route path="/list/:url" component={ListOwner} />
-            <Route path="/list-shared" component={Auth(ListShared)} />
+            <Route path="/list-shared" component={ListShared} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/user-settings" component={UserSettings} />
             <Route path="/chatmodal" component={chatModal} />
