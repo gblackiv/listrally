@@ -27,6 +27,7 @@ export function addSingleItem(newItem){
 
 
 export function createListData(userForm){
+    debugger;
     return async dispatch => {
         const resp = await axios.put('/api/createlist', userForm);
         console.log('create list resp :', resp);
