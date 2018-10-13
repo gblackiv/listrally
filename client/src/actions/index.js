@@ -27,10 +27,10 @@ export function addSingleItem(newItem){
 
 
 export function createListData(userForm){
-    debugger;
+    console.log('New list data sent to server :', userForm);
     return async dispatch => {
         const resp = await axios.put('/api/createlist', userForm);
-        console.log('create list resp :', resp);
+        console.log('create new list resp :', resp);
         dispatch({
             type: types.CREATE_LIST_DATA,
             payload: resp

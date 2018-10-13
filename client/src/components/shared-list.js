@@ -15,7 +15,7 @@ import filter from '../assets/images/filter-icon.png'
 class SharedList extends Component{
 
     componentDidMount() {
-        this.props.getListData();
+        this.props.getListData('ourfirstdummylist');
     }
 
     goBack = () => {
@@ -42,7 +42,7 @@ class SharedList extends Component{
                             </div>
                             <div className="list-top">
                                 <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
-                                <div className="list-date">{list.length>0 ? list[0].eventTime.substr(0, 10) : 'Saturday April 1st'}</div>
+                                <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ') : 'Saturday April 1st'}</div>
                                 <h6 className="list-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
                             </div>
                             <div className="list-items">
