@@ -30,7 +30,7 @@ const App = () => (
         </nav>
             <Route exact path="/" component={Home} />
             <Route exact path="/create-list" component={CreateList} />
-            <Route path="/list" component={ListOwner} />
+            <Route path="/list/:url" component={ListOwner} />
             <Route path="/list-shared" component={Auth(ListShared)} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/user-settings" component={UserSettings} />

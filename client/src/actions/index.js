@@ -2,9 +2,9 @@ import types from './types';
 import axios from 'axios';
 import checkbox from '../components/checkbox';
 
-export function getListData(){
+export function getListData(url){
     return async dispatch => {
-        const resp = await axios.get('/api/lists?url=ourfirstdummylist');
+        const resp = await axios.get(`/api/lists/${url}`);
         console.log('list resp :', resp);
         dispatch({
             type: types.GET_LIST_DATA,
