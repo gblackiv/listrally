@@ -81,7 +81,7 @@ class CreateList extends Component{
                     </div>
                 </div>
                 <footer>
-                <Link to="/list" onClick={ this.toggleListVisibility }><Footer buttons={['next_page_button']} /></Link>
+                <Link to="/list/ourfirstdummylist"><Footer buttons={['next_page_button']} /></Link>
                 </footer>
             </div>
         )

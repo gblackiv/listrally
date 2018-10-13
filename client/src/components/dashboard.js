@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import '../assets/css/dashboard.css';
-import LockIcons from './buttons/lock_buttons';
-import SettingsButton from './buttons/settings_button';
+
 import Header from './header';
+import Footer from './footer';
 import Avatar from './avatar';
 import DashboardCard from './dashboard_card';
 import { connect } from 'react-redux';
@@ -63,7 +64,7 @@ class DashBoard extends Component {
                 </div>
             </div>
             <footer>
-                <p>Footer Component Here</p>
+                <Link to="/create-list"><Footer buttons={['new_list_button']} /></Link>
             </footer>
         </div>
         );
