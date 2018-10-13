@@ -6,6 +6,7 @@ import { renderInput, renderTextArea, renderDate } from '../helpers';
 import '../assets/css/create-list.scss';
 import { createListData } from '../actions';
 import Header from './header';
+import Footer from './footer';
 import DatePicker from './date-picker';
 
 // import '../../node_modules/flatpickr/dist/themes/airbnb.css'
@@ -75,7 +76,7 @@ class CreateList extends Component{
                     </div>
                 </div>
                 <footer>
-                    <p>Footer Component Here</p>
+                <Link to="/list" onClick={ this.toggleListVisibility }><Footer buttons={['next_page_button']} /></Link>
                 </footer>
             </div>
         )
