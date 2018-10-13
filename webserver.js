@@ -8,6 +8,8 @@ const mysqlCredentials = require( './config/mySQLCredentials.js' );
 const cookieSession = require( 'cookie-session' );
 
 const apiRoutes = require( './apiRoutes.js' );
+const listRoutes = require( './list_api_routes.js');
+const itemRoutes = require( './item_api_routes.js')
 const authRoutes = require( './authRoutes.js' );
 const keys = require( './config/keys.js' );
 
@@ -42,6 +44,8 @@ server.use( express.static( `${__dirname}/client/dist` ) );
 
 //routes for the server
 apiRoutes( server, mySQL, connection );
+listRoutes( server, mySQL, connection );
+itemRoutes( server, mySQL, connection );
 authRoutes( server, mySQL, connection, passport)
 passportSetup( server, mySQL, connection, passport );
 
