@@ -32,7 +32,8 @@ const listRoutes = ( server, mySQL, connection ) => {
 	
 			const dataToReturn = {
 				success: true,
-				data: {list: results}
+				data: {list: results},
+				user: request.user
 			};
 
 			const itemQuery = "SELECT ??, ?? as itemName, ?? as userName, ??, ??, ?? FROM ?? JOIN ?? ON ?? = ?? WHERE (?? = ? AND ?? = ?)";
