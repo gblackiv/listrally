@@ -163,41 +163,56 @@ const listRoutes = ( server, mySQL, connection ) => {
 	 */
 	server.delete( '/api/deletelist', ( request, response ) => {
         const { ID } = request.body;
-        const { ID : userID } = request.user;
-        if( !userID ){
+        if( !request.user.ID ){
             const dataToReturn = {
                 success: false,
-                data: 'user is unauthorized to delete that item'
+                data: 'user is not logged in'
             }
             response.json( dataToReturn );
             return;
         }
 
-		const listDeleteQuery = 'UPDATE lists SET ?? = ? WHERE ?? = ?';
-		const listDeleteInserts = [ 'status' , 'inactive' , 'ID', ID ];
-		const listDeleteSQL = mySQL.format( listDeleteQuery, listDeleteInserts );
+        const listQuery = "SELECT ownerID FROM lists WHERE ID=?";
+        const listInserts = [ ID ];
+        const listSQL = mySQL.format( listQuery, listInserts );
+        
+        connection.query( listSQL, ( error, results, fields ) => {
+            if( results[0].ownerID !== request.user.ID ){
+                const dataToReturn = {
+                    success: false,
+                    data: "Error: the user does not have access to delete the list",
+                    user: request.user
+                }
+                response.json( dataToReturn );
+                return;
+            }
 
-		connection.query( listDeleteSQL, ( error, results, fields ) => {
-			if( error ){		//list ID sent in request is invalid
-				console.log( '/api/deletelist error:', error );
-				const dataToReturn = {
-					success: false,
-					data: "Error: cannot find list for the sent ID"
-				}
-				response.json( dataToReturn );
-				return;
-			}
-			const successString = `The list ${ID} has been set to inactive`;
-			console.log( successString );
+            const listDeleteQuery = 'UPDATE lists SET ?? = ? WHERE ?? = ?';
+            const listDeleteInserts = [ 'status' , 'inactive' , 'ID', ID ];
+            const listDeleteSQL = mySQL.format( listDeleteQuery, listDeleteInserts );
 
-			const dataToReturn = {
-				success: true,
-                data: successString,
-                user: request.user
-			};
-			response.json( dataToReturn );
-		});
-	});
+            connection.query( listDeleteSQL, ( error, results, fields ) => {
+                if( error ){		//list ID sent in request is invalid
+                    console.log( '/api/deletelist error:', error );
+                    const dataToReturn = {
+                        success: false,
+                        data: "Error: cannot find list for the sent ID"
+                    }
+                    response.json( dataToReturn );
+                    return;
+                }
+                const successString = `The list ${ID} has been set to inactive`;
+                console.log( successString );
+
+                const dataToReturn = {
+                    success: true,
+                    data: successString,
+                    user: request.user
+                };
+                response.json( dataToReturn );
+            });
+        });
+    });
 
 	/**
 	 * needs to be contacted when a logged in user contacts a new list
