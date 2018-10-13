@@ -64,11 +64,17 @@ header {
 }
 
 footer {
+    position: relative;
     height: 60px;
+    margin: auto 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     .footer-container{
+        height: 100%;
         text-align: right;
-        margin: 15px;
+        margin-right: 15px;
         color: white;
     }
     .footer-icon {

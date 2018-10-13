@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getListData } from '../actions';
 import { Fragment } from 'react';
 import Header from './header';
+import Footer from './footer';
 
 import Checkbox from './checkbox';
 import AddListItemButton from './buttons/add_list_item_button'
@@ -53,7 +54,7 @@ class SharedList extends Component{
                         </div>
                     </div>
                 <footer>
-                    <p>Footer Component Here</p>
+                    <Link to="/chatmodal"><Footer buttons={['chat_button']} /></Link>
                 </footer>
             </div>
         )

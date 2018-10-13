@@ -14,6 +14,7 @@ import ListLinkButton from './buttons/list_link_button';
 import ChatButton from './buttons/chat_button';
 import AddListItemButton from './buttons/add_list_item_button'
 import ListItems from './owner-list-item';
+import Footer from './footer';
 
 
 class ListOwner extends Component{
@@ -83,7 +84,7 @@ class ListOwner extends Component{
                     </div>
                 </div>
                 <footer>
-                    <p>Footer Component Here</p>
+                    <Link to="/list-shared"><Footer buttons={['next_page_button']} /></Link>
                 </footer>
             </div>
 
