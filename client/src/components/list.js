@@ -62,7 +62,7 @@ class ListOwner extends Component{
 
             <div className="col-2">
                 <header>
-                    <Header buttons={[]}/>
+                    <Header buttons={['Back_button']}/>
                 </header> 
                 <div className='content'>
                     <div className="layout-container">
