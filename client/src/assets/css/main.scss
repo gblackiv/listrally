@@ -65,6 +65,15 @@ header {
 
 footer {
     height: 60px;
+
+    .footer-container{
+        text-align: right;
+        margin: 15px;
+        color: white;
+    }
+    .footer-icon {
+        cursor: pointer;
+    }
 }
 
 /*************************
