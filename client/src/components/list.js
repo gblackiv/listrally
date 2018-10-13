@@ -20,7 +20,8 @@ class ListOwner extends Component{
 
     componentDidMount() {
         console.log('componentdidmount this.props :', this.props);
-        this.props.getListData();
+        console.log('List Id:', this.props.match.params.url);
+        this.props.getListData(this.props.match.params.url);
     }
 
     goBack = () => {

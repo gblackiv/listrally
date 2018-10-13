@@ -12,10 +12,10 @@ const paths = ( server, mySQL, connection ) => {
 	 * requires the url of the requested list
 	 *if data.items is empty, there is no items attached to the list
 	 */
-	server.get( '/api/lists', (request, response ) => {
-		const { url } = request.query;
+	server.get( '/api/lists/:url', (request, response ) => {
+		const { url }  = request.params;
 
-		
+		console.log(url);
 		const listQuery = 'SELECT * FROM ?? WHERE ?? = ?';
 		const listInserts = [ 'lists', 'url', url ];
 		const listSQL = mySQL.format( listQuery, listInserts );
