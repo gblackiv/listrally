@@ -81,8 +81,10 @@ padding: 0.3em;
 .fa-sign-out-alt{
     font-size: 1.2em;
     cursor: pointer;
-    color: white;     
+    color: white;
+    padding-inline-start: 5px;    
 }
+
 .dashboard-items{
     display: flex;
     flex-direction: column;
@@ -91,6 +93,7 @@ padding: 0.3em;
     
 }
 .dashboard-signout{
+    display: flex;
     text-align: right;
     flex-grow: 0.98;
     cursor: pointer; 

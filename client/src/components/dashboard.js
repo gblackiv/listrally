@@ -35,7 +35,7 @@ class DashBoard extends Component {
         return (    
         <div className="col-2">
             <header>
-                <Header buttons={['Back_button', 'List_link_button']}/>
+                <Header buttons={['Back_button', 'Sign_out_button']}/>
             </header> 
             <div className='content'>
                 <div className="layout-container">

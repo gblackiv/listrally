@@ -33,7 +33,7 @@ class SharedList extends Component{
         return( 
             <div className="col-2">
             <header>
-                <Header buttons={[]}/>
+                <Header buttons={['Back_button', 'List_link_button']}/>
             </header> 
                 <div className='content'>
                     <div className="layout-container">

@@ -7,6 +7,7 @@ import List_link_button from './buttons/list_link_button';
 import Chat_button from './buttons/chat_button';
 import Sign_in_button from './buttons/sign_in_button';
 import Back_button from './buttons/back_button';
+import Sign_out_button from './buttons/sign_out_button';
 
 
 export default class Header extends React.Component {
@@ -27,6 +28,8 @@ export default class Header extends React.Component {
                 return ( <Link to='FIXME TO AXIOS'> <Sign_in_button /> </Link> );
             case 'Back_button':
                 return ( <Link to='/'> <Back_button /> </Link> );
+            case 'Sign_out_button':
+                return ( <Link to='/'> <Sign_out_button  /> </Link> );
         }
     }
 
