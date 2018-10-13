@@ -12,7 +12,7 @@ class ListItem extends Component {
         const {ID} = this.props;
         const itemID = {ID}
         this.props.deleteItem(itemID);
-        this.props.getListData();
+        this.props.getListData(this.props.url);
     }
 
     updateSingleItem=()=>{
@@ -26,7 +26,7 @@ class ListItem extends Component {
 
     render() {
         const {itemName} = this.props;
-        // console.log('OWNER LIST ITEM this.props :', this.props);
+        console.log('OWNER LIST ITEM this.props :', this.props);
         return (
             <Fragment>
                 <div className="list-item">

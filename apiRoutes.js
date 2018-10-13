@@ -224,7 +224,7 @@ const paths = ( server, mySQL, connection ) => {
 		for( let urlChars = 0; urlChars < 40; urlChars++ ){
 			url += randomArray[ Math.floor( Math.random() * randomArray.length ) ];
 		}
-
+		
 		const listCreationQuery = 'INSERT INTO lists (??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?)';
 		const listCreationInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'eventTime', name, description, ID, url, securityStatus, eventTime ];
 		const listCreationSQL = mySQL.format( listCreationQuery, listCreationInserts );
@@ -240,8 +240,8 @@ const paths = ( server, mySQL, connection ) => {
 				return;
 			}
 			const successString = `The list ${name} has been added to the lists table by owner ID ${ownerID}`;
-			
 			console.log( successString );
+			
 			//updated the list_to_users table to include the owner of the new list
 			updateUserLists( request, response, ownerID, results.insertId );
 		});

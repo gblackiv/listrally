@@ -19,11 +19,9 @@ import ListItems from './owner-list-item';
 class ListOwner extends Component{
 
     componentDidMount() {
-        debugger;
         console.log('componentdidmount this.props :', this.props);
         console.log('List Id:', this.props.match.params.url);
-        // this.props.getListData(this.props.match.params.url);
-        this.props.getListData('ourfirstdummylist');
+        this.props.getListData(this.props.match.params.url);
     }
 
     goBack = () => {
@@ -56,7 +54,7 @@ class ListOwner extends Component{
         console.log('List this.props :', this.props);
         let {items, list} = this.props;
         const sharedlistItems = items.map(item=>{
-            return <ListItems key={item.ID} {...item} />
+            return <ListItems key={item.ID} {...item} url={this.props.match.params.url} />
         })
 
         return ( 
