@@ -33,7 +33,8 @@ const itemRoutes = ( server, mySQL, connection ) => {
 			const dataToReturn = {
 				success: true,
 				data: successString,
-				itemID: results.insertId
+				itemID: results.insertId,
+				user: response.user
 			};
 			response.json( dataToReturn );
 		});
@@ -94,7 +95,8 @@ const itemRoutes = ( server, mySQL, connection ) => {
 					console.log( "/api/updateitem Error:", error );
 					const dataToReturn = {
 						success: false,
-						data: "Error: did not receive the expected items fields"
+						data: "Error: did not receive the expected items fields",
+						user: response.user
 					}
 					response.json( dataToReturn );
 					return;
@@ -154,7 +156,8 @@ const itemRoutes = ( server, mySQL, connection ) => {
 
 				const dataToReturn = {
 					success: true,
-					data: successString
+					data: successString,
+					user: response.user
 				};
 				response.json( dataToReturn );
 			});

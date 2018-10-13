@@ -6,7 +6,7 @@
  * inactive data from the DB will not be sent (inactive is psudo-deleted)
  */
 
-const paths = ( server, mySQL, connection ) => {
+const routes = ( server, mySQL, connection ) => {
 
 	
 	/**
@@ -78,15 +78,6 @@ const paths = ( server, mySQL, connection ) => {
 	});
 
 	/**
-	 * needs to be contacted when a logged in user contacts a new list
-	 * attaches the user to the list so that on their profile page they can track it
-	 */
-	server.put( '/api/updateuserlists', ( request, response ) => {
-		const { userID, listID } = request.body;
-		updateUserLists(request, response, userID, listID );
-		});
-
-	/**
 	 * contact when user hits the notifications button
 	 * send in the data a param names notificationsSetting, set to either true or false
 	 * user must be logged in to access
@@ -113,39 +104,13 @@ const paths = ( server, mySQL, connection ) => {
 			console.log( successString );
 			const dataToReturn = {
 				success: true,
-				data: successString
+				data: successString,
+				user: request.user
 			};
 			response.json( dataToReturn );
 		} );
 	});
 
-		//query used in multiple places
-	function updateUserLists( request, response, userID, listID ){
-
-		const userToListQuery = "INSERT INTO list_to_users (??, ??) VALUES (?, ?)";
-		const userToListInserts = [ 'userID','listID', userID, listID ];
-		const userToListSQL = mySQL.format( userToListQuery, userToListInserts );
-
-		connection.query( userToListSQL, ( error, results, fields ) => {
-			if( error ){
-				console.log( '/api/updateuserlists error:', error );
-				const dataToReturn = {
-					success: false,
-					data: 'Error: the list or user ID was incorrect'
-				}
-				response.json( dataToReturn );
-				return;
-			}
-			const successString = `The user ${userID} has been added to list ${listID}`;
-			console.log( successString );
-			const dataToReturn = {
-				success: true,
-				data: successString,
-				listID
-			};
-			response.json( dataToReturn );
-		});
-	}
 }
 
-module.exports = paths;
+module.exports = routes;
