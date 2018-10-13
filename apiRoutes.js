@@ -354,7 +354,7 @@ const paths = ( server, mySQL, connection ) => {
 	 */
 	server.get( '/api/getuserlists', ( request, response ) => {
 		const { ID } = request.user;
-		if( ID !== request.user.ID ){
+		if( ID !== request.user.ID || !ID){
 			const dataToReturn = {
 				success: false,
 				data: 'Error: current user does not have access to the requested account'
