@@ -13,15 +13,15 @@ const paths = ( server, mySQL, connection ) => {
 	 *if data.items is empty, there is no items attached to the list
 	 */
 	server.get( '/api/lists/:url', (request, response ) => {
+	try{
 		const { url }  = request.params;
 
-		console.log(url);
 		const listQuery = 'SELECT * FROM ?? WHERE ?? = ?';
 		const listInserts = [ 'lists', 'url', url ];
 		const listSQL = mySQL.format( listQuery, listInserts );
 		
 		connection.query( listSQL, ( error, results, fields ) => {
-			if( error ){		//respond to the from end that there was an error with their data given to the server
+			if( error || !results[0]){		//respond to the from end that there was an error with their data given to the server
 
 				const dataToReturn = {
 					success: false,
@@ -56,7 +56,10 @@ const paths = ( server, mySQL, connection ) => {
 				response.json( dataToReturn );
 			});
 		});
-
+	}
+	catch(error){
+		console.log(error);
+	}
 	});
 
 	/**
