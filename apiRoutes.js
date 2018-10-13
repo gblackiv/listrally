@@ -13,7 +13,6 @@ const paths = ( server, mySQL, connection ) => {
 	 *if data.items is empty, there is no items attached to the list
 	 */
 	server.get( '/api/lists/:url', (request, response ) => {
-	try{
 		const { url }  = request.params;
 
 		const listQuery = 'SELECT * FROM ?? WHERE ?? = ?';
@@ -56,10 +55,6 @@ const paths = ( server, mySQL, connection ) => {
 				response.json( dataToReturn );
 			});
 		});
-	}
-	catch(error){
-		console.log(error);
-	}
 	});
 
 	/**
@@ -358,7 +353,7 @@ const paths = ( server, mySQL, connection ) => {
 	 * if the data is empty, the user has no lists they are a part of
 	 */
 	server.get( '/api/getuserlists', ( request, response ) => {
-		const { ID } = request.query;
+		const { ID } = request.user;
 		if( ID !== request.user.ID ){
 			const dataToReturn = {
 				success: false,
