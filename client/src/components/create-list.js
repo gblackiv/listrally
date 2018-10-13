@@ -29,10 +29,15 @@ class CreateList extends Component{
         });
     }
     userCreateListData = (values) => {
+        //const { name, description, securityStatus, eventTime} = request.body;
         console.log('Flatpickr Date: ', this.state.date);
         values.eventTime = this.state.date;
-        console.log('Create List Info: ', values);
-        this.props.createListData(values);
+        let {eventDescription: description, eventName: name, eventTime} = values;
+        const securityStatus = "locked";
+        eventTime = eventTime[0].toJSON().slice(0, 19).replace('T', ' ');
+        const newEventObject = { name, description, securityStatus, eventTime };
+        this.props.createListData(newEventObject);
+        
     }
 
     render(){
@@ -68,7 +73,7 @@ class CreateList extends Component{
 
                     <div className="form-row">
                         <div className="form-col create-list-right">
-                            <button className="btn btn-blue">Temp Save Button</button>
+                            <button className="btn btn-blue">Create List</button>
                         </div>
                     </div>
                 </form>

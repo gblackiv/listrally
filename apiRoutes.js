@@ -218,15 +218,15 @@ const paths = ( server, mySQL, connection ) => {
 	 */
 	server.put( '/api/createlist', ( request, response ) => {
 		const { name, description, securityStatus, eventTime} = request.body;
-		const { ownerID } = request.user;
+		const { ID } = request.user;
 		const randomArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',0,1,2,3,4,5,6,7,8,9];
 		let url = '';
 		for( let urlChars = 0; urlChars < 40; urlChars++ ){
-			url =+ randomArray[ Math.floor( Math.random() * randomArray.length ) ];
+			url += randomArray[ Math.floor( Math.random() * randomArray.length ) ];
 		}
-
+		
 		const listCreationQuery = 'INSERT INTO lists (??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?)';
-		const listCreationInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'eventTime', name, description, ownerID, url, securityStatus, eventTime ];
+		const listCreationInserts = [ 'name', 'description', 'ownerID', 'url', 'securityStatus', 'eventTime', name, description, ID, url, securityStatus, eventTime ];
 		const listCreationSQL = mySQL.format( listCreationQuery, listCreationInserts );
 
 		connection.query( listCreationSQL, ( error, results, fields ) => {
@@ -241,7 +241,7 @@ const paths = ( server, mySQL, connection ) => {
 			}
 			const successString = `The list ${name} has been added to the lists table by owner ID ${ownerID}`;
 			console.log( successString );
-
+			
 			//updated the list_to_users table to include the owner of the new list
 			updateUserLists( request, response, ownerID, results.insertId );
 		});
