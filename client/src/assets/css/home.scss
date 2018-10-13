@@ -1,63 +1,124 @@
-%flex-column{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .home-container{
-    height: 100vh;
-    @extend %flex-column;
+    flex: 4;
+    min-height: 80vh;
+    margin: 0 12px;
+    color: white;
+    text-align: center;
 }
 
-.home-content{
-    @extend %flex-column;
-height: 100vh;
-justify-content: space-evenly;
-}
-
-.new-list{
-    justify-content: center;
-    @extend %flex-column;
-}
 .new-list-btn{
     width: 50px;
     height: 50px;
+    margin: 2vh auto;
     cursor: pointer;
 }
 
 .sign-in{
-cursor: pointer;
+    cursor: pointer;
+    margin: 2vh auto;
 }
 
-#logo{
-height: 25vh;
+.logo-container{
+    height: 150px;
+    width: 150px;
+    background-color: white;
+    border: 20px solid orange;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-bottom: 3vw;
+}
+#logo {
+    width: 100%;
+    height: 100%;
 }
 
 .home-title{
-font-weight: 700;
-font-size: 4em;
-letter-spacing: 0.1em;
-color: orange;
-}
-
-.home-templates{
-    @extend %flex-column;
+    font-weight: 700;
+    font-size: 5em;
+    letter-spacing: 0.1em;
+    color: orange;
 }
 
 .template{
-color: orange;
-list-style: none;
-cursor: pointer;
-}
-.home-hidden{
-display: none;
+    color: orange;
+    list-style: none;
+    cursor: pointer;
 }
 
 .instruction{
     margin-top: 0;
     margin-bottom: 0.5em;
 }
+.home-text {
+    font-size: 1em;
+}
 
 .home-arrow{
-    cursor: pointer
+    cursor: pointer;
+}
+
+.shadow {
+    -webkit-filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.5));
+    filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.5));
+}
+
+.home-hidden{
+    display: none;
+}
+
+/*********************
+* Media Queries
+********************/
+@media all and (min-width: 1024px) and (max-width: 1280px) {
+    .home-title{
+        font-size: 4em;
+    }
+    .logo-container{
+        height: 150px;
+        width: 150px;
+    }
+    .home-text {
+        font-size: 1em;
+    }
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+    .home-title{
+        font-size: 3em;
+    }
+    .logo-container{
+        height: 125px;
+        width: 125px;
+    }
+    .home-text {
+        font-size: 0.9em;
+    }
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) {
+    .home-title{
+        font-size: 2em;
+    }
+    .logo-container{
+        height: 100px;
+        width: 100px;
+        border: 15px solid orange;
+    }
+    .home-text {
+        font-size: 0.8em;
+    }
+}
+
+@media all and (max-width: 480px) {
+    .home-title{
+        font-size: 2em;
+    }
+    .logo-container{
+        height: 80px;
+        width: 80px;
+        border: 10px solid orange;
+    }
+    .home-text {
+        font-size: 0.7em;
+    }
 }
