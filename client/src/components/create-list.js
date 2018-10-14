@@ -20,6 +20,7 @@ class CreateList extends Component{
             // date: new Date(),
             // enableTime: true,
             // dateFormat: "Y-m-d H:i"
+            save: false
         };
         this.getDate = this.getDate.bind(this);
       }
@@ -37,11 +38,10 @@ class CreateList extends Component{
         eventTime = eventTime[0].toJSON().slice(0, 19).replace('T', ' ');
         const newEventObject = { name, description, securityStatus, eventTime };
         this.props.createListData(newEventObject);
-        
     }
 
     render(){
-
+        console.log('Create List this.props :', this.props);
         const { handleSubmit } = this.props;
 
         return(
@@ -73,7 +73,7 @@ class CreateList extends Component{
 
                     <div className="form-row">
                         <div className="form-col create-list-right">
-                            <button className="btn btn-blue">Create List</button>
+                            <button className="btn btn-blue">Save</button>
                         </div>
                     </div>
                 </form>
@@ -81,7 +81,7 @@ class CreateList extends Component{
                     </div>
                 </div>
                 <footer>
-                <Link to="/list/ourfirstdummylist"><Footer buttons={['next_page_button']} /></Link>
+                    <Link to={`/list/${this.props.url}`}><Footer buttons={['next_page_button']} /></Link>
                 </footer>
             </div>
         )
@@ -103,9 +103,9 @@ function validate(values){
 }
 
 function mapStateToProps(state){
-
+    console.log('Create list MSTP state :', state);
     return {
-        
+        url: state.list.url
     }
 }
 

@@ -28,7 +28,7 @@ class SharedList extends Component{
     render(){
         // console.log('Shared List this.props :', this.props);
         const {items,list} = this.props;
-        console.log('list :', list);
+        console.log('Shared list :', list);
         const checkboxList = items.map(item=>{
             return <Checkbox key={item.ID} {...item} />
         })
@@ -64,11 +64,12 @@ class SharedList extends Component{
 
 function mapStateToProps(state){
     // console.log('Redux state list inside mapStateToProp :', state.list.list);
-    // console.log('Redux state items inside mapStateToProp :', state.list.items);
+    console.log('Shared List inside mapStateToProp :', state.list.items);
     return {
         list: state.list.list,
         items: state.list.items,
-        userInfo: state.user.userInfo
+        userInfo: state.user.userInfo,
+        url: state.list.url
     }
 }
 

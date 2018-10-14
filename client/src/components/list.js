@@ -30,16 +30,16 @@ class ListOwner extends Component{
         this.props.history.goBack();
     }
 
-    componentDidUpdate(){
-        const {list, userInfo : {ID: userID}} = this.props;
-        if(list.length>0){//if list is finally loaded
-            debugger;
-             var {ownerID} = list[0];//pull owner ID out of it
-        }
-        if(userID!==ownerID){//if the current user ID is not the list's ownerID
-            this.props.history.push('/');//bring them back to landing page
-        }
-    }
+    // componentDidUpdate(){
+    //     const {list, userInfo : {ID: userID}} = this.props;
+    //     if(list.length>0){//if list is finally loaded
+    //         debugger;
+    //          var {ownerID} = list[0];//pull owner ID out of it
+    //     }
+    //     if(userID!==ownerID){//if the current user ID is not the list's ownerID
+    //         this.props.history.push('/');//bring them back to landing page
+    //     }
+    // }
 
 
     renderInput = (props) => {
