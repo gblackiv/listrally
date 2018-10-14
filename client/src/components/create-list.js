@@ -20,7 +20,7 @@ class CreateList extends Component{
             // date: new Date(),
             // enableTime: true,
             // dateFormat: "Y-m-d H:i"
-            save: false
+            saved: false
         };
         this.getDate = this.getDate.bind(this);
       }
@@ -40,9 +40,16 @@ class CreateList extends Component{
         this.props.createListData(newEventObject);
     }
 
+    saveInfo=()=>{
+        this.setState({
+            saved: true
+        })
+    }
+
     render(){
         console.log('Create List this.props :', this.props);
         const { handleSubmit } = this.props;
+        const { saved } = this.state
 
         return(
             <div className="col-2">
@@ -73,7 +80,7 @@ class CreateList extends Component{
 
                     <div className="form-row">
                         <div className="form-col create-list-right">
-                            <button className="btn btn-blue">Save</button>
+                            <button onClick={this.saveInfo} className={saved ? "btn btn-saved" : "btn btn-blue"}>{saved ? "✔️ Saved" : "Save"}</button>
                         </div>
                     </div>
                 </form>
@@ -103,7 +110,6 @@ function validate(values){
 }
 
 function mapStateToProps(state){
-    console.log('Create list MSTP state :', state);
     return {
         url: state.list.url
     }

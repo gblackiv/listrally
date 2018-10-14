@@ -4,6 +4,9 @@
 body {
     margin: 0;
     box-sizing: border-box;
+    button:focus {
+        outline:0;
+    }
 }
 
 .app {
@@ -184,6 +187,13 @@ h6 {
 
 .btn-grey:hover {
     background-color: #666666;
+}
+
+.btn-saved{
+    background-color: transparent;
+    border: none;
+    color: #26a69a;
+    box-shadow: none;
 }
 
 /*************************
