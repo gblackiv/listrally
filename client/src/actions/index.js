@@ -81,6 +81,7 @@ export function deleteItem(item){
     console.log('Deleted Item Inside Action Creator :', item);
     return async dispatch => {
         const resp = await axios.post('/api/deleteitem', item);
+        console.log('Delete item resp :', resp);
         dispatch({
             type: types.DELETE_SINGLE_ITEM,
             payload: resp

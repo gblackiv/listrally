@@ -11,10 +11,10 @@ export default props => (
                 <Link to="/create-list" className="nav-link">Create List Page</Link>
             </li>
             <li>
-                <Link to={`/list/${'w14eg4akj5271c9mj6mz3zi90qpn9xac7epo8lol'}`} className="nav-link">List Page</Link>
+                <Link to={`/list/${'ourfirstdummylist'}`} className="nav-link">List Page</Link>
             </li>
             <li>
-                <Link to="/list-shared" className="nav-link">Shared List</Link>
+                <Link to="/list-shared/ourfirstdummylist" className="nav-link">Shared List</Link>
             </li>
             <li>
                 <Link to="/dashboard" className="nav-link">User Dash</Link>

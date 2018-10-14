@@ -21,7 +21,7 @@ export default class Header extends React.Component {
             case 'list_button': 
                 return <List_button />;
             case 'List_link_button':
-                return ( <Link to="/list-shared"> <List_link_button /> </Link> );
+                return ( <Link to={`/list-shared/${this.props.url}`}> <List_link_button /> </Link> );
             case 'chat_button':
                 return <Chat_button />;
             case 'Sign_in_button':

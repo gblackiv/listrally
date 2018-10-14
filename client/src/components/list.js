@@ -1,5 +1,5 @@
-import avatar from '../assets/images/user.png';
 import '../assets/css/list_owner.scss';
+import dummyAvatar from '../assets/images/user.png'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -68,7 +68,10 @@ class ListOwner extends Component{
     render(){
         const {handleSubmit} = this.props;
         console.log('List this.props :', this.props);
-        let {items, list} = this.props;
+        let {items, list, userInfo } = this.props;
+        if(userInfo.avatar){
+            var { avatar } = userInfo;
+        }
         const sharedlistItems = items.map(item=>{
             return <ListItems key={item.ID} {...item} url={this.props.match.params.url} />
         })
@@ -77,12 +80,12 @@ class ListOwner extends Component{
 
             <div className="col-2">
                 <header>
-                    <Header buttons={['Back_button']}/>
+                    <Header url={this.props.match.params.url} buttons={['Back_button', 'List_link_button']}/>
                 </header> 
                 <div className='content'>
                     <div className="layout-container">
                         <div className="list-top">
-                            <Link to="/dashboard"><img id="avatar" src={avatar} alt="avatar"/></Link>
+                            <Link to="/dashboard"><img id="avatar" src={userInfo.avatar ? avatar : dummyAvatar } alt="avatar"/></Link>
                             <h4 className="list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
                             <div className="list-date">{list.length>0 ? list[0].eventTime.substr(0, 10) : 'Saturday April 1st'}</div>
                             <h6 className="list-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
@@ -99,7 +102,7 @@ class ListOwner extends Component{
                     </div>
                 </div>
                 <footer>
-                    <Link to="/list-shared"><Footer buttons={['next_page_button']} /></Link>
+                    <Link to={`/list-shared/${this.props.match.params.url}`}><Footer buttons={['next_page_button']} /></Link>
                 </footer>
             </div>
 

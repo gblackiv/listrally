@@ -58,7 +58,7 @@ class Checkbox extends Component {
         const testCheckboxObject = {ID, name, listID, assignedUserID};
         console.log('testCheckboxObject :', testCheckboxObject);
         this.props.sendCheckboxInfo(testCheckboxObject);
-        this.props.getListData('ourfirstdummylist');
+        this.props.getListData(this.props.url);
     }
 
 
