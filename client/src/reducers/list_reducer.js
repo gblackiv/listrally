@@ -4,7 +4,9 @@ const DEFAULT_STATE = {
     items: [],
     list: [],
     item: {},
-    allLists: []
+    allLists: [],
+    listID: null,
+    url: ""
 }
 
 export default (state=DEFAULT_STATE,action)=>{
@@ -20,6 +22,8 @@ export default (state=DEFAULT_STATE,action)=>{
             return {...state};
         case types.GET_SINGLE_ITEM:
             return {...state};
+        case types.CREATE_LIST_DATA:
+            return {...state, listID: action.payload.data.listID, url: action.payload.data.url};
         case types.DELETE_SINGLE_ITEM:
             console.log('delete item action :', action);
             return {...state};

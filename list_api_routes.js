@@ -79,7 +79,7 @@ const listRoutes = ( server, mySQL, connection ) => {
 		for( let urlChars = 0; urlChars < 40; urlChars++ ){
 			url += randomArray[ Math.floor( Math.random() * randomArray.length ) ];
 		}
-		if( !ID ){
+		if( !ownerID ){
             const dataToReturn = {
                 success: false,
                 data: 'the user is not logged in',
@@ -106,7 +106,7 @@ const listRoutes = ( server, mySQL, connection ) => {
 			console.log( successString );
 			
 			//updated the list_to_users table to include the owner of the new list
-			updateUserLists( request, response, ownerID, results.insertId );
+			updateUserLists( request, response, ownerID, results.insertId, url );
 		});
     });
 
@@ -235,7 +235,7 @@ const listRoutes = ( server, mySQL, connection ) => {
 
 
 		//query used in multiple places
-	function updateUserLists( request, response, userID, listID ){
+	function updateUserLists( request, response, userID, listID, url ){
 
 		const userToListQuery = "INSERT INTO list_to_users (??, ??) VALUES (?, ?)";
 		const userToListInserts = [ 'userID','listID', userID, listID ];
@@ -257,7 +257,8 @@ const listRoutes = ( server, mySQL, connection ) => {
 				success: true,
                 data: successString,
                 user: request.user,
-				listID
+				listID,
+				url
 			};
 			response.json( dataToReturn );
 		});

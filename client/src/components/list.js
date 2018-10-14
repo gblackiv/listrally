@@ -1,5 +1,5 @@
-import avatar from '../assets/images/user.png';
 import '../assets/css/list_owner.scss';
+import dummyAvatar from '../assets/images/user.png'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -15,23 +15,38 @@ import ChatButton from './buttons/chat_button';
 import AddListItemButton from './buttons/add_list_item_button'
 import ListItems from './owner-list-item';
 import Footer from './footer';
+import { userInfo } from 'os';
 
 
 class ListOwner extends Component{
 
+    constructor(props){
+        super(props);
+        this.url = this.props.match.params.url;
+    }
+
     componentDidMount() {
-        console.log('componentdidmount this.props :', this.props);
-        console.log('List Id:', this.props.match.params.url);
-        this.props.getListData(this.props.match.params.url);
+        this.props.getListData(this.url);
     }
 
     goBack = () => {
         this.props.history.goBack();
     }
 
+    // componentDidUpdate(){
+    //     const {list, userInfo : {ID: userID}} = this.props;
+    //     if(list.length>0){//if list is finally loaded
+    //         debugger;
+    //          var {ownerID} = list[0];//pull owner ID out of it
+    //     }
+    //     if(userID!==ownerID){//if the current user ID is not the list's ownerID
+    //         this.props.history.push('/');//bring them back to landing page
+    //     }
+    // }
+
 
     renderInput = (props) => {
-    const { input } = props;
+        const { input } = props;
         return (
             <div className="row">
                 <input className="add-input-field" {...input} type="text" autoComplete="off" placeholder="Add Item" />
@@ -42,32 +57,38 @@ class ListOwner extends Component{
 
     submitItem = (values) => {
         console.log('Submit Item values :', values);
-        const {reset} = this.props;
-        reset();
+        const {reset, list} = this.props;
+        if(list.length>0){
+             var {ID: listID, ownerID} = list[0];
+        }
         const { itemName : name } = values;
-        const testObject = {name, listID: 1, assignedUserID: 1}
+        const testObject = {name, listID, assignedUserID: 0}
         this.props.addSingleItem(testObject);
-        this.props.getListData('ourfirstdummylist');
+        this.props.getListData(this.url);
+        reset();//clears form after submitting
     }
 
     render(){
         const {handleSubmit} = this.props;
         console.log('List this.props :', this.props);
-        let {items, list} = this.props;
+        let {items, list, userInfo } = this.props;
+        if(userInfo.avatar){
+            var { avatar } = userInfo;
+        }
         const sharedlistItems = items.map(item=>{
-            return <ListItems key={item.ID} {...item} url={this.props.match.params.url} />
+            return <ListItems key={item.ID} {...item} url={this.url} />
         })
 
         return ( 
 
             <div className="col-2">
                 <header>
-                    <Header buttons={['Back_button']}/>
+                    <Header url={this.url} buttons={['Back_button', 'List_link_button']}/>
                 </header> 
                 <div className='content'>
                     <div className="layout-container">
                         <div className="list-top">
-                            <Link to="/dashboard"><img id="avatar" src={avatar} alt="avatar"/></Link>
+                            <Link to="/dashboard"><img id="avatar" src={userInfo.avatar ? avatar : dummyAvatar } alt="avatar"/></Link>
                             <h4 className="list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
                             <div className="list-date">{list.length>0 ? list[0].eventTime.substr(0, 10) : 'Saturday April 1st'}</div>
                             <h6 className="list-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
@@ -76,15 +97,14 @@ class ListOwner extends Component{
                             <div className="add">                       
                                 <form onSubmit={handleSubmit(this.submitItem)}>
                                     <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
-                             
                                 </form>
                             </div>
-                            {sharedlistItems}
+                            {items ? sharedlistItems : <div>Loading...</div>}
                         </div>
                     </div>
                 </div>
                 <footer>
-                    <Link to="/list-shared"><Footer buttons={['next_page_button']} /></Link>
+                    <Link to={`/list-shared/${this.url}`}><Footer buttons={['next_page_button']} /></Link>
                 </footer>
             </div>
 
@@ -95,7 +115,8 @@ class ListOwner extends Component{
 function mapStateToProps(state){
     return {
         list: state.list.list,
-        items: state.list.items
+        items: state.list.items,
+        userInfo: state.user.userInfo
     }
 }
 

@@ -87,7 +87,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 				return;
 			}
 
-			if( request.user.ID !== results[0].assignedUserID ){
+			if( request.user.ID !== results[0].assignedUserID && results[0].assignedUserID>0 ){
 				console.log( '/api/updateitem issue: unauthorized user attemped to update item ID', ID);
 				const dataToReturn = {
 					success: false,

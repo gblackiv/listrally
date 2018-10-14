@@ -11,12 +11,18 @@ import Checkbox from './checkbox';
 import AddListItemButton from './buttons/add_list_item_button'
 
 import filter from '../assets/images/filter-icon.png'
+import { userInfo } from 'os';
 
 
 class SharedList extends Component{
 
+    constructor(props){
+        super(props);
+        this.url = this.props.location.pathname.substring(13,this.props.location.pathname.length)
+    }
+
     componentDidMount() {
-        this.props.getListData('ourfirstdummylist');
+        this.props.getListData(this.url);
     }
 
     goBack = () => {
@@ -25,11 +31,11 @@ class SharedList extends Component{
     }
 
     render(){
-        // console.log('Shared List this.props :', this.props);
         const {items,list} = this.props;
-        console.log('list :', list);
+        console.log('Shared list this.props :', this.props);
+        console.log('this.url :', this.url);
         const checkboxList = items.map(item=>{
-            return <Checkbox key={item.ID} {...item} />
+            return <Checkbox key={item.ID} {...item} url={this.url} />
         })
         return( 
             <div className="col-2">
@@ -62,11 +68,11 @@ class SharedList extends Component{
 }
 
 function mapStateToProps(state){
-    console.log('Redux state list inside mapStateToProp :', state.list.list);
-    console.log('Redux state items inside mapStateToProp :', state.list.items);
     return {
         list: state.list.list,
-        items: state.list.items
+        items: state.list.items,
+        userInfo: state.user.userInfo,
+        url: state.list.url
     }
 }
 
