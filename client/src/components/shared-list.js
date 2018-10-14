@@ -11,6 +11,7 @@ import Checkbox from './checkbox';
 import AddListItemButton from './buttons/add_list_item_button'
 
 import filter from '../assets/images/filter-icon.png'
+import { userInfo } from 'os';
 
 
 class SharedList extends Component{
@@ -62,11 +63,12 @@ class SharedList extends Component{
 }
 
 function mapStateToProps(state){
-    console.log('Redux state list inside mapStateToProp :', state.list.list);
-    console.log('Redux state items inside mapStateToProp :', state.list.items);
+    // console.log('Redux state list inside mapStateToProp :', state.list.list);
+    // console.log('Redux state items inside mapStateToProp :', state.list.items);
     return {
         list: state.list.list,
-        items: state.list.items
+        items: state.list.items,
+        userInfo: state.user.userInfo
     }
 }
 

@@ -19,7 +19,8 @@ class Checkbox extends Component {
     }
 
     toggleCheck(){
-        const { ID, assignedUserID, userID } = this.props;
+        const { ID, assignedUserID, userInfo } = this.props;
+        const {ID: userID} = userInfo;
         if(userID!==assignedUserID && assignedUserID>0){//if user is not the one who checked the box
             //and the box has already been checked
             return;
@@ -49,13 +50,12 @@ class Checkbox extends Component {
 
     sendInfoToServer = () => {
         //const { ID, name, listID, assignedUserID } = request.body;
-        var { ID, itemName: name, userID, assignedUserID} = this.props;
+        let { ID, listID, itemName: name, userInfo : {ID: userID}, assignedUserID} = this.props;
         if(userID===assignedUserID){
             assignedUserID = 0;
         } else{
-            assignedUserID = Math.floor(Math.random()*7)+1;
+            assignedUserID = userID;
         }
-        const listID = 1;
         const testCheckboxObject = {ID, name, listID, assignedUserID};
         console.log('testCheckboxObject :', testCheckboxObject);
         this.props.sendCheckboxInfo(testCheckboxObject);
@@ -65,6 +65,7 @@ class Checkbox extends Component {
 
     render(){
         // const { ID, name, listID, assignedUserID } = request.body;
+        console.log('Checkbox this.props :', this.props);
         const {name, avatar} = this.props;
         const {isChecked} = this.state;
         return (
@@ -85,10 +86,11 @@ class Checkbox extends Component {
 }
 
 function mapStateToProps(state){
+    // console.log('shared list MSTP state :', state);
     return {
         list: state.list.list,
         items: state.list.items,
-        userID: state.user.userID
+        userInfo: state.user.userInfo
     }
 }
 

@@ -15,6 +15,7 @@ import ChatButton from './buttons/chat_button';
 import AddListItemButton from './buttons/add_list_item_button'
 import ListItems from './owner-list-item';
 import Footer from './footer';
+import { userInfo } from 'os';
 
 
 class ListOwner extends Component{
@@ -95,7 +96,8 @@ class ListOwner extends Component{
 function mapStateToProps(state){
     return {
         list: state.list.list,
-        items: state.list.items
+        items: state.list.items,
+        userInfo: state.user.userInfo
     }
 }
 

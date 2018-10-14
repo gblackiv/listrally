@@ -4,7 +4,7 @@ const DEFAULT_STATE = {
     items: [],
     list: [],
     item: {},
-    allLists: []
+    allLists: [],
 }
 
 export default (state=DEFAULT_STATE,action)=>{

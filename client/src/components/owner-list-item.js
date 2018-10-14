@@ -45,9 +45,11 @@ class ListItem extends Component {
 }
 
 function mapStateToProps(state){
+    console.log('MSTP state :', state);
     return {
         list: state.list.list,
-        items: state.list.items
+        items: state.list.items,
+        user: state.list.userInfo
     }
 }
 

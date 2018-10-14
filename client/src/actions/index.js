@@ -10,6 +10,10 @@ export function getListData(url){
             type: types.GET_LIST_DATA,
             payload: resp
         })
+        dispatch({
+            type: types.LOGIN,
+            payload: resp
+        })
     }
 }
 
