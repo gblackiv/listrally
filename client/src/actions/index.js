@@ -1,6 +1,5 @@
 import types from './types';
 import axios from 'axios';
-import checkbox from '../components/checkbox';
 
 export function getListData(url){
     return async dispatch => {

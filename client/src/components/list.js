@@ -20,10 +20,13 @@ import { userInfo } from 'os';
 
 class ListOwner extends Component{
 
+    constructor(props){
+        super(props);
+        this.url = this.props.match.params.url;
+    }
+
     componentDidMount() {
-        console.log('componentdidmount this.props :', this.props);
-        console.log('List Id:', this.props.match.params.url);
-        this.props.getListData(this.props.match.params.url);
+        this.props.getListData(this.url);
     }
 
     goBack = () => {
@@ -43,7 +46,7 @@ class ListOwner extends Component{
 
 
     renderInput = (props) => {
-    const { input } = props;
+        const { input } = props;
         return (
             <div className="row">
                 <input className="add-input-field" {...input} type="text" autoComplete="off" placeholder="Add Item" />
@@ -58,11 +61,11 @@ class ListOwner extends Component{
         if(list.length>0){
              var {ID: listID, ownerID} = list[0];
         }
-        reset();
         const { itemName : name } = values;
         const testObject = {name, listID, assignedUserID: 0}
         this.props.addSingleItem(testObject);
-        this.props.getListData(this.props.match.params.url);
+        this.props.getListData(this.url);
+        reset();//clears form after submitting
     }
 
     render(){
@@ -73,14 +76,14 @@ class ListOwner extends Component{
             var { avatar } = userInfo;
         }
         const sharedlistItems = items.map(item=>{
-            return <ListItems key={item.ID} {...item} url={this.props.match.params.url} />
+            return <ListItems key={item.ID} {...item} url={this.url} />
         })
 
         return ( 
 
             <div className="col-2">
                 <header>
-                    <Header url={this.props.match.params.url} buttons={['Back_button', 'List_link_button']}/>
+                    <Header url={this.url} buttons={['Back_button', 'List_link_button']}/>
                 </header> 
                 <div className='content'>
                     <div className="layout-container">
@@ -94,15 +97,14 @@ class ListOwner extends Component{
                             <div className="add">                       
                                 <form onSubmit={handleSubmit(this.submitItem)}>
                                     <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
-                             
                                 </form>
                             </div>
-                            {sharedlistItems}
+                            {items ? sharedlistItems : <div>Loading...</div>}
                         </div>
                     </div>
                 </div>
                 <footer>
-                    <Link to={`/list-shared/${this.props.match.params.url}`}><Footer buttons={['next_page_button']} /></Link>
+                    <Link to={`/list-shared/${this.url}`}><Footer buttons={['next_page_button']} /></Link>
                 </footer>
             </div>
 

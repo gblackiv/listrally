@@ -31,7 +31,6 @@ class SharedList extends Component{
     }
 
     render(){
-        // console.log('Shared List this.props :', this.props);
         const {items,list} = this.props;
         console.log('Shared list this.props :', this.props);
         console.log('this.url :', this.url);
@@ -69,8 +68,6 @@ class SharedList extends Component{
 }
 
 function mapStateToProps(state){
-    // console.log('Redux state list inside mapStateToProp :', state.list.list);
-    console.log('Shared List inside mapStateToProp :', state.list.items);
     return {
         list: state.list.list,
         items: state.list.items,

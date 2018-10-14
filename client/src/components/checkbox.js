@@ -25,16 +25,7 @@ class Checkbox extends Component {
             //and the box has already been checked
             return;
         }
-        // if(!isChecked){//if checkbox is unchecked
-        //     console.log('this.state :', this.state);
-        //     debugger;
-        //     this.setState({//allow checkbox to be toggled
-        //         isChecked: !!this.state.isChecked
-        //     })
-        //     this.sendInfoToServer();
-        // }
         if(userID===assignedUserID){//if the user is the one who checked the box first
-            console.log('this.state :', this.state);
             this.setState({//allow checkbox to be toggled
                 isChecked: !this.state.isChecked
             })
@@ -50,42 +41,36 @@ class Checkbox extends Component {
     sendInfoToServer = () => {
         //const { ID, name, listID, assignedUserID } = request.body;
         let { ID, listID, itemName: name, userInfo : {ID: userID}, assignedUserID} = this.props;
-        if(userID===assignedUserID){
-            assignedUserID = 0;
+        if(userID===assignedUserID){//if box is checked and user is the one who checked it
+            assignedUserID = 0;//removes their name and sets checkbox back to being unchecked
         } else{
             assignedUserID = userID;
         }
-        const testCheckboxObject = {ID, name, listID, assignedUserID};
-        console.log('testCheckboxObject :', testCheckboxObject);
-        this.props.sendCheckboxInfo(testCheckboxObject);
+        const checkboxObject = {ID, name, listID, assignedUserID};
+        this.props.sendCheckboxInfo(checkboxObject);
         this.props.getListData(this.props.url);
     }
 
 
     render(){
         // const { ID, name, listID, assignedUserID } = request.body;
-        console.log('Checkbox this.props :', this.props);
         const {name, avatar} = this.props;
         const {isChecked} = this.state;
         return (
-            <Fragment>
-                <div className="list_item">
-                    <div className="shared-left">
-                        {/* <input type="checkbox" name={name} value={name} checked={assignedUserID ? 'checked' : false} onChange={()=>this.props.checkItem()} /> */}
-                        <input type="checkbox" name={name} {...this.props} value={name} checked={this.state.isChecked ? 'checked' : false}  onChange={this.toggleCheck} />
-                        <label style={this.state.isChecked ? crossedOutTextStyle : this.state.style } >{this.props.itemName}</label>
-                    </div>
-                    <div className="shared-right">
-                        <img className="person" src={this.state.isChecked ? avatar : blankImage} alt="user"/>
-                    </div>
+            <div className="list_item">
+                <div className="shared-left">
+                    <input type="checkbox" name={name} value={name} checked={isChecked ? 'checked' : false}  onChange={this.toggleCheck} />
+                    <label style={isChecked ? crossedOutTextStyle : this.state.style } >{this.props.itemName}</label>
                 </div>
-            </Fragment>
+                <div className="shared-right">
+                    <img className="person" src={isChecked ? avatar : blankImage} alt="user"/>
+                </div>
+            </div>
         )
     }
 }
 
 function mapStateToProps(state){
-    // console.log('shared list MSTP state :', state);
     return {
         list: state.list.list,
         items: state.list.items,

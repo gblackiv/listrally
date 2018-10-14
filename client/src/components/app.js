@@ -26,20 +26,20 @@ import CreateList from './create-list';
 const App = () => (
     <div className="app">
         <nav className="col-1 side-nav">
-        <TempNav />
+            <TempNav />
         </nav>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/create-list" component={CreateList} />
-            <Route path="/list/:url" component={ListOwner} />
-            <Route path="/list-shared" component={ListShared} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/user-settings" component={UserSettings} />
-            <Route path="/chatmodal" component={chatModal} />
-            <Route path="/about" component={About} />
-            <Route path="/list-item" component={createListItem} />
-            <Route path="/layout" component={LayoutTemplate} />  
-            <Route path="/item/:itemID" component={createListItem} />       
-        </div>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/create-list" component={CreateList} />
+        <Route path="/list/:url" component={ListOwner} />
+        <Route path="/list-shared" component={ListShared} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/user-settings" component={UserSettings} />
+        <Route path="/chatmodal" component={chatModal} />
+        <Route path="/about" component={About} />
+        <Route path="/list-item" component={createListItem} />
+        <Route path="/layout" component={LayoutTemplate} />  
+        <Route path="/item/:itemID" component={createListItem} />       
+    </div>
 );
 
 export default App;

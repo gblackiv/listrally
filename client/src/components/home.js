@@ -44,7 +44,7 @@ class Home extends Component{
                                     <a href='/auth/logout'>clickme</a>
                                 <div className="new-list">
                                     <p className="instruction home-text">Click the + icon to make a list</p>
-                                    <Link to="/list"><img className="new-list-btn" src={newList} alt="new_list"/></Link>
+                                    <Link to="/create-list"><img className="new-list-btn" src={newList} alt="new_list"/></Link>
                                 </div>
                                 <div className="home-templates">
                                     <p className="instruction home-text">or click the arrow to select a list template</p>
