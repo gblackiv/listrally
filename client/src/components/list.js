@@ -30,6 +30,17 @@ class ListOwner extends Component{
         this.props.history.goBack();
     }
 
+    componentDidUpdate(){
+        const {list, userInfo : {ID: userID}} = this.props;
+        if(list.length>0){//if list is finally loaded
+            debugger;
+             var {ownerID} = list[0];//pull owner ID out of it
+        }
+        if(userID!==ownerID){//if the current user ID is not the list's ownerID
+            this.props.history.push('/');//bring them back to landing page
+        }
+    }
+
 
     renderInput = (props) => {
     const { input } = props;
@@ -43,12 +54,15 @@ class ListOwner extends Component{
 
     submitItem = (values) => {
         console.log('Submit Item values :', values);
-        const {reset} = this.props;
+        const {reset, list} = this.props;
+        if(list.length>0){
+             var {ID: listID, ownerID} = list[0];
+        }
         reset();
         const { itemName : name } = values;
-        const testObject = {name, listID: 1, assignedUserID: 1}
+        const testObject = {name, listID, assignedUserID: 0}
         this.props.addSingleItem(testObject);
-        this.props.getListData('ourfirstdummylist');
+        this.props.getListData(this.props.match.params.url);
     }
 
     render(){

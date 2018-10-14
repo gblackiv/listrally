@@ -17,9 +17,8 @@ class ListItem extends Component {
 
     updateSingleItem=()=>{
         // const { ID, name, listID, assignedUserID } = request.body;
-        const { ID, itemName: name,} = this.props;
+        const { ID, itemName: name, listID} = this.props;
         let assignedUserID = 0;
-        const listID = 1;
         const updatedObject = {ID, name, listID, assignedUserID}
         console.log('updatedObject :', updatedObject);
     }
@@ -45,7 +44,7 @@ class ListItem extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('MSTP state :', state);
+    // console.log('MSTP state :', state);
     return {
         list: state.list.list,
         items: state.list.items,

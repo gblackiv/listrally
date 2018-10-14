@@ -19,13 +19,12 @@ class Checkbox extends Component {
     }
 
     toggleCheck(){
-        const { ID, assignedUserID, userInfo } = this.props;
+        const { assignedUserID, userInfo } = this.props;
         const {ID: userID} = userInfo;
         if(userID!==assignedUserID && assignedUserID>0){//if user is not the one who checked the box
             //and the box has already been checked
             return;
         }
-        const {isChecked} =this.state;
         // if(!isChecked){//if checkbox is unchecked
         //     console.log('this.state :', this.state);
         //     debugger;
