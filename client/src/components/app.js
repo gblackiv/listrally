@@ -36,7 +36,7 @@ const App = () => (
         <Route path="/user-settings" component={UserSettings} />
         <Route path="/chatmodal" component={chatModal} />
         <Route path="/about" component={About} />
-        <Route path="/list-item" component={createListItem} />
+        {/* <Route path="/list-item" component={createListItem} /> */}
         <Route path="/layout" component={LayoutTemplate} />  
         <Route path="/item/:itemID" component={createListItem} />       
     </div>

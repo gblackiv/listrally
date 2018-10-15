@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { sendCheckboxInfo, deleteItem, getListData } from '../actions';
+import { sendCheckboxInfo, deleteItem, getListData, updateListData } from '../actions';
 import blankImage from '../assets/images/nothing.png';
 
 const crossedOutTextStyle = {
@@ -49,6 +49,7 @@ class Checkbox extends Component {
         const checkboxObject = {ID, name, listID, assignedUserID};
         this.props.sendCheckboxInfo(checkboxObject);
         this.props.getListData(this.props.url);
+        this.props.updateListData(listID)
     }
 
 
@@ -80,5 +81,5 @@ function mapStateToProps(state){
 
 
 export default connect(mapStateToProps,{
-    sendCheckboxInfo, deleteItem, getListData
+    sendCheckboxInfo, deleteItem, getListData, updateListData
 })(Checkbox); 

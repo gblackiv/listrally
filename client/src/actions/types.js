@@ -6,6 +6,7 @@ export default {
     EDIT_SINGLE_ITEM: 'get_single_item',
     DELETE_SINGLE_ITEM: 'delete_single_item',
     GET_LIST_DATA: 'get_list_data',
+    UPDATE_LIST_DATA: 'update_list_data',
     GET_SINGLE_ITEM: 'get_single_item',
     TOGGLE_COMPLETE: 'toggle_complete',
     FILTER_PERSON: 'filter_person',

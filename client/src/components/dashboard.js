@@ -24,11 +24,11 @@ class DashBoard extends Component {
         this.props.getListTitle();
     }
     render() {
-        console.log('List Props', this.props);
+        console.log('Dashboard Props', this.props);
 
         const listCards = this.props.allLists.map( list => {
             return (
-                <DashboardCard title={list.name}/>
+                <DashboardCard title={list.name} {...list}/>
             )
         });
 
@@ -72,7 +72,6 @@ class DashBoard extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('Redux state.list inside mapStateToProp :', state.list.list);
     return {
         list: state.list.list,
         allLists: state.list.allLists

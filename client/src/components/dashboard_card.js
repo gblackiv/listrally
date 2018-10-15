@@ -13,7 +13,7 @@ import { getListTitle} from '../actions/index';
  class DashboardCard extends Component {
 
     render() {
-        // const {name} = this.props;
+        const {name, userID, ownerID} = this.props;
         console.log('Dashboard card props :', this.props);
         return (
             <Fragment>
@@ -27,10 +27,8 @@ import { getListTitle} from '../actions/index';
                             <div className="dashboard_text">{this.props.title}</div>
                         </div>
                         <div className="dashboard-right">
-                            <LockIcons />
-                            <Link to="/list">
-                                <SettingsButton />
-                            </Link>
+                            {ownerID === userID ? <LockIcons /> : null}
+                            {ownerID === userID ? <Link to="/list"><SettingsButton /></Link> : null}
                             {/* <i className="fas fa-lock-alt btn-red"></i> */}
                             {/* <i className="fas fa-cog btn-grey"></i> */}
                             {/* <br/>

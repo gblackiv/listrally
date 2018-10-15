@@ -83,7 +83,7 @@ class ListOwner extends Component{
 
             <div className="col-2">
                 <header>
-                    <Header url={this.url} buttons={['Back_button', 'List_link_button']}/>
+                    <Header url={this.url} onClick={this.goBack} buttons={['Back_button', 'List_link_button']}/>
                 </header> 
                 <div className='content'>
                     <div className="layout-container">
