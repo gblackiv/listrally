@@ -28,14 +28,14 @@ const routes = ( server, mySQL, connection ) => {
 					success: false,
 					data: "Error: cannot find messages for the sent list ID"
 				}
-				response.json( dataToReturn );
+				response.status( 400 ).json( dataToReturn );
 				return;
 			}
 			const dataToReturn = {
 				success: true,
 				data: results
 			};
-			response.json( dataToReturn );
+			response.status( 200 ).json( dataToReturn );
 		});
 	});
 
@@ -49,7 +49,7 @@ const routes = ( server, mySQL, connection ) => {
 				success: false,
 				data: 'Error: current user does not have access to the requested account'
 			};
-			response.json( dataToReturn );
+			response.status( 403 ).json( dataToReturn );
 			return;
 		}
 		const { ID } = request.user;
@@ -65,7 +65,7 @@ const routes = ( server, mySQL, connection ) => {
 					success: false,
 					data: "Error: the user ID sent was not found"
 				}
-				response.json( dataToReturn );
+				response.status( 400 ).json( dataToReturn );
 				return;
 			}		
 			const dataToReturn = {
@@ -73,7 +73,7 @@ const routes = ( server, mySQL, connection ) => {
 				data: results,
 				user: request.user
 			};
-			response.json( dataToReturn );
+			response.status( 200 ).json( dataToReturn );
 		});
 	});
 
@@ -95,9 +95,9 @@ const routes = ( server, mySQL, connection ) => {
 				console.log('/api/notifications error:', error);
 				const dataToReturn = {
 					success: false,
-					data: 'ERROR: the connection to the database failed'
+					data: 'ERROR: The selected user could not be found'
 				}
-				response.json( dataToReturn );
+				response.status( 400 ).json( dataToReturn );
 				return;
 			}
 			const successString = `user ${ID} has updated their notifications`;
@@ -107,7 +107,7 @@ const routes = ( server, mySQL, connection ) => {
 				data: successString,
 				user: request.user
 			};
-			response.json( dataToReturn );
+			response.status( 200 ).json( dataToReturn );
 		} );
 	});
 

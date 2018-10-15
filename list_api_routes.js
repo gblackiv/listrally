@@ -26,7 +26,7 @@ const listRoutes = ( server, mySQL, connection ) => {
 					success: false,
 					data: "Error: Expected list url"
 				}
-				response.json( dataToReturn );
+				response.status( 404 ).json( dataToReturn );
 				return;
 			}
 	
@@ -49,11 +49,11 @@ const listRoutes = ( server, mySQL, connection ) => {
 						success: false,
 						data: "Error: list url does not exist"
 					}
-					response.json( dataToReturn );
+					response.status( 404 ).json( dataToReturn );
 					return;
 				}
 				dataToReturn.data.items = results;
-				response.json( dataToReturn );
+				response.status( 200 ).json( dataToReturn );
 			});
 		});
     });
@@ -71,7 +71,7 @@ const listRoutes = ( server, mySQL, connection ) => {
                 success: false,
                 data: 'user is not logged in'
             }
-            response.json( dataToReturn );
+            response.status( 401 ).json( dataToReturn );
             return;
         }
 		const randomArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',0,1,2,3,4,5,6,7,8,9];
@@ -85,7 +85,7 @@ const listRoutes = ( server, mySQL, connection ) => {
                 data: 'the user is not logged in',
                 user: request.user
             }
-            response.json( dataToReturn );
+            response.status( 401 ).json( dataToReturn );
             return;
         }
 		const listCreationQuery = 'INSERT INTO lists (??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?)';
@@ -99,7 +99,7 @@ const listRoutes = ( server, mySQL, connection ) => {
 					success: false,
 					data: "Error: incomplete, or incorrect data for a new list"
 				}
-				response.json( dataToReturn );
+				response.status( 400 ).json( dataToReturn );
 				return;
 			}
 			const successString = `The list ${name} has been added to the lists table by owner ID ${ownerID}`;
@@ -121,7 +121,7 @@ const listRoutes = ( server, mySQL, connection ) => {
 				success: false,
 				data: "Error: did not receive expected information"
 			}
-			response.json( dataToReturn );
+			response.status( 400 ).json( dataToReturn );
 			return;
         }
         
@@ -136,7 +136,7 @@ const listRoutes = ( server, mySQL, connection ) => {
                     data: "Error: the user does not have access to edit the list",
                     user: request.user
                 }
-                response.json( dataToReturn );
+                response.status( 401 ).json( dataToReturn );
                 return;
             }
             const listUpdateQuery = 'UPDATE lists SET ??=?, ??=?, ??=?, ??=?, ??=?, ??=? WHERE ?? = ?';
@@ -150,7 +150,7 @@ const listRoutes = ( server, mySQL, connection ) => {
                         success: false,
                         data: "Error: list by that ID does not exist"
                     }
-                    response.json( dataToReturn );
+                    response.status( 400 ).json( dataToReturn );
                     return;
                 }
                 const successString = `The list ${ID} has been updated`;
@@ -161,7 +161,7 @@ const listRoutes = ( server, mySQL, connection ) => {
                     data: successString,
                     user: request.user
                 };
-                response.json( dataToReturn );
+                response.status( 200 ).json( dataToReturn );
             });
         });
     });
@@ -177,7 +177,7 @@ const listRoutes = ( server, mySQL, connection ) => {
                 success: false,
                 data: 'user is not logged in'
             }
-            response.json( dataToReturn );
+            response.status( 401 ).json( dataToReturn );
             return;
         }
 
@@ -192,7 +192,7 @@ const listRoutes = ( server, mySQL, connection ) => {
                     data: "Error: the user does not have access to delete the list",
                     user: request.user
                 }
-                response.json( dataToReturn );
+                response.status( 403 ).json( dataToReturn );
                 return;
             }
 
@@ -207,7 +207,7 @@ const listRoutes = ( server, mySQL, connection ) => {
                         success: false,
                         data: "Error: cannot find list for the sent ID"
                     }
-                    response.json( dataToReturn );
+                    response.status( 400 ).json( dataToReturn );
                     return;
                 }
                 const successString = `The list ${ID} has been set to inactive`;
@@ -218,7 +218,7 @@ const listRoutes = ( server, mySQL, connection ) => {
                     data: successString,
                     user: request.user
                 };
-                response.json( dataToReturn );
+                response.status( 200 ).json( dataToReturn );
             });
         });
     });
@@ -260,7 +260,7 @@ const listRoutes = ( server, mySQL, connection ) => {
 				listID,
 				url
 			};
-			response.json( dataToReturn );
+			response.status( 201 ).json( dataToReturn );
 		});
 	}
 

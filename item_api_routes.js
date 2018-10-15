@@ -18,7 +18,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 				data: 'Error: the user is not logged in',
 				user: request.user
 			}
-			response.json( dataToReturn );
+			response.status( 401 ).json( dataToReturn );
 			return;
 		}
 
@@ -33,7 +33,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 					success: false,
 					data: "Error: did not receive the expected information for a new item"
 				}
-				response.json( dataToReturn );
+				response.status( 400 ).json( dataToReturn );
 				return;
 			}
 			const successString = `The item "${name}" has been added to "List ${listID}"`;
@@ -45,7 +45,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 				itemID: results.insertId,
 				user: request.user
 			};
-			response.json( dataToReturn );
+			response.status( 201 ).json( dataToReturn );
 		});
 	});
 	/**
@@ -60,7 +60,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
                 success: false,
                 data: 'user is not logged in'
             }
-            response.json( dataToReturn );
+            response.status( 401 ).json( dataToReturn );
             return;
         }
 		if(!ID || !name || !listID || assignedUserID === undefined ){
@@ -68,7 +68,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 				success: false,
 				data: 'missing item update information'
 			};
-			response.json( dataToReturn );
+			response.status( 400 ).json( dataToReturn );
 			return;
 		}
 		const itemUserVerificationQuery = 'SELECT * FROM ?? WHERE ?? = ?';
@@ -83,7 +83,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 					data: "Error: could not find item with the requested ID",
 					user: request.user
 				}
-				response.json( dataToReturn );
+				response.status( 400 ).json( dataToReturn );
 				return;
 			}
 
@@ -94,7 +94,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 					data: 'Error: user is unauthorized to update the selected item',
 					user: request.user
 				};
-				response.json( dataToReturn );
+				response.status( 403 ).json( dataToReturn );
 				return;
 			}
 			let changedFields = '';
@@ -116,7 +116,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 						data: "Error: did not receive the expected items fields",
 						user: request.user
 					}
-					response.json( dataToReturn );
+					response.status( 400 ).json( dataToReturn );
 					return;
 				};
 				const successString = `The item ${ID} has been updated`;
@@ -128,7 +128,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 					user: request.user,
 					changedFields
 				};
-				response.json( dataToReturn );
+				response.status( 200 ).json( dataToReturn );
 			});
 		});
 	});
@@ -143,7 +143,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
                 success: false,
                 data: 'user is not logged in'
             }
-            response.json( dataToReturn );
+            response.status( 401 ).json( dataToReturn );
             return;
         }
 
@@ -158,7 +158,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 					success: false,
 					data: "Error: could not find item with the requested ID"
 				}
-				response.json( dataToReturn );
+				response.status( 400 ).json( dataToReturn );
 				return;
 			}
 			
@@ -168,7 +168,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 					success: false,
 					data: 'Error: user is unauthorized to delete the selected item'
 				};
-				response.json( dataToReturn );
+				response.status( 403 ).json( dataToReturn );
 				return;
 			}
 
@@ -186,7 +186,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 					data: successString,
 					user: request.user
 				};
-				response.json( dataToReturn );
+				response.status( 200 ).json( dataToReturn );
 			});
 		});
 	});
