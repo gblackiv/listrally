@@ -229,8 +229,19 @@ const listRoutes = ( server, mySQL, connection ) => {
 	 */
 	server.put( '/api/updateuserlists', ( request, response ) => {
         const { listID } = request.body;
-        const { ID: userID } = request.user;
-		updateUserLists(request, response, userID, listID );
+		const { ID: userID } = request.user;
+		
+		const duplicateCheckQuery = "SELECT * FROM list_to_users WHERE (??=? AND ??=?)";
+		const duplicateCheckInserts = [ 'userID', userID, 'listID', listID ];
+		const duplicateCheckSQL = mySQL.format( duplicateCheckQuery, duplicateCheckInserts );
+		
+		connection.query( duplicateCheckSQL, (error, results, fields ) => {
+			if( !results[0] ){
+				updateUserLists(request, response, userID, listID );
+			}
+		})
+
+		
 		});
 
 
