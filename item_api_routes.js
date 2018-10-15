@@ -147,8 +147,8 @@ const itemRoutes = ( server, mySQL, connection ) => {
             return;
         }
 
-		const itemUserVerificationQuery = 'SELECT * FROM ?? WHERE ?? = ?';
-		const itemUserVerificationInserts = ['items', 'ID', ID];
+		const itemUserVerificationQuery = 'SELECT items.ID, assignedUserID, ownerID, listID FROM ?? JOIN lists ON listID = lists.ID WHERE ?? = ?';
+		const itemUserVerificationInserts = ['items', 'items.ID', ID];
 		const itemUserVerificationSQL = mySQL.format( itemUserVerificationQuery, itemUserVerificationInserts );
 
 		connection.query( itemUserVerificationSQL, ( error, results, fields ) => {
@@ -162,7 +162,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 				return;
 			}
 			
-			if( request.user || request.user.ID !== results[0].assignedUserID ){
+			if( request.user.ID !== results[0].assignedUserID && request.user.ID !== results[0].ownerID ){
 				console.log( '/api/deleteitem issue: unauthorized user attemped to delete item ID', ID);
 				const dataToReturn = {
 					success: false,
