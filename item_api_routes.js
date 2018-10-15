@@ -162,7 +162,7 @@ const itemRoutes = ( server, mySQL, connection ) => {
 				return;
 			}
 			
-			if( request.user && request.user.ID !== results[0].assignedUserID ){
+			if( request.user || request.user.ID !== results[0].assignedUserID ){
 				console.log( '/api/deleteitem issue: unauthorized user attemped to delete item ID', ID);
 				const dataToReturn = {
 					success: false,
