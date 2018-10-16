@@ -8,6 +8,7 @@ import Chat_button from './buttons/chat_button';
 import Sign_in_button from './buttons/sign_in_button';
 import Back_button from './buttons/back_button';
 import Sign_out_button from './buttons/sign_out_button';
+import Home_nav_button from './buttons/home_nav_button';
 
 
 export default class Header extends React.Component {
@@ -39,6 +40,8 @@ export default class Header extends React.Component {
                 return <Back_button onClick={ this.backOnePage } />;
             case 'Sign_out_button':
                 return ( <Sign_out_button/>);
+            case 'Home_nav_button':
+                return ( <Home_nav_button/>);
         }
     }
 
