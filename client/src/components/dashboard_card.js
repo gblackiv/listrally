@@ -13,22 +13,22 @@ import { getListTitle} from '../actions/index';
  class DashboardCard extends Component {
 
     render() {
-        const {name, userID, ownerID} = this.props;
+        const {name, userID, ownerID, url} = this.props;
         console.log('Dashboard card props :', this.props);
         return (
             <Fragment>
                 <div className="dashboard-items">
                     <div className="dashboard-item1">
                         <div className="dashboard-left">
-                            {/* <i className="dashboard_link far fa-link btn-blue"></i> */}
-                            <Link to="/list-shared">
+                            {/* <i className="dashboard_link far fa-link btn-blue"></i> */}                           
                                 <List_link_button/>
+                            <Link to={`/list-shared/${url}`}>
+                                <div className="dashboard_text">{this.props.title}</div>
                             </Link>
-                            <div className="dashboard_text">{this.props.title}</div>
                         </div>
                         <div className="dashboard-right">
-                            {ownerID === userID ? <LockIcons /> : null}
-                            {ownerID === userID ? <Link to="/list"><SettingsButton /></Link> : null}
+                            {/* {ownerID === userID ? <LockIcons /> : null} */}
+                            {ownerID === userID ? <SettingsButton to={`/list/${url}`} /> : null}
                             {/* <i className="fas fa-lock-alt btn-red"></i> */}
                             {/* <i className="fas fa-cog btn-grey"></i> */}
                             {/* <br/>
@@ -43,7 +43,7 @@ import { getListTitle} from '../actions/index';
 
 
 function mapStateToProps(state){
-    console.log('Redux state.list inside mapStateToProp :', state.list.list);
+    console.log('Redux state DASHBOARD inside mapStateToProp :', state);
     return{
         list: state.list.list
     }
