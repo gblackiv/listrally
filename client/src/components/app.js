@@ -23,7 +23,7 @@ import Auth from '../hoc/auth';
 import LayoutTemplate from './layout';
 import CreateList from './create-list';
 
-const App = () => (
+const App = (props) => (
     <div className="app">
         <nav className="col-1 side-nav">
             <TempNav />

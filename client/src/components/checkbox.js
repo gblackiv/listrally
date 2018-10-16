@@ -13,7 +13,8 @@ class Checkbox extends Component {
         super(props);
         this.state = {
             isChecked: !!props.assignedUserID,
-            style: {}
+            style: {},
+            isLogOn: true,
         }
         this.toggleCheck = this.toggleCheck.bind(this);
     }
@@ -21,6 +22,12 @@ class Checkbox extends Component {
     toggleCheck(){
         const { assignedUserID, userInfo } = this.props;
         const {ID: userID} = userInfo;
+        if(!userID){//if user is not logged in
+            this.setState({
+                isLogOn: false
+            })
+            return;
+        }
         if(userID!==assignedUserID && assignedUserID>0){//if user is not the one who checked the box
             //and the box has already been checked
             return;
@@ -62,6 +69,7 @@ class Checkbox extends Component {
                 <div className="shared-left">
                     <input type="checkbox" name={name} value={name} checked={isChecked ? 'checked' : false}  onChange={this.toggleCheck} />
                     <label style={isChecked ? crossedOutTextStyle : this.state.style } >{this.props.itemName}</label>
+                    <label className="checkbox-login">{this.state.isLogOn ? null : 'Please log in to update checkbox'}</label>
                 </div>
                 <div className="shared-right">
                     <img className="person" src={isChecked ? avatar : blankImage} alt="user"/>
