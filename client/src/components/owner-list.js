@@ -71,6 +71,7 @@ class OwnerList extends Component{
     render(){
         const {handleSubmit} = this.props;
         console.log('List this.props :', this.props);
+        console.log('List this.props.history :', this.props.history);
         let {items, list, userInfo } = this.props;
         if(userInfo.avatar){
             var { avatar } = userInfo;
@@ -83,7 +84,7 @@ class OwnerList extends Component{
 
             <div className="col-2">
                 <header>
-                    <Header url={this.url} buttons={['Back_button', 'List_link_button']}/>
+                    <Header url={this.url} buttons={['Back_button', 'List_link_button']} history={this.props.history}/>
                 </header> 
                 <div className='content'>
                     <div className="layout-container">

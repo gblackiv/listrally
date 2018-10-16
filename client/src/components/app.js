@@ -9,7 +9,7 @@ import '../assets/css/buttons.scss';
 //Components
 import TempNav from './tempNav';
 import Home from './home';
-import ListOwner from './list';
+import ListOwner from './owner-list';
 import ListShared from './shared-list';
 import Dashboard from './dashboard';
 import chatModal from './chat_modal';
