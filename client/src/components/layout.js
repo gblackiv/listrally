@@ -8,7 +8,7 @@ export default class CreateList extends Component{
         return(
             <div className="col-2">
             <header>
-                <Header buttons={['Back_button']}/>
+                <Header buttons={['Back_button', 'Home_nav_button']}/>
             </header> 
                 <div className='content'>
                     <div className="layout-container">
