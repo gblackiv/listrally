@@ -23,8 +23,7 @@ const authRoutes = ( server, mySQL, connection, passport ) => {
 	 * with each request from this point forward, there is a cookie that is sent back and forth, with the user attached
 	 */
 	server.get( '/auth/login/redirect', passport.authenticate( 'google' ), ( request, response ) => {
-		response.send(request.user);
-
+		response.sendFile(`${__dirname}/client/dist/logged_in.html`);
 	});
 
 	/**
@@ -37,7 +36,7 @@ const authRoutes = ( server, mySQL, connection, passport ) => {
 			success: true,
 			data: 'User is signed out'
 		};
-		response.json( dataToSend );
+		response.sendFile( `${__dirname}/client/dist/logged_in.html` );
 	});
 }
 module.exports = authRoutes;
