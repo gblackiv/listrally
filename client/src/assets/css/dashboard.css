@@ -172,7 +172,10 @@ i{
     /* position: absolute; */
     align-self: auto;
     padding: 5px;
-
+    color: #1976d2;
+}
+.dashboard_text:hover{
+    text-decoration: underline;
 }
 /* .btn-green{
     display:block;
