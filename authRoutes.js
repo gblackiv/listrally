@@ -32,10 +32,6 @@ const authRoutes = ( server, mySQL, connection, passport ) => {
 	 */
 	server.get( '/auth/logout', ( request, response ) => {
 		request.logout();
-		const dataToSend = {
-			success: true,
-			data: 'User is signed out'
-		};
 		response.sendFile( `${__dirname}/client/dist/logged_in.html` );
 	});
 }
