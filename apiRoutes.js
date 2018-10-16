@@ -54,8 +54,8 @@ const routes = ( server, mySQL, connection ) => {
 		}
 		const { ID } = request.user;
 
-		const listsQuery = 'SELECT ??, ??, ??, ??, ?? FROM ?? JOIN ?? ON ?? = ?? WHERE ?? = ?';
-		const listsInserts = [ 'userID', 'lists.name', 'ownerID', 'securityStatus', 'lists.status', 'list_to_users', 'lists', 'listID', 'lists.ID', 'userID', ID ];
+		const listsQuery = 'SELECT ??, ??, ??, ??, ??, ?? FROM ?? JOIN ?? ON ?? = ?? WHERE ?? = ?';
+		const listsInserts = [ 'url','userID', 'lists.name', 'ownerID', 'securityStatus', 'lists.status', 'list_to_users', 'lists', 'listID', 'lists.ID', 'userID', ID ];
 		const listsSQL = mySQL.format( listsQuery, listsInserts );
 
 		connection.query( listsSQL, ( error, results, fields ) => {
