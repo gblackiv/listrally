@@ -86,7 +86,7 @@ const passportSetup = ( server, mySQL, connection, passport ) => {
 						//if statement to check if they are in our DB with old information, and if so to update their information
 					if( user.email !== (profile.emails[0].value || null) || user.name !== profile.displayName || user.avatar !== profile.photos[0].value){
 						const updateUserQuery = 'UPDATE users SET ??=?, ??=?, ??=? WHERE ??=?';
-						const updateUserInserts = [ 'email', profile.emails[0].value, 'name', profile.name, 'avatar', profile.photos[0].value, 'googleID', profile.id ];
+						const updateUserInserts = [ 'email', profile.emails[0].value, 'name', profile.displayName, 'avatar', profile.photos[0].value, 'googleID', profile.id ];
 						const updateUserSQL = mySQL.format( updateUserQuery, updateUserInserts );
 						connection.query( updateUserSQL, ( error, results, fields ) => {
 							if(error) {
