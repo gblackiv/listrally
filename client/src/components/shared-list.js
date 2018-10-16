@@ -19,6 +19,7 @@ class SharedList extends Component{
     constructor(props){
         super(props);
         this.url = this.props.location.pathname.substring(13,this.props.location.pathname.length)
+        this.link = window.location.href;
     }
 
     componentDidMount() {
@@ -51,6 +52,7 @@ class SharedList extends Component{
                                 <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
                                 <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ') : 'Saturday April 1st'}</div>
                                 <h6 className="list-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
+                                <h6>{this.link}</h6>
                             </div>
                             <div className="list-items">
                                 <form onSubmit={this.sendInfoToServer}>
