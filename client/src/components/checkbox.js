@@ -62,6 +62,7 @@ class Checkbox extends Component {
 
     render(){
         // const { ID, name, listID, assignedUserID } = request.body;
+        console.log('Checkbox this.props :', this.props);
         const {name, avatar} = this.props;
         const {isChecked} = this.state;
         return (

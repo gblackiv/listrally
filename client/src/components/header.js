@@ -38,7 +38,7 @@ export default class Header extends React.Component {
             case 'Back_button':
                 return <Back_button onClick={ this.backOnePage } />;
             case 'Sign_out_button':
-                return ( <Link to='/'> <Sign_out_button  /> </Link> );
+                return ( <Sign_out_button/>);
         }
     }
 
