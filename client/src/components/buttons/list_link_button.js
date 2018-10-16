@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 
 export default class ListLinkButton extends Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            hasNotBeenCopied: true
+        }
+    }
+
     copyTextToClipboard= (text)=> {
         var textArea = document.createElement("textarea");
     
@@ -38,6 +45,9 @@ export default class ListLinkButton extends Component {
           var successful = document.execCommand('copy');
           var msg = successful ? 'successful' : 'unsuccessful';
           console.log('Copying text command was ' + msg);
+          this.setState({
+            hasNotBeenCopied: false
+            })
         } catch (err) {
           console.log('Oops, unable to copy');
         }
@@ -46,15 +56,16 @@ export default class ListLinkButton extends Component {
       }
 
     copyLink=()=> {
-          debugger;
         this.copyTextToClipboard(this.props.link);
       }
 
     render() {
+        const {hasNotBeenCopied} = this.state;
+        console.log('Settings this.state :', this.state);
         console.log('Settings button this.props :', this.props);
         return (
             <div class="list-link" onClick={this.copyLink}>
-                <i className="fas fa-link link-button"></i>
+                {hasNotBeenCopied ? <i className="fas fa-link link-button"></i> : <i className="far fa-check"></i>}
             </div>
         )
     }

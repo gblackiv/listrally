@@ -62,7 +62,7 @@ class CreateList extends Component{
             
             <h6 className="create-list-heading">Create a new list by filling out the form below</h6>
                 <form onSubmit={handleSubmit(this.userCreateListData)}>
-                    <Field name="eventName" label="Event Name" component={ renderInput } />
+                    <Field name="eventName" label="Event Name" component={ renderInput } placeholder="eg. Birthday Party" />
                     <Field name="eventDescription" label="Event Description" component={ renderTextArea }
                     caption="Enter some details about your event like where to park or how to get there."
                     />
