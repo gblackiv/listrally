@@ -20,7 +20,6 @@ body {
 }
 
 header {
-    position: relative;
     height: 60px;
 
     .list-nav {
@@ -28,6 +27,7 @@ header {
         justify-content: space-between;
     }
     .list-nav {
+        position: relative;
         padding: 10px;
         color: white;
         cursor: pointer;
