@@ -47,13 +47,19 @@ const passportSetup = ( server, mySQL, connection, passport ) => {
 	 */
 	function createUserInDB( googleProfile ){
 		return new Promise( ( resolve, reject ) => {
-		const userCreationQuery = 'INSERT INTO ?? ( name, familyName, givenName googleID, email, avatar ) VALUES ( ?, ?, ?, ? )';
-		const userCreationInserts = [ 'users', googleProfile.displayName, googleProfile.familyName, googleProfile.givenName, googleProfile.id, googleProfile.emails[0].value || 0, googleProfile._json.image.url ];
+		const userCreationQuery = 'INSERT INTO ?? ( name, familyName, givenName, googleID, email, avatar ) VALUES ( ?, ?, ?, ?, ?, ? )';
+		const userCreationInserts = [ 'users', googleProfile.displayName, googleProfile.name.familyName, googleProfile.name.givenName, googleProfile.id, googleProfile.emails[0].value || 0, profile.photos[0].value ];
 		const userCreationSQL = mySQL.format( userCreationQuery, userCreationInserts );
 			connection.query( userCreationSQL, ( error, results, fields ) => {
+				if(error){
+					console.log('create user in DB error',error);
+				}
 				console.log( `created new user in DB with googleID of ${googleProfile.id}`);
 				const getNewUserQuery = `SELECT * FROM users WHERE googleID = ${googleProfile.id}`;
 				connection.query( getNewUserQuery, ( error, results, fields ) => {
+					if(error) {
+						console.log(error);
+					}
 					resolve(results[0]);
 				});
 			});
@@ -70,18 +76,22 @@ const passportSetup = ( server, mySQL, connection, passport ) => {
 			const userSQL = mySQL.format( userQuery, userInserts );
 	
 			connection.query( userSQL, ( error, results, fields ) => {
-				//if ( error ) throw error;
+				if ( error ) {
+					console.log("verify user error",error);
+				}
 	
 				let user = results[0];
 				//if statement to check if the user exists
 				if( user && user.googleID == profile.id ){
 						//if statement to check if they are in our DB with old information, and if so to update their information
-					if( user.email !== (profile.emails[0].value || 1) || user.name !== profile.displayName || user.avatar !== profile._json.image.url){
-						console.log( `emails: ${user.email} -- ${profile.email}`);
-						const updateUserQuery = 'UPDATE users SET ??=?, ??=?, ??=?, WHERE ??=?';
-						const updateUserInserts = [ 'email', profile.email, 'name', profile.name, 'avatar', profile._json.image.url, 'googleID', profile.id ];
+					if( user.email !== (profile.emails[0].value || null) || user.name !== profile.displayName || user.avatar !== profile.photos[0].value){
+						const updateUserQuery = 'UPDATE users SET ??=?, ??=?, ??=? WHERE ??=?';
+						const updateUserInserts = [ 'email', profile.emails[0].value, 'name', profile.name, 'avatar', profile.photos[0].value, 'googleID', profile.id ];
 						const updateUserSQL = mySQL.format( updateUserQuery, updateUserInserts );
 						connection.query( updateUserSQL, ( error, results, fields ) => {
+							if(error) {
+								console.log(error);
+							}
 							console.log( `user ID: ${user.ID} has been updated`);
 							resolve( user );
 						});
@@ -111,7 +121,9 @@ const passportSetup = ( server, mySQL, connection, passport ) => {
 			const userSQL = mySQL.format( userQuery, userInserts );
 
 			connection.query( userSQL, ( error, results, fields ) => {
-				//if ( error ) throw error;
+				if(error) {
+					console.log(error);
+				}
 
 				const user = results[0];
 				if( user.googleID != ID ){
