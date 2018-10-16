@@ -5,4 +5,5 @@ export default props => (
         
         <i className="far fa-sign-out-alt"></i>
     </div>
+    // <a href='/auth/logout'>Sign Out</a>
 )

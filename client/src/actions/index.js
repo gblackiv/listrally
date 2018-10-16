@@ -41,6 +41,18 @@ export function createListData(userForm){
     }
 }
 
+export function updateListData(listID){
+    console.log('List added to the dashboard:', listID);
+    return async dispatch => {
+        const resp = await axios.put('/api/updateuserlists', {listID} );
+        console.log('Adding list to dashboard response from server :', resp);
+        dispatch({
+            type: types.UPDATE_LIST_DATA,
+            payload: resp
+        })
+    }
+}
+
 
 export function getListTitle(){
     return async dispatch => {

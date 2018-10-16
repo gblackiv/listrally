@@ -24,11 +24,11 @@ class DashBoard extends Component {
         this.props.getListTitle();
     }
     render() {
-        console.log('List Props', this.props);
+        console.log('Dashboard Props', this.props);
 
         const listCards = this.props.allLists.map( list => {
             return (
-                <DashboardCard title={list.name}/>
+                <DashboardCard title={list.name} {...list}/>
             )
         });
 
@@ -36,7 +36,7 @@ class DashBoard extends Component {
         return (    
         <div className="col-2">
             <header>
-                <Header buttons={['Back_button', 'Sign_out_button']}/>
+                <Header buttons={['Back_button', 'Sign_out_button']} history={this.props.history}/>
             </header> 
             <div className='content'>
                 <div className="layout-container">
@@ -72,7 +72,6 @@ class DashBoard extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('Redux state.list inside mapStateToProp :', state.list.list);
     return {
         list: state.list.list,
         allLists: state.list.allLists

@@ -9,7 +9,7 @@ import '../assets/css/buttons.scss';
 //Components
 import TempNav from './tempNav';
 import Home from './home';
-import ListOwner from './list';
+import ListOwner from './owner-list';
 import ListShared from './shared-list';
 import Dashboard from './dashboard';
 import chatModal from './chat_modal';
@@ -23,7 +23,7 @@ import Auth from '../hoc/auth';
 import LayoutTemplate from './layout';
 import CreateList from './create-list';
 
-const App = () => (
+const App = (props) => (
     <div className="app">
         <nav className="col-1 side-nav">
             <TempNav />
@@ -36,7 +36,7 @@ const App = () => (
         <Route path="/user-settings" component={UserSettings} />
         <Route path="/chatmodal" component={chatModal} />
         <Route path="/about" component={About} />
-        <Route path="/list-item" component={createListItem} />
+        {/* <Route path="/list-item" component={createListItem} /> */}
         <Route path="/layout" component={LayoutTemplate} />  
         <Route path="/item/:itemID" component={createListItem} />       
     </div>

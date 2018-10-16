@@ -15,7 +15,16 @@ export default class Header extends React.Component {
       super(props)
 
       this.getButtonComponent = this.getButtonComponent.bind(this);
+      this.backOnePage = this.backOnePage.bind(this);
     }
+
+    backOnePage(){
+        console.log('Header this.props :', this.props);
+        debugger;
+        this.props.history.goBack();
+    }
+
+
     getButtonComponent( button ){
         switch ( button ){
             case 'list_button': 
@@ -27,7 +36,7 @@ export default class Header extends React.Component {
             case 'Sign_in_button':
                 return ( <Link to='FIXME TO AXIOS'> <Sign_in_button /> </Link> );
             case 'Back_button':
-                return ( <Link to='/'> <Back_button /> </Link> );
+                return <Back_button onClick={ this.backOnePage } />;
             case 'Sign_out_button':
                 return ( <Link to='/'> <Sign_out_button  /> </Link> );
         }
@@ -35,7 +44,6 @@ export default class Header extends React.Component {
 
     
     render(){
-
         return (
             
             <div className="list-nav">

@@ -40,7 +40,7 @@ class SharedList extends Component{
         return( 
             <div className="col-2">
             <header>
-                <Header buttons={['Back_button', 'List_link_button']}/>
+                <Header buttons={['Back_button', 'List_link_button']} history={this.props.history} />
             </header> 
                 <div className='content'>
                     <div className="layout-container">
