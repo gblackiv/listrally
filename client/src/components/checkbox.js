@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../assets/css/tooltips.css';
 import { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { sendCheckboxInfo, deleteItem, getListData, updateListData } from '../actions';
@@ -73,7 +74,9 @@ class Checkbox extends Component {
                     <label className="checkbox-login">{this.state.isLogOn ? null : 'Please log in to update checkbox'}</label>
                 </div>
                 <div className="shared-right">
-                    <img className="person" src={isChecked ? avatar : blankImage} alt="user"/>
+                    <span tooltip={this.props.userName}>
+                        <img className="person" src={isChecked ? avatar : blankImage} alt="user"/>
+                    </span>
                 </div>
             </div>
         )
