@@ -20,6 +20,10 @@ class SharedList extends Component{
         super(props);
         this.url = this.props.location.pathname.substring(13,this.props.location.pathname.length)
         this.link = window.location.href;
+        this.state = {
+            text: 'Copy Link',
+            class: 'btn-blue'
+        }
     }
 
     componentDidMount() {
@@ -29,6 +33,17 @@ class SharedList extends Component{
     goBack = () => {
         console.log('go back');
         this.props.history.goBack();
+    }
+
+    copyToClipboard=()=>{
+        debugger;
+        var copyText = document.getElementById("select-this");
+        copyText.select();
+        document.execCommand("copy");
+        this.setState({
+            text: '✓ Link Copied',
+            class: 'btn-saved'
+        })
     }
 
     render(){
@@ -52,7 +67,10 @@ class SharedList extends Component{
                                 <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
                                 <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ') : 'Saturday April 1st'}</div>
                                 <h6 className="list-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
-                                <h6>{this.link}</h6>
+                                <div class="wrapper">
+                                    <input id="select-this" value={this.link}/>
+                                    <button onClick={this.copyToClipboard} class={this.state.class} id="clickMe">{this.state.text}</button>
+                                </div>
                             </div>
                             <div className="list-items">
                                 <form onSubmit={this.sendInfoToServer}>

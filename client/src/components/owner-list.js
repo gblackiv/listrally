@@ -90,7 +90,7 @@ class OwnerList extends Component{
                     <div className="layout-container">
                         <div className="list-top">
                             <Link to="/dashboard"><img id="avatar" src={userInfo.avatar ? avatar : dummyAvatar } alt="avatar"/></Link>
-                            <h4 className="list-title">{list.length>0 ? list[0].name : ''}</h4>
+                            <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
                             <div className="list-date">{list.length>0 ? list[0].eventTime.substr(0, 10) : ''}</div>
                             <h6 className="list-details">{list.length>0 ? list[0].description : ''}</h6>
                         </div>
