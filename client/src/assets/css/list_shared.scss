@@ -56,7 +56,9 @@
 .shared-details{
     margin: 0;
 }
-
+.shared-date{
+    margin: 0.5em;
+}
 .list-items{
     margin-top: 1em;
     display: flex;
@@ -174,6 +176,8 @@
 
 .wrapper {
     margin: 0.5em auto; 
+    display: flex;
+    flex-wrap: nowrap;
     
     > * {
       height: 40px;

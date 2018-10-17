@@ -72,6 +72,7 @@ export default class ListLinkButton extends Component {
         return (
             <div class="list-link" onClick={this.copyLink}>
                 {hasNotBeenCopied ? <i className="fas fa-link link-button"></i> : <i className="far fa-check"></i>}
+                {hasNotBeenCopied ? null : <div className="copied">✓ copied</div>}
             </div>
         )
     }
