@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { userInfo } from 'os';
 
 
-class Avatar extends Component{
+class UserName extends Component{
 
     constructor(props){
         super(props);
@@ -15,23 +15,27 @@ class Avatar extends Component{
     }
 
     render(){
-        let { userInfo } = this.props;
-        if(userInfo.avatar){
-            var { avatar } = userInfo;
+        let { userInfo = {}} = this.props;
+        let name = 'Guest';
+        console.log('UserInfo:', userInfo);
+        if(userInfo.name){
+            name = userInfo.name;
         }
 
         return ( 
-            <Link to="/dashboard"><img id="avatar" src={this.props.avatar} alt="avatar"/></Link>
+            // <Link to="/dashboard"><img id="avatar" src={this.props.avatar} alt="avatar"/></Link>
+            <h5 className="dashboard-details">{name}</h5>
         )
     }
 }
 
 function mapStateToProps(state){
+    console.log('33333333', state);
     return {
-        userInfo: state.user.userInfo
+        userInfo: state.list.user.user
     }
 }
 
 export default connect(mapStateToProps,{
     userInfo
-})(Avatar); 
+})(UserName); 
