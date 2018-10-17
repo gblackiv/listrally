@@ -218,7 +218,11 @@ a {
 .list-link{
     cursor: pointer;
 }
-
+.user-avatar{
+    border-radius: 50%;
+    position: relative;
+    bottom: 5px;
+}
 /*************************
 * media queries
 *************************/

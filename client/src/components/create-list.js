@@ -65,6 +65,7 @@ class CreateList extends Component{
                     <Field name="eventName" label="Event Name" component={ renderInput } placeholder="eg. Birthday Party" />
                     <Field name="eventDescription" label="Event Description" component={ renderTextArea }
                     caption="Enter some details about your event like where to park or how to get there."
+                    placeholder="eg. Park on the street" 
                     />
 
                     <div className="form-row">
@@ -80,7 +81,7 @@ class CreateList extends Component{
 
                     <div className="form-row">
                         <div className="form-col create-list-right">
-                            <button onClick={this.saveInfo} className={saved ? "btn btn-saved" : "btn btn-blue"}>{saved ? "✔️ Saved" : "Save"}</button>
+                            <button onClick={this.saveInfo} className={saved ? "btn btn-saved" : "btn btn-green"}>{saved ? "✔️ Saved" : "Save"}</button>
                         </div>
                     </div>
                 </form>

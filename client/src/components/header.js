@@ -19,9 +19,7 @@ export default class Header extends React.Component {
       this.backOnePage = this.backOnePage.bind(this);
     }
 
-    backOnePage=()=>{
-        console.log('Header this.props :', this.props);
-        debugger;
+    backOnePage =()=>{
         this.props.history.goBack();
     }
 
@@ -30,8 +28,10 @@ export default class Header extends React.Component {
         switch ( button ){
             case 'list_button': 
                 return <List_button />;
+            // case 'List_link_button':
+            //     return ( <Link to={`/list-shared/${this.props.url}`}> <List_link_button /> </Link> );
             case 'List_link_button':
-                return ( <Link to={`/list-shared/${this.props.url}`}> <List_link_button /> </Link> );
+                return ( <Link to={`/dashboard`}><img className="user-avatar" src={this.props.avatar} alt="avatar"/> </Link> );
             case 'chat_button':
                 return <Chat_button />;
             case 'Sign_in_button':
@@ -41,7 +41,7 @@ export default class Header extends React.Component {
             case 'Sign_out_button':
                 return ( <Sign_out_button/>);
             case 'Home_nav_button':
-                return ( <Home_nav_button/>);
+                return ( < Home_nav_button avatar={this.props.avatar} />);
         }
     }
 

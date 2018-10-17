@@ -45,9 +45,7 @@ export default class ListLinkButton extends Component {
           var successful = document.execCommand('copy');
           var msg = successful ? 'successful' : 'unsuccessful';
           console.log('Copying text command was ' + msg);
-          this.setState({
-            hasNotBeenCopied: false
-            })
+
         } catch (err) {
           console.log('Oops, unable to copy');
         }
@@ -56,16 +54,23 @@ export default class ListLinkButton extends Component {
       }
 
     copyLink=()=> {
-        this.copyTextToClipboard(this.props.link);
+        this.setState({
+            hasNotBeenCopied: false
+            },
+            ()=>this.copyTextToClipboard(this.props.link)
+            );
+        // if(this.state.hasNotBeenCopied===false){
+        //     this.copyTextToClipboard(this.props.link);
+        // }
+        // this.copyTextToClipboard(this.props.link);
       }
 
     render() {
         const {hasNotBeenCopied} = this.state;
-        console.log('Settings this.state :', this.state);
-        console.log('Settings button this.props :', this.props);
         return (
             <div class="list-link" onClick={this.copyLink}>
                 {hasNotBeenCopied ? <i className="fas fa-link link-button"></i> : <i className="far fa-check"></i>}
+                {hasNotBeenCopied ? null : <div className="copied">✓ copied</div>}
             </div>
         )
     }

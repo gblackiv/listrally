@@ -5,8 +5,9 @@ import logo from '../../assets/images/app-list-rally-logo-icon-BLUE.svg';
 
 
 export default props => (
+    
     <div className="home-link-container">
-        <Link to="/">
+        <Link to="/dashboard">
             <div className="home-link-logo-container">
                 <img className="home-link-logo" src={logo} alt="logo"/>
             </div>

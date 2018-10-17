@@ -70,7 +70,7 @@ class ListOwner extends Component{
 
     render(){
         const {handleSubmit} = this.props;
-        console.log('List this.props :', this.props);
+        console.log('2222222222222 :', this.props);
         let {items, list, userInfo } = this.props;
         if(userInfo.avatar){
             var { avatar } = userInfo;
@@ -89,7 +89,7 @@ class ListOwner extends Component{
                     <div className="layout-container">
                         <div className="list-top">
                             <Link to="/dashboard"><img id="avatar" src={userInfo.avatar ? avatar : dummyAvatar } alt="avatar"/></Link>
-                            <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
+                            <h4 className="list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
                             <div className="list-date">{list.length>0 ? list[0].eventTime.substr(0, 10) : 'Saturday April 1st'}</div>
                             <h6 className="list-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
                         </div>
