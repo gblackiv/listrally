@@ -18,5 +18,5 @@ export default {
     CREATE_LIST_DATA: 'create_list_data',
     GET_LIST_TITLE: 'get_list_title',
     UPDATE_CHECKBOX: 'update_checkbox',
-    USER_NOTIFICATION: 'user_notification'
+    USER_NOTIFICATION: 'user_notification',
 };

@@ -3,31 +3,62 @@ import { connect } from 'react-redux';
 import '../assets/css/home.scss';
 import logo from '../assets/images/app-list-rally-logo-icon-BLUE.png';
 import newList from '../assets/images/new-list-white.png';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import ListButton from './buttons/list_button';
 import SignInButton from './buttons/sign_in_button';
 import { authenticate } from '../actions';
 import Header from './header';
 import Footer from './footer';
 import { Fragment } from 'react'
+import SignOutButton from './buttons/sign_out_button'
 
 class Home extends Component{
     constructor(props) {
 		super(props);
 		this.state = {
-            show: false
+            show: false,
+            loggedIn: false
         };
         this.toggleListVisibility = this.toggleListVisibility.bind(this);
     }
 
     toggleListVisibility = () => {
         const { show } = this.state;
-        this.setState( { show: !show } )
-
+        this.setState( { show: !show } );
     }
 
+    accessLocalStorage(){
+        return localStorage.getItem('previousUrl');
+    }
+    componentDidMount(){
+        this.props.authenticate();
+        
+    }
+    // componentDidUpdate(){
+    //     if(logged in change? no){
+    //         return
+    //     }
+    //     if(this.state.userInfo){
+    //         this.setState({
+    //             loggedIn: true
+    //         });
+    //     }
+    // }
+
     render(){
+        console.log('props: ', this.props);
+        // if(information doesnt exist){
+        //     <h1>Loading</h1>
+        //     return;
+        // }
+        
+        const previousUrl = this.accessLocalStorage();
+        if( previousUrl && previousUrl !== window.location.pathname ){
+            localStorage.removeItem('previousUrl');
+            return <Redirect to={previousUrl} />
+        }
         return(
+            
             <div className="col-2">
             <header>
                 <Header buttons={[]}/>
@@ -40,7 +71,9 @@ class Home extends Component{
 
                             </div>
                             <div className="home-title">ListRally</div>
-                                    <SignInButton className="login" onClick={this.login}  />
+          
+                                    {this.props.userInfo ? <SignOutButton /> : <SignInButton className="login" onClick={this.login} /> }
+
                                     {/* <a href='/auth/logout'>Sign Out</a> */}
                                 <div className="new-list">
                                     <p className="instruction home-text">Click the + icon to make a list</p>
@@ -76,8 +109,13 @@ class Box extends Component {
         )
     }
 }
+function mapStateToProps(state){
+    console.log('state', state)
+    return {
+        userInfo: state.user.userInfo,
+    }
+}
 
-
-export default connect(null,{
+export default connect(mapStateToProps,{
     authenticate
 })(Home);

@@ -1,5 +1,6 @@
 import types from './types';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 export function getListData(url){
     return async dispatch => {
@@ -79,7 +80,7 @@ export function sendCheckboxInfo(info){
 
 export function authenticate(){
     return async dispatch => {
-        const resp = await axios.get( '/auth/login');
+        const resp = await axios.get( '/auth/getuserinfo');
         console.log('Google login resp :', resp);
         dispatch({
             type: types.LOGIN,
