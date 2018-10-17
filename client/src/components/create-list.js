@@ -80,7 +80,7 @@ class CreateList extends Component{
 
                     <div className="form-row">
                         <div className="form-col create-list-right">
-                            <button onClick={this.saveInfo} className={saved ? "btn btn-saved" : "btn btn-blue"}>{saved ? "✔️ Saved" : "Save"}</button>
+                            <button onClick={this.saveInfo} className={saved ? "btn btn-saved" : "btn btn-green"}>{saved ? "✔️ Saved" : "Save"}</button>
                         </div>
                     </div>
                 </form>
