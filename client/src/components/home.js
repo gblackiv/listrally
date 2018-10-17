@@ -32,6 +32,7 @@ class Home extends Component{
     render(){
         const previousUrl = this.accessLocalStorage();
         if( previousUrl && previousUrl !== window.location.pathname ){
+            localStorage.removeItem('previousUrl');
             return <Redirect to={previousUrl} />
         }
         return(
