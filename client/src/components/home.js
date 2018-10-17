@@ -10,7 +10,7 @@ import { authenticate } from '../actions';
 import Header from './header';
 import Footer from './footer';
 import { Fragment } from 'react'
-import SignOutButton from './buttons/sign_out_button'
+import DashBoardButton from './buttons/dash_button';
 
 class Home extends Component{
     constructor(props) {
@@ -72,7 +72,7 @@ class Home extends Component{
                             </div>
                             <div className="home-title">ListRally</div>
           
-                                    {this.props.userInfo ? <SignOutButton /> : <SignInButton className="login" onClick={this.login} /> }
+                                    {this.props.userInfo ? <DashBoardButton /> : <SignInButton className="login" onClick={this.login} /> }
 
                                     {/* <a href='/auth/logout'>Sign Out</a> */}
                                 <div className="new-list">
