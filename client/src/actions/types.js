@@ -17,5 +17,6 @@ export default {
     GET_CHAT_DATA: 'get_chat_data',
     CREATE_LIST_DATA: 'create_list_data',
     GET_LIST_TITLE: 'get_list_title',
-    UPDATE_CHECKBOX: 'update_checkbox'
+    UPDATE_CHECKBOX: 'update_checkbox',
+    USER_NOTIFICATION: 'user_notification'
 };
