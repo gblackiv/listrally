@@ -46,13 +46,13 @@ class Home extends Component{
                                     <p className="instruction home-text">Click the + icon to make a list</p>
                                     <Link to="/create-list"><img className="new-list-btn" src={newList} alt="new_list"/></Link>
                                 </div>
-                                <div className="home-templates">
+                                {/* <div className="home-templates">
                                     <p className="instruction home-text">or click the arrow to select a list template</p>
                                         <div  onClick={ this.toggleListVisibility }><ListButton /></div>
                                     <div className="home-text">
                                         {this.state.show && <Box />}
                                     </div>
-                                </div>
+                                </div> */}
                         </div>
                     </div>
                 </div>

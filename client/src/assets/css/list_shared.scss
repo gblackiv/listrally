@@ -48,10 +48,13 @@
     white-space: nowrap;
 }
 
-.list-name{
+.shared-name{
     text-align: center;
     // white-space: nowrap;
     margin:0.7rem;
+}
+.shared-details{
+    margin: 0;
 }
 
 .list-items{
@@ -170,7 +173,7 @@
 ****************************/
 
 .wrapper {
-    margin: 50px auto; 
+    margin: 0.5em auto; 
     
     > * {
       height: 40px;
