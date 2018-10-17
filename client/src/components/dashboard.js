@@ -26,8 +26,9 @@ class DashBoard extends Component {
         const {user} = this.props;
         if(user){
             var avatar = user.avatar
+            var {GivenName, familyName} = user;
         }
-        console.log('Dashboard Props', this.props.user);
+        console.log('Dashboard Props', this.props);
 
         const listCards = this.props.allLists.map( list => {
             return (
@@ -77,7 +78,7 @@ class DashBoard extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('1111: ', state.list.user.user);
+    console.log('Dashboard state :', state);
     return {
         list: state.list.list,
         allLists: state.list.allLists,

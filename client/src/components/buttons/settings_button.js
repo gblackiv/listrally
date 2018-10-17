@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 export default class SettingsButton extends Component {
     render() {
-        console.log('Settingbutton this.props :', this.props);
         return (    
             <Link to={this.props.to}>
                 <div>

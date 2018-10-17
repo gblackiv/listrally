@@ -49,7 +49,7 @@ class OwnerList extends Component{
         const { input } = props;
         return (
             <div className="row">
-                <input className="add-input-field" {...input} type="text" autoComplete="off" placeholder="Add Item" />
+                <input className="add-input-field" {...input} type="text" autoComplete="off" placeholder="Eg. plastic plates" />
                 <AddListItemButton className="add-item-button btn btn-green" name="Add" />
             </div>
         )
@@ -84,14 +84,14 @@ class OwnerList extends Component{
 
             <div className="col-2">
                 <header>
-                    <Header url={this.url} buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history}/>
+                    <Header url={this.url} buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={userInfo.avatar ? avatar: null} />
                 </header> 
                 <div className='content'>
                     <div className="layout-container">
                         <div className="list-top">
-                            <Link to="/dashboard"><img id="avatar" src={userInfo.avatar ? avatar : dummyAvatar } alt="avatar"/></Link>
+                            {/* <Link to="/dashboard"><img id="avatar" src={userInfo.avatar ? avatar : dummyAvatar } alt="avatar"/></Link> */}
                             <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
-                            <div className="list-date">{list.length>0 ? list[0].eventTime.substr(0, 10) : ''}</div>
+                            <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ')  : ''}</div>
                             <h6 className="list-details">{list.length>0 ? list[0].description : ''}</h6>
                         </div>
                         <div className="list-items">

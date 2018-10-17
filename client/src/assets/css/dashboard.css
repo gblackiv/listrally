@@ -3,6 +3,12 @@ body{
     font-family: 'Rubik', sans-serif;
     background: #011c40;
 }
+.new-list-button{
+    width: 25px;
+    position: relative;
+    left: 1px;
+    top: 1px;
+}
 .copied{
     font-size: 0.6em;
 }

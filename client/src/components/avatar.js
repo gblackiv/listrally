@@ -15,9 +15,7 @@ class Avatar extends Component{
     }
 
     render(){
-        console.log('This.prop: ', this.props);
         let { userInfo } = this.props;
-        console.log('User Info: ', userInfo);
         if(userInfo.avatar){
             var { avatar } = userInfo;
         }
@@ -29,7 +27,6 @@ class Avatar extends Component{
 }
 
 function mapStateToProps(state){
-    console.log('State: ', state);
     return {
         userInfo: state.user.userInfo
     }
