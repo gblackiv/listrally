@@ -6,7 +6,8 @@ const DEFAULT_STATE = {
     item: {},
     allLists: [],
     listID: null,
-    url: ""
+    url: "",
+    user: {}
 }
 
 export default (state=DEFAULT_STATE,action)=>{
@@ -33,7 +34,7 @@ export default (state=DEFAULT_STATE,action)=>{
             return {...state} ;
         case types.GET_LIST_TITLE:
             console.log('Get list title:', action);
-            return {...state, allLists: action.payload.data.data} ;
+            return {...state, allLists: action.payload.data.data, user: action.payload.data} ;
         default:
             return state;
     }
