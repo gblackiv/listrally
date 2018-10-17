@@ -21,7 +21,7 @@ import { getListTitle} from '../actions/index';
                     <div className="dashboard-item1">
                         <div className="dashboard-left">
                             {/* <i className="dashboard_link far fa-link btn-blue"></i> */}                           
-                                <List_link_button/>
+                                <List_link_button link={`http://localhost:3000/list-shared/${url}`}/>
                             <Link to={`/list-shared/${url}`}>
                                 <div className="dashboard_text">{this.props.title}</div>
                             </Link>

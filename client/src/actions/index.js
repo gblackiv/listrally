@@ -100,3 +100,14 @@ export function deleteItem(item){
     }
 }
 
+export function sendUserNotification(){
+    return async dispatch => {
+        const resp = await axios.patch('/api/notifications');
+        console.log('User Notification resp :', resp);
+        dispatch({
+            type: types.USER_NOTIFICATION,
+            payload: resp
+        })
+    }
+}
+
