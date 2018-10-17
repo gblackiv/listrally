@@ -32,7 +32,7 @@ const authRoutes = ( server, mySQL, connection, passport ) => {
 	 */
 	server.get( '/auth/logout', ( request, response ) => {
 		request.logout();
-		response.sendFile( `${__dirname}/client/dist/logged_in.html` );
+		response.redirect('/');
 	});
 }
 module.exports = authRoutes;
