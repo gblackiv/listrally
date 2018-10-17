@@ -8,11 +8,9 @@ import Header from './header';
 import Footer from './footer';
 
 import Checkbox from './checkbox';
-import AddListItemButton from './buttons/add_list_item_button'
+import AddListItemButton from './buttons/add_list_item_button';
 
-import filter from '../assets/images/filter-icon.png'
-import { userInfo } from 'os';
-
+import filter from '../assets/images/filter-icon.png';
 
 class SharedList extends Component{
 
@@ -21,7 +19,7 @@ class SharedList extends Component{
         this.url = this.props.location.pathname.substring(13,this.props.location.pathname.length)
         this.link = window.location.href;
         this.state = {
-            text: 'Copy Link',
+            text: '',
             class: 'btn-blue'
         }
     }
@@ -41,13 +39,14 @@ class SharedList extends Component{
         copyText.select();
         document.execCommand("copy");
         this.setState({
-            text: '✓ Link Copied',
+            text: ' Copied ✓ ',
             class: 'btn-saved'
         })
     }
 
     render(){
-        const {items,list} = this.props;
+        const {items,list, userInfo} = this.props;
+        const { avatar } = userInfo;
         console.log('Shared list this.props :', this.props);
         console.log('this.url :', this.url);
         const checkboxList = items.map(item=>{
@@ -56,7 +55,7 @@ class SharedList extends Component{
         return( 
             <div className="col-2">
             <header>
-                <Header buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} />
+                <Header buttons={['Back_button', 'List_link_button','Home_nav_button']} history={this.props.history} avatar={userInfo.avatar ? avatar : null} />
             </header> 
                 <div className='content'>
                     <div className="layout-container">
@@ -69,9 +68,10 @@ class SharedList extends Component{
                                 <h6 className="shared-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
                                 <div class="wrapper">
                                     <input id="select-this" value={this.link}/>
-                                    <button onClick={this.copyToClipboard} class={this.state.class} id="clickMe">{this.state.text}</button>
+                                    <button onClick={this.copyToClipboard} class={`btn ${this.state.class}`} id="clickMe"><i class="fas fa-paste"></i>{this.state.text}</button>
                                 </div>
                             </div>
+                            <label className="usage-instruction">Check off items you plan on bringing</label>
                             <div className="list-items">
                                 <form onSubmit={this.sendInfoToServer}>
                                     {checkboxList}
@@ -88,6 +88,7 @@ class SharedList extends Component{
 }
 
 function mapStateToProps(state){
+    
     return {
         list: state.list.list,
         items: state.list.items,

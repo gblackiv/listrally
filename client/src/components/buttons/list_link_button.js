@@ -67,8 +67,6 @@ export default class ListLinkButton extends Component {
 
     render() {
         const {hasNotBeenCopied} = this.state;
-        console.log('Settings this.state :', this.state);
-        console.log('Settings button this.props :', this.props);
         return (
             <div class="list-link" onClick={this.copyLink}>
                 {hasNotBeenCopied ? <i className="fas fa-link link-button"></i> : <i className="far fa-check"></i>}

@@ -28,6 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 1em;
 }
 
 .list-content{
@@ -54,7 +55,8 @@
     margin:0.7rem;
 }
 .shared-details{
-    margin: 0;
+    margin: 0 0.7em;
+    text-align: center;
 }
 .shared-date{
     margin: 0.5em;
@@ -80,6 +82,7 @@
 .shared-list-title{
     text-align: center;
     margin-bottom: 0;
+    margin-top: 0.5em;
 }
 
 .person{
@@ -161,7 +164,11 @@
     height: 20px;
 }
 
-
+.usage-instruction{
+    margin: 1em 0.5em;
+    font-style: italic;
+    font-size: 0.8em;
+}
 
 @media (min-width: 600px){
     .list_item{
@@ -178,6 +185,7 @@
     margin: 0.5em auto; 
     display: flex;
     flex-wrap: nowrap;
+    position: relative;
     
     > * {
       height: 40px;
@@ -204,8 +212,13 @@
   }
   
   input#select-this {
-    width: 300px;
+    width: 250px;
     border: 0;
+    // background: transparent;
+    // color: transparent;
+    &:focus{
+            outline:0;
+    }
   }
   
 //   .button {

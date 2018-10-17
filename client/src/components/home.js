@@ -41,7 +41,7 @@ class Home extends Component{
                             </div>
                             <div className="home-title">ListRally</div>
                                     <SignInButton className="login" onClick={this.login}  />
-                                    <a href='/auth/logout'>Sign Out</a>
+                                    {/* <a href='/auth/logout'>Sign Out</a> */}
                                 <div className="new-list">
                                     <p className="instruction home-text">Click the + icon to make a list</p>
                                     <Link to="/create-list"><img className="new-list-btn" src={newList} alt="new_list"/></Link>

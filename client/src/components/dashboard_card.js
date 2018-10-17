@@ -14,7 +14,7 @@ import { getListTitle} from '../actions/index';
 
     render() {
         const {name, userID, ownerID, url} = this.props;
-        console.log('Dashboard card props :', this.props);
+        // console.log('Dashboard card props :', this.props);
         return (
             <Fragment>
                 <div className="dashboard-items">
@@ -43,7 +43,7 @@ import { getListTitle} from '../actions/index';
 
 
 function mapStateToProps(state){
-    console.log('Redux state DASHBOARD inside mapStateToProp :', state);
+    // console.log('Redux state DASHBOARD inside mapStateToProp :', state);
     return{
         list: state.list.list
     }
