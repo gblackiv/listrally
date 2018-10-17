@@ -38,7 +38,7 @@ const authRoutes = ( server, mySQL, connection, passport ) => {
 	/**
 	 * whenever the frontend needs to know the user information, this endpoint is available to be called in order to gain that info
 	 */
-	server.post( '/auth/getuserinfo', ( request, response ) => {
+	server.get( '/auth/getuserinfo', ( request, response ) => {
 		const dataToSend = {}
 		if( !request.user ){
 			dataToSend.success = false;

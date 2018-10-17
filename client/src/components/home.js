@@ -10,12 +10,14 @@ import { authenticate } from '../actions';
 import Header from './header';
 import Footer from './footer';
 import { Fragment } from 'react'
+import SignOutButton from './buttons/sign_out_button'
 
 class Home extends Component{
     constructor(props) {
 		super(props);
 		this.state = {
-            show: false
+            show: false,
+            loggedIn: false
         };
         this.toggleListVisibility = this.toggleListVisibility.bind(this);
     }
@@ -28,14 +30,35 @@ class Home extends Component{
     accessLocalStorage(){
         return localStorage.getItem('previousUrl');
     }
+    componentDidMount(){
+        this.props.authenticate();
+        
+    }
+    // componentDidUpdate(){
+    //     if(logged in change? no){
+    //         return
+    //     }
+    //     if(this.state.userInfo){
+    //         this.setState({
+    //             loggedIn: true
+    //         });
+    //     }
+    // }
 
     render(){
+        console.log('props: ', this.props);
+        // if(information doesnt exist){
+        //     <h1>Loading</h1>
+        //     return;
+        // }
+        
         const previousUrl = this.accessLocalStorage();
         if( previousUrl && previousUrl !== window.location.pathname ){
             localStorage.removeItem('previousUrl');
             return <Redirect to={previousUrl} />
         }
         return(
+            
             <div className="col-2">
             <header>
                 <Header buttons={[]}/>
@@ -48,8 +71,8 @@ class Home extends Component{
 
                             </div>
                             <div className="home-title">ListRally</div>
-                                    <SignInButton className="login" onClick={this.login}  />
-                                    <a href='/auth/logout'>Sign Out</a>
+                                    {this.props.userInfo ? <SignOutButton /> : <SignInButton className="login" onClick={this.login} /> }
+                                    {/* <a href='/auth/logout'>Sign Out</a> */}
                                 <div className="new-list">
                                     <p className="instruction home-text">Click the + icon to make a list</p>
                                     <Link to="/create-list"><img className="new-list-btn" src={newList} alt="new_list"/></Link>
@@ -84,8 +107,13 @@ class Box extends Component {
         )
     }
 }
+function mapStateToProps(state){
+    console.log('state', state)
+    return {
+        userInfo: state.user.userInfo,
+    }
+}
 
-
-export default connect(null,{
+export default connect(mapStateToProps,{
     authenticate
 })(Home);
