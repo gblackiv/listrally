@@ -4,6 +4,7 @@ import { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { sendCheckboxInfo, deleteItem, getListData, updateListData } from '../actions';
 import blankImage from '../assets/images/nothing.png';
+import SignInModal from './sign-in-modal';
 
 const crossedOutTextStyle = {
     textDecoration: 'line-through'
@@ -16,17 +17,25 @@ class Checkbox extends Component {
             isChecked: !!props.assignedUserID,
             style: {},
             isLogOn: true,
+            isOpen: false,
+            random: true
         }
         this.toggleCheck = this.toggleCheck.bind(this);
     }
+
+
+    open = () => this.setState({isOpen: true});
+    close = () => this.setState({isOpen: false});
+
 
     toggleCheck(){
         const { assignedUserID, userInfo } = this.props;
         const {ID: userID} = userInfo;
         if(!userID){//if user is not logged in
             this.setState({
-                isLogOn: false
+                isLogOn: false,
             })
+            this.open();
             return;
         }
         if(userID!==assignedUserID && assignedUserID>0){//if user is not the one who checked the box
@@ -63,7 +72,6 @@ class Checkbox extends Component {
 
     render(){
         // const { ID, name, listID, assignedUserID } = request.body;
-        console.log('Checkbox this.props :', this.props);
         const {name, avatar} = this.props;
         const {isChecked} = this.state;
         return (
@@ -71,7 +79,7 @@ class Checkbox extends Component {
                 <div className="shared-left">
                     <input type="checkbox" name={name} value={name} checked={isChecked ? 'checked' : false}  onChange={this.toggleCheck} />
                     <label style={isChecked ? crossedOutTextStyle : this.state.style } >{this.props.itemName}</label>
-                    <label className="checkbox-login">{this.state.isLogOn ? null : 'Please log in to update checkbox'}</label>
+                    <label className="checkbox-login"><SignInModal isOpen={this.state.isOpen} close={this.close}/></label>
                 </div>
                 <div className="shared-right">
                     <span tooltip={this.props.userName}>
@@ -87,7 +95,7 @@ function mapStateToProps(state){
     return {
         list: state.list.list,
         items: state.list.items,
-        userInfo: state.user.userInfo
+        userInfo: state.user.userInfo,
     }
 }
 

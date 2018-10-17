@@ -23,7 +23,7 @@ const authRoutes = ( server, mySQL, connection, passport ) => {
 	 * with each request from this point forward, there is a cookie that is sent back and forth, with the user attached
 	 */
 	server.get( '/auth/login/redirect', passport.authenticate( 'google' ), ( request, response ) => {
-		response.sendFile(`${__dirname}/client/dist/logged_in.html`);
+		response.redirect('/');
 	});
 
 	/**
@@ -32,7 +32,24 @@ const authRoutes = ( server, mySQL, connection, passport ) => {
 	 */
 	server.get( '/auth/logout', ( request, response ) => {
 		request.logout();
-		response.sendFile( `${__dirname}/client/dist/logged_in.html` );
+		response.redirect('/');
 	});
+
+	/**
+	 * whenever the frontend needs to know the user information, this endpoint is available to be called in order to gain that info
+	 */
+	server.get( '/auth/getuserinfo', ( request, response ) => {
+		const dataToSend = {}
+		if( !request.user ){
+			dataToSend.success = false;
+			dataToSend.user = null
+			}
+		else{
+			console.log(request.user.ID);
+			dataToSend.success = true;
+			dataToSend.user = request.user;
+		}
+		response.json( dataToSend );
+	})
 }
 module.exports = authRoutes;
