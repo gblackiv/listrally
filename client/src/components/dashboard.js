@@ -9,6 +9,7 @@ import DashboardCard from './dashboard_card';
 import { connect } from 'react-redux';
 import { getListTitle} from '../actions/index';
 import UserNotification from './user_notification';
+import DashboardUsername from './dashboard_username';
 
 class DashBoard extends Component { 
     constructor(props) {
