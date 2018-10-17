@@ -70,7 +70,7 @@ class ListOwner extends Component{
 
     render(){
         const {handleSubmit} = this.props;
-        console.log('List this.props :', this.props);
+        console.log('2222222222222 :', this.props);
         let {items, list, userInfo } = this.props;
         if(userInfo.avatar){
             var { avatar } = userInfo;

@@ -8,6 +8,7 @@ import Avatar from './avatar';
 import DashboardCard from './dashboard_card';
 import { connect } from 'react-redux';
 import { getListTitle} from '../actions/index';
+import { userInfo } from 'os';
 
 
 
@@ -24,7 +25,11 @@ class DashBoard extends Component {
         this.props.getListTitle();
     }
     render() {
-        console.log('Dashboard Props', this.props);
+        const {user} = this.props;
+        if(user){
+            var avatar = user.avatar
+        }
+        console.log('Dashboard Props', this.props.user);
 
         const listCards = this.props.allLists.map( list => {
             return (
@@ -36,7 +41,7 @@ class DashBoard extends Component {
         return (    
         <div className="col-2">
             <header>
-                <Header buttons={['Back_button', 'Home_nav_button', 'Sign_out_button']} history={this.props.history}/>
+                <Header avatar={user ? avatar : null} buttons={['Back_button', 'Home_nav_button', 'Sign_out_button']} history={this.props.history}/>
             </header> 
             <div className='content'>
                 <div className="layout-container">
@@ -47,7 +52,7 @@ class DashBoard extends Component {
                             <h5 className="dashboard-details">First Name <br/> Last Name</h5>
                         {/* <!-- <h4 className="details">Last Name</h4> --> */}
                         {/* <i className="dashboard_user fal fa-user"></i> */}
-                        <Avatar/>   
+                        <Avatar avatar={user ? avatar : null} />   
                         </div>
                         {/* <!-- dashboard Toggle --> */}
                         <div className="dashboard_toggle">
@@ -72,9 +77,11 @@ class DashBoard extends Component {
 }
 
 function mapStateToProps(state){
+    console.log('1111: ', state.list.user.user);
     return {
         list: state.list.list,
-        allLists: state.list.allLists
+        allLists: state.list.allLists,
+        user: state.list.user.user
     }
 }
 

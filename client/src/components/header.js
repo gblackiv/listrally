@@ -40,7 +40,7 @@ export default class Header extends React.Component {
             case 'Sign_out_button':
                 return ( <Sign_out_button/>);
             case 'Home_nav_button':
-                return ( <Home_nav_button/>);
+                return ( < Home_nav_button avatar={this.props.avatar} />);
         }
     }
 
