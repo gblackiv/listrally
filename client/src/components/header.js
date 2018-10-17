@@ -19,7 +19,7 @@ export default class Header extends React.Component {
       this.backOnePage = this.backOnePage.bind(this);
     }
 
-    backOnePage=()=>{
+    backOnePage =()=>{
         console.log('Header this.props :', this.props);
         debugger;
         this.props.history.goBack();
