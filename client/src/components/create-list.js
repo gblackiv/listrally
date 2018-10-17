@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { renderInput, renderTextArea, renderDate } from '../helpers';
 import '../assets/css/create-list.scss';
-import { createListData } from '../actions';
+import { createListData, authenticate } from '../actions';
 import Header from './header';
 import Footer from './footer';
 import DatePicker from './date-picker';
+import SignInModal from './sign-in-modal';
 
 // import '../../node_modules/flatpickr/dist/themes/airbnb.css'
 // import Flatpickr from 'react-flatpickr'
@@ -39,11 +40,19 @@ class CreateList extends Component{
         const newEventObject = { name, description, securityStatus, eventTime };
         this.props.createListData(newEventObject);
     }
+    componentDidMount(){
+        this.props.authenticate();
+    }
 
     saveInfo=()=>{
-        this.setState({
-            saved: true
-        })
+        if( this.props.userInfo ){
+            this.setState({
+                saved: true
+            });
+        }
+        else{
+            return <SignInModal />;
+        }
     }
 
     render(){
@@ -112,7 +121,8 @@ function validate(values){
 
 function mapStateToProps(state){
     return {
-        url: state.list.url
+        url: state.list.url,
+        userInfo: state.user.userInfo
     }
 }
 
@@ -122,5 +132,5 @@ CreateList = reduxForm({
 })(CreateList);
 
 export default connect(mapStateToProps,{
-    createListData: createListData
+    createListData: createListData, authenticate
 })(CreateList); 

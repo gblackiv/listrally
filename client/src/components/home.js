@@ -34,24 +34,9 @@ class Home extends Component{
         this.props.authenticate();
         
     }
-    // componentDidUpdate(){
-    //     if(logged in change? no){
-    //         return
-    //     }
-    //     if(this.state.userInfo){
-    //         this.setState({
-    //             loggedIn: true
-    //         });
-    //     }
-    // }
 
     render(){
-        console.log('props: ', this.props);
-        // if(information doesnt exist){
-        //     <h1>Loading</h1>
-        //     return;
-        // }
-        
+
         const previousUrl = this.accessLocalStorage();
         if( previousUrl && previousUrl !== window.location.pathname ){
             localStorage.removeItem('previousUrl');
@@ -110,9 +95,8 @@ class Box extends Component {
     }
 }
 function mapStateToProps(state){
-    console.log('state', state)
     return {
-        userInfo: state.user.userInfo,
+        userInfo: state.user.userInfo
     }
 }
 
