@@ -9,6 +9,8 @@ import DashboardCard from './dashboard_card';
 import { connect } from 'react-redux';
 import { getListTitle} from '../actions/index';
 import UserNotification from './user_notification';
+import DashboardUsername from './dashboard_username';
+import UserName from './dashboard_username';
 
 class DashBoard extends Component { 
     constructor(props) {
@@ -32,7 +34,7 @@ class DashBoard extends Component {
 
         const listCards = this.props.allLists.map( list => {
             return (
-                <DashboardCard title={list.name} {...list}/>
+                <DashboardCard key={list.name} title={list.name} {...list}/>
             )
         });
 
@@ -48,7 +50,8 @@ class DashBoard extends Component {
                         {/* <Top Nav */}
                         {/* <!-- User name, details, user avatar --> */}
                         <div className="dashboard-top">
-                            <h5 className="dashboard-details">First Name <br/> Last Name</h5>
+                            {/* <h5 className="dashboard-details">First Name <br/> Last Name</h5> */}
+                            <UserName/>
                         {/* <!-- <h4 className="details">Last Name</h4> --> */}
                         {/* <i className="dashboard_user fal fa-user"></i> */}
                         <Avatar avatar={user ? avatar : null} />   
