@@ -60,13 +60,13 @@ class SharedList extends Component{
             </header> 
                 <div className='content'>
                     <div className="layout-container">
-                            <div className="filter">
+                            {/* <div className="filter">
                                 <img src={filter} alt="filter"/>   All
-                            </div>
+                            </div> */}
                             <div className="list-top">
                                 <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
-                                <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ') : 'Saturday April 1st'}</div>
-                                <h6 className="list-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
+                                <div className="shared-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ') : 'Saturday April 1st'}</div>
+                                <h6 className="shared-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
                                 <div class="wrapper">
                                     <input id="select-this" value={this.link}/>
                                     <button onClick={this.copyToClipboard} class={this.state.class} id="clickMe">{this.state.text}</button>

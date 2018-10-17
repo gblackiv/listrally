@@ -19,9 +19,9 @@ export default () => (
             <li>
                 <Link to="/dashboard" className="nav-link">User Dash</Link>
             </li>
-            <li>
+            {/* <li>
                 <Link to="/chatmodal" className="nav-link">Chat Modal</Link>
-            </li>
+            </li> */}
             <li>
                 <Link to="/about" className="nav-link">About</Link>
             </li>

@@ -3,6 +3,9 @@ body{
     font-family: 'Rubik', sans-serif;
     background: #011c40;
 }
+.copied{
+    font-size: 0.6em;
+}
 .dashboard-container{
     font-size: 20px;
     height: 100%;
