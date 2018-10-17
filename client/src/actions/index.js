@@ -1,5 +1,6 @@
 import types from './types';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 export function getListData(url){
     return async dispatch => {

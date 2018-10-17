@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import '../assets/css/home.scss';
 import logo from '../assets/images/app-list-rally-logo-icon-BLUE.png';
 import newList from '../assets/images/new-list-white.png';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import ListButton from './buttons/list_button';
 import SignInButton from './buttons/sign_in_button';
 import { authenticate } from '../actions';
@@ -22,11 +22,18 @@ class Home extends Component{
 
     toggleListVisibility = () => {
         const { show } = this.state;
-        this.setState( { show: !show } )
+        this.setState( { show: !show } );
+    }
 
+    accessLocalStorage(){
+        return localStorage.getItem('previousUrl');
     }
 
     render(){
+        const previousUrl = this.accessLocalStorage();
+        if( previousUrl && previousUrl !== window.location.pathname ){
+            return <Redirect to={previousUrl} />
+        }
         return(
             <div className="col-2">
             <header>
