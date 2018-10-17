@@ -8,6 +8,7 @@ import Avatar from './avatar';
 import DashboardCard from './dashboard_card';
 import { connect } from 'react-redux';
 import { getListTitle} from '../actions/index';
+import UserNotification from './user_notification';
 
 
 
@@ -51,12 +52,14 @@ class DashBoard extends Component {
                         </div>
                         {/* <!-- dashboard Toggle --> */}
                         <div className="dashboard_toggle">
-                            <div>All Lists</div>
+                            {/* <div>All Lists</div> */}
                             <div>
                             {/* <i className="fas fa-toggle-off"></i> */}
-                            <input type="checkbox" id="switch" /><label className="label-user" for="switch"></label>
+                            {/* <input type="checkbox" id="switch" /><label className="label-user" for="switch"></label> */}
                             </div>
-                            <button className="dashboard-button btn btn-blue">User Settings</button>
+                            {/* <button className="dashboard-button btn btn-blue">User Settings</button> */}
+                            {/* Notifications 
+                            <UserNotification/> */}
                         </div>
                         {/* <!-- dashboard-items --> */}
                         {listCards}
