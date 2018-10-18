@@ -112,3 +112,15 @@ export function sendUserNotification(){
     }
 }
 
+export function editSingleItem(item){
+    console.log('Update Item Info:', item);
+    return async dispatch => {
+        const resp = await axios.patch('/api/updateitem', item);
+        console.log('Edit Item resp :', resp);
+        dispatch({
+            type: types.EDIT_SINGLE_ITEM,
+            payload: resp
+        })
+    }
+}
+
