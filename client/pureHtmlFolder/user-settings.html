@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>User Settings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        body{
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        main{
+            margin: 0.5em 0 0 0;
+        }
+
+        /***************************
+        * Form Group
+        ****************************/
+        .row {
+            display: block;
+        }
+        .form-container {
+            display: flex;
+            justify-content: center;
+            }
+
+        .form-group input {
+            border-style: none;
+            background: #EEE;
+            border: 1px darkgrey solid;
+            height: 30px;
+            width: 260px;
+            margin: 5px;
+            padding-left: 15px;
+            border-radius: 4px;
+        }
+        .form-hide {
+            visibility: hidden;
+        }
+        .form-show {
+            visibility: visible;
+        }
+        .text-center{
+            text-align: center;
+        }
+        .input{
+            display: inline-block;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .input-label {
+            position: absolute;
+            top: -12px;
+            left: 5px;
+            font-size: 0.75em;
+        }
+
+        /***************************
+        * Checkbox
+        ****************************/
+
+        .notification{
+            position: relative;
+            bottom: 40px;
+            left: 2em;
+        }
+
+        .checkbox input[type="checkbox"] {
+            opacity: 0;
+        }
+        .checkbox input[type="checkbox"] {
+			opacity: 0;
+        }
+		.checkbox label::before{
+			content: "";
+			display: inline-block;
+			height: 16px;
+			width: 16px;
+			border: 2px solid gray;   
+            border-radius: 3px;
+		}
+		.checkbox label::after {
+			content: "";
+			display: inline-block;
+			height: 7px;
+			width: 12px;
+			border-left: 3px solid;
+			border-bottom: 4px solid;
+			transform: rotate(-45deg);
+            color: #26a69a;
+		}
+
+		.checkbox label {
+			position: relative;
+			left: 10px;
+		}
+		.checkbox label::before,
+		.checkbox label::after {
+			position: absolute;
+		}
+		/*Outer-box*/
+		.checkbox label::before {
+			left: -30px
+		}
+		/*Checkmark*/
+		.checkbox label::after {
+			top: 2px;
+			left: -28px
+		}
+
+		/*Hide the checkmark by default*/
+		.checkbox input[type="checkbox"] + label::after {
+			content: none;
+		}
+		/*Unhide the checkmark on the checked state*/
+		.checkbox input[type="checkbox"]:checked + label::after {
+			content: "";
+		}
+		/*Adding focus styles on the outer-box of the fake checkbox*/
+		.checkbox input[type="checkbox"]:focus + label::before {
+			outline: rgb(122, 155, 190) auto 3px;
+		}
+
+        /***************************
+        * Modal
+        ****************************/
+        .modal {
+            display: none;
+        }
+
+        .modal-show,
+        .modal-hide {
+            display: flex;
+        }
+
+        .modal-align {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 999;
+        }
+
+        .modal-container {
+            position: relative;
+            width: 90%;
+            height: 60%;
+            background: #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 15%;
+        }
+
+        .modal-header {
+            display: flex;
+            background: #EEE;
+            padding: 10px 40px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            background: #EEE;
+            height: 45px;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .modalCloseBtn {
+            background-color: #3AAE49;
+            padding: 0 40px;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+            position: relative;
+            right: 0.8em;
+            bottom: 1em;
+        }
+
+        .modalCloseX {
+            position: absolute;
+            top: 6px;
+            right: 15px;
+        }
+
+        .modalCloseX:hover {
+            cursor: pointer;
+        }
+        
+        /*******MEDIA QUERIES*******/
+        @media (min-width: 600px){
+            .modal-container{
+                width: 700px;
+            }
+            .modal-header {
+            display: flex;
+            background: #EEE;
+            padding: 20px 60px;
+            }
+            .notification{
+            position: relative;
+            left: 3.5em;
+            bottom: 5em;
+            }
+        }
+
+        /* Animation */
+        .modal.modal-show {
+            animation: modal-open 0.3s;
+        }
+
+        @keyframes modal-open {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .modal.modal-hide {
+            animation: modal-close 0.3s;
+        }
+
+        @keyframes modal-close {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="modal-trigger">USER SETTINGS MODAL</button>
+
+    <div class="flex align-center align-vert modal modal-align container">
+        <div class="modal-container">
+            <header class="modal-header">
+                <h1>User Settings</h1>
+                <a class="modalClose modalCloseX" aria-hidden="true">&#x2715;</a>
+            </header>
+            <main>
+                <div class="form-group text-center">
+                    <div class="row">
+                        <div class="input">
+                            <label class="input-label">First Name</label>
+                            <input type="text" name="first_name" placeholder="Bobby" />
+                        </div>
+                        <div class="input">
+                            <label class="input-label">Last Name</label>
+                            <input type="text" name="last_name" placeholder="Brown" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input">
+                            <label class="input-label">Email</label>
+                            <input type="text" name="email" placeholder="bluebob@gmail.com" />
+                        </div>
+                        <div class="input">
+                            <label class="input-label">Password</label>
+                            <input type="password" name="password" placeholder="password" />
+                        </div>
+                    </div>                   
+                </div>
+            </main>
+            <footer class="modal-footer">
+                <div class="notification">
+                    <h4>Notifications</h4>
+                    <div class="checkbox">
+                        <input type="checkbox" id="checkbox_1">
+                        <label for="checkbox_1">ON</label>
+                    </div>
+                </div>
+                <button class="modalClose modalCloseBtn">Save</button>
+            </footer>
+        </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+            function modal() {
+                var modal = $(".modal")[0],
+                    trigger = $(".modal-trigger")[0],
+                    close = $(".modalClose");
+    
+                closeModal = function () {
+                    modal.classList.remove("modal-show");
+                    modal.classList.add("modal-hide");
+                    // Remove hide class after animation is done
+                    afterAnimation = function () {
+                        modal.classList.remove("modal-hide");
+                    };
+                    // This listens for the CSS animations to finish and then hides the modal
+                    modal.addEventListener("webkitAnimationEnd", afterAnimation, false);
+                    modal.addEventListener("oAnimationEnd", afterAnimation, false);
+                    modal.addEventListener("msAnimationEnd", afterAnimation, false);
+                    modal.addEventListener("animationend", afterAnimation, false);
+                };
+    
+                // Open the modal
+                trigger.onclick = function () {
+                    modal.classList.add("modal-show");
+                };
+    
+                // Close the modal with any element with class 'modalClose'
+                for (var i = 0; i < close.length; i++) {
+                    close[i].onclick = function () {
+                        closeModal();
+                    };
+                }
+    
+                // Click outside of the modal and close it
+                window.onclick = function (e) {
+                    if (e.target == modal) {
+                        closeModal();
+                    }
+                };
+    
+                // Use the escape key to close modal
+                document.onkeyup = function (e) {
+                    e = e || window.event;
+                    if (modal.classList.contains("modal-show")) {
+                        if (e.keyCode == 27) {
+                            closeModal();
+                        }
+                    }
+                };
+            }
+            modal();
+        </script>
+
+    <script>
+        function modal() {
+            var modal = $(".modal")[0],
+                trigger = $(".modal-trigger")[0],
+                close = $(".modalClose");
+
+            closeModal = function () {
+                modal.classList.remove("modal-show");
+                modal.classList.add("modal-hide");
+                // Remove hide class after animation is done
+                afterAnimation = function () {
+                    modal.classList.remove("modal-hide");
+                };
+                // This listens for the CSS animations to finish and then hides the modal
+                modal.addEventListener("webkitAnimationEnd", afterAnimation, false);
+                modal.addEventListener("oAnimationEnd", afterAnimation, false);
+                modal.addEventListener("msAnimationEnd", afterAnimation, false);
+                modal.addEventListener("animationend", afterAnimation, false);
+            };
+
+            // Open the modal
+            trigger.onclick = function () {
+                modal.classList.add("modal-show");
+            };
+
+            // Close the modal with any element with class 'modalClose'
+            for (var i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    closeModal();
+                };
+            }
+
+            // Click outside of the modal and close it
+            window.onclick = function (e) {
+                if (e.target == modal) {
+                    closeModal();
+                }
+            };
+
+            // Use the escape key to close modal
+            document.onkeyup = function (e) {
+                e = e || window.event;
+                if (modal.classList.contains("modal-show")) {
+                    if (e.keyCode == 27) {
+                        closeModal();
+                    }
+                }
+            };
+        }
+        modal();
+    </script>
+</body>
+
+</html>

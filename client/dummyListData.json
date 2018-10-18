@@ -1,0 +1,33 @@
+{"success": true, "data": [
+	{
+		"ID": 1,
+		"url": "www.listrally.com/ourfirstdummylist",
+		"ownerID": 2,
+		"eventTime": "2018-10-27 08:00:00",
+		"name": "Halloween Party",
+		"securityStatus": "locked",
+		"description": "bring your costume, dont knock, just come in",
+		"status": "active"
+	},
+	{
+		"ID": 2,
+		"url": "www.listrally.com/butwhataboutthe2ndlist",
+		"ownerID": 2,
+		"eventTime": "2019-1-1 00:00:00",
+		"name": "New Year's Bash",
+		"securityStatus": "unlocked",
+		"description": "a real chill night, located at 9200 irvine center dr, irvine.",
+		"status": "active"
+	},
+	{
+		"ID": 3,
+		"url": "www.listrally.com/number3mylord",
+		"ownerID": 1,
+		"eventTime": "2018-12-25 18:30:00",
+		"name": "Christmas Dinner",
+		"securityStatus": "locked",
+		"description": "let get shmamered",
+		"status": "active"
+	}
+	]
+}

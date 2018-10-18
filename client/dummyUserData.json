@@ -1,0 +1,33 @@
+{"success": true, "data": [
+	{
+		"ID": 1,
+		"googleID": "102203286394792742253",
+		"name": "Philly Little",
+		"email": "littlephilly@hotmail.com",
+		"password": "someSHA1stringthatis41characterslong",
+		"avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTqXrU5Ilz6Q-Akc7cj6rdj7WfacltQEfYsxWHgeE1ojqAht1c",
+		"venmoID": "PhillyLovesCash",
+		"status": "active"
+	},
+	{
+		"ID": 2,
+		"name": "Mark Emark",
+		"googleID": "102203286394792742863",
+		"email": "emark_mark@gmail.com",
+		"password": "ihopethisShAStRINgIsLONGenougHToBeShAAAAA",
+		"avatar": "https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Bearded_Man-17-512.png",
+		"venmoID": "I do my own stunts",
+		"status": "active"
+	},
+	{
+		"ID": 3,
+		"googleID": "111103286394792742253",
+		"name": "Billy Pherall",
+		"email": "bill_ph@aol.com",
+		"password": "whateverOthershastringtomakeafakepassword",
+		"avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTFxEObOPeEk57eLfKnHGQOMl_g3qE66q2aCAYpZWwIBp6deGq",
+		"venmoID": "I play the cow bell",
+		"status": "active"
+	}
+	]
+}
