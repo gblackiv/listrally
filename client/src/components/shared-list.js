@@ -54,6 +54,7 @@ class SharedList extends Component{
         const checkboxList = items.map(item=>{
             return <Checkbox key={item.ID} {...item} url={this.url} />
         })
+        
         return( 
             <div className="col-2">
             <header>
@@ -65,16 +66,21 @@ class SharedList extends Component{
                                 <img src={filter} alt="filter"/>   All
                             </div> */}
                             <div className="list-top">
-                                <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
-                                <div className="shared-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ') : 'Saturday April 1st'}</div>
-                                <h6 className="shared-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
-                                <div className="wrapper">
-                                    <input className="copy-link-input-field" id="select-this" value={this.link}/>
-                                    <button onClick={this.copyToClipboard} className={`btn ${this.state.class}`} id="clickMe">{this.state.text}</button>
-                                </div>
+                                <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'List Not Found'}</h4>
+                                <div className="shared-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ') : '404 Error'}</div>
+                                <h6 className="shared-details">{list.length>0 ? list[0].description : 'Please try your list link again or contact the list creator'}</h6>
+                                <div className="wrapper">{ (list.length > 0)
+                                    ? <input className="copy-link-input-field" id="select-this" value={this.link}/>
+                                    : <button className="btn btn-blue"><i className="fas fa-home"></i> Home</button> }
+
+                                    { (list.length > 0)
+                                        ? <button onClick={this.copyToClipboard} className={`btn ${this.state.class}`} id="clickMe">{this.state.text}</button>
+                                        : "" }
+                               
+                                    </div> 
                             </div>
                             <div className="shared-label-container">
-                            <label className="usage-instruction">Check off items you plan on bringing</label>
+                            <label className="usage-instruction"> {list.length > 0 ? "Check off items you plan on bringing" : ""}</label>
                             </div>
                             <div className="shared-list-items">
                                 <form className="list-shared-form-container" onSubmit={this.sendInfoToServer}>
