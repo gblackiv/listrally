@@ -84,7 +84,7 @@ class SharedList extends Component{
                         </div>
                     </div>
                 <footer>
-                    <Link to="/chatmodal"><Footer buttons={['chat_button']} /></Link>
+                    <Footer buttons={[]} />
                 </footer>
             </div>
         )
