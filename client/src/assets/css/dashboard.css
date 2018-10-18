@@ -10,7 +10,8 @@ body{
     top: 1px;
 }
 .copied{
-    font-size: 0.6em;
+    font-size: 0.5em;
+    color: #1c776e;
 }
 .dashboard-container{
     font-size: 20px;
@@ -185,6 +186,16 @@ i{
 }
 .dashboard_text:hover{
     text-decoration: underline;
+}
+.event-details{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.eventDate{
+    position: relative;
+    left: 5px;
+    font-size: 0.6em;
 }
 /* .btn-green{
     display:block;
