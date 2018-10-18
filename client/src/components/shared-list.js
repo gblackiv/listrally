@@ -19,7 +19,7 @@ class SharedList extends Component{
         this.url = this.props.location.pathname.substring(13,this.props.location.pathname.length)
         this.link = window.location.href;
         this.state = {
-            text: '',
+            text: 'Copy Link',
             class: 'btn-blue'
         }
     }
@@ -68,9 +68,9 @@ class SharedList extends Component{
                                 <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
                                 <div className="shared-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ') : 'Saturday April 1st'}</div>
                                 <h6 className="shared-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
-                                <div class="wrapper">
+                                <div className="wrapper">
                                     <input className="copy-link-input-field" id="select-this" value={this.link}/>
-                                    <button onClick={this.copyToClipboard} class={`btn ${this.state.class}`} id="clickMe"><i class="fas fa-paste"></i>{this.state.text}</button>
+                                    <button onClick={this.copyToClipboard} className={`btn ${this.state.class}`} id="clickMe">{this.state.text}</button>
                                 </div>
                             </div>
                             <div className="shared-label-container">

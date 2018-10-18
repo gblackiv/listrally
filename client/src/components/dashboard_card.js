@@ -14,6 +14,9 @@ import { getListTitle} from '../actions/index';
 
     render() {
         const {name, userID, ownerID, url} = this.props;
+        if(this.props.eventTime){
+            var {eventTime} = this.props
+        }
         console.log('Dashboard card props :', this.props);
         return (
             <Fragment>
@@ -28,7 +31,7 @@ import { getListTitle} from '../actions/index';
                                 <Link to={`/list-shared/${url}`}>
                                     <div className="dashboard_text">{this.props.title}</div>
                                 </Link>
-                                <div className="eventDate">{this.props.eventTime.substr(0,10)}</div>
+                                <div className="eventDate">{eventTime.substr(0,10)}</div>
                             </div>
                         </div>
                         <div className="dashboard-right">
