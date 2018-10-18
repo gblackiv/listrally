@@ -59,21 +59,21 @@ class CreateList extends Component{
         );
     }
 
-    renderDate = ({input, label, type, meta: { error, touched }}) => {
+    // renderDate = ({input, label, type, meta: { error, touched }}) => {
         
-        return (
-            <div className="form-row">
-                            <div className="form-col">
-                                <fieldset className="date-fieldset">
-                                    <legend className="form-input-label date-input-label">{label}</legend>
-                                        <div>
-                                            <input className="form-input-form" type="datetime-local" id="eventDate" name="eventDateInput" {...input} />
-                                        </div>
-                                </fieldset>
-                            </div>
-                        </div>
-        );
-    }
+    //     return (
+    //         <div className="form-row">
+    //                         <div className="form-col">
+    //                             <fieldset className="date-fieldset">
+    //                                 <legend className="form-input-label date-input-label">{label}</legend>
+    //                                     <div>
+    //                                         <input className="form-input-form" type="datetime-local" id="eventDate" name="eventDateInput" {...input} />
+    //                                     </div>
+    //                             </fieldset>
+    //                         </div>
+    //                     </div>
+    //     );
+    // }
 
     open = () => this.setState({isOpen: true});
     close = () => this.setState({isOpen: false});
@@ -115,8 +115,10 @@ class CreateList extends Component{
         if( this.createListState){
             this.getDate( this.createListState.eventTime );
         }
+        if(!this.props.userInfo.ID){//if user is not logged in, then clear cache
+            localStorage.clear();
+        }
     }
-
 
 
     render(){
