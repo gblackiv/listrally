@@ -40,13 +40,12 @@ class CreateList extends Component{
     }
     userCreateListData = (values) => {
         //const { name, description, securityStatus, eventTime} = request.body;
-        debugger;
         console.log('Flatpickr Date: ', this.state.date);
         values.eventTime = this.state.date;
         let {eventDescription: description, eventName: name, eventTime} = values;
-        this.setState({
-            description, eventName, name
-        })
+        // this.setState({
+        //     description, eventName, name
+        // })
         const securityStatus = "locked";
         eventTime = eventTime[0].toJSON().slice(0, 19).replace('T', ' ');
         const newEventObject = { name, description, securityStatus, eventTime };
@@ -58,11 +57,11 @@ class CreateList extends Component{
             alert('YOU ARE NOT LOGGED IN! LOG IN!!!!!!!!');
             return;
         }
-        if(!this.state.description || !this.state.name || !this.state.eventTime){
-            debugger;
-            alert('FILL OUT THE FORM!!!')
-            return;
-        }
+        // if(!this.state.description || !this.state.name || !this.state.eventTime){
+        //     debugger;
+        //     alert('FILL OUT THE FORM!!!')
+        //     return;
+        // }
         this.setState({
             saved: true
         })
@@ -112,7 +111,7 @@ class CreateList extends Component{
                     </div>
                 </div>
                 <footer>
-                    {userInfo.ID && description && name && eventTime ? <Link to={`/list/${this.props.url}`}><Footer buttons={['next_page_button']} /></Link> : null}
+                    {userInfo.ID ? <Link to={`/list/${this.props.url}`}><Footer buttons={['next_page_button']} /></Link> : null}
                 </footer>
             </div>
         )
