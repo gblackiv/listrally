@@ -28,8 +28,6 @@ export default class Header extends React.Component {
         switch ( button ){
             case 'list_button': 
                 return <List_button key={i}/>;
-            // case 'List_link_button':
-            //     return ( <Link to={`/list-shared/${this.props.url}`}> <List_link_button /> </Link> );
             case 'List_link_button':
                 if(this.props.login){//if user is logged in
                     return ( <Link to={`/dashboard`} key={i}><img className="user-avatar" src={this.props.avatar} alt="avatar"/> </Link> );

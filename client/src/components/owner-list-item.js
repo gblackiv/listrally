@@ -8,16 +8,16 @@ import { Field, reduxForm } from 'redux-form';
 class ListItem extends Component {
 
     state = {
-        edit: false
+        edit: false,
+        placeholder: ''
     }
 
     renderInput = (props) => {
         const { input } = props;
-        console.log('input :', input);
         return (
-            <div className="row">
-                <input className="add-input-field" {...input} type="text" autoComplete="off" />
-                <button className="btn btn-blue">Edit</button>
+            <div className="edit-row">
+                <input className="edit-item-field" {...input} placeholder={this.props.itemName} type="text" autoComplete="off" />
+                <button className="edit-btn">OK</button>
             </div>
         )
     }
@@ -32,6 +32,9 @@ class ListItem extends Component {
     updateSingleItem=(values)=>{
         // const { ID, name, listID, assignedUserID } = request.body;
         const {itemName: name} = values;
+        this.setState({
+            placeholder: name
+        })
         const { ID, listID} = this.props;
         let assignedUserID = 0;
         const updatedObject = {ID, name, listID, assignedUserID};
@@ -53,10 +56,10 @@ class ListItem extends Component {
         console.log('List Item this.props :', this.props);
         const {itemName} = this.props;
         return (
-                <div className="list-item">
+                <Fragment>
                     {this.state.edit ? 
-                        <div className="add">                       
-                            <form className='add-item-form-container' onSubmit={handleSubmit(this.updateSingleItem)}>
+                        <div className="edit">                       
+                            <form className='edit-form-container' onSubmit={handleSubmit(this.updateSingleItem)}>
                                 <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
                             </form>
                         </div>
@@ -72,7 +75,7 @@ class ListItem extends Component {
                             </div>
                         </div> 
                     }
-                </div>
+                </Fragment>
         )
     }
 }

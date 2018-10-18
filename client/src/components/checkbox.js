@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { sendCheckboxInfo, deleteItem, getListData, updateListData } from '../actions';
 import blankImage from '../assets/images/nothing.png';
 import SignInModal from './sign-in-modal';
+import loading from '../assets/images/user.png';
 
 const crossedOutTextStyle = {
     textDecoration: 'line-through'
@@ -73,7 +74,12 @@ class Checkbox extends Component {
 
     render(){
         // const { ID, name, listID, assignedUserID } = request.body;
-        const {name, avatar} = this.props;
+        const {name} = this.props;
+        if(this.props.avatar){
+            var {avatar} = this.props;
+        } else{
+            avatar = user;
+        }
         const {isChecked} = this.state;
         return (
             <div className="list_item">

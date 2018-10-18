@@ -79,12 +79,36 @@
 
 .list-date{
     margin: 0.4em;
+    font-size: 0.7em;
 }
 
 .item-name{
     margin: 0 0.5em;
 }
 
+.edit-item-field {
+    background-color: transparent;
+    border: 1px solid #26a69a;
+    font-size: 14px;
+    padding: 0;
+    cursor: text;
+    text-indent: 15px;
+    height: 32px;
+    width: 100%;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+.edit-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 1.5em 0;
+}
+.edit-form-container{
+    width: 100%;
+}
+.edit{
+    width: 80%;
+}
 /*************************
 * Font Awesome
 *************************/
@@ -100,8 +124,7 @@
     border-radius: 50%;
     background-color: white;
     z-index: 1;
-    width: 100px;
-    cursor: pointer;
+    width: 70px;
     box-shadow: 0px 7px 9px -1px rgba(189,187,189,1);
 }
 
@@ -206,7 +229,7 @@
 }
 
 .add-item-button{
-    border-radius: 10px;
+    // border-radius: 10px;
     position: relative;
     right: 0;
     cursor: pointer
@@ -222,7 +245,13 @@
 .add-item-form-container {
     width: 90%;
 }
-
+.edit-btn{
+    color: #26a69a;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-weight: 600;
+}
 
 /***************************
 * Modal
