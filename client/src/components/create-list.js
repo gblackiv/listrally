@@ -56,16 +56,7 @@ class CreateList extends Component{
     }
 
     saveInfo=()=>{
-<<<<<<< HEAD
-        if( this.props.userInfo ){
-            this.setState({
-                saved: true
-            });
-        }
-        else{
-            return <SignInModal />;
-        }
-=======
+
         if(!this.props.userInfo.ID){//if user is not logged in
             alert('YOU ARE NOT LOGGED IN! LOG IN!!!!!!!!');
             return;
@@ -78,7 +69,6 @@ class CreateList extends Component{
         this.setState({
             saved: true
         })
->>>>>>> 83c21ba9197aae6de89e8898fd85fed90bc939dd
     }
 
     render(){
