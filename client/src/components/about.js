@@ -41,7 +41,7 @@ class AboutUs extends Component{
                         <div className="text-container">
                         <h4 className="team-text">Meet the Team</h4>
                         </div>
-                        <p className="about-p">A group a creative web developers</p>
+                        <p className="about-p">A group of creative web developers</p>
                         <div className="team-wrapper">
                             <div className="team-container">
                                 <div className="team-card">

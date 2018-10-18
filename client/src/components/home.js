@@ -10,7 +10,7 @@ import { authenticate } from '../actions';
 import Header from './header';
 import Footer from './footer';
 import { Fragment } from 'react'
-import SignOutButton from './buttons/sign_out_button'
+import DashBoardButton from './buttons/dash_button';
 
 class Home extends Component{
     constructor(props) {
@@ -51,29 +51,30 @@ class Home extends Component{
                 <div className='content'>
                     <div className="home-container">
                         <div className="home-content">
-                            <div className="logo-container">
-                                <img className="shadow" onClick={this.login} id="logo" src={logo} alt="logo"/>
+                            <div className="logo-container zoomIn">
+                                <img className="shadow zoomInDown" onClick={this.login} id="logo" src={logo} alt="logo"/>
 
                             </div>
                             <div className="home-title">ListRally</div>
           
-                                    {this.props.userInfo ? <SignOutButton /> : <SignInButton className="login" onClick={this.login} /> }
+                                    {this.props.userInfo.ID ? <DashBoardButton /> : <SignInButton className="login" onClick={this.login} /> }
 
                                     {/* <a href='/auth/logout'>Sign Out</a> */}
-                                <div className="new-list">
                                     <p className="instruction home-text">Click the + icon to make a list</p>
-                                    <Link to="/create-list"><img className="new-list-btn" src={newList} alt="new_list"/></Link>
+                                    <div className="list-icon-wrapper">
+                                        <Link to="/create-list"><img className="new-list-btn bounce shadow" src={newList} alt="new_list"/></Link>
+                                    </div>
                                 </div>
                                 {/* <div className="home-templates">
                                     <p className="instruction home-text">or click the arrow to select a list template</p>
                                         <div  onClick={ this.toggleListVisibility }><ListButton /></div>
                                     <div className="home-text">
                                         {this.state.show && <Box />}
-                                    </div>
-                                </div> */}
+                                    </div> 
+                                    </div> */}
                         </div>
                     </div>
-                </div>
+             
             <footer>
                 <Footer buttons={[]} />
             </footer>

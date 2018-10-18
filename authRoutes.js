@@ -42,7 +42,7 @@ const authRoutes = ( server, mySQL, connection, passport ) => {
 		const dataToSend = {}
 		if( !request.user ){
 			dataToSend.success = false;
-			dataToSend.user = null
+			dataToSend.user = {}
 			}
 		else{
 			console.log(request.user.ID);

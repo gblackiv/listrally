@@ -46,7 +46,9 @@ class SharedList extends Component{
 
     render(){
         const {items,list, userInfo} = this.props;
-        const { avatar } = userInfo;
+        if(userInfo){
+            var { avatar } = userInfo;
+        }
         console.log('Shared list this.props :', this.props);
         console.log('this.url :', this.url);
         const checkboxList = items.map(item=>{
@@ -72,7 +74,7 @@ class SharedList extends Component{
                                 </div>
                             </div>
                             <label className="usage-instruction">Check off items you plan on bringing</label>
-                            <div className="list-items">
+                            <div className="shared-list-items">
                                 <form onSubmit={this.sendInfoToServer}>
                                     {checkboxList}
                                 </form>
