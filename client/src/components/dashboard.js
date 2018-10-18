@@ -21,9 +21,10 @@ class DashBoard extends Component {
       }
     }
 
-        componentDidMount(){
+    componentDidMount(){
         this.props.getListTitle();
     }
+
     render() {
         const {user} = this.props;
         if(user){
