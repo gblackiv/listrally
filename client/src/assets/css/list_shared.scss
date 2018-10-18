@@ -172,6 +172,10 @@
     font-size: 0.8em;
 }
 
+.home-404 {
+    text-align: center;
+}
+
 
 /***************************
 * Clipboard
@@ -213,6 +217,7 @@
     flex-wrap: nowrap;
     position: relative;
     width: 80%;
+    justify-content: center;
   
   h3 {
     color: #FFF;
