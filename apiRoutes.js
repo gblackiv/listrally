@@ -15,7 +15,7 @@ const routes = ( server, mySQL, connection ) => {
 	 * in order to follow the react routing to the correct site
 	 */
 	server.get( '/*', ( request, response ) => {
-		response.sendFile( `index.html`, error => {
+		response.sendFile( `${__dirname}/index.html`, error => {
 			if( error ){
 				response.status(500).send(error);
 			}
