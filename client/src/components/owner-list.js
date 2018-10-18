@@ -16,6 +16,7 @@ import AddListItemButton from './buttons/add_list_item_button'
 import ListItems from './owner-list-item';
 import Footer from './footer';
 import { userInfo } from 'os';
+// import addItemImage from '../assets/images/list-hand-placeholder.png';
 
 
 class OwnerList extends Component{
@@ -104,6 +105,9 @@ class OwnerList extends Component{
                     <div className="list-items">
                         {items ? sharedlistItems : <div>Loading...</div>}
                     </div>
+                    {/* <div className="add-item-image">
+                        <img src={addItemImage} alt="" />
+                    </div> */}
                     </div>
                 </div>
                 <footer>
