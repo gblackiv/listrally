@@ -14,17 +14,25 @@ import { getListTitle} from '../actions/index';
 
     render() {
         const {name, userID, ownerID, url} = this.props;
-        // console.log('Dashboard card props :', this.props);
+        if(this.props.eventTime){
+            var {eventTime} = this.props
+        }
+        console.log('Dashboard card props :', this.props);
         return (
             <Fragment>
                 <div className="dashboard-items">
                     <div className="dashboard-item1">
                         <div className="dashboard-left">
                             {/* <i className="dashboard_link far fa-link btn-blue"></i> */}                           
+                            <div className="event-link">
                                 <List_link_button link={`http://localhost:3000/list-shared/${url}`}/>
-                            <Link to={`/list-shared/${url}`}>
-                                <div className="dashboard_text">{this.props.title}</div>
-                            </Link>
+                            </div>
+                            <div className="event-details">
+                                <Link to={`/list-shared/${url}`}>
+                                    <div className="dashboard_text">{this.props.title}</div>
+                                </Link>
+                                <div className="eventDate">{eventTime.substr(0,10)}</div>
+                            </div>
                         </div>
                         <div className="dashboard-right">
                             {/* {ownerID === userID ? <LockIcons /> : null} */}

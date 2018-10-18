@@ -53,6 +53,7 @@ header {
     display: flex;
     flex-direction: column;
     flex: 5;
+    margin: 0 15%;
 }
 
 .content {
@@ -200,6 +201,17 @@ h6 {
     box-shadow: none;
 }
 
+.corner-signin{
+    color: white;
+    font-size: 0.6em;
+    letter-spacing: 3px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.corner-signin-container{
+    display: flex;
+    align-items: center;
+}
 /*************************
 * Links
 *************************/
@@ -217,6 +229,7 @@ a {
 
 .list-link{
     cursor: pointer;
+    width: 2.5em;
 }
 .user-avatar{
     border-radius: 50%;
@@ -224,11 +237,37 @@ a {
     bottom: 5px;
 }
 /*************************
-* media queries
+* Side Nav querie
 *************************/
 @media (min-width: 768px) {
     .side-nav {
-        display: flex;
+        display: none;
     }
+}
 
+/*********************
+* Media Queries
+********************/
+@media all and (min-width: 1280px) {
+    .col-2 {
+        margin: 0 25%;
+    }
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+    .col-2 {
+        margin: 0 10%;
+    }
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) {
+    .col-2 {
+        margin: 0 5%;
+    }
+}
+
+@media all and (max-width: 480px) {
+    .col-2 {
+        margin: 0;
+    }
 }

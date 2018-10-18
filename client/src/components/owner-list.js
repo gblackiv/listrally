@@ -83,36 +83,33 @@ class OwnerList extends Component{
             return <ListItems key={item.ID} {...item} url={this.url} />
         })
 
-        return ( 
-
+        return(
             <div className="col-2">
-                <header>
-                    <Header url={this.url} buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={userInfo.avatar ? avatar: null} />
-                </header> 
+            <header>
+                <Header url={this.url} buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={userInfo.avatar ? avatar: null}  login={this.props.userInfo.ID}  />
+            </header> 
                 <div className='content'>
                     <div className="layout-container">
                         <div className="list-top">
-                            {/* <Link to="/dashboard"><img id="avatar" src={userInfo.avatar ? avatar : dummyAvatar } alt="avatar"/></Link> */}
-                            <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
-                            <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ')  : ''}</div>
-                            <h6 className="list-details">{list.length>0 ? list[0].description : ''}</h6>
-                        </div>
-                        <div className="add">                       
-                            <form onSubmit={handleSubmit(this.submitItem)}>
-                                <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
-                            </form>
-                        </div>
-                        <div className="list-items">
-
-                            {items ? sharedlistItems : <div>Loading...</div>}
-                        </div>
+                        {/* <Link to="/dashboard"><img id="avatar" src={userInfo.avatar ? avatar : dummyAvatar } alt="avatar"/></Link> */}
+                       <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
+                       <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ')  : ''}</div>
+                        <h6 className="list-details">{list.length>0 ? list[0].description : ''}</h6>
+                   </div>
+                    <div className="add">                       
+                        <form className='add-item-form-container' onSubmit={handleSubmit(this.submitItem)}>
+                            <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
+                        </form>
+                    </div>
+                    <div className="list-items">
+                        {items ? sharedlistItems : <div>Loading...</div>}
+                    </div>
                     </div>
                 </div>
                 <footer>
                     <Link to={`/list-shared/${this.url}`}><Footer buttons={['next_page_button']} /></Link>
                 </footer>
             </div>
-
         )
     }
 }
@@ -132,3 +129,4 @@ OwnerList = reduxForm({
 export default connect(mapStateToProps,{
     addSingleItem, getListData
 })(OwnerList); 
+

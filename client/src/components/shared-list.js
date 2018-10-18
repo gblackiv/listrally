@@ -19,7 +19,7 @@ class SharedList extends Component{
         this.url = this.props.location.pathname.substring(13,this.props.location.pathname.length)
         this.link = window.location.href;
         this.state = {
-            text: '',
+            text: 'Copy Link',
             class: 'btn-blue'
         }
     }
@@ -57,7 +57,7 @@ class SharedList extends Component{
         return( 
             <div className="col-2">
             <header>
-                <Header buttons={['Back_button', 'List_link_button','Home_nav_button']} history={this.props.history} avatar={userInfo.avatar ? avatar : null} />
+                <Header buttons={['Back_button', 'List_link_button','Home_nav_button']} history={this.props.history} avatar={userInfo.avatar ? avatar : null}  login={this.props.userInfo.ID}  />
             </header> 
                 <div className='content'>
                     <div className="layout-container">
@@ -68,21 +68,23 @@ class SharedList extends Component{
                                 <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'Sue\'s Party'}</h4>
                                 <div className="shared-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ') : 'Saturday April 1st'}</div>
                                 <h6 className="shared-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
-                                <div class="wrapper">
-                                    <input id="select-this" value={this.link}/>
-                                    <button onClick={this.copyToClipboard} class={`btn ${this.state.class}`} id="clickMe"><i class="fas fa-paste"></i>{this.state.text}</button>
+                                <div className="wrapper">
+                                    <input className="copy-link-input-field" id="select-this" value={this.link}/>
+                                    <button onClick={this.copyToClipboard} className={`btn ${this.state.class}`} id="clickMe">{this.state.text}</button>
                                 </div>
                             </div>
+                            <div className="shared-label-container">
                             <label className="usage-instruction">Check off items you plan on bringing</label>
+                            </div>
                             <div className="shared-list-items">
-                                <form onSubmit={this.sendInfoToServer}>
+                                <form className="list-shared-form-container" onSubmit={this.sendInfoToServer}>
                                     {checkboxList}
                                 </form>
                             </div>
                         </div>
                     </div>
                 <footer>
-                    <Link to="/chatmodal"><Footer buttons={['chat_button']} /></Link>
+                    <Footer buttons={[]} />
                 </footer>
             </div>
         )

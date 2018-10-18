@@ -102,9 +102,9 @@ class CreateList extends Component{
         //const { name, description, securityStatus, eventTime} = request.body;
         console.log('Flatpickr Date: ', this.state.date);
         let {eventDescription: description, eventName: name, eventTime} = values;
-        this.setState({
-            description, eventName, name
-        })
+        // this.setState({
+        //     description, eventName, name
+        // })
         const securityStatus = "locked";
         eventTime = eventTime[0].toJSON().slice(0, 19).replace('T', ' ');
         const newEventObject = { name, description, securityStatus, eventTime };
