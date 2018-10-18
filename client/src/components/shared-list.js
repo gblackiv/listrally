@@ -46,7 +46,9 @@ class SharedList extends Component{
 
     render(){
         const {items,list, userInfo} = this.props;
-        const { avatar } = userInfo;
+        if(userInfo){
+            var { avatar } = userInfo;
+        }
         console.log('Shared list this.props :', this.props);
         console.log('this.url :', this.url);
         const checkboxList = items.map(item=>{
