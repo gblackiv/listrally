@@ -29,7 +29,7 @@ class ListItem extends Component {
                         <label className="item-name">{itemName}</label>
                     </div>
                     <div className="list-right">
-                        <div onClick={this.updateSingleItem} className="edit"><i className="fas fa-pen"></i></div>
+                        {/* <div onClick={this.updateSingleItem} className="edit"><i className="fas fa-pen"></i></div> */}
                         <div onClick={this.deleteSingleItem} className="delete"><i className="fas fa-trash-alt"></i></div>                     
                     </div>
                 </div>

@@ -40,6 +40,7 @@ class CreateList extends Component{
     }
     userCreateListData = (values) => {
         //const { name, description, securityStatus, eventTime} = request.body;
+        debugger;
         console.log('Flatpickr Date: ', this.state.date);
         values.eventTime = this.state.date;
         let {eventDescription: description, eventName: name, eventTime} = values;
