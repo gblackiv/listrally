@@ -103,7 +103,7 @@ class AboutUs extends Component{
                     </div>
                 </div>
                 <footer>
-                    <Link to={`/list/${this.props.url}`}><Footer buttons={['next_page_button']} /></Link>
+                    <Link to={`/list/${this.props.url}`}><Footer buttons={[]} /></Link>
                 </footer>
             </div>
         )
