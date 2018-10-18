@@ -77,7 +77,7 @@ class CreateList extends Component{
         this.createListState.eventName = localStorage.getItem('eventName');
         this.createListState.eventDescription = localStorage.getItem('eventDescription');
         this.createListState.eventTime = localStorage.getItem('eventTime');
-        console.log('GERRRRYREYTERTYE', this.createListState)
+        console.log('this.createListState', this.createListState)
         console.log('Create List this.props :', this.props);
         const { handleSubmit, userInfo } = this.props;
         const {ID, avatar} = userInfo;
@@ -94,10 +94,10 @@ class CreateList extends Component{
             
             <h6 className="create-list-heading">Create a new list by filling out the form below</h6>
                 <form onSubmit={handleSubmit(this.userCreateListData)}>
-                    <Field name="eventName" label="Event Name" component={ renderInput } value={this.createListState.eventName || null} placeholder={this.createListState.eventName || "eg. Birthday Party"} />
+                    <Field name="eventName" label="Event Name" component={ renderInput } nameValue={this.createListState.eventName || null} placeholder={"eg. Birthday Party"} />
                     <Field name="eventDescription" label="Event Description" component={ renderTextArea }
                     caption="Enter some details about your event like where to park or how to get there."
-                    placeholder={"eg. Park on the street"} value={this.createListState.eventDescription || null}
+                    placeholder={"eg. Park on the street"} descriptionValue={this.createListState.eventDescription || null}
                     />
 
                     <div className="form-row">

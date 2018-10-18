@@ -8,7 +8,7 @@ export const renderInput = (props) => {
             <div className="form-row">
                 <div className="form-col">
                     <label className="form-input-label">{label}</label>
-                    <input className="form-input-field" {...input} type={ type || 'text' } placeholder={props.placeholder} autoComplete="off"  />
+                    <input className="form-input-field" {...input} type={ type || 'text' } value={props.nameValue} placeholder={props.placeholder} autoComplete="off"  />
                     <span className="form-helper-text">{ touched && error }</span>
                 </div>
             </div>
