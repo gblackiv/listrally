@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../assets/css/tooltips.css';
+import '../assets/css/checkbox.css';
 import { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { sendCheckboxInfo, deleteItem, getListData, updateListData } from '../actions';
@@ -77,9 +78,12 @@ class Checkbox extends Component {
         return (
             <div className="list_item">
                 <div className="shared-left">
-                    <input type="checkbox" name={name} value={name} checked={isChecked ? 'checked' : false}  onChange={this.toggleCheck} />
-                    <label style={isChecked ? crossedOutTextStyle : this.state.style } >{this.props.itemName}</label>
-                    <label className="checkbox-login"><SignInModal isOpen={this.state.isOpen} close={this.close}/></label>
+                    <label className="label-container">
+                        <input type="checkbox" name={name} value={name} checked={isChecked ? 'checked' : false}  onChange={this.toggleCheck} />
+                        <span className="checkmark"></span>
+                        <label style={isChecked ? crossedOutTextStyle : this.state.style } >{this.props.itemName}</label>
+                        <label className="checkbox-login"><SignInModal isOpen={this.state.isOpen} close={this.close}/></label>
+                    </label>
                 </div>
                 <div className="shared-right">
                     <span tooltip={this.props.userName}>
