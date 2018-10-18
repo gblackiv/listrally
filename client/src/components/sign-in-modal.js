@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../assets/css/sign-in-modal.scss';
 import Sign_in_button from './buttons/sign_in_button';
 
-
 class SignInModal extends Component {
     constructor(props){
         super(props);
@@ -11,12 +10,13 @@ class SignInModal extends Component {
     render(){
         if(this.props.isOpen){
             return (
-                <div className="basic-modal" onClick={this.close}>
-                    <div onClick={e => e.stopPropagation()} className="basic-modal-content">
-                        <div onClick={this.props.close} className="basic-modal-close">X</div>
-                        <h6>Oops, you're not logged in. Please log in through Google, and we will let you get back to your party planning</h6>
+                <div className="sign-in-modal" onClick={this.close}>
+                    <div onClick={e => e.stopPropagation()} className="sign-in-modal-content">
+                        <div onClick={this.props.close} className="sign-in-modal-close">X</div>
+                        <h4 className="sign-in-modal-h">Oops, you're not logged in.</h4>
+                        <h6 className="sign-in-modal-span">Please log in through Google, and we will let you get back to your event planning</h6>
                         <div>
-                            <Sign_in_button />
+                            <Sign_in_button className="shadow" />
                         </div>
                     </div>
                 </div>

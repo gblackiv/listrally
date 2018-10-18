@@ -11,6 +11,7 @@ import Header from './header';
 import Footer from './footer';
 import { Fragment } from 'react'
 import DashBoardButton from './buttons/dash_button';
+import SignInModal from './sign-in-modal';
 
 class Home extends Component{
     constructor(props) {
@@ -72,6 +73,7 @@ class Home extends Component{
                                         {this.state.show && <Box />}
                                     </div> 
                                     </div> */}
+                                    <SignInModal isOpen={true} close={this.close}/>
                         </div>
                     </div>
              
