@@ -200,6 +200,17 @@ h6 {
     box-shadow: none;
 }
 
+.corner-signin{
+    color: white;
+    font-size: 0.6em;
+    letter-spacing: 3px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.corner-signin-container{
+    display: flex;
+    align-items: center;
+}
 /*************************
 * Links
 *************************/
