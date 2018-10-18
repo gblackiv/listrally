@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
-import { renderInput, renderTextArea, renderDate } from '../helpers';
+import { renderDate } from '../helpers';
 import '../assets/css/create-list.scss';
 import { createListData, authenticate } from '../actions';
 import Header from './header';
@@ -29,6 +29,55 @@ class CreateList extends Component{
         };
         this.getDate = this.getDate.bind(this);
     }
+
+    renderInput = (props) => {
+        const {input, label, type, meta: { error, touched }} = props;
+        console.log('RenderInput props :', props);
+        return (
+            <div>
+                <div className="form-row">
+                    <div className="form-col">
+                        <label className="form-input-label">{label}</label>
+                        <input className="form-input-field" {...input} type={ type || 'text' } value={props.nameValue} placeholder={props.placeholder} autoComplete="off"  />
+                        <span className="form-helper-text">{ touched && error }</span>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    renderTextArea = (props) => {
+        const {input, label, caption, type, meta: { error, touched }} = props;
+        return (
+            <div>
+                <div className="form-row">
+                    <div className="form-col">
+                        <label className="form-input-label date-label">{label}</label>
+                        <label className="textarea-caption">{caption}</label>
+                        <textarea className="form-textarea-field" {...input} type={ type || 'input' } value={props.description} placeholder={props.placeholder} autoComplete="off"  />
+                        <span className="form-helper-text">{ touched && error }</span>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    renderDate = ({input, label, type, meta: { error, touched }}) => {
+        
+        return (
+            <div className="form-row">
+                            <div className="form-col">
+                                <fieldset className="date-fieldset">
+                                    <legend className="form-input-label date-input-label">{label}</legend>
+                                        <div>
+                                            <input className="form-input-form" type="datetime-local" id="eventDate" name="eventDateInput" {...input} />
+                                        </div>
+                                </fieldset>
+                            </div>
+                        </div>
+        );
+    }
+
     open = () => this.setState({isOpen: true});
     close = () => this.setState({isOpen: false});
 
@@ -94,8 +143,8 @@ class CreateList extends Component{
             
             <h6 className="create-list-heading">Create a new list by filling out the form below</h6>
                 <form onSubmit={handleSubmit(this.userCreateListData)}>
-                    <Field name="eventName" label="Event Name" component={ renderInput } nameValue={this.createListState.eventName || null} placeholder={"eg. Birthday Party"} />
-                    <Field name="eventDescription" label="Event Description" component={ renderTextArea }
+                    <Field name="eventName" label="Event Name" component={ this.renderInput } nameValue={this.createListState.eventName || null} placeholder={"eg. Birthday Party"} />
+                    <Field name="eventDescription" label="Event Description" component={ this.renderTextArea }
                     caption="Enter some details about your event like where to park or how to get there."
                     placeholder={"eg. Park on the street"} descriptionValue={this.createListState.eventDescription || null}
                     />
