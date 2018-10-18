@@ -31,7 +31,11 @@ export default class Header extends React.Component {
             // case 'List_link_button':
             //     return ( <Link to={`/list-shared/${this.props.url}`}> <List_link_button /> </Link> );
             case 'List_link_button':
-                return ( <Link to={`/dashboard`} key={i}><img className="user-avatar" src={this.props.avatar} alt="avatar"/> </Link> );
+                if(this.props.login){//if user is logged in
+                    return ( <Link to={`/dashboard`} key={i}><img className="user-avatar" src={this.props.avatar} alt="avatar"/> </Link> );
+                } else{
+                    return (<Sign_in_button/>)
+                }
             case 'chat_button':
                 return <Chat_button />;
             case 'Sign_in_button':

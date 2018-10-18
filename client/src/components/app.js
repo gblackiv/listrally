@@ -25,9 +25,9 @@ import CreateList from './create-list';
 
 const App = (props) => (
     <div className="app">
-        <nav className="col-1 side-nav">
+        {/* <nav className="col-1 side-nav">
             <TempNav />
-        </nav>
+        </nav> */}
         <Route exact path="/" component={Home} />
         <Route exact path="/create-list" component={CreateList} />
         <Route path="/list/:url" component={ListOwner} />

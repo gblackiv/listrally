@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { renderInput, renderTextArea, renderDate } from '../helpers';
 import '../assets/css/create-list.scss';
-import { createListData } from '../actions';
+import { createListData, authenticate } from '../actions';
 import Header from './header';
 import Footer from './footer';
 import DatePicker from './date-picker';
+import { userInfo } from 'os';
 
 // import '../../node_modules/flatpickr/dist/themes/airbnb.css'
 // import Flatpickr from 'react-flatpickr'
@@ -20,10 +21,18 @@ class CreateList extends Component{
             // date: new Date(),
             // enableTime: true,
             // dateFormat: "Y-m-d H:i"
-            saved: false
+            saved: false,
+            description: '',
+            name: '',
+            eventTime: ''
         };
         this.getDate = this.getDate.bind(this);
       }
+      
+    componentDidMount() {
+        this.props.authenticate()
+      }
+      
     getDate( dateString ){
         this.setState({
             date: dateString
@@ -34,6 +43,9 @@ class CreateList extends Component{
         console.log('Flatpickr Date: ', this.state.date);
         values.eventTime = this.state.date;
         let {eventDescription: description, eventName: name, eventTime} = values;
+        this.setState({
+            description, eventName, name
+        })
         const securityStatus = "locked";
         eventTime = eventTime[0].toJSON().slice(0, 19).replace('T', ' ');
         const newEventObject = { name, description, securityStatus, eventTime };
@@ -41,6 +53,15 @@ class CreateList extends Component{
     }
 
     saveInfo=()=>{
+        if(!this.props.userInfo.ID){//if user is not logged in
+            alert('YOU ARE NOT LOGGED IN! LOG IN!!!!!!!!');
+            return;
+        }
+        if(!this.state.description || !this.state.name || !this.state.eventTime){
+            debugger;
+            alert('FILL OUT THE FORM!!!')
+            return;
+        }
         this.setState({
             saved: true
         })
@@ -48,13 +69,14 @@ class CreateList extends Component{
 
     render(){
         console.log('Create List this.props :', this.props);
-        const { handleSubmit } = this.props;
-        const { saved } = this.state
+        const { handleSubmit, userInfo } = this.props;
+        const {ID, avatar} = userInfo;
+        const { saved, description, name, eventTime } = this.state;
 
         return(
             <div className="col-2">
             <header>
-                <Header buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} />
+                <Header buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={avatar} login={this.props.userInfo.ID} />
             </header> 
                 <div className='content'>
                     <div className="layout-container">
@@ -89,7 +111,7 @@ class CreateList extends Component{
                     </div>
                 </div>
                 <footer>
-                    <Link to={`/list/${this.props.url}`}><Footer buttons={['next_page_button']} /></Link>
+                    {userInfo.ID && description && name && eventTime ? <Link to={`/list/${this.props.url}`}><Footer buttons={['next_page_button']} /></Link> : null}
                 </footer>
             </div>
         )
@@ -111,8 +133,10 @@ function validate(values){
 }
 
 function mapStateToProps(state){
+    console.log('state :', state);
     return {
-        url: state.list.url
+        url: state.list.url,
+        userInfo: state.user.userInfo
     }
 }
 
@@ -122,5 +146,5 @@ CreateList = reduxForm({
 })(CreateList);
 
 export default connect(mapStateToProps,{
-    createListData: createListData
+    createListData, authenticate
 })(CreateList); 
