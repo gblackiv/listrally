@@ -33,7 +33,7 @@ export default class Header extends React.Component {
             case 'List_link_button':
                 if(this.props.login){//if user is logged in
                     return ( <Link to={`/dashboard`} key={i}><img className="user-avatar" src={this.props.avatar} alt="avatar"/> </Link> );
-                } else{
+                } else if(!this.props.login){
                     return (<Sign_in_button/>)
                 }
             case 'chat_button':
@@ -51,6 +51,7 @@ export default class Header extends React.Component {
 
     
     render(){
+        console.log('Header this.props :', this.props);
         return (
             
             <div className="list-nav">

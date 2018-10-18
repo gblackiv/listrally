@@ -86,7 +86,7 @@ class OwnerList extends Component{
         return(
             <div className="col-2">
             <header>
-                <Header url={this.url} buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={userInfo.avatar ? avatar: null} />
+                <Header url={this.url} buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={userInfo.avatar ? avatar: null}  login={this.props.userInfo.ID}  />
             </header> 
                 <div className='content'>
                     <div className="layout-container">
