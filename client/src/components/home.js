@@ -83,8 +83,8 @@ class Home extends Component{
                                         <div  onClick={ this.toggleListVisibility }><ListButton /></div>
                                     <div className="home-text">
                                         {this.state.show && <Box />}
-                                    </div>
-                                </div> */}
+                                    </div> */
+                                </div> 
                         </div>
                     </div>
                 </div>
