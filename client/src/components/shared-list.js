@@ -69,13 +69,15 @@ class SharedList extends Component{
                                 <div className="shared-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ') : 'Saturday April 1st'}</div>
                                 <h6 className="shared-details">{list.length>0 ? list[0].description : 'Get spooky'}</h6>
                                 <div class="wrapper">
-                                    <input id="select-this" value={this.link}/>
+                                    <input className="copy-link-input-field" id="select-this" value={this.link}/>
                                     <button onClick={this.copyToClipboard} class={`btn ${this.state.class}`} id="clickMe"><i class="fas fa-paste"></i>{this.state.text}</button>
                                 </div>
                             </div>
+                            <div className="shared-label-container">
                             <label className="usage-instruction">Check off items you plan on bringing</label>
+                            </div>
                             <div className="shared-list-items">
-                                <form onSubmit={this.sendInfoToServer}>
+                                <form className="list-shared-form-container" onSubmit={this.sendInfoToServer}>
                                     {checkboxList}
                                 </form>
                             </div>

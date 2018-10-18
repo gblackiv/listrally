@@ -64,7 +64,7 @@
 }
 
 .list-item{
-    width: 90vw;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -199,7 +199,9 @@
 //     box-sizing: content-box;
 //     cursor: text;
 // }
-
+.shared-label-container {
+    text-align: center;
+}
 
 .add-item-button{
     border-radius: 10px;
@@ -209,19 +211,15 @@
 }
 
 .row{
-    width: 80vw;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 0 1.5em 0;
 }
 
-@media (min-width: 600px){
-    .list-item{
-        width: 80vw;
-    }
+.add-item-form-container {
+    width: 90%;
 }
-
 
 
 /***************************
