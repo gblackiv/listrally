@@ -72,7 +72,7 @@ class Home extends Component{
                             </div>
                             <div className="home-title">ListRally</div>
           
-                                    {this.props.userInfo ? <DashBoardButton /> : <SignInButton className="login" onClick={this.login} /> }
+                                    {this.props.userInfo.ID ? <DashBoardButton /> : <SignInButton className="login" onClick={this.login} /> }
 
                                     {/* <a href='/auth/logout'>Sign Out</a> */}
                                     <p className="instruction home-text">Click the + icon to make a list</p>
