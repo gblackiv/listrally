@@ -7,7 +7,6 @@
  */
 
 const routes = ( server, mySQL, connection ) => {
-
 	
 	/**
 	 * requires ID of the list that messages belong to

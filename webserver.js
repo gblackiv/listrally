@@ -48,6 +48,18 @@ listRoutes( server, mySQL, connection );
 itemRoutes( server, mySQL, connection );
 authRoutes( server, mySQL, connection, passport)
 passportSetup( server, mySQL, connection, passport );
+/**
+	 * needed for the deployed site to kickstart react routing.
+	 * any request that doesnt first hit our site fails because it is going straight to the server, which then will get redirected back the the main html
+	 * in order to follow the react routing to the correct site
+	 */
+	server.get( '*', ( request, response ) => {
+		response.sendFile( `${__dirname}/client/dist/index.html`, error => {
+			if( error ){
+				response.status(500).send(error);
+			}
+		})
+	})
 
 
 server.listen( PORT, () => { console.log( `server is listening on port ${PORT}` ) } );
