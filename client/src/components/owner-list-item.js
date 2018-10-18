@@ -14,11 +14,10 @@ class ListItem extends Component {
 
     renderInput = (props) => {
         const { input } = props;
-        console.log('input :', input);
         return (
             <div className="edit-row">
-                <input className="edit-item-field" {...input} placeholder={this.state.placeholder} type="text" autoComplete="off" />
-                <button className="btn btn-blue">Edit</button>
+                <input className="edit-item-field" {...input} placeholder={this.props.itemName} type="text" autoComplete="off" />
+                <button className="edit-btn">OK</button>
             </div>
         )
     }
@@ -59,7 +58,7 @@ class ListItem extends Component {
         return (
                 <Fragment>
                     {this.state.edit ? 
-                        <div className="add">                       
+                        <div className="edit">                       
                             <form className='edit-form-container' onSubmit={handleSubmit(this.updateSingleItem)}>
                                 <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
                             </form>
