@@ -57,9 +57,12 @@ class OwnerList extends Component{
 
     submitItem = (values) => {
         console.log('Submit Item values :', values);
-        const {reset, list} = this.props;
+        const {reset, list, userInfo: {ID}} = this.props;
         if(list.length>0){
              var {ID: listID, ownerID} = list[0];
+             if(ownerID!==ID){
+                 return;
+             }
         }
         const { itemName : name } = values;
         const testObject = {name, listID, assignedUserID: 0}
@@ -94,12 +97,13 @@ class OwnerList extends Component{
                             <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ')  : ''}</div>
                             <h6 className="list-details">{list.length>0 ? list[0].description : ''}</h6>
                         </div>
+                        <div className="add">                       
+                            <form onSubmit={handleSubmit(this.submitItem)}>
+                                <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
+                            </form>
+                        </div>
                         <div className="list-items">
-                            <div className="add">                       
-                                <form onSubmit={handleSubmit(this.submitItem)}>
-                                    <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
-                                </form>
-                            </div>
+
                             {items ? sharedlistItems : <div>Loading...</div>}
                         </div>
                     </div>
