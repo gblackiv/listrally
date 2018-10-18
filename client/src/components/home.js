@@ -51,6 +51,7 @@ class Home extends Component{
             </header> 
                 <div className='content'>
                     <div className="home-container">
+                    <Link to="/about"><button className="btn btn-green meet-team-btn">Meet the Team <i className="fas fa-users"></i></button></Link>
                         <div className="home-content">
                             <div className="logo-container zoomIn">
                                 <img className="shadow zoomInDown" onClick={this.login} id="logo" src={logo} alt="logo"/>
