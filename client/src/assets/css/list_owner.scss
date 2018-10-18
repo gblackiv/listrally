@@ -58,7 +58,7 @@
 .list-items{
     margin-top: 1em;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     overflow: auto;
     align-items: center;
 }

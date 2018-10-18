@@ -72,7 +72,7 @@ class SharedList extends Component{
                                 </div>
                             </div>
                             <label className="usage-instruction">Check off items you plan on bringing</label>
-                            <div className="list-items">
+                            <div className="shared-list-items">
                                 <form onSubmit={this.sendInfoToServer}>
                                     {checkboxList}
                                 </form>
