@@ -1,4 +1,5 @@
 .home-container{
+    position: relative;
     flex: 4;
     min-height: 80vh;
     margin: 0 12px;
@@ -76,6 +77,16 @@
 }
 
 .dash-button {
+    cursor: pointer;
+}
+
+.meet-team-btn {
+    position: absolute;
+    width: 180px;
+    bottom: -20px; 
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
     cursor: pointer;
 }
 

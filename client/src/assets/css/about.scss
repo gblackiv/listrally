@@ -5,7 +5,7 @@
     background-color: gray;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    background-image: url('../images/aboutus/hero_TEMP.jpg');
+    background-image: url('../images/aboutus/team-smiling.jpg');
     background-size: cover;
     
 }
@@ -57,6 +57,7 @@
 .team-wrapper {
     justify-content: space-evenly;
     text-align: center;
+    padding-bottom: 25px;
 }
 
 .team-container{
@@ -120,6 +121,23 @@
     a:hover {
         color: rgb(206, 35, 22);
     }
+}
+
+.about-app-container {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.about-app-container:after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+    border-bottom: 2px #333333 solid;
+}
+
+.about-text {
+    padding: 0 10%;
 }
 
 /*********************
