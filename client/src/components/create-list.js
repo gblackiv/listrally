@@ -18,9 +18,6 @@ class CreateList extends Component{
         super();
         this.createListState = {};
         this.state = {
-            // date: new Date(),
-            // enableTime: true,
-            // dateFormat: "Y-m-d H:i"
             saved: false,
             description: '',
             name: '',
@@ -38,7 +35,7 @@ class CreateList extends Component{
                 <div className="form-row">
                     <div className="form-col">
                         <label className="form-input-label">{label}</label>
-                        <input className="form-input-field" {...input} type={ type || 'text' } value={props.nameValue} placeholder={props.placeholder} autoComplete="off"  />
+                        <input className="form-input-field" {...input} type={ type || 'text' } placeholder={props.placeholder} autoComplete="off"  />
                         <span className="form-helper-text">{ touched && error }</span>
                     </div>
                 </div>
@@ -54,7 +51,7 @@ class CreateList extends Component{
                     <div className="form-col">
                         <label className="form-input-label date-label">{label}</label>
                         <label className="textarea-caption">{caption}</label>
-                        <textarea className="form-textarea-field" {...input} type={ type || 'input' } value={props.description} placeholder={props.placeholder} autoComplete="off"  />
+                        <textarea className="form-textarea-field" {...input} type={ type || 'input' } placeholder={props.placeholder} autoComplete="off"  />
                         <span className="form-helper-text">{ touched && error }</span>
                     </div>
                 </div>
@@ -143,10 +140,10 @@ class CreateList extends Component{
             
             <h6 className="create-list-heading">Create a new list by filling out the form below</h6>
                 <form onSubmit={handleSubmit(this.userCreateListData)}>
-                    <Field name="eventName" label="Event Name" component={ this.renderInput } nameValue={this.createListState.eventName || null} placeholder={"eg. Birthday Party"} />
+                    <Field name="eventName" label="Event Name" component={ this.renderInput } placeholder={"eg. Birthday Party"} />
                     <Field name="eventDescription" label="Event Description" component={ this.renderTextArea }
                     caption="Enter some details about your event like where to park or how to get there."
-                    placeholder={"eg. Park on the street"} descriptionValue={this.createListState.eventDescription || null}
+                    placeholder={"eg. Park on the street"}
                     />
 
                     <div className="form-row">
@@ -192,7 +189,7 @@ function validate(values){
     return errors;
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state, props){
     console.log('state :', state);
     return {
         url: state.list.url,
@@ -202,7 +199,11 @@ function mapStateToProps(state){
 
 CreateList = reduxForm({
     form: 'create_list_data',
-    validate: validate
+    validate: validate,
+    initialValues: {
+        eventName: localStorage.getItem('eventName') || '',
+        eventDescription: localStorage.getItem('eventDescription') || ''
+    }
 })(CreateList);
 
 export default connect(mapStateToProps,{
