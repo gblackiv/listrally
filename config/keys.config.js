@@ -1,1 +1,0 @@
-module.exports = { cookieKey: [ "cookie key here" ] };

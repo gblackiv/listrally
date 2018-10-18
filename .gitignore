@@ -1,6 +1,3 @@
+.idea
+.DS_Store
 node_modules
-config/googleCredentials.js
-config/mySQLCredentials.js
-config/mySqlCredentials.php
-config/keys.js
-config/email_config.php
