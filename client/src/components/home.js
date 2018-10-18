@@ -88,7 +88,6 @@ class Home extends Component{
                                         {this.state.show && <Box />}
                                     </div> 
                                     </div> */}
-                                    <SignInModal isOpen={true} close={this.close}/>
                         </div>
                     </div>
              
