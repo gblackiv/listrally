@@ -55,7 +55,7 @@ class DashBoard extends Component {
                             <UserName/>
                         {/* <!-- <h4 className="details">Last Name</h4> --> */}
                         {/* <i className="dashboard_user fal fa-user"></i> */}
-                        <Avatar avatar={user ? avatar : null} />   
+                        <img id="avatar" src={avatar} alt="avatar" />
                         </div>
                         {/* <!-- dashboard Toggle --> */}
                         <div className="dashboard_toggle">

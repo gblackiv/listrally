@@ -21,7 +21,7 @@ class Avatar extends Component{
         }
 
         return ( 
-            <Link to="/dashboard"><img id="avatar" src={this.props.avatar} alt="avatar"/></Link>
+            <Link to="/dashboard"><img id="avatar" src={this.props.avatar} alt="avatar" /></Link>
         )
     }
 }
