@@ -11,6 +11,16 @@ import { getListTitle} from '../actions/index';
 import UserNotification from './user_notification';
 import DashboardUsername from './dashboard_username';
 import UserName from './dashboard_username';
+import emptyListImage from '../assets/images/empty-list.png'
+import { relative } from 'path';
+
+const style = {
+    width: '275px',
+    position: 'relative',
+    left: '50%',
+    transform: 'translateX',
+    transform: 'translateX(-50%)'
+}
 
 class DashBoard extends Component { 
     constructor(props) {
@@ -26,7 +36,7 @@ class DashBoard extends Component {
     }
 
     render() {
-        const {user} = this.props;
+        const {user, allLists} = this.props;
         if(user){
             var avatar = user.avatar
             var {GivenName, familyName} = user;
@@ -69,7 +79,7 @@ class DashBoard extends Component {
                             <UserNotification/> */}
                         </div>
                         {/* <!-- dashboard-items --> */}
-                        {listCards}
+                        {allLists[0] ? listCards : <img style={style} src={emptyListImage}/>}
                     </div>
                 </div>
             </div>
@@ -82,7 +92,6 @@ class DashBoard extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('Dashboard state :', state);
     return {
         list: state.list.list,
         allLists: state.list.allLists,

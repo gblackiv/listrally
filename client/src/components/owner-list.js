@@ -9,6 +9,7 @@ import { Fragment } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { addSingleItem } from '../actions/index';
 import { getListData } from '../actions/index';
+import handPlaceholderImg from '../assets/images/list-hand-placeholder.png';
 
 import ListLinkButton from './buttons/list_link_button';
 import ChatButton from './buttons/chat_button';
@@ -18,6 +19,10 @@ import Footer from './footer';
 import { userInfo } from 'os';
 // import addItemImage from '../assets/images/list-hand-placeholder.png';
 
+const style = {
+    height: '450px',
+    opacity: 0.4
+}
 
 class OwnerList extends Component{
 
@@ -33,18 +38,6 @@ class OwnerList extends Component{
     goBack = () => {
         this.props.history.goBack();
     }
-
-    // componentDidUpdate(){
-    //     const {list, userInfo : {ID: userID}} = this.props;
-    //     if(list.length>0){//if list is finally loaded
-    //         debugger;
-    //          var {ownerID} = list[0];//pull owner ID out of it
-    //     }
-    //     if(userID!==ownerID){//if the current user ID is not the list's ownerID
-    //         this.props.history.push('/');//bring them back to landing page
-    //     }
-    // }
-
 
     renderInput = (props) => {
         const { input } = props;
@@ -104,7 +97,7 @@ class OwnerList extends Component{
                         </form>
                     </div>
                     <div className="list-items">
-                        {items ? sharedlistItems : <div>Loading...</div>}
+                        {this.props.items[0] ? sharedlistItems : <img style={style} src={handPlaceholderImg}/> }
                     </div>
                     {/* <div className="add-item-image">
                         <img src={addItemImage} alt="" />
