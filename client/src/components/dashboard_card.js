@@ -31,7 +31,7 @@ import { getListTitle} from '../actions/index';
                                 <Link to={`/list-shared/${url}`}>
                                     <div className="dashboard_text">{this.props.title}</div>
                                 </Link>
-                                <div className="eventDate">{eventTime.substr(0,10)}</div>
+                                <div className="eventDate">When: {eventTime.substr(0,10)}</div>
                             </div>
                         </div>
                         <div className="dashboard-right">

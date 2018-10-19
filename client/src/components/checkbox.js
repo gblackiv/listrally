@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { sendCheckboxInfo, deleteItem, getListData, updateListData } from '../actions';
 import blankImage from '../assets/images/nothing.png';
 import SignInModal from './sign-in-modal';
-import loading from '../assets/images/user.png';
 
 const crossedOutTextStyle = {
     textDecoration: 'line-through'
@@ -71,6 +70,9 @@ class Checkbox extends Component {
         this.props.updateListData(listID)
     }
 
+    addDefaultSrc(ev){
+        ev.target.src = blankImage
+      }
 
     render(){
         // const { ID, name, listID, assignedUserID } = request.body;
@@ -93,7 +95,8 @@ class Checkbox extends Component {
                 </div>
                 <div className="shared-right">
                     <span tooltip={this.props.userName}>
-                        <img className="person" src={isChecked ? avatar : blankImage} alt="user"/>
+                        {/* <img src={isChecked ? avatar : blankImage} alt="user"/> */}
+                        <img onError={this.addDefaultSrc} className="person" src={avatar} />
                     </span>
                 </div>
             </div>
