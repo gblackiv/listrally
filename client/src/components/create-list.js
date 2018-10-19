@@ -85,6 +85,7 @@ class CreateList extends Component{
     }
     userCreateListData = (values) => {
         values.eventTime = this.state.date;
+        if(!values.eventTime) return;
         console.log('values',values)
         if(!this.props.userInfo.ID){//if user is not logged in
             localStorage.setItem('eventName', values.eventName);

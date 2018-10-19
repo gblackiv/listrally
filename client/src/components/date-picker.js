@@ -10,7 +10,7 @@ class DatePicker extends Component {
     super(props);
 
     this.state = {
-      date: new Date()
+      date: ''
     };
   }
 
