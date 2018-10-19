@@ -92,10 +92,11 @@ class OwnerList extends Component{
                 <div className='content'>
                     <div className="layout-container">
                         <div className="list-top">
-                        {/* <Link to="/dashboard"><img id="avatar" src={userInfo.avatar ? avatar : dummyAvatar } alt="avatar"/></Link> */}
-                       <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
-                       <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ')  : ''}</div>
-                        <h6 className="list-details">{list.length>0 ? list[0].description : ''}</h6>
+                        <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
+                        <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ')  : ''}</div>
+                        <div className="description-container">
+                            <h6 className="list-details">{list.length>0 ? list[0].description : ''}</h6>
+                        </div>
                    </div>
                     <div className="add">                       
                         <form className='add-item-form-container' onSubmit={handleSubmit(this.submitItem)}>

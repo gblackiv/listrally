@@ -42,15 +42,20 @@
     background-color: white;
 }
 
+.description-container {
+    display: inline-block;
+    max-width: 650px;
+}
+
 .list-details{
+    word-wrap:break-word;
     text-align: center;
     margin: 0.2em;
-    // white-space: nowrap;
+
 }
 
 .list-title{
     text-align: center;
-    // white-space: nowrap;
     margin-bottom: 0;
     margin-top: 0.5em;
 }
@@ -209,21 +214,6 @@
     -webkit-writing-mode: horizontal-tb !important;
 }
 
-// .add-input-field:focus{
-//     background-color: transparent;
-//     border: none;
-//     border-bottom: 2px solid #26a69a;
-//     height: 3rem;
-//     width: 60vw;
-//     font-size: 16px;
-//     margin: 0 8px 0 0;
-//     padding: 0;
-//     -webkit-box-shadow: none;
-//     box-shadow: none;
-//     -webkit-box-sizing: content-box;
-//     box-sizing: content-box;
-//     cursor: text;
-// }
 .shared-label-container {
     text-align: center;
 }
@@ -253,193 +243,29 @@
     font-weight: 600;
 }
 
-/***************************
-* Modal
-****************************/
-/* .main{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.modal {
-    display: none;
-}
-
-.modal-show,
-.modal-hide {
-    display: flex;
-}
-
-.modal-align {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 999;
-}
-
-.modal-container {
-    position: relative;
-    width: 90%;
-    height: 40%;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.modal-header {
-    display: flex;
-    padding: 10px 40px;
-}
-
-.modal-footer {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    height: 45px;
-    width: 100%;
-    bottom: 0;
-}
-
-.modal-buttons{
-    display: flex;
-    justify-content: space-around;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.modalCloseBtn {
-    background-color: transparent;
-    border: none;
-    padding: 0 40px;
-    color: #26a69a;
-    cursor: pointer;
-    font-size: 1.5em;
-    position: relative;
-    left: 0%;
-    bottom: 1em;
-}
-
-.modalCloseX {
-    position: absolute;
-    top: 6px;
-    right: 15px;
-}
-
-.modalCloseX:hover {
-    cursor: pointer;
-}
-.add-input{
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #26a69a;
-    border-radius: 0;
-    outline: none;
-    height: 3rem;
-    width: 80%;
-    font-size: 16px;
-    margin: 0 0 8px 0;
-    padding: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-} */
-
-/*******MEDIA QUERIES*******/
-/* @media (min-width: 600px){
-    .modal-container{
-        width: 700px;
-    }
-    .modal-header {
-    display: flex;
-    background: white;
-    padding: 20px 60px;
-    }
-    .notification{
-    position: relative;
-    left: 3.5em;
-    bottom: 5em;
-    }
-    .modalCloseBtn {
-    position: relative;
-    left: 70%;
-    bottom: 1em;
-    }
-} */
-
-/* Animation */
-/* .modal.modal-show {
-    animation: modal-open 0.3s;
-}
-
-@keyframes modal-open {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
+/*********************
+* Media Queries
+********************/
+@media all and (min-width: 1280px) {
+    .description-container {
+        max-width: 650px;
     }
 }
 
-.modal.modal-hide {
-    animation: modal-close 0.3s;
+@media all and (min-width: 768px) and (max-width: 1024px) {
+    .description-container {
+        max-width: 550px;
+    }
 }
 
-@keyframes modal-close {
-    0% {
-        opacity: 1;
+@media all and (min-width: 480px) and (max-width: 768px) {
+    .description-container {
+        max-width: 450px;
     }
+}
 
-    100% {
-        opacity: 0;
+@media all and (max-width: 480px) {
+    .description-container {
+        max-width: 350px;
     }
-} */
-
-/***************************
-* Add item image
-****************************/
-
-// .add-item-image{
-//     background-image: url("../images/list-hand-placeholder.png");
-//     background-position: center; 
-//     background-repeat: no-repeat; 
-//     background-size: 400px;
-// }
-
-// @media all and (min-width: 1024px) and (max-width: 1280px) {
-//     .add-item-image {
-//         background-size: 350px;
-//     }
-// }
-
-// @media all and (min-width: 768px) and (max-width: 1024px) {
-//     .add-item-image{
-//         background-size: 300px;
-//     }
-// }
-
-// @media all and (min-width: 480px) and (max-width: 768px) {
-//     .add-item-image {
-//         background-size: 250px;
-//     }
-// }
-
-// @media all and (max-width: 480px) {
-//     .add-item-image {
-//         background-size: 200px;
-//     }
-//     .add-item-image{
-//         padding: 0 5%;
-//     }
-// }
+}
