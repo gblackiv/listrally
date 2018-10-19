@@ -25,7 +25,7 @@ import { getListTitle} from '../actions/index';
                         <div className="dashboard-left">
                             {/* <i className="dashboard_link far fa-link btn-blue"></i> */}                           
                             <div className="event-link">
-                                <List_link_button link={`http://localhost:3000/list-shared/${url}`}/>
+                                <List_link_button link={`${window.location.host}/list-shared/${url}`}/>
                             </div>
                             <div className="event-details">
                                 <Link to={`/list-shared/${url}`}>
