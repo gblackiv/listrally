@@ -95,8 +95,7 @@ class Checkbox extends Component {
                 </div>
                 <div className="shared-right">
                     <span tooltip={this.props.userName}>
-                        {/* <img src={isChecked ? avatar : blankImage} alt="user"/> */}
-                        <img onError={this.addDefaultSrc} className="person" src={avatar} />
+                        <img onError={this.addDefaultSrc} className="person" src={avatar} alt="user" />
                     </span>
                 </div>
             </div>
