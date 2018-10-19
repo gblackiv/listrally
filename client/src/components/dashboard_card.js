@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import { getListTitle} from '../actions/index';
 
 
-
  class DashboardCard extends Component {
 
     render() {
@@ -17,7 +16,6 @@ import { getListTitle} from '../actions/index';
         if(this.props.eventTime){
             var {eventTime} = this.props
         }
-        console.log('Dashboard card props :', this.props);
         return (
             <Fragment>
                 <div className="dashboard-items">
@@ -51,7 +49,6 @@ import { getListTitle} from '../actions/index';
 
 
 function mapStateToProps(state){
-    // console.log('Redux state DASHBOARD inside mapStateToProp :', state);
     return{
         list: state.list.list
     }
