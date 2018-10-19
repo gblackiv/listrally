@@ -46,9 +46,16 @@
     transform: translateY(-2px);
 }
 
+
+
 /*********************
 * Media Queries
 ********************/
+@media all and (min-width: 480px){
+    .home-link-logo-container {
+        display: none;
+    }
+}
 @media all and (max-width: 480px) {
     .home-link-text{
         display: none;
