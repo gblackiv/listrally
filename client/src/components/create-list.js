@@ -154,7 +154,7 @@ class CreateList extends Component{
                             <fieldset className="date-fieldset">
                                 <legend className="form-input-label date-input-label">Enter Date and Time</legend>
                                     <div>
-                                        <DatePicker sendDate={this.getDate} />
+                                        <DatePicker sendDate={this.getDate} /><span className="date-note"> ◄ Select date</span>
                                     </div>
                             </fieldset>
                         </div>
