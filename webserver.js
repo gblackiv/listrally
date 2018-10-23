@@ -6,14 +6,15 @@ const passport = require( 'passport' );
 const passportSetup = require( './config/passportSetup.js' );
 const mysqlCredentials = require( './config/mySQLCredentials.js' );
 const cookieSession = require( 'cookie-session' );
-
 const apiRoutes = require( './apiRoutes.js' );
 const listRoutes = require( './list_api_routes.js');
 const itemRoutes = require( './item_api_routes.js')
 const authRoutes = require( './authRoutes.js' );
 const keys = require( './config/keys.js' );
-
 const server = express();
+const http = require('http').Server(server);
+const io = require('socket.io')(http);
+const socket_ioServer = require( './socket.js' );
 const PORT = 3050;
 
 //MySQL connection being made
@@ -43,6 +44,7 @@ server.use( express.static( `${__dirname}/client/dist` ) );
 
 
 //routes for the server
+socket_ioServer( io, mySQL );
 apiRoutes( server, mySQL, connection );
 listRoutes( server, mySQL, connection );
 itemRoutes( server, mySQL, connection );
@@ -62,4 +64,4 @@ passportSetup( server, mySQL, connection, passport );
 	})
 
 
-server.listen( PORT, () => { console.log( `server is listening on port ${PORT}` ) } );
+http.listen( PORT, () => { console.log( `server is listening on port ${PORT}` ) } );
