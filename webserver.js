@@ -44,7 +44,7 @@ server.use( express.static( `${__dirname}/client/dist` ) );
 
 
 //routes for the server
-socket_ioServer( io, mySQL );
+socket_ioServer( io, mySQL, connection );
 apiRoutes( server, mySQL, connection );
 listRoutes( server, mySQL, connection );
 itemRoutes( server, mySQL, connection );
