@@ -29,7 +29,6 @@ class CreateList extends Component{
 
     renderInput = (props) => {
         const {input, label, type, meta: { error, touched }} = props;
-        console.log('RenderInput props :', props);
         return (
             <div>
                 <div className="form-row">
@@ -83,10 +82,13 @@ class CreateList extends Component{
             date: dateString
         });
     }
+
     userCreateListData = (values) => {
+        if(this.state.saved === true){
+            return;
+        }
         values.eventTime = this.state.date;
         if(!values.eventTime) return;
-        console.log('values',values)
         if(!this.props.userInfo.ID){//if user is not logged in
             localStorage.setItem('eventName', values.eventName);
             localStorage.setItem('eventDescription', values.eventDescription);
@@ -101,7 +103,6 @@ class CreateList extends Component{
             saved: true
         })
         //const { name, description, securityStatus, eventTime} = request.body;
-        console.log('Flatpickr Date: ', this.state.date);
         let {eventDescription: description, eventName: name, eventTime} = values;
         // this.setState({
         //     description, eventName, name
@@ -111,6 +112,7 @@ class CreateList extends Component{
         const newEventObject = { name, description, securityStatus, eventTime };
         this.props.createListData(newEventObject);
     }
+
     componentDidMount(){
         this.props.authenticate();
         if( this.createListState){
@@ -121,33 +123,30 @@ class CreateList extends Component{
         }
     }
 
-
     render(){
         this.createListState.eventName = localStorage.getItem('eventName');
         this.createListState.eventDescription = localStorage.getItem('eventDescription');
         this.createListState.eventTime = localStorage.getItem('eventTime');
-        console.log('this.createListState', this.createListState)
-        console.log('Create List this.props :', this.props);
+        // console.log('this.createListState', this.createListState)
+        // console.log('Create List this.props :', this.props);
         const { handleSubmit, userInfo } = this.props;
         const {ID, avatar} = userInfo;
         const { saved, description, name, eventTime } = this.state;
 
         return(
             <div className="col-2">
-            <header>
-                <Header buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={avatar} login={this.props.userInfo.ID} />
-            </header> 
+                <header>
+                    <Header buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={avatar} login={this.props.userInfo.ID} />
+                </header> 
                 <div className='content'>
                     <div className="layout-container">
-
             
-            <h6 className="create-list-heading">Create a new list by filling out the form below</h6>
+                <h6 className="create-list-heading">Create a new list by filling out the form below</h6>
                 <form onSubmit={handleSubmit(this.userCreateListData)}>
                     <Field name="eventName" label="Event Name" component={ this.renderInput } placeholder={"eg. Birthday Party"} />
                     <Field name="eventDescription" label="Event Description" component={ this.renderTextArea }
                     caption="Enter some details about your event like where to park or how to get there."
-                    placeholder={"eg. Park on the street"}
-                    />
+                    placeholder={"eg. Park on the street"}/>
 
                     <div className="form-row">
                         <div className="form-col">
@@ -168,7 +167,7 @@ class CreateList extends Component{
                     </div>
                 </form>
         
-                    </div>
+                </div>
                 </div>
                 <footer>
                     {userInfo.ID ? <Link to={`/list/${this.props.url}`}><Footer buttons={['next_page_button']} /></Link> : null}
@@ -193,7 +192,6 @@ function validate(values){
 }
 
 function mapStateToProps(state, props){
-    console.log('state :', state);
     return {
         url: state.list.url,
         userInfo: state.user.userInfo
