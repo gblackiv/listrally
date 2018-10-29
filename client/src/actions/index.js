@@ -71,6 +71,7 @@ export function sendCheckboxInfo(info){
     return async dispatch => {
         const resp = await axios.patch('/api/updateitem', info);
         console.log('Update Checkbox resp :', resp);
+        debugger;
         dispatch({
             type: types.UPDATE_CHECKBOX,
             payload: resp

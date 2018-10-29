@@ -50,7 +50,6 @@ class OwnerList extends Component{
     }
 
     submitItem = (values) => {
-        console.log('Submit Item values :', values);
         const {reset, list, userInfo: {ID}} = this.props;
         if(list.length>0){
              var {ID: listID, ownerID} = list[0];
@@ -79,13 +78,13 @@ class OwnerList extends Component{
 
         return(
             <div className="col-2">
-            <header>
-                <Header url={this.url} buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={userInfo.avatar ? avatar: null}  login={this.props.userInfo.ID}  />
-            </header> 
+                <header>
+                    <Header url={this.url} buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={userInfo.avatar ? avatar: null}  login={this.props.userInfo.ID}  />
+                </header> 
                 <div className='content'>
                     <div className="layout-container">
                         <div className="list-top">
-                        <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
+                        <h4 contentEditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
                         <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ')  : ''}</div>
                         <div className="description-container">
                             <h6 className="list-details">{list.length>0 ? list[0].description : ''}</h6>
@@ -99,9 +98,6 @@ class OwnerList extends Component{
                     <div className="list-items">
                         {this.props.items[0] ? sharedlistItems : <img style={style} src={handPlaceholderImg}/> }
                     </div>
-                    {/* <div className="add-item-image">
-                        <img src={addItemImage} alt="" />
-                    </div> */}
                     </div>
                 </div>
                 <footer>
