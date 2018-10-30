@@ -106,7 +106,7 @@ class SharedList extends Component{
                                             </div>
                                         </Link>
                                 : null}
-                                <button className="btn btn-blue" onClick={this.openModal} id="user-btn">Share List</button>
+                                <button className="btn btn-blue" onClick={this.openModal} id="user-btn">Share List  <i class="fas fa-link"></i></button>
                             </div>
                             <div className="shared-list-info">
                                 <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'List Not Found'}</h4>
