@@ -89,7 +89,7 @@ class Checkbox extends Component {
                     <label className="label-container">
                         <input type="checkbox" name={name} value={name} checked={isChecked ? 'checked' : false}  onChange={this.toggleCheck} />
                         <span className="checkmark"></span>
-                        <label style={isChecked ? crossedOutTextStyle : this.state.style } >{this.props.itemName}</label>
+                        <label className="item-name" style={isChecked ? crossedOutTextStyle : this.state.style } >{this.props.itemName}</label>
                         <label className="checkbox-login"><SignInModal isOpen={this.state.isOpen} close={this.close}/></label>
                     </label>
                 </div>
