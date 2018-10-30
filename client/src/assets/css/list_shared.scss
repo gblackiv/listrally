@@ -47,7 +47,7 @@
 //     text-align: center;
 // }
 .shared-date,.shared-details{
-    margin: 0.5em;
+    margin: 0.25em;
     font-size: 1.25rem;
     font-family: 'Merriweather'
 }
@@ -265,7 +265,7 @@
 
 @media all and (max-width: 480px) {
     .shared-list-title{
-        font-size: 1.75rem;
+        font-size: 2rem;
     }
     .item-name{
         font-size: 1.1rem;
