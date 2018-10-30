@@ -57,7 +57,7 @@ class OwnerList extends Component{
         }
         time = hour+":"+minute + amOrpm;
         
-        return `${month} ${day},${year} ${time}`;
+        return `${month} ${day}, ${year} ${time}`;
     }
 
     goBack = () => {
