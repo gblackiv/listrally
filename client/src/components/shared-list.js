@@ -39,6 +39,31 @@ class SharedList extends Component{
         this.span = document.getElementsByClassName("user-close")[0];
     }
 
+    convertDate=(date)=>{
+        date = date.slice(0, 19).replace('T', ' ') ;
+    
+        const monthNames = ["filler","January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+        let month = monthNames[Number(date.substr(5,2))];
+        let day = Number(date.substr(8,2));
+        let year = Number(date.substr(0,4));
+        
+        let time = date.substr(11,8);
+        var hour = Number(time.substr(0,2));
+        let amOrpm = 'am'
+        if(hour>12){
+            hour = hour - 12;
+            amOrpm = 'pm'
+        }
+        var minute = Number(time.substr(3,2));
+        if(minute<10){
+            minute = "0"+minute;
+        }
+        time = hour+":"+minute + amOrpm;
+        
+        return `${month} ${day}, ${year} ${time}`;
+    }
+
     goBack = () => {
         console.log('go back');
         this.props.history.goBack();
@@ -111,7 +136,7 @@ class SharedList extends Component{
                             <div className="shared-list-info">
                                 <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'List Not Found'}</h4>
                                 <div className="shared-details">{list.length>0 ? list[0].description : 'Please try your list link again or contact the list creator'}</div>
-                                <div className="shared-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ') : '404 Error'}</div>
+                                <div className="shared-date">{list.length>0 ? this.convertDate(list[0].eventTime) : '404 Error'}</div>
                             </div>
                         </div>
                         <div className="shared-label-container">

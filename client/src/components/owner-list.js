@@ -35,6 +35,31 @@ class OwnerList extends Component{
         this.props.getListData(this.url);
     }
 
+    convertDate=(date)=>{
+        date = date.slice(0, 19).replace('T', ' ') ;
+    
+        const monthNames = ["filler","January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+        let month = monthNames[Number(date.substr(5,2))];
+        let day = Number(date.substr(8,2));
+        let year = Number(date.substr(0,4));
+        
+        let time = date.substr(11,8);
+        var hour = Number(time.substr(0,2));
+        let amOrpm = 'am'
+        if(hour>12){
+            hour = hour - 12;
+            amOrpm = 'pm'
+        }
+        var minute = Number(time.substr(3,2));
+        if(minute<10){
+            minute = "0"+minute;
+        }
+        time = hour+":"+minute + amOrpm;
+        
+        return `${month} ${day}, ${year} ${time}`;
+    }
+
     goBack = () => {
         this.props.history.goBack();
     }
@@ -86,7 +111,8 @@ class OwnerList extends Component{
                         <div className="list-top">
                             <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
                             <div className="list-details">{list.length>0 ? list[0].description : ''}</div>
-                            <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ')  : ''}</div>
+                            <div className="list-date">{list.length>0 ? this.convertDate(list[0].eventTime)  : ''}</div>
+                        </div>
                     <div className="add">                       
                         <form className='add-item-form-container' onSubmit={handleSubmit(this.submitItem)}>
                             <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
