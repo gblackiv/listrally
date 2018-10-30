@@ -1,8 +1,11 @@
-
-
 /*************************
-* shared
+* Shared List
 *************************/
+.details{
+    text-align: center;
+    margin: 0.2em;
+    white-space: nowrap;
+}
 .list-container{
     color: black;
     height: 100%;
@@ -12,62 +15,22 @@
     justify-content: center;
 }
 
+.list-edit{
+    font-size: 0.75rem;
+    margin: 0 1rem;
+}
+.list-footer{
+    display: flex;
+    justify-content: flex-end;
+}
 .list-nav{
     display: flex;
     justify-content: space-between;
 }
 
-.list-footer{
+.list-options{
     display: flex;
-    justify-content: flex-end;
 }
-
-.list-top{
-    font-size: 1.5em;
-    font-size: 1.5em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.list-content{
-    border: 5px solid black;
-    border-radius: 5px;
-    position: relative;
-    height: 100%;
-    padding: 0.3em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-}
-
-.details{
-    text-align: center;
-    margin: 0.2em;
-    white-space: nowrap;
-}
-
-.shared-name{
-    text-align: center;
-    margin:0.7rem;
-}
-
-.shared-details {
-    margin: 0 0.7em;
-    text-align: center;
-}
-.shared-date{
-    margin: 0.5em;
-}
-.shared-list-items{
-    margin-top: 1em;
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-    align-items: center;
-}
-
 .list-shared-form-container {
     width: 90%;
 }
@@ -80,11 +43,51 @@
     border-bottom: 0.5px solid lightgrey;
     height: 51px;
 }
+// .shared-details {
+//     margin: 0 0.7em;
+//     text-align: center;
+// }
+.shared-date,.shared-details{
+    margin: 0.25em;
+    font-size: 1.25rem;
+    font-family: 'Merriweather'
+}
+.shared-list-top{
+    font-size: 1.5em;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+// .shared-list-content{
+//     border: 5px solid black;
+//     border-radius: 5px;
+//     position: relative;
+//     height: 100%;
+//     padding: 0.3em;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     background-color: white;
+// }
+
+.shared-name{
+    text-align: center;
+    margin:0.7rem;
+}
+.shared-list-items{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    align-items: center;
+}
 
 .shared-list-title{
     text-align: center;
-    margin-bottom: 0;
-    margin-top: 0.5em;
+    // margin-bottom: 0;
+    // margin-top: 0.5em;
+    margin: 0.5em 0.5em 0;
 }
 
 .person{
@@ -100,6 +103,27 @@
     margin: 0 0.5em;
 }
 
+.share{
+    position: relative;
+    right: 30%;
+    font-size: 1rem;
+}
+
+.share-instruction{
+    position: relative;
+    left: 10%;
+    color: black;
+}
+.shared-list-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.shared-label-container {
+    text-align: start;
+    margin: 7% 5% 1% 4.5%;
+}
 /*************************
 * Font Awesome
 *************************/
@@ -168,7 +192,6 @@
 
 .usage-instruction{
     margin: 1em 0.5em;
-    font-style: italic;
     font-size: 0.8em;
 }
 
@@ -238,172 +261,17 @@
     }
   }
 }
-  
-//   .button {
-//     border: 0;
-//     display: inline-block;
-//     position: relative;
-//     font-size: 0.3em;
-//     background-color: #1976d2;
-//     color: white;
-//     transition: all 300ms ease;
-
-    
-//     &:hover {
-//       background-color: darken(#1976d2, 10%);
-//     }
-//   }
 
 
-/***************************
-* Modal
-****************************/
-/* .main{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.modal {
-    display: none;
-}
 
-.modal-show,
-.modal-hide {
-    display: flex;
-}
-
-.modal-align {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 999;
-}
-
-.modal-container {
-    position: relative;
-    width: 90%;
-    height: 40%;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.modal-header {
-    display: flex;
-    padding: 10px 40px;
-}
-
-.modal-footer {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    height: 45px;
-    width: 100%;
-    bottom: 0;
-}
-
-.modal-buttons{
-    display: flex;
-    justify-content: space-around;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.modalCloseBtn {
-    background-color: transparent;
-    border: none;
-    padding: 0 40px;
-    color: #26a69a;
-    cursor: pointer;
-    font-size: 1.5em;
-    position: relative;
-    left: 0%;
-    bottom: 1em;
-}
-
-.modalCloseX {
-    position: absolute;
-    top: 6px;
-    right: 15px;
-}
-
-.modalCloseX:hover {
-    cursor: pointer;
-}
-.add-input{
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #26a69a;
-    border-radius: 0;
-    outline: none;
-    height: 3rem;
-    width: 80%;
-    font-size: 16px;
-    margin: 0 0 8px 0;
-    padding: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-} */
-
-/*******MEDIA QUERIES*******/
-/* @media (min-width: 600px){
-    .modal-container{
-        width: 700px;
+@media all and (max-width: 480px) {
+    .shared-list-title{
+        font-size: 2rem;
     }
-    .modal-header {
-    display: flex;
-    background: white;
-    padding: 20px 60px;
+    .item-name{
+        font-size: 1.1rem;
     }
-    .notification{
-    position: relative;
-    left: 3.5em;
-    bottom: 5em;
-    }
-    .modalCloseBtn {
-    position: relative;
-    left: 70%;
-    bottom: 1em;
-    }
-} */
-
-/* Animation */
-/* .modal.modal-show {
-    animation: modal-open 0.3s;
-}
-
-@keyframes modal-open {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
+    .shared-date,.shared-details{
+        font-size: 1rem;
     }
 }
-
-.modal.modal-hide {
-    animation: modal-close 0.3s;
-}
-
-@keyframes modal-close {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-} */

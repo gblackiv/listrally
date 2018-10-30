@@ -28,6 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Merriweather';
 }
 
 .list-content{
@@ -49,15 +50,14 @@
 
 .list-details{
     word-wrap:break-word;
-    text-align: center;
-    margin: 0.2em;
-
+    margin: 0.25em;
+    font-size: 1.25rem;
+    font-family: 'Merriweather'
 }
 
 .list-title{
     text-align: center;
-    margin-bottom: 0;
-    margin-top: 0.5em;
+    margin: 0.5em 0.5em 0;
 }
 
 .list-items{
@@ -215,9 +215,6 @@
     -webkit-writing-mode: horizontal-tb !important;
 }
 
-.shared-label-container {
-    text-align: center;
-}
 
 .add-item-button{
     // border-radius: 10px;
@@ -268,5 +265,11 @@
 @media all and (max-width: 480px) {
     .description-container {
         max-width: 350px;
+    }
+    .list-title{
+        font-size: 2rem;
+    }
+    .list-details,.list-date{
+        font-size: 1rem;
     }
 }
