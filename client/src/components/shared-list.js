@@ -100,9 +100,9 @@ class SharedList extends Component{
                             <div className="list-options">
                                 {ownerID === userID ? 
                                         <Link to={`/list/${this.url}`}>
-                                            <div className="list-edit">
+                                            <div className="list-edit btn btn-green">
                                                 {/* <i className="fas fa-pencil-alt btn-green settings-button"></i> */}
-                                                <i className="fas fa-pen"></i>
+                                                Edit List <i className="fas fa-pen"></i>
                                             </div>
                                         </Link>
                                 : null}
@@ -110,12 +110,12 @@ class SharedList extends Component{
                             </div>
                             <div className="shared-list-info">
                                 <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'List Not Found'}</h4>
-                                <div className="shared-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ') : '404 Error'}</div>
                                 <div className="shared-details">{list.length>0 ? list[0].description : 'Please try your list link again or contact the list creator'}</div>
+                                <div className="shared-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ') : '404 Error'}</div>
                             </div>
                         </div>
                         <div className="shared-label-container">
-                            <label className="usage-instruction"> {list.length > 0 ? "Check off items you plan on bringing" : ""}</label>
+                            <label className="usage-instruction"> {items.length > 0 ? "Check off items you plan on bringing." : "There's no item in this list yet."}</label>
                         </div>
                         <div className="shared-list-items">
                             <form className="list-shared-form-container" onSubmit={this.sendInfoToServer}>
@@ -137,7 +137,7 @@ class SharedList extends Component{
                                         ? <button onClick={this.copyToClipboard} className={`btn ${this.state.class}`} id="clickMe">{this.state.text}</button>
                                         : "" }
                                 </div>
-                                <div className="share-instruction">{this.state.copied ? <div className="copied"><i class="fal fa-clipboard-check"></i>Link copied to clipboard</div> : null}</div> 
+                                <div className="share-instruction">{this.state.copied ? <div className="copied-link"><i class="fal fa-clipboard-check"></i>  Link copied to clipboard</div> : null}</div> 
                             </main>
                         </div>
                     </div>

@@ -16,7 +16,8 @@
 }
 
 .list-edit{
-    font-size: 1.25rem;
+    font-size: 0.75rem;
+    margin: 0 1rem;
 }
 .list-footer{
     display: flex;
@@ -84,8 +85,9 @@
 
 .shared-list-title{
     text-align: center;
-    margin-bottom: 0;
-    margin-top: 0.5em;
+    // margin-bottom: 0;
+    // margin-top: 0.5em;
+    margin: 0.5em 0.5em 0;
 }
 
 .person{

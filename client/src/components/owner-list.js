@@ -79,18 +79,16 @@ class OwnerList extends Component{
 
         return(
             <div className="col-2">
-            <header>
-                <Header url={this.url} buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={userInfo.avatar ? avatar: null}  login={this.props.userInfo.ID}  />
-            </header> 
+                <header>
+                    <Header url={this.url} buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={userInfo.avatar ? avatar: null}  login={this.props.userInfo.ID}  />
+                </header> 
                 <div className='content'>
                     <div className="layout-container">
                         <div className="list-top">
-                        <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
-                        <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ')  : ''}</div>
-                        <div className="description-container">
-                            <h6 className="list-details">{list.length>0 ? list[0].description : ''}</h6>
+                            <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
+                            <div className="list-details">{list.length>0 ? list[0].description : ''}</div>
+                            <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ')  : ''}</div>
                         </div>
-                   </div>
                     <div className="add">                       
                         <form className='add-item-form-container' onSubmit={handleSubmit(this.submitItem)}>
                             <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
