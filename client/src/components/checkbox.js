@@ -67,7 +67,7 @@ class Checkbox extends Component {
         const checkboxObject = {ID, name, listID, assignedUserID};
         this.props.sendCheckboxInfo(checkboxObject);
         this.props.getListData(this.props.url);
-        this.props.updateListData(listID)
+        this.props.updateListData(listID);
     }
 
     addDefaultSrc(ev){
@@ -76,6 +76,7 @@ class Checkbox extends Component {
 
     render(){
         // const { ID, name, listID, assignedUserID } = request.body;
+        // console.log('checkbox props :', this.props);
         const {name} = this.props;
         if(this.props.avatar){
             var {avatar} = this.props;

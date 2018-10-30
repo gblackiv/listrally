@@ -50,7 +50,6 @@ class OwnerList extends Component{
     }
 
     submitItem = (values) => {
-        console.log('Submit Item values :', values);
         const {reset, list, userInfo: {ID}} = this.props;
         if(list.length>0){
              var {ID: listID, ownerID} = list[0];
@@ -88,7 +87,6 @@ class OwnerList extends Component{
                             <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
                             <div className="list-details">{list.length>0 ? list[0].description : ''}</div>
                             <div className="list-date">{list.length>0 ? list[0].eventTime.slice(0, 19).replace('T', ' ')  : ''}</div>
-                        </div>
                     <div className="add">                       
                         <form className='add-item-form-container' onSubmit={handleSubmit(this.submitItem)}>
                             <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
@@ -97,9 +95,6 @@ class OwnerList extends Component{
                     <div className="list-items">
                         {this.props.items[0] ? sharedlistItems : <img style={style} src={handPlaceholderImg}/> }
                     </div>
-                    {/* <div className="add-item-image">
-                        <img src={addItemImage} alt="" />
-                    </div> */}
                     </div>
                 </div>
                 <footer>
