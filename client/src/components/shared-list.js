@@ -39,29 +39,17 @@ class SharedList extends Component{
         this.span = document.getElementsByClassName("user-close")[0];
     }
 
-    convertDate=(date)=>{
-        date = date.slice(0, 19).replace('T', ' ') ;
-    
-        const monthNames = ["filler","January", "February", "March", "April", "May", "June",
+    convertDate=( dateString )=>{
+        const preConvertedDate = new Date( dateString );
+        const convertedDate = new Date(preConvertedDate.getTime()-preConvertedDate.getTimezoneOffset()*60*1000);
+        const offset = preConvertedDate.getTimezoneOffset() / 60;
+        const hours = preConvertedDate.getHours();
+        convertedDate.setHours(hours - offset);
+        
+        const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
-        let month = monthNames[Number(date.substr(5,2))];
-        let day = Number(date.substr(8,2));
-        let year = Number(date.substr(0,4));
-        
-        let time = date.substr(11,8);
-        var hour = Number(time.substr(0,2));
-        let amOrpm = 'am'
-        if(hour>12){
-            hour = hour - 12;
-            amOrpm = 'pm'
-        }
-        var minute = Number(time.substr(3,2));
-        if(minute<10){
-            minute = "0"+minute;
-        }
-        time = hour+":"+minute + amOrpm;
-        
-        return `${month} ${day}, ${year} ${time}`;
+        const month = monthNames[convertedDate.getMonth()];
+        return `${month} ${convertedDate.getDate()}, ${convertedDate.getFullYear()} ${convertedDate.toLocaleTimeString()}`;
     }
 
     goBack = () => {
