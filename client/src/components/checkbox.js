@@ -75,7 +75,6 @@ class Checkbox extends Component {
       }
 
     render(){
-        // const { ID, name, listID, assignedUserID } = request.body;
         // console.log('checkbox props :', this.props);
         const {name} = this.props;
         if(this.props.avatar){
