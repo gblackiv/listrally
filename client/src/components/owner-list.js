@@ -1,5 +1,4 @@
 import '../assets/css/list_owner.scss';
-import dummyAvatar from '../assets/images/user.png'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -11,12 +10,9 @@ import { addSingleItem } from '../actions/index';
 import { getListData } from '../actions/index';
 import handPlaceholderImg from '../assets/images/list-hand-placeholder.png';
 
-import ListLinkButton from './buttons/list_link_button';
-import ChatButton from './buttons/chat_button';
 import AddListItemButton from './buttons/add_list_item_button'
 import ListItems from './owner-list-item';
 import Footer from './footer';
-import { userInfo } from 'os';
 // import addItemImage from '../assets/images/list-hand-placeholder.png';
 
 const style = {
@@ -89,7 +85,6 @@ class OwnerList extends Component{
     render(){
         const {handleSubmit} = this.props;
         console.log('List this.props :', this.props);
-        console.log('List this.props.history :', this.props.history);
         let {items, list, userInfo } = this.props;
         if(userInfo.avatar){
             var { avatar } = userInfo;

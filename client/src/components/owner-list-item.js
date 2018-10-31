@@ -53,7 +53,7 @@ class ListItem extends Component {
 
     render() {
         const {handleSubmit} = this.props;
-        console.log('List Item this.props :', this.props);
+        console.log('List Single Item this.props :', this.props);
         const {itemName} = this.props;
         return (
                 <Fragment>

@@ -53,7 +53,6 @@ class SharedList extends Component{
     }
 
     goBack = () => {
-        console.log('go back');
         this.props.history.goBack();
     }
 
@@ -71,13 +70,12 @@ class SharedList extends Component{
     }
 
 
-    //MODALS
-    // When the user clicks the button, open the modal 
+    //MODALS 
     openModal = () =>{
         console.log('event.target :', event.target);
         this.modal.style.display = "block";
     }
-    // When the user clicks on <span> (x), close the modal
+
     closeWithX = ()=> {
         this.modal.style.display = "none";
     }
@@ -96,8 +94,7 @@ class SharedList extends Component{
         if(userInfo){
             var { avatar, ID: userID } = userInfo;
         }
-        console.log('Shared list this.props :', this.props);
-        console.log('this.url :', this.url);
+        console.log('Shared List this.props :', this.props);
         const checkboxList = items.map(item=>{
             return <Checkbox key={item.ID} {...item} url={this.url} />
         })
