@@ -1,11 +1,10 @@
 {
-	"name": "react_starter",
+	"name": "list_rally_server",
 	"version": "1.0.0",
-	"description": "Starting setup for react redux project",
-	"main": "index.js",
+	"description": "The serverside portion of the app, ListRally",
+	"main": "webserver.js",
 	"scripts": {
-		"start": "node dev_server.js",
-		"bundle": "webpack --config webpack.prod.js --progress",
+		"start": "node webserver.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "Gerry Blackmon",
@@ -23,6 +22,7 @@
 		"socket.io": "^2.1.1"
 	},
 	"devDependencies": {
+		"pm2": "^3.2.2",
 		"react-responsive-carousel": "^3.1.43"
 	}
 }
