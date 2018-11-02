@@ -105,7 +105,6 @@ class AboutUs extends Component{
                                 <p>Thank you for checking out our app!</p>
                                 </div>
                         </div>
-                        
                     </div>
                 </div>
                 <footer>
