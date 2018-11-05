@@ -100,12 +100,11 @@ class AboutUs extends Component{
                                 <div className="about-text">
                                 <p>The ListRally App was created to solve the problem of hosting an event and people asking what they can bring. We wanted to create an easy and shareable list, so groups can collaborate on items needed for various occasions.</p>
                                 <p>Starting with feature set planning for an MVP (Minimum Viable Product), we planned out the pages and features we wanted to incorporate into the app. Utilizing <strong>Figma</strong> we created some concepts and started planning the <strong>Agile Process</strong> using <strong>Trello</strong>.</p>
-                                <p>The ListRally App is built with a <strong>NodeJS</strong> Back-End and a <strong>ReactJS</strong> Front-End. The Back-End features a <strong>mySQL Database</strong> with Authentication and Error Report Handling. It also features an <strong>PHP Mailer</strong> for email notifications of upcoming events.</p>
+                                <p>The ListRally App is built with a <strong>NodeJS</strong> Back-End and a <strong>ReactJS</strong> Front-End. The Back-End featurs <strong>Express</strong>, a <strong>MySQL Database</strong> with Authentication and Error Report Handling. It also features an <strong>PHP Mailer</strong> for email notifications of upcoming events.</p>
                                 <p>The Front-End is using <strong>Redux</strong> which is a Framework that handles state to behave consistently, run in different environments. Along with Redux we also used <strong>React Router DOM, Redux Form, Sass </strong>and other technologies.</p>
                                 <p>Thank you for checking out our app!</p>
                                 </div>
                         </div>
-                        
                     </div>
                 </div>
                 <footer>
