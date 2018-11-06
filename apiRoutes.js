@@ -56,7 +56,7 @@ const routes = ( server, mySQL, connection ) => {
 		const listsQuery = 'SELECT ??, ??, ??, ??, ??, ??, ?? FROM ?? JOIN ?? ON ?? = ?? WHERE (?? = ? AND ?? = ?)';
 		const listsInserts = [ 'eventTime','url','userID', 'lists.name', 'ownerID', 'securityStatus', 'lists.status', 'list_to_users', 'lists', 'listID', 'lists.ID', 'userID', ID, 'status', 'active' ];
 		const listsSQL = mySQL.format( listsQuery, listsInserts );
-
+ 
 		connection.query( listsSQL, ( error, results, fields ) => {
 			if( error ){		//the user ID sent is request is invalid
 				console.log( '/api/getuserlists error:', error );
