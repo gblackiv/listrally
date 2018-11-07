@@ -16,7 +16,6 @@ export default class UserSettings extends Component {
 
     // When the user clicks the button, open the modal 
     openModal = () =>{
-        console.log('event.target :', event.target);
         this.modal.style.display = "block";
     }
 

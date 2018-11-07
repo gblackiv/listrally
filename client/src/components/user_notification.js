@@ -52,7 +52,6 @@ class userNotification extends Component{
     }
 
     render(){
-        console.log('User Checkbox this.props :', this.props);
         const {isChecked} = this.state;
         const {name} = this.props;
         return(
