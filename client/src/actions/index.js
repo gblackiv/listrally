@@ -58,9 +58,10 @@ export function getListTitle(){
 }
 
 export function sendCheckboxInfo(info){
-    setCheckboxToInactive();
     return async dispatch => {
         const resp = await axios.patch('/api/updateitem', info);
+        console.log(resp)
+        resp.data.disabled = false;
         dispatch({
             type: types.UPDATE_CHECKBOX,
             payload: resp
@@ -68,6 +69,16 @@ export function sendCheckboxInfo(info){
     }
 }
 
+export function setCheckboxToInactive(){
+    return dispatch => {
+        dispatch({
+            type: types.DISABLE_CHECKBOX,
+            payload: {
+                disabled: true
+            }
+        });
+    }
+}
 
 
 export function authenticate(){
@@ -110,13 +121,3 @@ export function editSingleItem(item){
     }
 }
 
-function setCheckboxToInactive(){
-    return dispatch => {
-        dispatch({
-            type: types.DISABLE_CHECKBOX,
-            payload: {
-                disabled: true
-            }
-        })
-    }
-}

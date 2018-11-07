@@ -18,9 +18,9 @@ export default (state=DEFAULT_STATE,action)=>{
         case types.ADD_LIST_ITEM:
             return {...state};
         case types.UPDATE_CHECKBOX:
-            return {...state};
+            return {...state, disabled: action.payload.data.disabled};
         case types.DISABLE_CHECKBOX:
-            return {...state}
+            return {...state, disabled: action.payload.disabled}
         case types.GET_SINGLE_ITEM:
             return {...state};
         case types.CREATE_LIST_DATA:
