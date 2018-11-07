@@ -9,7 +9,7 @@ import Header from './header';
 import Footer from './footer';
 import DatePicker from './date-picker';
 import SignInModal from './sign-in-modal';
-
+import LoadingSpinner from './loading_spinner.js';
 // import '../../node_modules/flatpickr/dist/themes/airbnb.css'
 // import Flatpickr from 'react-flatpickr'
 
@@ -135,6 +135,7 @@ class CreateList extends Component{
 
         return(
             <div className="col-2">
+            {this.state.saved ? <LoadingSpinner/> : null}
                 <header>
                     <Header buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={avatar} login={this.props.userInfo.ID} />
                 </header> 
