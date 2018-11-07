@@ -24,7 +24,6 @@ export default (WrappedComponent)=>{//this is just a function with a class in it
     }
 
     function mapStateToProps(state){
-        console.log('auth state :', state);
         return {
             userID: state.user.userInfo.ID
         }

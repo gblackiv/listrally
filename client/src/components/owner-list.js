@@ -84,7 +84,6 @@ class OwnerList extends Component{
 
     render(){
         const {handleSubmit} = this.props;
-        console.log('List this.props :', this.props);
         let {items, list, userInfo } = this.props;
         if(userInfo.avatar){
             var { avatar } = userInfo;

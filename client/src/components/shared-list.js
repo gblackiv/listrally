@@ -72,7 +72,6 @@ class SharedList extends Component{
 
     //MODALS 
     openModal = () =>{
-        console.log('event.target :', event.target);
         this.modal.style.display = "block";
     }
 
@@ -94,7 +93,6 @@ class SharedList extends Component{
         if(userInfo){
             var { avatar, ID: userID } = userInfo;
         }
-        console.log('Shared List this.props :', this.props);
         const checkboxList = items.map(item=>{
             return <Checkbox key={item.ID} {...item} url={this.url} />
         })
