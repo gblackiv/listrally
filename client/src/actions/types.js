@@ -19,5 +19,6 @@ export default {
     GET_LIST_TITLE: 'get_list_title',
     UPDATE_CHECKBOX: 'update_checkbox',
     USER_NOTIFICATION: 'user_notification',
-    DELETE_LIST: 'delete_list'
+    DELETE_LIST: 'delete_list',
+    DISABLE_CHECKBOX: 'disable_checkbox'
 };

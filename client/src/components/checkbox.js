@@ -3,7 +3,7 @@ import '../assets/css/tooltips.css';
 import '../assets/css/checkbox.css';
 import { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { sendCheckboxInfo, deleteItem, getListData, updateListData } from '../actions';
+import { sendCheckboxInfo, deleteItem, getListData, updateListData, setCheckboxToInactive } from '../actions';
 import blankImage from '../assets/images/nothing.png';
 import SignInModal from './sign-in-modal';
 
@@ -19,7 +19,7 @@ class Checkbox extends Component {
             style: {},
             isLogOn: true,
             isOpen: false,
-            random: true
+            random: true,
         }
         this.toggleCheck = this.toggleCheck.bind(this);
     }
@@ -57,7 +57,6 @@ class Checkbox extends Component {
     }
 
     sendInfoToServer = () => {
-        //const { ID, name, listID, assignedUserID } = request.body;
         let { ID, listID, itemName: name, userInfo : {ID: userID}, assignedUserID} = this.props;
         if(userID===assignedUserID){//if box is checked and user is the one who checked it
             assignedUserID = 0;//removes their name and sets checkbox back to being unchecked
@@ -65,29 +64,29 @@ class Checkbox extends Component {
             assignedUserID = userID;
         }
         const checkboxObject = {ID, name, listID, assignedUserID};
+        this.props.setCheckboxToInactive();
         this.props.sendCheckboxInfo(checkboxObject);
         this.props.getListData(this.props.url);
         this.props.updateListData(listID);
     }
 
-    addDefaultSrc(ev){
-        ev.target.src = blankImage
-      }
+    addDefaultSrc = (ev) => {
+        ev.target.src = blankImage;
+    }
 
     render(){
-        // console.log('checkbox props :', this.props);
         const {name} = this.props;
         if(this.props.avatar){
             var {avatar} = this.props;
         } else{
-            avatar = user;
+            avatar = null;
         }
         const {isChecked} = this.state;
         return (
             <div className="list_item">
                 <div className="shared-left">
                     <label className="label-container">
-                        <input type="checkbox" name={name} value={name} checked={isChecked ? 'checked' : false}  onChange={this.toggleCheck} />
+                        <input type="checkbox" name={name} value={name} checked={isChecked ? 'checked' : false} disabled={this.props.disabled} onChange={this.toggleCheck} />
                         <span className="checkmark"></span>
                         <label className="item-name" style={isChecked ? crossedOutTextStyle : this.state.style } >{this.props.itemName}</label>
                         <label className="checkbox-login"><SignInModal isOpen={this.state.isOpen} close={this.close}/></label>
@@ -111,10 +110,11 @@ function mapStateToProps(state){
         list: state.list.list,
         items: state.list.items,
         userInfo: state.user.userInfo,
+        disabled: state.list.disabled
     }
 }
 
 
 export default connect(mapStateToProps,{
-    sendCheckboxInfo, deleteItem, getListData, updateListData
+    sendCheckboxInfo, deleteItem, getListData, updateListData, setCheckboxToInactive
 })(Checkbox); 

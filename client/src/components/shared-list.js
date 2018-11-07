@@ -116,7 +116,7 @@ class SharedList extends Component{
                                             </div>
                                         </Link>
                                 : null}
-                                <button className="btn btn-blue" onClick={this.openModal} id="user-btn">Share List  <i class="fas fa-link"></i></button>
+                                <button className="btn btn-blue" onClick={this.openModal} id="user-btn">Share List  <i className="fas fa-link"></i></button>
                             </div>
                             <div className="shared-list-info">
                                 <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'List Not Found'}</h4>
@@ -140,14 +140,14 @@ class SharedList extends Component{
                             <h4 className="share-instruction">Share With Others</h4>
                             <main>
                                 <div className="wrapper">{ (list.length > 0)
-                                    ?  <input className="copy-link-input-field" id="select-this" value={this.link}/>
+                                    ?  <input className="copy-link-input-field" id="select-this" defaultValue={this.link}/>
                                     : <button className="btn btn-blue"><i className="fas fa-home"></i> Home</button> }
 
                                     { (list.length > 0)
                                         ? <button onClick={this.copyToClipboard} className={`btn ${this.state.class}`} id="clickMe">{this.state.text}</button>
                                         : "" }
                                 </div>
-                                <div className="share-instruction">{this.state.copied ? <div className="copied-link"><i class="fal fa-clipboard-check"></i>  Link copied to clipboard</div> : null}</div> 
+                                <div className="share-instruction">{this.state.copied ? <div className="copied-link"><i className="fal fa-clipboard-check"></i>  Link copied to clipboard</div> : null}</div> 
                             </main>
                         </div>
                     </div>
