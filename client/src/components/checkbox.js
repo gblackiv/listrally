@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { sendCheckboxInfo, deleteItem, getListData, updateListData, setCheckboxToInactive } from '../actions';
 import blankImage from '../assets/images/nothing.png';
 import SignInModal from './sign-in-modal';
+import LoadingSpinner from './loading_spinner.js';
 
 const crossedOutTextStyle = {
     textDecoration: 'line-through'
@@ -84,6 +85,7 @@ class Checkbox extends Component {
         const {isChecked} = this.state;
         return (
             <div className="list_item">
+                {this.props.disabled ? <LoadingSpinner/> : null}
                 <div className="shared-left">
                     <label className="label-container">
                         <input type="checkbox" name={name} value={name} checked={isChecked ? 'checked' : false} disabled={this.props.disabled} onChange={this.toggleCheck} />
