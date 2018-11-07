@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { renderDate } from '../helpers';
 import '../assets/css/create-list.scss';
@@ -22,7 +22,7 @@ class CreateList extends Component{
             description: '',
             name: '',
             eventTime: '',
-            modalStatus: false
+            modalStatus: false,
         };
         this.getDate = this.getDate.bind(this);
     }
@@ -58,22 +58,6 @@ class CreateList extends Component{
         );
     }
 
-    // renderDate = ({input, label, type, meta: { error, touched }}) => {
-        
-    //     return (
-    //         <div className="form-row">
-    //                         <div className="form-col">
-    //                             <fieldset className="date-fieldset">
-    //                                 <legend className="form-input-label date-input-label">{label}</legend>
-    //                                     <div>
-    //                                         <input className="form-input-form" type="datetime-local" id="eventDate" name="eventDateInput" {...input} />
-    //                                     </div>
-    //                             </fieldset>
-    //                         </div>
-    //                     </div>
-    //     );
-    // }
-
     open = () => this.setState({isOpen: true});
     close = () => this.setState({isOpen: false});
 
@@ -84,9 +68,6 @@ class CreateList extends Component{
     }
 
     userCreateListData = (values) => {
-        if(this.state.saved === true){
-            return;
-        }
         values.eventTime = this.state.date;
         if(!values.eventTime) return;
         if(!this.props.userInfo.ID){//if user is not logged in
@@ -99,18 +80,16 @@ class CreateList extends Component{
             });
             return;
         }
-        this.setState({
-            saved: true
-        })
-        //const { name, description, securityStatus, eventTime} = request.body;
         let {eventDescription: description, eventName: name, eventTime} = values;
-        // this.setState({
-        //     description, eventName, name
-        // })
         const securityStatus = "locked";
         eventTime = eventTime[0].toJSON().slice(0, 19).replace('T', ' ');
         const newEventObject = { name, description, securityStatus, eventTime };
-        this.props.createListData(newEventObject);
+        this.props.createListData(newEventObject, this.causeRedirectToNewListPage.bind(this));
+    }
+    causeRedirectToNewListPage(){
+        this.setState({
+            saved: true
+        });
     }
 
     componentDidMount(){
@@ -127,8 +106,6 @@ class CreateList extends Component{
         this.createListState.eventName = localStorage.getItem('eventName');
         this.createListState.eventDescription = localStorage.getItem('eventDescription');
         this.createListState.eventTime = localStorage.getItem('eventTime');
-        // console.log('this.createListState', this.createListState)
-        // console.log('Create List this.props :', this.props);
         const { handleSubmit, userInfo } = this.props;
         const {ID, avatar} = userInfo;
         const { saved, description, name, eventTime } = this.state;
@@ -163,6 +140,7 @@ class CreateList extends Component{
                         <div className="form-col create-list-right">
                             <SignInModal isOpen={this.state.modalStatus} close={this.close} />
                             <button className={saved ? "btn btn-saved" : "btn btn-green"}>{saved ? "✔️ Saved" : "Save"}</button>
+                            {saved ? <Redirect to={`/list/${this.props.url}`}/> : null}
                         </div>
                     </div>
                 </form>
@@ -170,7 +148,7 @@ class CreateList extends Component{
                 </div>
                 </div>
                 <footer>
-                    {userInfo.ID ? <Link to={`/list/${this.props.url}`}><Footer buttons={['next_page_button']} /></Link> : null}
+                    <Footer buttons={[]} />
                 </footer>
             </div>
         )
