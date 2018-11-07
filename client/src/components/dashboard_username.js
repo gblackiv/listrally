@@ -17,7 +17,6 @@ class UserName extends Component{
     render(){
         let { userInfo = {}} = this.props;
         let name = 'Guest';
-        console.log('UserInfo:', userInfo);
         if(userInfo.name){
             name = userInfo.name;
         }
@@ -30,7 +29,6 @@ class UserName extends Component{
 }
 
 function mapStateToProps(state){
-    console.log('33333333', state);
     return {
         userInfo: state.list.user.user
     }

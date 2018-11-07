@@ -33,6 +33,8 @@ export default (state=DEFAULT_STATE,action)=>{
             return {...state} ;
         case types.GET_LIST_TITLE:
             return {...state, allLists: action.payload.data.data, user: action.payload.data} ;
+        case types.DELETE_LIST:
+            return {...state};
         default:
             return state;
     }

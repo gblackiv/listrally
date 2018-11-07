@@ -41,7 +41,6 @@ class DashBoard extends Component {
             var avatar = user.avatar
             var {GivenName, familyName} = user;
         }
-        console.log('Dashboard Props', this.props);
 
         const listCards = this.props.allLists.map( list => {
             return (
