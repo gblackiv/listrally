@@ -27,13 +27,14 @@ export function addSingleItem(newItem){
 }
 
 
-export function createListData(userForm){
+export function createListData(userForm, callbackFunction){
     return async dispatch => {
         const resp = await axios.put('/api/createlist', userForm);
         dispatch({
             type: types.CREATE_LIST_DATA,
             payload: resp
         })
+        callbackFunction();
     }
 }
 
@@ -60,7 +61,6 @@ export function getListTitle(){
 export function sendCheckboxInfo(info){
     return async dispatch => {
         const resp = await axios.patch('/api/updateitem', info);
-        console.log(resp)
         resp.data.disabled = false;
         dispatch({
             type: types.UPDATE_CHECKBOX,

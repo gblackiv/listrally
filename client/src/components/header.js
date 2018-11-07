@@ -49,7 +49,6 @@ export default class Header extends React.Component {
 
     
     render(){
-        console.log('Header this.props :', this.props);
         return (
             
             <div className="list-nav">
