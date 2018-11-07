@@ -125,3 +125,14 @@ export function editSingleItem(item){
     }
 }
 
+export function deleteList(ID, callbackFunction){
+    return async dispatch => {
+        const resp = await axios.patch( '/api/deletelist', {ID} );
+        callbackFunction();
+        dispatch({
+            type: types.DELETE_LIST,
+            payload: resp
+        });
+    }
+}
+

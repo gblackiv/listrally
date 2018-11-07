@@ -35,6 +35,8 @@ export default (state=DEFAULT_STATE,action)=>{
         case types.GET_LIST_TITLE:
             console.log('Get list title:', action);
             return {...state, allLists: action.payload.data.data, user: action.payload.data} ;
+        case types.DELETE_LIST:
+            return {...state};
         default:
             return state;
     }

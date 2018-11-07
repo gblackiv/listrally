@@ -170,7 +170,7 @@ const listRoutes = ( server, mySQL, connection ) => {
 	 * requires ID of the list to be deleted
 	 * list not truely deleted, but the status is set to inactive
 	 */
-	server.delete( '/api/deletelist', ( request, response ) => {
+	server.patch( '/api/deletelist', ( request, response ) => {
         const { ID } = request.body;
         if( !request.user.ID ){
             const dataToReturn = {
