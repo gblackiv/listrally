@@ -68,6 +68,7 @@ class OwnerList extends Component{
     }
 
     submitItem = (values) => {
+        debugger;
         const {reset, list} = this.props;
         if(list.length>0){
              var {ID: listID} = list[0];
@@ -106,7 +107,7 @@ class OwnerList extends Component{
                         </div>
                     <div className="add">                       
                         <form className='add-item-form-container' onSubmit={handleSubmit(this.submitItem)}>
-                            <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
+                            <Field name="itemName" type="text" component={this.renderInput} label="Add Item"/>
                         </form>
                     </div>
                     <div className="list-items">

@@ -30,7 +30,7 @@ export default class Header extends React.Component {
                 return <List_button key={i}/>;
             case 'List_link_button':
                 if(this.props.login){//if user is logged in
-                    return ( <Link to={`/dashboard`} key={i}><img className="user-avatar" src={this.props.avatar} alt="avatar"/> </Link> );
+                    return ( <Link to={`/dashboard`} key={i}><img className="user-avatar" src={this.props.avatar} alt="avatar" title="Dashboard"/> </Link> );
                 } else if(!this.props.login){
                     return (<Sign_in_button/>)
                 }
