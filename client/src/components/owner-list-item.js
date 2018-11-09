@@ -67,7 +67,6 @@ class ListItem extends Component {
                         :
                         <div className="list-item">
                             <div className="list-left">
-                                {/* <i className="sort fas fa-sort"></i> */}
                                 <label className="item-name">{itemName}</label>
                             </div>
                             <div className="list-right">

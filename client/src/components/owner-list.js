@@ -16,7 +16,7 @@ import Footer from './footer';
 // import addItemImage from '../assets/images/list-hand-placeholder.png';
 
 const style = {
-    height: '450px',
+    height: '400px',
     opacity: 0.4
 }
 
@@ -89,7 +89,7 @@ class OwnerList extends Component{
         if(userInfo.avatar){
             var { avatar } = userInfo;
         }
-        const sharedlistItems = items.map(item=>{
+        const listItems = items.map(item=>{
             return <ListItems key={item.ID} {...item} url={this.url} userInfo={userInfo} />
         })
 
@@ -111,7 +111,7 @@ class OwnerList extends Component{
                         </form>
                     </div>
                     <div className="list-items">
-                        {this.props.items[0] ? sharedlistItems : <img style={style} src={handPlaceholderImg}/> }
+                        {this.props.items[0] ? listItems : <img style={style} src={handPlaceholderImg}/> }
                     </div>
                     </div>
                 </div>

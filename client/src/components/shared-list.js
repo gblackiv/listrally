@@ -7,12 +7,17 @@ import { getListData } from '../actions';
 import { Fragment } from 'react';
 import Header from './header';
 import Footer from './footer';
-import SettingsButton from './buttons/settings_button';
+import handPlaceholderImg from '../assets/images/list-hand-placeholder.png';
 
 import Checkbox from './checkbox';
 import AddListItemButton from './buttons/add_list_item_button';
 
 import filter from '../assets/images/filter-icon.png';
+
+const style = {
+    height: '450px',
+    opacity: 0.4
+}
 
 class SharedList extends Component{
 
@@ -121,11 +126,11 @@ class SharedList extends Component{
                             </div>
                         </div>
                         <div className="shared-label-container">
-                            <label className="usage-instruction"> {items.length > 0 ? "Check off items you plan on bringing." : "There's no item in this list yet."}</label>
+                            <label className={items.length > 0 ? "usage-instruction" : "usage-instruction-empty"}> {items.length > 0 ? "Check off items you plan on bringing" : "There's no item in this list yet"}</label>
                         </div>
                         <div className="shared-list-items">
                             <form className="list-shared-form-container" onSubmit={this.sendInfoToServer}>
-                                {checkboxList}
+                                {this.props.items[0] ? checkboxList : <img style={style} src={handPlaceholderImg}/> }
                             </form>
                         </div>
                         </div>

@@ -33,6 +33,9 @@
 }
 .list-shared-form-container {
     width: 90%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
 }
 
 .list_item{
@@ -194,6 +197,13 @@
 .usage-instruction{
     margin: 1em 0.5em;
     font-size: 0.8em;
+}
+
+.usage-instruction-empty{
+    display: flex;
+    justify-content: center;
+    font-family: 'Dancing Script', cursive;
+    margin-top: 5vh;
 }
 
 .home-404 {
