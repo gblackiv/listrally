@@ -304,5 +304,8 @@ input:checked + .label-user:after {
     .dashboard-items > div{
         padding: 15px 3px;
     }
+    .dashboard-right{
+        margin-right: 0.2em;
+    }
 }
 

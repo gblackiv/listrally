@@ -36,7 +36,6 @@ class DashBoard extends Component {
     }
 
     render() {
-        console.log('Dash this.props :', this.props);
         const {user, allLists} = this.props;
         if(user){
             var avatar = user.avatar
