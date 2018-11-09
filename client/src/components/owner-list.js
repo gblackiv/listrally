@@ -68,12 +68,12 @@ class OwnerList extends Component{
     }
 
     submitItem = (values) => {
-        const {reset, list, userInfo: {ID}} = this.props;
+        const {reset, list} = this.props;
         if(list.length>0){
-             var {ID: listID, ownerID} = list[0];
-             if(ownerID!==ID){
-                 return;
-             }
+             var {ID: listID} = list[0];
+            //  if(ownerID!==ID){
+            //      return;
+            //  }
         }
         const { itemName : name } = values;
         const testObject = {name, listID, assignedUserID: 0}
@@ -83,13 +83,14 @@ class OwnerList extends Component{
     }
 
     render(){
+        console.log('Owner props :', this.props);
         const {handleSubmit} = this.props;
         let {items, list, userInfo } = this.props;
         if(userInfo.avatar){
             var { avatar } = userInfo;
         }
         const sharedlistItems = items.map(item=>{
-            return <ListItems key={item.ID} {...item} url={this.url} />
+            return <ListItems key={item.ID} {...item} url={this.url} userInfo={userInfo} />
         })
 
         return(

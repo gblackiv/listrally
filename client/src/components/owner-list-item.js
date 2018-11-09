@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { deleteItem, getListData, editSingleItem } from '../actions';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+import { userInfo } from 'os';
 
 class ListItem extends Component {
 
@@ -53,7 +54,8 @@ class ListItem extends Component {
 
     render() {
         const {handleSubmit} = this.props;
-        const {itemName} = this.props;
+        const {itemName, userInfo} = this.props;
+        console.log('this.props :', this.props);
         return (
                 <Fragment>
                     {this.state.edit ? 
@@ -69,8 +71,8 @@ class ListItem extends Component {
                                 <label className="item-name">{itemName}</label>
                             </div>
                             <div className="list-right">
-                                <div onClick={this.enableEdit} className="edit"><i className="fas fa-pen"></i></div>
-                                <div onClick={this.deleteSingleItem} className="delete"><i className="fas fa-trash-alt"></i></div>                     
+                              {!userInfo.ID ? null : <Fragment><div onClick={this.enableEdit} className="edit"><i className="fas fa-pen"></i></div>
+                                <div onClick={this.deleteSingleItem} className="delete"><i className="fas fa-trash-alt"></i></div> </Fragment>}                    
                             </div>
                         </div> 
                     }
