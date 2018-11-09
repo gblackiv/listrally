@@ -2,7 +2,6 @@ import React from 'react';
 
 export const renderInput = (props) => {
     const {input, label, type, meta: { error, touched }} = props;
-    console.log('RenderInput props :', props);
     return (
         <div>
             <div className="form-row">

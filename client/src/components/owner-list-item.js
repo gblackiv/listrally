@@ -53,7 +53,7 @@ class ListItem extends Component {
 
     render() {
         const {handleSubmit} = this.props;
-        const {itemName} = this.props;
+        const {itemName, userInfo, list} = this.props;
         return (
                 <Fragment>
                     {this.state.edit ? 
@@ -65,12 +65,11 @@ class ListItem extends Component {
                         :
                         <div className="list-item">
                             <div className="list-left">
-                                {/* <i className="sort fas fa-sort"></i> */}
                                 <label className="item-name">{itemName}</label>
                             </div>
                             <div className="list-right">
-                                <div onClick={this.enableEdit} className="edit"><i className="fas fa-pen"></i></div>
-                                <div onClick={this.deleteSingleItem} className="delete"><i className="fas fa-trash-alt"></i></div>                     
+                              {userInfo.ID !== list[0].ownerID ? null : <Fragment><div onClick={this.enableEdit} className="edit"><i className="fas fa-pen"></i></div>
+                                <div onClick={this.deleteSingleItem} className="delete"><i className="fas fa-trash-alt"></i></div> </Fragment>}                    
                             </div>
                         </div> 
                     }

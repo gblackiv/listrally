@@ -49,15 +49,17 @@
 }
 
 .list-details{
-    word-wrap:break-word;
+    word-wrap: break-word;
     margin: 0.25em;
     font-size: 1.25rem;
-    font-family: 'Merriweather'
+    font-family: 'Merriweather';
+    margin: 0.25em 5%;
 }
 
 .list-title{
     text-align: center;
-    margin: 0.5em 0.5em 0;
+    margin: 1em 0.5em 0;
+    word-break: break-all;
 }
 
 .list-items{
@@ -89,6 +91,7 @@
 
 .item-name{
     margin: 0 0.5em;
+    word-break: break-all;
 }
 
 .edit-item-field {
@@ -119,11 +122,7 @@
 *************************/
 
 #avatar{
-    // position: absolute;
-    // left: 50%;
-    // top: 0;
-    // transform: translateX(-50%);
-    margin-right: 10px;
+    // margin-right: 10px;
     margin-top: 10px;
     padding: 5px;
     border-radius: 50%;
@@ -186,6 +185,7 @@
 }
 .add-input-field {
     position: relative;
+    left: 1.5%;
     margin-top: 1rem;
     margin-bottom: 1rem;
     background-color: transparent;
@@ -194,7 +194,7 @@
     border-radius: 0;
     outline: none;
     height: 3rem;
-    width: 80%;
+    width: 87%;
     font-size: 16px;
     padding: 0;
     line-height: 1.15;
@@ -219,7 +219,7 @@
 .add-item-button{
     // border-radius: 10px;
     position: relative;
-    right: 0;
+    left: 2%;
     cursor: pointer
 }
 
@@ -267,12 +267,10 @@
         max-width: 350px;
     }
     .list-title{
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
     .list-details,.list-date{
         font-size: 1rem;
-        margin: 0.25em 5%;
-        font-family: 'Merriweather';
         text-align: center;
     }
 }

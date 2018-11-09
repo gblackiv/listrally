@@ -16,7 +16,7 @@ import Footer from './footer';
 // import addItemImage from '../assets/images/list-hand-placeholder.png';
 
 const style = {
-    height: '450px',
+    height: '400px',
     opacity: 0.4
 }
 
@@ -68,12 +68,12 @@ class OwnerList extends Component{
     }
 
     submitItem = (values) => {
-        const {reset, list, userInfo: {ID}} = this.props;
+        const {reset, list} = this.props;
         if(list.length>0){
-             var {ID: listID, ownerID} = list[0];
-             if(ownerID!==ID){
-                 return;
-             }
+             var {ID: listID} = list[0];
+            //  if(ownerID!==ID){
+            //      return;
+            //  }
         }
         const { itemName : name } = values;
         const testObject = {name, listID, assignedUserID: 0}
@@ -88,8 +88,8 @@ class OwnerList extends Component{
         if(userInfo.avatar){
             var { avatar } = userInfo;
         }
-        const sharedlistItems = items.map(item=>{
-            return <ListItems key={item.ID} {...item} url={this.url} />
+        const listItems = items.map(item=>{
+            return <ListItems key={item.ID} {...item} url={this.url} userInfo={userInfo} />
         })
 
         return(
@@ -100,17 +100,17 @@ class OwnerList extends Component{
                 <div className='content'>
                     <div className="layout-container">
                         <div className="list-top">
-                            <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
+                            <h4 className="list-title">{list.length>0 ? list[0].name : ''}</h4>
                             <div className="list-details">{list.length>0 ? list[0].description : ''}</div>
                             <div className="list-date">{list.length>0 ? this.convertDate(list[0].eventTime)  : ''}</div>
                         </div>
                     <div className="add">                       
                         <form className='add-item-form-container' onSubmit={handleSubmit(this.submitItem)}>
-                            <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
+                            <Field name="itemName" type="text" component={this.renderInput} label="Add Item"/>
                         </form>
                     </div>
                     <div className="list-items">
-                        {this.props.items[0] ? sharedlistItems : <img style={style} src={handPlaceholderImg}/> }
+                        {this.props.items[0] ? listItems : <img style={style} src={handPlaceholderImg}/> }
                     </div>
                     </div>
                 </div>

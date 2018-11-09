@@ -33,12 +33,8 @@ class DashboardCard extends Component {
                             </div>
                         </div>
                         <div className="dashboard-right">
-                            {ownerID === userID ? <DeleteButton onClick={() => {this.props.deleteList(this.props.ID, this.props.getListTitle)}} /> : null}
                             {ownerID === userID ? <SettingsButton to={`/list/${url}`} /> : null}
-                            {/* <i className="fas fa-lock-alt btn-red"></i> */}
-                            {/* <i className="fas fa-cog btn-grey"></i> */}
-                            {/* <br/>
-                            <i className="dashboard_plus fal fa-plus-circle btn-green"></i> */}
+                            {ownerID === userID ? <DeleteButton onClick={() => {this.props.deleteList(this.props.ID, this.props.getListTitle)}} /> : null}
                         </div>
                     </div>
                 </div>

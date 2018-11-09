@@ -12,7 +12,6 @@ export default class ListLinkButton extends Component {
     copyTextToClipboard= (text)=> {
         var textArea = document.createElement("textarea");
     
-      
         // Place in top-left corner of screen regardless of scroll position.
         textArea.style.position = 'fixed';
         textArea.style.top = 0;
@@ -33,7 +32,6 @@ export default class ListLinkButton extends Component {
       
         // Avoid flash of white box if rendered for any reason.
         textArea.style.background = 'transparent';
-      
       
         textArea.value = text;
       
@@ -58,10 +56,6 @@ export default class ListLinkButton extends Component {
             },
             ()=>this.copyTextToClipboard(this.props.link)
             );
-        // if(this.state.hasNotBeenCopied===false){
-        //     this.copyTextToClipboard(this.props.link);
-        // }
-        // this.copyTextToClipboard(this.props.link);
       }
 
     render() {
