@@ -106,14 +106,11 @@ class SharedList extends Component{
                     <div className="layout-container">
                         <div className="shared-list-top">
                             <div className="list-options">
-                                {ownerID === userID ? 
                                         <Link to={`/list/${this.url}`}>
                                             <div className="list-edit btn btn-green">
-                                                {/* <i className="fas fa-pencil-alt btn-green settings-button"></i> */}
                                                 Edit List <i className="fas fa-pen"></i>
                                             </div>
                                         </Link>
-                                : null}
                                 <button className="btn btn-blue" onClick={this.openModal} id="user-btn">Share List  <i className="fas fa-link"></i></button>
                             </div>
                             <div className="shared-list-info">
