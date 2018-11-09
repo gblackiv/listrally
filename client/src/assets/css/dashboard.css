@@ -40,16 +40,8 @@ body{
     left: 2%;
 }
 .dashboard_user{
-    /* font-size: 5em; 
-    align-self: center;
-    padding: 10px;
-    cursor: pointer;  */
     margin-right: 20px;
     margin-top: 20px;
-    /* position: absolute; */
-    /* left: 80%; */
-    /* top: 0; */
-    /* transform: translateX(-50%); */
     padding: 5px;
     border-radius: 50%;
     background-color: white;
@@ -150,6 +142,7 @@ i{
     display: flex;
     justify-content: space-between;
 }
+
 .dashboard-left{
     display: flex;
     justify-content: space-between;
@@ -199,14 +192,6 @@ i{
     left: 5px;
     font-size: 0.7em;
 }
-/* .btn-green{
-    display:block;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    font-size: 30pt;
-
-} */
 
 /*************************
 * Toggle button
@@ -311,6 +296,13 @@ input:checked + .label-user:after {
     }
     .eventDate{
         font-size: 0.7em;
+    }
+    .fa-pencil-alt, .delete-dashboard{
+        width: 15px !important;
+        height: 15px;
+    }
+    .dashboard-items > div{
+        padding: 15px 3px;
     }
 }
 

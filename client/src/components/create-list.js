@@ -140,7 +140,7 @@ class CreateList extends Component{
                     <div className="form-row">
                         <div className="form-col create-list-right">
                             <SignInModal isOpen={this.state.modalStatus} close={this.close} />
-                            <button className={saved ? "btn btn-saved" : "btn btn-green"}>{saved ? "✔️ Saved" : "Save"}</button>
+                            <button className={saved ? "btn btn-saved" : "btn btn-green"}>{saved ? "✔️ Saved" : "Next"}</button>
                             {saved ? <Redirect to={`/list/${this.props.url}`}/> : null}
                         </div>
                     </div>
