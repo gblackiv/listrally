@@ -91,7 +91,6 @@ class SharedList extends Component{
     }
 
     render(){
-        console.log('SHARED this.props :', this.props);
         const {items,list, userInfo} = this.props;
         if(list[0]){
             var {ownerID} = list[0];
@@ -114,7 +113,7 @@ class SharedList extends Component{
                             <div className="list-options">
                                 <Link to={`/list/${this.url}`}>
                                     <div className="list-edit btn btn-green">
-                                        {userInfo.ID ? 'Edit List   ' : 'Add Items   ' }<i className="fas fa-pen"></i>
+                                        {userInfo.ID === ownerID ? 'Edit List   ' : 'Add Items   ' }<i className="fas fa-pen"></i>
                                     </div>
                                 </Link>
                                 <button className="btn btn-blue" onClick={this.openModal} id="user-btn">Share List  <i className="fas fa-link"></i></button>

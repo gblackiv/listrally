@@ -83,7 +83,6 @@ class OwnerList extends Component{
     }
 
     render(){
-        console.log('Owner props :', this.props);
         const {handleSubmit} = this.props;
         let {items, list, userInfo } = this.props;
         if(userInfo.avatar){
@@ -101,7 +100,7 @@ class OwnerList extends Component{
                 <div className='content'>
                     <div className="layout-container">
                         <div className="list-top">
-                            <h4 contenteditable="true" className="list-title">{list.length>0 ? list[0].name : ''}</h4>
+                            <h4 className="list-title">{list.length>0 ? list[0].name : ''}</h4>
                             <div className="list-details">{list.length>0 ? list[0].description : ''}</div>
                             <div className="list-date">{list.length>0 ? this.convertDate(list[0].eventTime)  : ''}</div>
                         </div>
