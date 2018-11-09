@@ -36,6 +36,7 @@ class DashBoard extends Component {
     }
 
     render() {
+        console.log('Dash this.props :', this.props);
         const {user, allLists} = this.props;
         if(user){
             var avatar = user.avatar
@@ -59,19 +60,19 @@ class DashBoard extends Component {
                     <div className="dark-text">
   
                         <div className="dashboard-top">
-                            <UserName/>
                             <img id="avatar" src={avatar} alt="avatar" />
+                            <UserName/>
                         </div>
-                        <div className="dashboard_toggle">
+                        {/* <div className="dashboard_toggle"> */}
                             {/* <div>All Lists</div> */}
-                            <div>
+                            {/* <div> */}
                             {/* <i className="fas fa-toggle-off"></i> */}
                             {/* <input type="checkbox" id="switch" /><label className="label-user" for="switch"></label> */}
-                            </div>
+                            {/* </div> */}
                             {/* <button className="dashboard-button btn btn-blue">User Settings</button> */}
                             {/* Notifications 
                             <UserNotification/> */}
-                        </div>
+                        {/* </div> */}
                         {allLists[0] ? listCards : <img style={style} src={emptyListImage}/>}
                     </div>
                 </div>
