@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { deleteItem, getListData, editSingleItem } from '../actions';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
-import { userInfo } from 'os';
 
 class ListItem extends Component {
 

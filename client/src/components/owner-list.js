@@ -68,7 +68,6 @@ class OwnerList extends Component{
     }
 
     submitItem = (values) => {
-        debugger;
         const {reset, list} = this.props;
         if(list.length>0){
              var {ID: listID} = list[0];
