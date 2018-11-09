@@ -57,27 +57,21 @@ class DashBoard extends Component {
             <div className='content'>
                 <div className="layout-container">
                     <div className="dark-text">
-                        {/* <Top Nav */}
-                        {/* <!-- User name, details, user avatar --> */}
+  
                         <div className="dashboard-top">
-                            {/* <h5 className="dashboard-details">First Name <br/> Last Name</h5> */}
+                            <img id="avatar" src={avatar} alt="avatar" />
                             <UserName/>
-                        {/* <!-- <h4 className="details">Last Name</h4> --> */}
-                        {/* <i className="dashboard_user fal fa-user"></i> */}
-                        <img id="avatar" src={avatar} alt="avatar" />
                         </div>
-                        {/* <!-- dashboard Toggle --> */}
-                        <div className="dashboard_toggle">
+                        {/* <div className="dashboard_toggle"> */}
                             {/* <div>All Lists</div> */}
-                            <div>
+                            {/* <div> */}
                             {/* <i className="fas fa-toggle-off"></i> */}
                             {/* <input type="checkbox" id="switch" /><label className="label-user" for="switch"></label> */}
-                            </div>
+                            {/* </div> */}
                             {/* <button className="dashboard-button btn btn-blue">User Settings</button> */}
                             {/* Notifications 
                             <UserNotification/> */}
-                        </div>
-                        {/* <!-- dashboard-items --> */}
+                        {/* </div> */}
                         {allLists[0] ? listCards : <img style={style} src={emptyListImage}/>}
                     </div>
                 </div>

@@ -12,15 +12,15 @@ const itemRoutes = ( server, mySQL, connection ) => {
 	 */
 	server.put( '/api/newitem', ( request, response ) => {
 		const { name, listID } = request.body;
-		if( !request.user ){
-			const dataToReturn = {
-				success: false,
-				data: 'Error: the user is not logged in',
-				user: request.user
-			}
-			response.status( 401 ).json( dataToReturn );
-			return;
-		}
+		// if( !request.user ){
+		// 	const dataToReturn = {
+		// 		success: false,
+		// 		data: 'Error: the user is not logged in',
+		// 		user: request.user
+		// 	}
+		// 	response.status( 401 ).json( dataToReturn );
+		// 	return;
+		// }
 
 		const itemQuery = 'INSERT INTO items ( name, listID ) VALUES ( ?, ? )';
 		const itemInserts = [ name, listID ];
