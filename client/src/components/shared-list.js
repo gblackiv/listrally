@@ -45,12 +45,10 @@ class SharedList extends Component{
     }
 
     convertDate=( dateString )=>{
+        debugger;
         const preConvertedDate = new Date( dateString );
         const convertedDate = new Date(preConvertedDate.getTime()-preConvertedDate.getTimezoneOffset()*60*1000);
-        const offset = preConvertedDate.getTimezoneOffset() / 60;
-        const hours = preConvertedDate.getHours();
-        convertedDate.setHours(hours - offset);
-        
+
         const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
         const month = monthNames[convertedDate.getMonth()];
