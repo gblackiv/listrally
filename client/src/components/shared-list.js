@@ -109,7 +109,7 @@ class SharedList extends Component{
                             <div className="shared-list-info">
                                 <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'List Not Found'}</h4>
                                 <div className="shared-details">{list.length>0 ? list[0].description : 'Please try your list link again or contact the list creator'}</div>
-                                <div className="shared-date">{list.length>0 ? this.props.list[0].eventTime : '404 Error'}</div>
+                                <div className="shared-date">{list.length>0 ? this.props.list[0].userTimeFormat : '404 Error'}</div>
                             </div>
                         </div>
                         <div className="shared-label-container">
