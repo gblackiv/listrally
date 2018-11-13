@@ -59,7 +59,7 @@ class CreateList extends Component{
     }
 
     open = () => this.setState({isOpen: true});
-    close = () => this.setState({isOpen: false});
+    close = () => this.setState({modalStatus: false});
 
     getDate( dateString ){
         this.setState({
