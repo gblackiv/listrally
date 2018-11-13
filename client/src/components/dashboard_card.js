@@ -29,7 +29,7 @@ class DashboardCard extends Component {
                                 <Link to={`/list-shared/${url}`}>
                                     <div className="dashboard_text">{this.props.title}</div>
                                 </Link>
-                                <div className="eventDate">When: {eventTime.substr(0,10)}</div>
+                                <div className="eventDate">When: {`${eventTime.getMonth()}-${eventTime.getDate()}-${eventTime.getFullYear()}`}</div>
                             </div>
                         </div>
                         <div className="dashboard-right">
