@@ -6,13 +6,13 @@ export function getListData(url){
     return async dispatch => {
         const resp = await axios.get(`/api/lists/${url}`);
             const preConvertedDate = new Date( resp.data.data.list[0].eventTime );
-            const convertedDate = new Date(preConvertedDate.getTime()-preConvertedDate.getTimezoneOffset()*60*1000);
+            const convertedDate = new Date(preConvertedDate.getTime());
 
             const monthNames = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"];
             const month = monthNames[convertedDate.getMonth()];
             resp.data.data.list[0].eventTime = `${month} ${convertedDate.getDate()}, ${convertedDate.getFullYear()} ${convertedDate.toLocaleTimeString()}`;
-            dispatch({
+        dispatch({
             type: types.GET_LIST_DATA,
             payload: resp
         })
