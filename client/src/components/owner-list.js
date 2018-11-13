@@ -40,18 +40,6 @@ class OwnerList extends Component{
     
         return newDate;   
     }
-    convertDate=( dateString )=>{
-        const preConvertedDate = new Date( dateString );
-        const convertedDate = new Date(preConvertedDate.getTime()-preConvertedDate.getTimezoneOffset()*60*1000);
-        const offset = preConvertedDate.getTimezoneOffset() / 60;
-        const hours = preConvertedDate.getHours();
-        convertedDate.setHours(hours - offset);
-        
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"];
-        const month = monthNames[convertedDate.getMonth()];
-        return `${month} ${convertedDate.getDate()}, ${convertedDate.getFullYear()} ${convertedDate.toLocaleTimeString()}`;
-    }
 
     goBack = () => {
         this.props.history.goBack();
@@ -102,7 +90,7 @@ class OwnerList extends Component{
                         <div className="list-top">
                             <h4 className="list-title">{list.length>0 ? list[0].name : ''}</h4>
                             <div className="list-details">{list.length>0 ? list[0].description : ''}</div>
-                            <div className="list-date">{list.length>0 ? this.convertDate(list[0].eventTime)  : ''}</div>
+                            <div className="list-date">{list.length>0 ? list[0].userTimeFormat : ''}</div>
                         </div>
                     <div className="add">                       
                         <form className='add-item-form-container' onSubmit={handleSubmit(this.submitItem)}>
