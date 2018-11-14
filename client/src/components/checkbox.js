@@ -44,13 +44,13 @@ class Checkbox extends Component {
     toggleCheck(){
         const { assignedUserID, userInfo } = this.props;
         const {ID: userID} = userInfo;
-        // if(!userID){//if user is not logged in
-        //     this.setState({
-        //         isLogOn: false,
-        //     })
-        //     this.open();
-        //     return;
-        // }
+        if(!userID){//if user is not logged in
+            this.setState({
+                isLogOn: false,
+            })
+            // this.open();
+            return;
+        }
         if(userID!==assignedUserID && assignedUserID>0){//if user is not the one who checked the box
             //and the box has already been checked
             return;
