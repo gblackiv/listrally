@@ -301,6 +301,9 @@
     }
 }
 @media all and ( min-width: 321px ) and (max-width: 375px ){
+    .share-instruction{
+        left: 5%;
+    }
     .item-name{
         font-size: 0.8rem;
     }
@@ -316,6 +319,9 @@
     }
 }
 @media all and ( min-width: 376px ) and (max-width: 480px) {
+    .share-instruction{
+        left: 5%;
+    }
     .shared-list-title{
         font-size: 1.5rem;
     }
