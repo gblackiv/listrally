@@ -7,9 +7,9 @@ import Footer from './footer';
 
 import WhiteLogo from '../assets/images/aboutus/app-list-rally-logo-icon-ONLY-LIGHT.png'
 import michael from '../assets/images/aboutus/michael.png';
-import gerry from '../assets/images/aboutus/gerry.png';
-import george from '../assets/images/aboutus/george.png';
-import torie from '../assets/images/aboutus/torie.png';
+import gerry from '../assets/images/aboutus/gerry.jpeg';
+import george from '../assets/images/aboutus/george.jpeg';
+import torie from '../assets/images/aboutus/torie.jpg';
 
 class AboutUs extends Component{
     constructor() {

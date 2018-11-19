@@ -16,9 +16,9 @@
 
 .sign-in{
     cursor: pointer;
-    margin: 2vh auto;
     position: relative;
     bottom: 15px;
+    width: 270px; 
 }
 
 .logo-container{
@@ -37,10 +37,15 @@
 
 .home-title{
     font-weight: 700;
-    font-size: 5em;
+    font-size: 3.5em;
     letter-spacing: 0.1em;
     color: orange;
     margin-bottom: 25px;
+    font-family: 'Montserrat';
+}
+
+.add-icon{
+    width: 20px;
 }
 
 .list-icon-wrapper {
@@ -57,6 +62,7 @@
 .instruction{
     margin-top: 0;
     margin-bottom: 0.5em;
+    font-family: 'Roboto';
 }
 .home-text {
     margin-top: 25px;
@@ -225,9 +231,18 @@
 /*********************
 * Media Queries
 ********************/
+@media all and (min-width: 1281px){
+    .home-title{
+        position: relative;
+        bottom: 32px;
+    }
+}
+
 @media all and (min-width: 1024px) and (max-width: 1280px) {
     .home-title{
-        font-size: 4em;
+        font-size: 3.5em;
+        position: relative;
+        bottom: 30px;
     }
     .logo-container{
         height: 150px;
@@ -248,6 +263,9 @@
     }
     .home-text {
         font-size: 0.9em;
+    }
+    .sign-in{
+        margin-top: 2em;
     }
 }
 
@@ -274,7 +292,10 @@
         width: 150px;
         border: 10px solid orange;
     }
-    .home-text {
-        font-size: 0.7em;
+    // .home-text {
+    //     font-size: 0.7em;
+    // }
+    .sign-in{
+        margin-top: 10%;
     }
 }

@@ -269,9 +269,6 @@ input:checked + .label-user:after {
 }
 
 @media all and (min-width: 1024px) and (max-width: 1280px) {
-    .home-title{
-        font-size: 4em;
-    }
     .logo-container{
         height: 150px;
         width: 150px;

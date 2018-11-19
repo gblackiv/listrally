@@ -1,5 +1,5 @@
 import React from 'react';
-import google from '../../assets/images/btn_google_signin_dark_normal_web.png'
+import google from '../../assets/images/btn_google_signin_dark_normal_web@2x.png'
 
 function loginButtonHandler(){
     localStorage.setItem('previousUrl', window.location.pathname);
@@ -7,7 +7,5 @@ function loginButtonHandler(){
 }
 
 export default props => (    
-    <div>
-        <a onClick={ loginButtonHandler }><img src={google} alt="google-sign-in" className="sign-in"/></a>
-    </div>
+    <a onClick={ loginButtonHandler }><img src={google} alt="google-sign-in" className="sign-in"/></a>
 )
