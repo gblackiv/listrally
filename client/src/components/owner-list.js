@@ -74,7 +74,6 @@ class OwnerList extends Component{
     changeDate = ()=>{
         const {list} =this.props;
         const updatedListObject = {...list[0]};
-        console.log('this.state.date :', this.state.date);
         updatedListObject.eventTime = this.state.date[0].toJSON().slice(0, 19).replace('T', ' ');
         this.props.updateListInfo(updatedListObject);
         this.props.getListData(this.url);
@@ -114,7 +113,6 @@ class OwnerList extends Component{
     }
 
     render(){
-        console.log('Owner List props :', this.props);
         const {handleSubmit} = this.props;
         let {items, list, userInfo } = this.props;
         if(userInfo.avatar){
