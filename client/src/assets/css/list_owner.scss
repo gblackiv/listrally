@@ -1,5 +1,3 @@
-
-
 /*************************
 * List
 *************************/
@@ -116,6 +114,13 @@
 }
 .edit{
     width: 80%;
+}
+.edit-date{
+    display: inline-block;
+    position: relative;
+    bottom: 7px;
+    left: 10px;
+    cursor: pointer;
 }
 /*************************
 * Font Awesome

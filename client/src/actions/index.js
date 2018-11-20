@@ -149,3 +149,14 @@ export function deleteList(ID, callbackFunction){
     }
 }
 
+export function updateListInfo(updatedList){
+    return async dispatch => {
+        const resp = await axios.patch( '/api/updatelist', updatedList);
+        console.log('Update List Info resp :', resp);
+        dispatch({
+            type: types.UPDATE_LIST_INFO,
+            payload: resp
+        })
+    }
+}
+

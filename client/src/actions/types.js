@@ -20,5 +20,6 @@ export default {
     UPDATE_CHECKBOX: 'update_checkbox',
     USER_NOTIFICATION: 'user_notification',
     DELETE_LIST: 'delete_list',
-    DISABLE_CHECKBOX: 'disable_checkbox'
+    DISABLE_CHECKBOX: 'disable_checkbox',
+    UPDATE_LIST_INFO: 'update_list_info'
 };
