@@ -101,9 +101,6 @@ class OwnerList extends Component{
         const {reset, list} = this.props;
         if(list.length>0){
              var {ID: listID} = list[0];
-            //  if(ownerID!==ID){
-            //      return;
-            //  }
         }
         const { itemName : name } = values;
         const testObject = {name, listID, assignedUserID: 0}
