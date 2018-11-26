@@ -157,8 +157,22 @@ class CreateList extends Component{
 }
 
 function validate(values){
-    const { eventName, eventDateInput } = values;
+    const { eventName, eventDateInput, eventDescription } = values;
     const errors = {};
+    let eventNameCharCount = 0;
+    let eventDescriptionCharCount = 0;
+
+    eventNameCharCount = eventName.length;
+    eventDescriptionCharCount = eventDescription.length;
+
+    if(eventNameCharCount > 80) {
+        errors.eventName = "Please enter 80 characters or less";
+    }
+
+    if(eventDescriptionCharCount > 250) {
+        errors.eventDescription = "Please enter 250 characters or less";
+        console.log(eventDescriptionCharCount);
+    }
 
     if(!eventName){
         errors.eventName = "Please enter a name for your event";
