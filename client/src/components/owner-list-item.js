@@ -9,14 +9,14 @@ class ListItem extends Component {
 
     state = {
         edit: false,
-        placeholder: ''
+        value: ''
     }
 
     renderInput = (props) => {
         const { input } = props;
         return (
             <div className="edit-row">
-                <input className="edit-item-field" {...input} placeholder={this.props.itemName} type="text" autoComplete="off" />
+                <input className="edit-item-field" {...input} value={this.props.itemName} type="text" autoComplete="off" />
                 <button className="edit-btn">OK</button>
             </div>
         )
@@ -33,7 +33,7 @@ class ListItem extends Component {
         // const { ID, name, listID, assignedUserID } = request.body;
         const {itemName: name} = values;
         this.setState({
-            placeholder: name
+            value: name
         })
         const { ID, listID} = this.props;
         let assignedUserID = 0;
