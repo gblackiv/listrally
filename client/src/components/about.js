@@ -41,7 +41,7 @@ class AboutUs extends Component{
                             <div className="team-container">
                                 <div className="team-card">
                                     <div className="team-img-container">
-                                        <img className="team-img shadow" src={torie} alt="michael_photo" />
+                                        <img className="team-img shadow" src={torie} alt="torie_photo" />
                                     </div>
                                     <h6 className="team-title">Torie</h6>
                                     <p className="team-role">Front-End Developer</p>
@@ -69,7 +69,7 @@ class AboutUs extends Component{
                             <div className="team-container">
                                 <div className="team-card">
                                     <div className="team-img-container">
-                                        <img className="team-img shadow" src={george} alt="michael_photo" />
+                                        <img className="team-img shadow" src={george} alt="george_photo" />
                                     </div>
                                     <h6 className="team-title">George</h6>
                                     <p className="team-role">Front-End Developer</p>
@@ -83,7 +83,7 @@ class AboutUs extends Component{
                             <div className="team-container">
                                 <div className="team-card">
                                     <div className="team-img-container">
-                                        <img className="team-img shadow" src={gerry} alt="michael_photo" />
+                                        <img className="team-img shadow" src={gerry} alt="gerry_photo" />
                                     </div>
                                     <h6 className="team-title">Gerry</h6>
                                     <p className="team-role">Back-End Developer</p>
