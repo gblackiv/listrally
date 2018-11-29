@@ -10,7 +10,7 @@ class SignInModal extends Component {
     render(){
         if(this.props.isOpen){
             return (
-                <div className="sign-in-modal" onClick={this.close}>
+                <div className="sign-in-modal" onClick={this.props.close}>
                     <div onClick={e => e.stopPropagation()} className="sign-in-modal-content">
                         <div onClick={this.props.close} className="sign-in-modal-close">X</div>
                         <h4 className="sign-in-modal-h">Oops, you're not logged in.</h4>

@@ -7,9 +7,17 @@ import List_link_button from './buttons/list_link_button';
 import { connect } from 'react-redux';
 import { getListTitle, deleteList} from '../actions/index';
 import DeleteButton from './buttons/delete_button.js';
+import DeleteModal  from './delete_modal.js'
+import { timingSafeEqual } from 'crypto';
+
 
 
 class DashboardCard extends Component {
+    
+    state = {
+        modalStatus: false
+    }
+    close = () => this.setState({modalStatus: false});
 
     render() {
         const {name, userID, ownerID, url} = this.props;
@@ -18,6 +26,7 @@ class DashboardCard extends Component {
         }
         return (
             <Fragment>
+                <DeleteModal isOpen={this.state.modalStatus} close={this.close} confirmDelete={() => {this.props.deleteList(this.props.ID, this.props.getListTitle)}} />
                 <div className="dashboard-items">
                     <div className="dashboard-item1">
                         <div className="dashboard-left">
@@ -34,7 +43,7 @@ class DashboardCard extends Component {
                         </div>
                         <div className="dashboard-right">
                             {ownerID === userID ? <SettingsButton to={`/list/${url}`} /> : null}
-                            {ownerID === userID ? <DeleteButton onClick={() => {this.props.deleteList(this.props.ID, this.props.getListTitle)}} /> : null}
+                            {ownerID === userID ? <DeleteButton onClick={() => this.setState({modalStatus: true})} /> : null}
                         </div>
                     </div>
                 </div>

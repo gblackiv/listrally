@@ -4,13 +4,17 @@ import { connect } from 'react-redux';
 import { deleteItem, getListData, editSingleItem } from '../actions';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+import DeleteModal  from './delete_modal.js'
+
 
 class ListItem extends Component {
 
     state = {
         edit: false,
-        value: ''
+        value: '',
+        modalStatus: false
     }
+    close = () => this.setState({modalStatus: false});
 
     renderInput = (props) => {
         const { input } = props;
@@ -56,8 +60,9 @@ class ListItem extends Component {
         const {itemName, userInfo, list} = this.props;
         return (
                 <Fragment>
+                    <DeleteModal isOpen={this.state.modalStatus} close={this.close} confirmDelete={() => {this.deleteSingleItem()}} />
                     {this.state.edit ? 
-                        <div className="edit">                       
+                        <div className="edit">
                             <form className='edit-form-container' onSubmit={handleSubmit(this.updateSingleItem)}>
                                 <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
                             </form>
@@ -69,7 +74,7 @@ class ListItem extends Component {
                             </div>
                             <div className="list-right">
                               {userInfo.ID !== list[0].ownerID ? null : <Fragment><div onClick={this.enableEdit} className="edit"><i className="fas fa-pen"></i></div>
-                                <div onClick={this.deleteSingleItem} className="delete"><i className="fas fa-trash-alt"></i></div> </Fragment>}                    
+                                <div onClick={() => this.setState({modalStatus: true})} className="delete"><i className="fas fa-trash-alt"></i></div> </Fragment>}                    
                             </div>
                         </div> 
                     }

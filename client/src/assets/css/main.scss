@@ -212,6 +212,16 @@ h6 {
     display: flex;
     align-items: center;
 }
+.deleteConfirm, .deleteDeny{
+    width: 30%;
+    display: inline-block;
+}
+.deleteConfirm{
+    margin-left: 10px;
+}
+.deleteDeny{
+    margin-right: 10px;
+}
 /*************************
 * Links
 *************************/
@@ -269,5 +279,10 @@ a {
 @media all and (max-width: 480px) {
     .col-2 {
         margin: 0;
+    }
+}
+@media all and (max-width: 1024px ){
+    .deleteConfirm, .deleteDeny{
+    font-size: 0.9rem;
     }
 }
