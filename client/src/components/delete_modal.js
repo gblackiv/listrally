@@ -9,7 +9,7 @@ class DeleteModal extends React.Component{
 		if(this.props.isOpen){
 			return(
 				<div className="sign-in-modal" onClick={this.props.close}>
-					<div onClick={e => e.stopPropagation()} className="sign-in-modal-content">
+					<div onClick={e => e.stopPropagation()} className="delete-modal sign-in-modal-content">
 						<div onClick={this.props.close} className="sign-in-modal-close">X</div>
 						<h4 className="sign-in-modal-h">Delete Conformation</h4>
 						<h6 className="sign-in-modal-span">Are you sure you want to delete that item?</h6>
