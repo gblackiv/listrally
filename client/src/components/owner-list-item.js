@@ -11,19 +11,26 @@ class ListItem extends Component {
 
     state = {
         edit: false,
-        value: '',
+        value: this.props.itemName,
         modalStatus: false
     }
     close = () => this.setState({modalStatus: false});
 
     renderInput = (props) => {
         const { input } = props;
+        input.value = this.state.value;
         return (
             <div className="edit-row">
-                <input className="edit-item-field" {...input} value={this.props.itemName} type="text" autoComplete="off" />
+                <input className="edit-item-field" {...input} onChange={() => this.changeItemName(input.onChange)} type="text" autoComplete="off" />
                 <button className="edit-btn">OK</button>
             </div>
         )
+    }
+    changeItemName(callbackFunction){
+        this.setState({
+            value: event.target.value
+        })
+        callbackFunction(this.state.value);
     }
 
     deleteSingleItem = ()=>{
