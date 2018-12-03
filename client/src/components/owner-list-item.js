@@ -41,6 +41,7 @@ class ListItem extends Component {
     }
 
     updateSingleItem=(values)=>{
+        debugger;
         // const { ID, name, listID, assignedUserID } = request.body;
         const {itemName: name} = values;
         this.setState({
@@ -54,6 +55,7 @@ class ListItem extends Component {
         this.setState({
             edit: false
         })
+        this.props.getListData(this.props.url);
     }
 
     enableEdit=()=>{
