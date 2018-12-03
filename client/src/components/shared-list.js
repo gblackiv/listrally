@@ -28,13 +28,13 @@ class SharedList extends Component{
         this.state = {
             copied: false,
             text: 'Copy Link',
-            class: 'btn-blue'
+            class: 'btn-blue',
+            dateString: null
         }
     }
 
     componentDidMount() {
         this.props.getListData(this.url);
-
         //MODALS
         // Get the modal
         this.modal = document.getElementById('user-modal');
@@ -42,19 +42,7 @@ class SharedList extends Component{
         this.btn = document.getElementById("user-btn");
         // Get the <span> element that closes the modal
         this.span = document.getElementsByClassName("user-close")[0];
-    }
 
-    convertDate=( dateString )=>{
-        const preConvertedDate = new Date( dateString );
-        const convertedDate = new Date(preConvertedDate.getTime()-preConvertedDate.getTimezoneOffset()*60*1000);
-        const offset = preConvertedDate.getTimezoneOffset() / 60;
-        const hours = preConvertedDate.getHours();
-        convertedDate.setHours(hours - offset);
-        
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"];
-        const month = monthNames[convertedDate.getMonth()];
-        return `${month} ${convertedDate.getDate()}, ${convertedDate.getFullYear()} ${convertedDate.toLocaleTimeString()}`;
     }
 
     goBack = () => {
@@ -121,7 +109,7 @@ class SharedList extends Component{
                             <div className="shared-list-info">
                                 <h4 className="shared-list-title">{list.length>0 ? list[0].name : 'List Not Found'}</h4>
                                 <div className="shared-details">{list.length>0 ? list[0].description : 'Please try your list link again or contact the list creator'}</div>
-                                <div className="shared-date">{list.length>0 ? this.convertDate(list[0].eventTime) : '404 Error'}</div>
+                                <div className="shared-date">{list.length>0 ? this.props.list[0].userTimeFormat : '404 Error'}</div>
                             </div>
                         </div>
                         <div className="shared-label-container">

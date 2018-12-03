@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../assets/css/home.scss';
 import logo from '../assets/images/app-list-rally-logo-icon-BLUE.png';
+import add from '../assets/images/add.png';
 import newList from '../assets/images/new-list-white.png';
 import { Link, Redirect } from 'react-router-dom';
 import ListButton from './buttons/list_button';
@@ -54,18 +55,15 @@ class Home extends Component{
                         <div className="home-content">
                             <div className="logo-container zoomIn">
                                 <img className="shadow zoomInDown" onClick={this.login} id="logo" src={logo} alt="logo"/>
-
                             </div>
                             <div className="home-title">ListRally</div>
-          
-                                    {this.props.userInfo.ID ? <DashBoardButton /> : <SignInButton className="login" onClick={this.login} /> }
-
-                                    {/* <a href='/auth/logout'>Sign Out</a> */}
-                                    <p className="instruction home-text">Click the + icon to make a list</p>
-                                    <div className="list-icon-wrapper">
-                                        <Link to="/create-list"><img className="new-list-btn bounce shadow" src={newList} alt="new_list"/></Link>
-                                    </div>
+                            {this.props.userInfo.ID ? <DashBoardButton /> : <SignInButton className="login" onClick={this.login} /> }
+                            <div className="make-new-list">
+                                <p className="instruction home-text">Or click the  {<img className="add-icon" src={add} />} icon to make a list</p>
+                                <div className="list-icon-wrapper">
+                                    <Link to="/create-list"><img className="new-list-btn bounce shadow" src={newList} alt="new_list"/></Link>
                                 </div>
+                            </div>
                                 {/* <div className="home-templates">
                                     <p className="instruction home-text">or click the arrow to select a list template</p>
                                         <div  onClick={ this.toggleListVisibility }><ListButton /></div>
@@ -75,7 +73,7 @@ class Home extends Component{
                                     </div> */}
                         </div>
                     </div>
-             
+                </div>
             <footer>
                 {/* <Footer buttons={[]} /> */}
                 <div className="meet-team-btn-container">

@@ -11,6 +11,10 @@
     z-index: 999;
     
 }
+.delete-modal .sign-in-modal-h{
+    margin: 20px;
+}
+
 
 .sign-in-modal-content {
     text-align: center;
@@ -88,5 +92,48 @@
     }
     .sign-in-modal-span {
         padding: 0 5%;
+    }
+}
+@media all and (max-height: 500px){
+    .sign-in-modal-h {
+        margin-top: 5%;
+    }
+}
+@media all and (min-width: 750px) {
+    .sign-in-modal-content.delete-modal{
+        max-height: 60vh;
+        max-width: 50vw;
+        font-size: 0.7rem;
+    }
+    .delete-modal .sign-in-modal-h{
+        margin: 40px 0px;
+    }
+    
+}
+@media all and (max-height: 415px){
+    .sign-in-modal-content.delete-modal{
+        font-size: 0.6rem;
+    }
+    .delete-modal .sign-in-modal-h{
+        margin: 10px 0px;
+    }
+}
+@media all and (max-width: 415px) and (max-height: 823px){
+    .sign-in-modal-content.delete-modal{
+        max-height: 60vh;
+        font-size: 0.7rem;
+    }
+    .delete-modal .sign-in-modal-h{
+        margin: 10px 0px;
+    }
+}
+@media all and (min-width: 768px) and (min-height: 1024px){
+    .sign-in-modal-content.delete-modal{
+    max-height: 40%;
+    }
+}
+@media all and (min-width: 1024px) and (min-height: 1366px){
+    .sign-in-modal-content.delete-modal{
+    max-height: 40%;
     }
 }

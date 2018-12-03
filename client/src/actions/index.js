@@ -5,6 +5,14 @@ import { connect } from 'react-redux';
 export function getListData(url){
     return async dispatch => {
         const resp = await axios.get(`/api/lists/${url}`);
+        const preConvertedDate = new Date( resp.data.data.list[0].eventTime );
+        const convertedDate = new Date(preConvertedDate.getTime());
+
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+        const month = monthNames[convertedDate.getMonth()];
+        resp.data.data.list[0].eventTime = convertedDate;
+        resp.data.data.list[0].userTimeFormat = `${month} ${convertedDate.getDate()}, ${convertedDate.getFullYear()} ${convertedDate.toLocaleTimeString()}`;
         dispatch({
             type: types.GET_LIST_DATA,
             payload: resp
@@ -51,6 +59,15 @@ export function updateListData(listID){
 export function getListTitle(){
     return async dispatch => {
         const resp = await axios.get('/api/getuserlists');
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+        for( let listIndex = 0; listIndex < resp.data.data.length; listIndex++ ){
+            const preConvertedDate = new Date( resp.data.data[listIndex].eventTime );
+            const convertedDate = new Date(preConvertedDate.getTime());
+            const month = monthNames[convertedDate.getMonth()];
+            resp.data.data[listIndex].eventTime = convertedDate;
+            resp.data.data[listIndex].userTimeFormat = `${month} ${convertedDate.getDate()}, ${convertedDate.getFullYear()} ${convertedDate.toLocaleTimeString()}`;
+        }
         dispatch({
             type: types.GET_LIST_TITLE,
             payload: resp
@@ -129,6 +146,16 @@ export function deleteList(ID, callbackFunction){
             type: types.DELETE_LIST,
             payload: resp
         });
+    }
+}
+
+export function updateListInfo(updatedList){
+    return async dispatch => {
+        const resp = await axios.patch( '/api/updatelist', updatedList);
+        dispatch({
+            type: types.UPDATE_LIST_INFO,
+            payload: resp
+        })
     }
 }
 

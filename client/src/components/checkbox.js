@@ -26,7 +26,18 @@ class Checkbox extends Component {
     }
 
 
-    open = () => this.setState({isOpen: true});
+    open = () => {
+        const { assignedUserID, userInfo } = this.props;
+        const {ID: userID} = userInfo;
+        if(!userID){//if user is not logged in
+                this.setState({
+                    isLogOn: false,
+                    isOpen: true
+                })
+        }
+        return;
+    }
+
     close = () => this.setState({isOpen: false});
 
 
@@ -37,7 +48,7 @@ class Checkbox extends Component {
             this.setState({
                 isLogOn: false,
             })
-            this.open();
+            // this.open();
             return;
         }
         if(userID!==assignedUserID && assignedUserID>0){//if user is not the one who checked the box
@@ -88,8 +99,8 @@ class Checkbox extends Component {
                 {this.props.disabled ? <LoadingSpinner/> : null}
                 <div className="shared-left">
                     <label className="label-container">
-                        <input type="checkbox" name={name} value={name} checked={isChecked ? 'checked' : false} disabled={this.props.disabled} onChange={this.toggleCheck} />
-                        <span className="checkmark"></span>
+                        <input type="checkbox" name={name} value={name} checked={isChecked ? 'checked' : false} disabled={this.props.disabled} onChange={this.toggleCheck}/>
+                        <span className="checkmark"  onClick={this.open} ></span>
                         <label className="item-name" style={isChecked ? crossedOutTextStyle : this.state.style } >{this.props.itemName}</label>
                         <label className="checkbox-login"><SignInModal isOpen={this.state.isOpen} close={this.close}/></label>
                     </label>

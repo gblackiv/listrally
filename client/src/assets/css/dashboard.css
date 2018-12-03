@@ -110,10 +110,13 @@ padding: 0.3em;
     font-size: 1em;
     margin: 0.2em 0;
     align-self: auto;
-    border: 0.5px solid grey;
-    border-radius: 10px;
     padding: 15px;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-image: initial;
+    border-radius: 3px;
 }
 i{
     cursor: pointer;
@@ -248,7 +251,7 @@ input:checked + .label-user:after {
 
 .new-list-button-container {
     position: absolute;
-    top: -23px;
+    top: -28px;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -269,9 +272,6 @@ input:checked + .label-user:after {
 }
 
 @media all and (min-width: 1024px) and (max-width: 1280px) {
-    .home-title{
-        font-size: 4em;
-    }
     .logo-container{
         height: 150px;
         width: 150px;

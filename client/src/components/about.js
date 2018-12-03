@@ -7,9 +7,9 @@ import Footer from './footer';
 
 import WhiteLogo from '../assets/images/aboutus/app-list-rally-logo-icon-ONLY-LIGHT.png'
 import michael from '../assets/images/aboutus/michael.png';
-import gerry from '../assets/images/aboutus/gerry.png';
-import george from '../assets/images/aboutus/george.png';
-import torie from '../assets/images/aboutus/torie.png';
+import gerry from '../assets/images/aboutus/gerry.jpeg';
+import george from '../assets/images/aboutus/george.jpeg';
+import torie from '../assets/images/aboutus/torie.jpg';
 
 class AboutUs extends Component{
     constructor() {
@@ -41,10 +41,24 @@ class AboutUs extends Component{
                             <div className="team-container">
                                 <div className="team-card">
                                     <div className="team-img-container">
+                                        <img className="team-img shadow" src={torie} alt="torie_photo" />
+                                    </div>
+                                    <h6 className="team-title">Torie</h6>
+                                    <p className="team-role">Front-End Developer</p>
+                                    <div className="team-icons">
+                                        <a href="https://github.com/toriep" target="_blank"><i className="fab fa-github"></i></a> 
+                                        <a href="https://www.linkedin.com/in/torie-pham-6476ab79/" target="_blank"><i className="fab fa-linkedin"></i></a>
+                                        <a href="https://toriepham.com" target="_blank"><i className="fal fa-home"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="team-container">
+                                <div className="team-card">
+                                    <div className="team-img-container">
                                         <img className="team-img shadow" src={michael} alt="michael_photo" />
                                     </div>
                                     <h6 className="team-title">Michael</h6>
-                                    <p className="team-role">Front-End Developer</p>
+                                    <p className="team-role">Front-End Developer/Team Lead</p>
                                     <div className="team-icons">
                                         <a href="https://github.com/3daddict" target="_blank"><i className="fab fa-github"></i></a> 
                                         <a href="https://www.linkedin.com/in/msalvati/" target="_blank"><i className="fab fa-linkedin"></i></a>
@@ -55,7 +69,7 @@ class AboutUs extends Component{
                             <div className="team-container">
                                 <div className="team-card">
                                     <div className="team-img-container">
-                                        <img className="team-img shadow" src={george} alt="michael_photo" />
+                                        <img className="team-img shadow" src={george} alt="george_photo" />
                                     </div>
                                     <h6 className="team-title">George</h6>
                                     <p className="team-role">Front-End Developer</p>
@@ -69,28 +83,14 @@ class AboutUs extends Component{
                             <div className="team-container">
                                 <div className="team-card">
                                     <div className="team-img-container">
-                                        <img className="team-img shadow" src={torie} alt="michael_photo" />
-                                    </div>
-                                    <h6 className="team-title">Torie</h6>
-                                    <p className="team-role">Front-End Developer</p>
-                                    <div className="team-icons">
-                                        <a href="https://github.com/toriep" target="_blank"><i className="fab fa-github"></i></a> 
-                                        <a href="https://www.linkedin.com/in/torie-pham-6476ab79/" target="_blank"><i className="fab fa-linkedin"></i></a>
-                                        <a href="http://toriepham.com/main.html" target="_blank"><i className="fal fa-home"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="team-container">
-                                <div className="team-card">
-                                    <div className="team-img-container">
-                                        <img className="team-img shadow" src={gerry} alt="michael_photo" />
+                                        <img className="team-img shadow" src={gerry} alt="gerry_photo" />
                                     </div>
                                     <h6 className="team-title">Gerry</h6>
                                     <p className="team-role">Back-End Developer</p>
                                     <div className="team-icons">
                                         <a href="https://github.com/gblackiv" target="_blank"><i className="fab fa-github"></i></a> 
                                         <a href="https://www.linkedin.com/in/gerry-blackmon-b20b98165/" target="_blank"><i className="fab fa-linkedin"></i></a>
-                                        <a href="http://gerryblackmon.com/" target="_blank"><i className="fal fa-home"></i></a>
+                                        <a href="https://gerryblackmon.com/" target="_blank"><i className="fal fa-home"></i></a>
                                     </div>
                                 </div>
                             </div>

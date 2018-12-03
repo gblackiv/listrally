@@ -50,6 +50,7 @@ class DashBoard extends Component {
 
 
         return (    
+
         <div className="col-2">
             <header>
                 <Header avatar={user ? avatar : null} buttons={['Back_button', 'Home_nav_button', 'Sign_out_button']} history={this.props.history}  />
