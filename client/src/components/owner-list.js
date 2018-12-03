@@ -36,29 +36,6 @@ class OwnerList extends Component{
         this.props.getListData(this.url);
     }
 
-    convertDateToLocalFormat( date ) {
-        const newDate = new Date(date.getTime()-date.getTimezoneOffset()*60*1000);
-    
-        const offset = date.getTimezoneOffset() / 60;
-        var hours = date.getHours();
-    
-        newDate.setHours(hours - offset);
-    
-        return newDate;   
-    }
-    convertDate=( dateString )=>{
-        const preConvertedDate = new Date( dateString );
-        const convertedDate = new Date(preConvertedDate.getTime()-preConvertedDate.getTimezoneOffset()*60*1000);
-        const offset = preConvertedDate.getTimezoneOffset() / 60;
-        const hours = preConvertedDate.getHours();
-        convertedDate.setHours(hours - offset);
-        
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"];
-        const month = monthNames[convertedDate.getMonth()];
-        return `${month} ${convertedDate.getDate()}, ${convertedDate.getFullYear()} ${convertedDate.toLocaleTimeString()}`;
-    }
-
     enableEdit=()=>{
         this.setState({
             edit: true
@@ -141,7 +118,7 @@ class OwnerList extends Component{
                                 </div>
                                 : 
                                 <div className="list-date">
-                                    {list.length>0 ? this.convertDate(list[0].eventTime)  : ''}
+                                    {list.length>0 ? this.props.list[0].userTimeFormat : ''}
                                     <div onClick={this.enableEdit} className="edit-date"><i className="fas fa-pen"></i></div>
                                 </div>
                             }
