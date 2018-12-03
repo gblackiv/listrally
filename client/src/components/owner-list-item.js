@@ -3,8 +3,9 @@ import { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { deleteItem, getListData, editSingleItem } from '../actions';
 import { Link } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
-import DeleteModal  from './delete_modal.js'
+import { Field, reduxForm, initialize } from 'redux-form';
+import DeleteModal  from './delete_modal.js';
+import EditItem from './edit_item.js';
 
 
 class ListItem extends Component {
@@ -16,23 +17,6 @@ class ListItem extends Component {
     }
     close = () => this.setState({modalStatus: false});
 
-    renderInput = (props) => {
-        const { input } = props;
-        input.value = this.state.value;
-        return (
-            <div className="edit-row">
-                <input className="edit-item-field" {...input} onChange={() => this.changeItemName(input.onChange)} type="text" autoComplete="off" />
-                <button className="edit-btn">OK</button>
-            </div>
-        )
-    }
-    changeItemName(callbackFunction){
-        this.setState({
-            value: event.target.value
-        })
-        callbackFunction(this.state.value);
-    }
-
     deleteSingleItem = ()=>{
         const {ID} = this.props;
         const itemID = {ID}
@@ -41,10 +25,8 @@ class ListItem extends Component {
     }
 
     updateSingleItem=(values)=>{
-        const {itemName: name} = values;
-        this.setState({
-            value: name
-        })
+        // const { ID, name, listID, assignedUserID } = request.body;
+        const name = this.state.value;
         const { ID, listID} = this.props;
         let assignedUserID = 0;
         const updatedObject = {ID, name, listID, assignedUserID};
@@ -69,8 +51,8 @@ class ListItem extends Component {
                     <DeleteModal isOpen={this.state.modalStatus} close={this.close} confirmDelete={() => {this.deleteSingleItem()}} />
                     {this.state.edit ? 
                         <div className="edit">
-                            <form className='edit-form-container' onSubmit={handleSubmit(this.updateSingleItem)}>
-                                <Field name="itemName" listID={2} type="text" component={this.renderInput} label="Add Item"/>
+                            <form className='edit-form-container' onSubmit={handleSubmit(this.updateSingleItem.bind(this))}>
+                                <Field name="itemName" listID={2} type="text" component={EditItem} defaultValue={itemName} parent={this} label="Add Item"/>
                             </form>
                         </div>
                         :
