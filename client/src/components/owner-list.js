@@ -30,7 +30,7 @@ class OwnerList extends Component{
 
     state = {
         edit: false,
-        date: new Date(),
+        date: [new Date()],
         itemNameApproved: true
     }
 
@@ -53,7 +53,7 @@ class OwnerList extends Component{
     changeDate = ()=>{
         const {list} =this.props;
         const updatedListObject = {...list[0]};
-        updatedListObject.eventTime = this.state.date.toJSON().slice(0, 19).replace('T', ' ');
+        updatedListObject.eventTime = this.state.date[0].toJSON().slice(0, 19).replace('T', ' ');
         this.props.updateListInfo(updatedListObject);
         this.props.getListData(this.url);
         this.setState({
