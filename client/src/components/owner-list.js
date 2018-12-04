@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Header from './header';
 import DatePicker from './date-picker';
+import ErrorMessage from './error_message.js';
 
 import { Fragment } from 'react';
 import { Field, reduxForm } from 'redux-form';
@@ -29,7 +30,8 @@ class OwnerList extends Component{
 
     state = {
         edit: false,
-        date: new Date()
+        date: new Date(),
+        itemNameApproved: true
     }
 
     componentDidMount() {
@@ -75,6 +77,15 @@ class OwnerList extends Component{
     }
 
     submitItem = (values) => {
+        if(Object.keys(values).length === 0 && values.constructor === Object){
+            if(this.state.itemNameApproved){
+                setTimeout(this.setState.bind(this, {itemNameApproved: true}) , 2000);
+            }
+            this.setState({
+                itemNameApproved: false
+            });
+            return;
+        }
         const {reset, list} = this.props;
         if(list.length>0){
              var {ID: listID} = list[0];
@@ -95,9 +106,9 @@ class OwnerList extends Component{
         const listItems = items.map(item=>{
             return <ListItems key={item.ID} {...item} url={this.url} userInfo={userInfo} />
         })
-
         return(
             <div className="col-2">
+                {this.state.itemNameApproved ? null : <ErrorMessage message='Item must have a name' />}
                 <header>
                     <Header url={this.url} buttons={['Back_button', 'Home_nav_button', 'List_link_button']} history={this.props.history} avatar={userInfo.avatar ? avatar: null}  login={this.props.userInfo.ID}  />
                 </header> 
