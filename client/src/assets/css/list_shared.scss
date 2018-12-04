@@ -319,6 +319,21 @@
         font-size: 0.75rem;
     }
 }
+
+@media all and (max-width: 900px){
+    .share-instruction{
+        font-size: 1.5rem;
+        left: 10%;
+    }
+}
+@media all and ( min-width: 480px ) and ( max-width: 584px ){
+    .item-name{
+        font-size: 1.1rem;
+    }
+    .share-instruction{
+        font-size: 1.15rem;
+    }
+}
 @media all and ( min-width: 376px ) and (max-width: 480px) {
     .share-instruction{
         font-size: 1.4rem;
@@ -335,20 +350,5 @@
     }
     .shared-label-container {
         margin: 14% 5% 1% 4.5%;
-    }
-}
-@media all and ( min-width: 480px ) and ( max-width: 584px ){
-    .item-name{
-        font-size: 1.1rem;
-    }
-    .share-instruction{
-        font-size: 1.15rem;
-    }
-}
-
-@media all and (max-width: 900px){
-    .share-instruction{
-        font-size: 1.5rem;
-        left: 10%;
     }
 }
