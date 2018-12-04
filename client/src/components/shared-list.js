@@ -125,8 +125,8 @@ class SharedList extends Component{
                     <div id="user-modal" className="user-modal">
                         <div className="user-modal-content">
                             <span onClick={this.closeWithX} className="user-close">&times;</span>
-                            <h4 className="share-instruction">Share With Others</h4>
                             <main>
+                                <h4 className="share-instruction">Share Link With Others</h4>
                                 <div className="wrapper">{ (list.length > 0)
                                     ?  <input className="copy-link-input-field" id="select-this" defaultValue={this.link}/>
                                     : <button className="btn btn-blue"><i className="fas fa-home"></i> Home</button> }
