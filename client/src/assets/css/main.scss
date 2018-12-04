@@ -89,6 +89,23 @@ footer {
         cursor: pointer;
     }
 }
+@keyframes fadeAway{
+    from {opacity: 100;}
+    to {opacity: 0;}
+}
+.errorMessage{
+    animation-name: fadeAway;
+    animation-duration: 2000ms;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1000;
+    color: black;
+    text-shadow: 1px white;
+}
 
 /*************************
 * Typography

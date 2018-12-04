@@ -23,6 +23,7 @@ class CreateList extends Component{
             name: '',
             eventTime: '',
             modalStatus: false,
+            date: [new Date()]
         };
         this.getDate = this.getDate.bind(this);
     }
@@ -69,11 +70,13 @@ class CreateList extends Component{
 
     userCreateListData = (values) => {
         values.eventTime = this.state.date;
+        console.log(values)
+        console.log(this.state.date)
         if(!values.eventTime) return;
         if(!this.props.userInfo.ID){//if user is not logged in
             localStorage.setItem('eventName', values.eventName);
             localStorage.setItem('eventDescription', values.eventDescription);
-            localStorage.setItem('eventTime', values.eventTime[0]);
+            localStorage.setItem('eventTime', values.eventTime);
 
             this.setState({
                 modalStatus: true
@@ -95,7 +98,7 @@ class CreateList extends Component{
     componentDidMount(){
         this.props.authenticate();
         if( this.createListState){
-            this.getDate( this.createListState.eventTime );
+            // this.getDate( this.createListState.eventTime );
         }
         if(!this.props.userInfo.ID){//if user is not logged in, then clear cache
             localStorage.clear();
@@ -131,7 +134,7 @@ class CreateList extends Component{
                             <fieldset className="date-fieldset">
                                 <legend className="form-input-label date-input-label">Enter Date and Time</legend>
                                     <div>
-                                        <DatePicker sendDate={this.getDate} /><span className="date-note"> ◄ Select date</span>
+                                        <DatePicker sendDate={this.getDate} currentDate={this.state.date}/><span className="date-note" > ◄ Select date</span>
                                     </div>
                             </fieldset>
                         </div>
@@ -171,7 +174,6 @@ function validate(values){
 
     if(eventDescriptionCharCount > 250) {
         errors.eventDescription = "Please enter 250 characters or less";
-        console.log(eventDescriptionCharCount);
     }
 
     if(!eventName){

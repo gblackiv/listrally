@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { Field, reduxForm, initialize } from 'redux-form';
 import DeleteModal  from './delete_modal.js';
 import EditItem from './edit_item.js';
+import ErrorMessage from './error_message.js';
+import { timingSafeEqual } from 'crypto';
 
 
 class ListItem extends Component {
@@ -13,7 +15,8 @@ class ListItem extends Component {
     state = {
         edit: false,
         value: this.props.itemName,
-        modalStatus: false
+        modalStatus: false,
+        itemNameApproved: true
     }
     close = () => this.setState({modalStatus: false});
 
@@ -26,6 +29,20 @@ class ListItem extends Component {
 
     updateSingleItem=(values)=>{
         // const { ID, name, listID, assignedUserID } = request.body;
+        if(this.state.value.length === 0){
+            if(this.state.itemNameApproved){
+                setTimeout(this.setState.bind(this, {itemNameApproved: true}) , 2000);
+            }
+            this.setState({
+                itemNameApproved: false
+            });
+            return;
+        }
+        else{
+            this.setState({
+                itemNameApproved: true
+            })
+        }
         const name = this.state.value;
         const { ID, listID} = this.props;
         let assignedUserID = 0;
@@ -49,6 +66,7 @@ class ListItem extends Component {
         return (
                 <Fragment>
                     <DeleteModal isOpen={this.state.modalStatus} close={this.close} confirmDelete={() => {this.deleteSingleItem()}} />
+                    {this.state.itemNameApproved ? null : <ErrorMessage message='Item must have a name' />}
                     {this.state.edit ? 
                         <div className="edit">
                             <form className='edit-form-container' onSubmit={handleSubmit(this.updateSingleItem.bind(this))}>

@@ -2,7 +2,6 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 //CSS stylesheets
 import '../assets/css/styles.css';
-import '../assets/css/app.css';
 import '../assets/css/main.scss';
 import '../assets/css/helpers.scss';
 import '../assets/css/buttons.scss';
