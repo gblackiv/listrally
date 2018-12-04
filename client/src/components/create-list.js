@@ -23,7 +23,7 @@ class CreateList extends Component{
             name: '',
             eventTime: '',
             modalStatus: false,
-            date: new Date()
+            date: [new Date()]
         };
         this.getDate = this.getDate.bind(this);
     }
@@ -70,11 +70,13 @@ class CreateList extends Component{
 
     userCreateListData = (values) => {
         values.eventTime = this.state.date;
+        console.log(values)
+        console.log(this.state.date)
         if(!values.eventTime) return;
         if(!this.props.userInfo.ID){//if user is not logged in
             localStorage.setItem('eventName', values.eventName);
             localStorage.setItem('eventDescription', values.eventDescription);
-            localStorage.setItem('eventTime', values.eventTime[0]);
+            localStorage.setItem('eventTime', values.eventTime);
 
             this.setState({
                 modalStatus: true
@@ -83,7 +85,7 @@ class CreateList extends Component{
         }
         let {eventDescription: description, eventName: name, eventTime} = values;
         const securityStatus = "locked";
-        eventTime = eventTime.toJSON().slice(0, 19).replace('T', ' ');
+        eventTime = eventTime[0].toJSON().slice(0, 19).replace('T', ' ');
         const newEventObject = { name, description, securityStatus, eventTime };
         this.props.createListData(newEventObject, this.causeRedirectToNewListPage.bind(this));
     }

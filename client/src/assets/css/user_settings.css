@@ -67,4 +67,9 @@
         width: 100%;
     }
 }
+@media all and (max-height: 450px){
+    .user-modal-content{
+        height: 75%;
+    }
+}
 
