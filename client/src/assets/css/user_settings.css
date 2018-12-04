@@ -59,14 +59,12 @@
 @media all and (max-width: 600px) {
     .user-modal-content {
         width: 80%;
-        height: 50%;
     }
 }
 
 @media all and (max-width: 480px) {
     .user-modal-content {
         width: 100%;
-        height: 50%;
     }
 }
 
