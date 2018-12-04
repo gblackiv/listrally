@@ -29,7 +29,7 @@ class OwnerList extends Component{
 
     state = {
         edit: false,
-        date: []
+        date: new Date()
     }
 
     componentDidMount() {
@@ -51,7 +51,7 @@ class OwnerList extends Component{
     changeDate = ()=>{
         const {list} =this.props;
         const updatedListObject = {...list[0]};
-        updatedListObject.eventTime = this.state.date[0].toJSON().slice(0, 19).replace('T', ' ');
+        updatedListObject.eventTime = this.state.date.toJSON().slice(0, 19).replace('T', ' ');
         this.props.updateListInfo(updatedListObject);
         this.props.getListData(this.url);
         this.setState({
@@ -87,6 +87,7 @@ class OwnerList extends Component{
     }
 
     render(){
+        console.log(this.state)
         const {handleSubmit} = this.props;
         let {items, list, userInfo } = this.props;
         if(userInfo.avatar){
@@ -111,7 +112,7 @@ class OwnerList extends Component{
                                     <fieldset className="date-fieldset">
                                     <legend className="form-input-label date-input-label">Change Date and Time</legend>
                                         <div>
-                                            <DatePicker sendDate={this.getDate} /><span className="date-note"> ◄ Select date</span>
+                                            <DatePicker sendDate={this.getDate} currentDate={this.state.date} /><span className="date-note"> ◄ Select date</span>
                                         </div>
                                     </fieldset>
                                     <button onClick={this.changeDate} type="submit" className="btn btn-green">Change</button>

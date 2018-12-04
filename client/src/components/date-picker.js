@@ -10,8 +10,9 @@ class DatePicker extends Component {
     super(props);
 
     this.state = {
-      date: ''
+      date: this.props.currentDate
     };
+    
   }
 
   render() {
@@ -24,7 +25,9 @@ class DatePicker extends Component {
             dateFormat: "F j, Y, H:i",
         }}
         onChange={(date) => { this.setState({date});
-                              this.props.sendDate(date);}} />
+                              this.props.sendDate(date);}} 
+        onFocus={() => {this.setState({date: this.state.date})
+                        this.props.sendDate(this.state.date)}} />
     )
   }
 }
