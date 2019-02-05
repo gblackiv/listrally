@@ -30,6 +30,7 @@ const passportSetup = ( server, mySQL, connection, passport ) => {
 	 * accessToken, refreshToken, and profile are sent back from Google API, done is the callback function that progresses login
 	 */
 	passport.use( new GoogleStrategy( {
+		userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
 		callbackURL: '/auth/login/redirect',
 		clientID: googleCreds.clientID,
 		clientSecret: googleCreds.clientSecret
